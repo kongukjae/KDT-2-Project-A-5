@@ -9,7 +9,6 @@ const server = http.createServer((req, res)=> {
     }
   }
   if(req.method === 'POST') {
-    
   }
 });
 server.listen(8080,(err)=> {

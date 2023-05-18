@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/kongukjae/KDT-2-Project-A-5.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
