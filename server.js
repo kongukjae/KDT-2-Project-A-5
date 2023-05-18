@@ -7,6 +7,19 @@ const server = http.createServer((req, res)=> {
       res.write("HelloWorld");
       res.end();
     }
+    // html파일 요청
+    if(req.url.endsWith('.html')) {
+
+    }
+    // css파일 요청
+    if(req.url.endsWith('.css')) {
+      
+    }
+    // js파일 요청
+    if(req.url.endsWith('.js')) {
+      
+    }
+
   }
   if(req.method === 'POST') {
   }
