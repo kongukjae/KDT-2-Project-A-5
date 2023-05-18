@@ -24,7 +24,9 @@ const server = http.createServer((req, res)=> {
     // css파일 요청
     if(req.url.endsWith('.css')) {
       res.writeHead(200, {'Content-Type' : 'text/html'});
-      res.write("");
+      res.write(
+        fs.readFileSync(path.join(root, "src", "views", "html", "index.html"),"utf-8")
+      );
       res.end();
     }
     // js파일 요청
