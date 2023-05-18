@@ -17,7 +17,7 @@ const server = http.createServer((req, res)=> {
     if(req.url.endsWith('.html')) {
       res.writeHead(200, {'Content-Type' : 'text/html'});
       res.write(
-        fs.readFileSync(path.join(root, "src", "views", "html"),"utf-8")
+        fs.readFileSync(path.join(root, "src", "views", "html", "index.html"),"utf-8")
       );
       res.end();
     }
