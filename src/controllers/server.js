@@ -5,7 +5,7 @@ import fs from "fs";
 const __fileName = fileURLToPath(import.meta.url);
 const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
-
+console.log("루트 경로입니다 :  "+ root );
 const server = http.createServer((req, res)=> {
   if(req.method === 'GET') {
     if(req.url === '/') {
@@ -17,7 +17,7 @@ const server = http.createServer((req, res)=> {
     if(req.url.endsWith('.html')) {
       res.writeHead(200, {'Content-Type' : 'text/html'});
       res.write(
-        fs.writeFileSync(root,)
+        // fs.readFileSync(path.join(root, ))
       );
       res.end();
     }
