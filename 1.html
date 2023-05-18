@@ -1,0 +1,26 @@
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    const root = document.getElementById('root');
+    const xhr = new XMLHttpRequest();
+    const _URL = 'https://pokeapi.co/api/v2/pokemon/ditto'; xhr.open('GET', _URL);
+    xhr.send();
+    xhr.addEventListener('load', function() {
+    console.log(xhr.response);
+    const _PokeData = JSON.parse(xhr.response); 
+    console.log(_PokeData.sprites)
+
+    const h1 = document.createElement('h1'); 
+    h1.textContent = _PokeData.name; 
+    root.appendChild(h1);
+    
+    const img = document.createElement('img')
+    img.src = _PokeData.front_default;
+    root.appendChild(img)
+
+  }); 
+
+  </script>
+  </body>
