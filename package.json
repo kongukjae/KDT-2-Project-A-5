@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/JangRuBin2/KDT-2-Project-A-5.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
