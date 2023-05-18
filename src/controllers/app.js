@@ -30,9 +30,7 @@ const server = http.createServer((req, res)=> {
     // js파일 요청
     if(req.url.endsWith('.js')) {
       res.writeHead(200, {'Content-Type' : 'text/javascript'});
-      res.write(
-        fs.readFileSync(path.join(root, "src", "views", "js", "pdj-test.js"),"utf-8")
-      );
+      res.write(fs.readFileSync(path.join(req.url)));
       // res.write(
       //   fs.readFileSync(path.join(root, "utils", "all-mighty-editor.js"),"utf-8")
       // );
