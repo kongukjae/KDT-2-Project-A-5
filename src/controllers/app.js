@@ -17,14 +17,14 @@ const server = http.createServer((req, res)=> {
     if(req.url.endsWith('.html')) {
       res.writeHead(200, {'Content-Type' : 'text/html'});
       res.write(
-        fs.readFileSync(path.join(root, "src", "views", "html", "index.html"),"utf-8")
+        fs.readFileSync(path.join(root, req.url),"utf-8")
       );
       res.end();
     }
     // css파일 요청
     if(req.url.endsWith('.css')) {
       res.writeHead(200, {'Content-Type' : 'text/css'});
-      res.write("");
+      fs.readFileSync(path.join(root, req.url),"utf-8")
       res.end();
     }
     // js파일 요청
@@ -34,6 +34,14 @@ const server = http.createServer((req, res)=> {
       // res.write(
       //   fs.readFileSync(path.join(root, "utils", "all-mighty-editor.js"),"utf-8")
       // );
+      res.end();
+    }
+    // png 파일 요청
+    if(req.url.endsWith('.png')) {
+      res.writeHead(200, {'Content-Type' : 'image/png'});
+      res.write(
+        fs.readFileSync(path.join(root, req.url))
+      )
       res.end();
     }
 
