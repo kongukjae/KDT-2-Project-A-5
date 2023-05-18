@@ -23,16 +23,19 @@ const server = http.createServer((req, res)=> {
     }
     // css파일 요청
     if(req.url.endsWith('.css')) {
-      res.writeHead(200, {'Content-Type' : 'text/html'});
-      res.write(
-        fs.readFileSync(path.join(root, "src", "views", "html", "index.html"),"utf-8")
-      );
+      res.writeHead(200, {'Content-Type' : 'text/css'});
+      res.write("");
       res.end();
     }
     // js파일 요청
     if(req.url.endsWith('.js')) {
-      res.writeHead(200, {'Content-Type' : 'text/html'});
-      res.write("");
+      res.writeHead(200, {'Content-Type' : 'text/javascript'});
+      res.write(
+        fs.readFileSync(path.join(root, "src", "views", "js", "pdj-test.js"),"utf-8")
+      );
+      // res.write(
+      //   fs.readFileSync(path.join(root, "utils", "all-mighty-editor.js"),"utf-8")
+      // );
       res.end();
     }
 
