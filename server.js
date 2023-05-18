@@ -1,4 +1,10 @@
 import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __fileName = fileURLToPath(import.meta.url);
+const __dirName = path.dirname(__fileName);
+const root = path.join(__dirName, "../../");
 
 const server = http.createServer((req, res)=> {
   if(req.method === 'GET') {
