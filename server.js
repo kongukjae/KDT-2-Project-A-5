@@ -10,20 +10,28 @@ const server = http.createServer((req, res)=> {
   if(req.method === 'GET') {
     if(req.url === '/') {
       res.writeHead(200, {'Content-Type' : 'text/html'});
-      res.write("HelloWorld");
+      res.write("Hello World");
       res.end();
     }
     // html파일 요청
     if(req.url.endsWith('.html')) {
-
+      res.writeHead(200, {'Content-Type' : 'text/html'});
+      res.write(
+        fs.writeFileSync(root,)
+      );
+      res.end();
     }
     // css파일 요청
     if(req.url.endsWith('.css')) {
-      
+      res.writeHead(200, {'Content-Type' : 'text/html'});
+      res.write("");
+      res.end();
     }
     // js파일 요청
     if(req.url.endsWith('.js')) {
-      
+      res.writeHead(200, {'Content-Type' : 'text/html'});
+      res.write("");
+      res.end();
     }
 
   }
