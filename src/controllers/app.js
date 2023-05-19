@@ -7,8 +7,10 @@ const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
 console.log("루트 경로입니다 :  " + root );
 const server = http.createServer((req, res)=> {
+  try {
   if(req.method === 'GET') {
     if(req.url === '/') {
+      // ! 호출 할 파일이 없어서 임시로 해 놓음
       res.writeHead(200, {'Content-Type' : 'text/html'});
       res.write("Hello World");
       res.end();
@@ -47,6 +49,8 @@ const server = http.createServer((req, res)=> {
 
   }
   if(req.method === 'POST') {
+  }} catch (err) {
+    console.log(err);
   }
 });
 server.listen(8080,(err)=> {
