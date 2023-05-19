@@ -34,22 +34,20 @@ const server = http.createServer((req, res)=> {
       res.end();
     }
     // html파일 요청
-    if(req.url.endsWith('.html')) {
-      res.writeHead(200, {'Content-Type' : 'text/html'});
-      res.write(
-        fs.readFileSync(path.join(root, req.url),"utf-8")
-      );
+    if (req.url.endsWith(".html")) {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write(fs.readFileSync(path.join(root, req.url), "utf-8"));
       res.end();
     }
     // css파일 요청
-    if(req.url.endsWith('.css')) {
-      res.writeHead(200, {'Content-Type' : 'text/css'});
-      fs.readFileSync(path.join(root, req.url),"utf-8")
+    if (req.url.endsWith(".css")) {
+      res.writeHead(200, { "Content-Type": "text/css" });
+      fs.readFileSync(path.join(root, req.url), "utf-8");
       res.end();
     }
     // js파일 요청
-    if(req.url.endsWith('.js')) {
-      res.writeHead(200, {'Content-Type' : 'text/javascript'});
+    if (req.url.endsWith(".js")) {
+      res.writeHead(200, { "Content-Type": "text/javascript" });
       res.write(fs.readFileSync(path.join(root, req.url)));
       // res.write(
       //   fs.readFileSync(path.join(root, "utils", "all-mighty-editor.js"),"utf-8")
@@ -57,11 +55,9 @@ const server = http.createServer((req, res)=> {
       res.end();
     }
     // png 파일 요청
-    if(req.url.endsWith('.png')) {
-      res.writeHead(200, {'Content-Type' : 'image/png'});
-      res.write(
-        fs.readFileSync(path.join(root, req.url))
-      )
+    if (req.url.endsWith(".png")) {
+      res.writeHead(200, { "Content-Type": "image/png" });
+      res.write(fs.readFileSync(path.join(root, req.url)));
       res.end();
     }
     if(req.url ==='test') {
@@ -82,9 +78,9 @@ const server = http.createServer((req, res)=> {
     res.end();
   }
 });
-server.listen(8080,(err)=> {
-  if(err) {
+server.listen(8080, (err) => {
+  if (err) {
     console.log(err);
   }
   console.log("서버가 정상 연결 됐습니다");
-})
+});
