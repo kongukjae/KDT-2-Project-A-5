@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/kongukjae/KDT-2-Project-A-5/issues"
   },
-  "homepage": "https://github.com/kongukjae/KDT-2-Project-A-5#readme"
+  "homepage": "https://github.com/kongukjae/KDT-2-Project-A-5#readme",
+  "dependencies": {
+    "qs": "^6.11.2"
+  }
 }
