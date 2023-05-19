@@ -8,7 +8,13 @@ const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
 // console.log("루트 경로입니다 :  " + root );
 let test = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8")
-console.log(test)
+console.log(JSON.parse(test));
+const kk = JSON.parse(test).filter((x) => {
+  if(x === 'bulbasaur') {
+    return true;
+  }
+});
+console.log(kk)
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
