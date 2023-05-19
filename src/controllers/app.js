@@ -7,14 +7,23 @@ const __fileName = fileURLToPath(import.meta.url);
 const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
 // console.log("루트 경로입니다 :  " + root );
-let test = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8")
-console.log(JSON.parse(test));
-const kk = JSON.parse(test).filter((x) => {
-  if(x === 'bulbasaur') {
+let pokeJSONFile = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8");
+let parsedPoke = JSON.parse(pokeJSONFile);
+// console.log(JSON.parse(test));
+// ? 들어온 요청에 맞는 데이터를 찾아주는 함수
+function findPokeMoudle(inputData) {
+  const result = parsedPoke.filter((x) => {
+  if(x === inputData) {
     return true;
   }
-});
-console.log(kk)
+})
+  return result;
+};
+// 요청 들어온 값에 맞는 데이터
+
+console.log(findPokeMoudle('bulbasaur'));
+
+
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
