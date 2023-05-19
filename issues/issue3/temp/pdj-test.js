@@ -43,9 +43,23 @@ const mainTextImg = multiAndSingleTagMaker(
   "main-text-img",
   1,
   (ele) => {
-    ele.src = "/src/views/img/img-13.png";
+    ele.src = "./img-13.png";
   }
 );
+
+const form = tagMaker("form", mainTextContainer, {
+  id: "submit_form",
+  method: "GET",
+});
+
+const textInput = tagMaker("input", form, {
+  type: "text",
+});
+
+const submitButton = tagMaker("button", form, {
+  type: "submit",
+  innerText: "제출",
+});
 
 //* CSS 부분
 const mainDIvCss = {
