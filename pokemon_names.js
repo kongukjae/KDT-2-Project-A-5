@@ -15,7 +15,7 @@ axios.get(baseUrl + allPokemonEndpoint)
     const jsonData = JSON.stringify(pokemonList);
 
     // JSON 데이터를 파일로 저장
-    fs.writeFile('pokemon_names.json', jsonData, err => {
+    fs.writeFile('pokemonNames.json', jsonData, err => {
       if (err) {
         console.error('파일 저장 중 에러 발생:', err);
       } else {
