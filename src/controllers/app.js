@@ -51,14 +51,14 @@ const server = http.createServer((req, res)=> {
   if(req.method === 'POST') {
   }} catch (err) {
     console.log(err);
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.write('서버 연결이 원할하지 않습니다');
+    res.end();
   }
 });
 server.listen(8080,(err)=> {
   if(err) {
     console.log(err);
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.write('서버 연결이 원할하지 않습니다');
-    res.end();
   }
   console.log("서버가 정상 연결 됐습니다");
 })
