@@ -1,4 +1,4 @@
-import all_mighty_editor from "../../../utils/all-mighty-editor.js";
+import all_mighty_editor from "../../../utils/all-mighty-editor.";
 const {
   multiAndSingleTagMaker,
   positionEditor,
