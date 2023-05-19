@@ -43,13 +43,14 @@ const mainTextImg = multiAndSingleTagMaker(
   "main-text-img",
   1,
   (ele) => {
-    ele.src = "./img-13.png";
+    ele.src = "/src/views/img/img-13.png";
   }
 );
 
 const form = tagMaker("form", mainTextContainer, {
   id: "submit_form",
   method: "GET",
+  action : "name"
 });
 
 const textInput = tagMaker("input", form, {
