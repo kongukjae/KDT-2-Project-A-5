@@ -6,7 +6,9 @@ import qs from "qs";
 const __fileName = fileURLToPath(import.meta.url);
 const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
-console.log("루트 경로입니다 :  " + root );
+// console.log("루트 경로입니다 :  " + root );
+let test = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8")
+console.log(test)
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
@@ -51,6 +53,10 @@ const server = http.createServer((req, res)=> {
       // 클라이언트로 부터 받은 데이터를 ?를 기준으로 나누려고 함
       const getData = req.url.split('?');
       // 로직 들어갈 자리고
+      function readPokeData() {
+      // let pokeData = fs.readFileSync("/src/models/pokemonNames.json");
+      // console.log(pokeData);
+        }
     }
   }
   if(req.method === 'POST') {
