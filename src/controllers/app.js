@@ -6,7 +6,24 @@ import qs from "qs";
 const __fileName = fileURLToPath(import.meta.url);
 const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
-console.log("루트 경로입니다 :  " + root );
+// console.log("루트 경로입니다 :  " + root );
+let pokeJSONFile = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8");
+// 파싱 된 포켓몬 데이터
+let parsedPoke = JSON.parse(pokeJSONFile);
+// console.log(JSON.parse(test));
+// ? 들어온 요청에 맞는 데이터를 찾아주는 함수 -> 나중에는 GET 요청 데이터를 매개변수로 넣을 것
+function findPokeMoudle(inputData) {
+  const result = parsedPoke.filter((x) => {
+  if(x === inputData) {
+    return true;
+  }
+})
+  return result;
+};
+// 요청 들어온 값에 맞는 데이터 확인
+console.log(findPokeMoudle('bulbasaur'));
+
+
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
@@ -51,6 +68,10 @@ const server = http.createServer((req, res)=> {
       // 클라이언트로 부터 받은 데이터를 ?를 기준으로 나누려고 함
       const getData = req.url.split('?');
       // 로직 들어갈 자리고
+      function readPokeData() {
+      // let pokeData = fs.readFileSync("/src/models/pokemonNames.json");
+      // console.log(pokeData);
+        }
     }
   }
   if(req.method === 'POST') {
