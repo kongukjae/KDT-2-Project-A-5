@@ -75,14 +75,15 @@ const server = http.createServer((req, res)=> {
       res.write(fs.readFileSync(path.join(root, req.url)));
       res.end();
     }
-    if(req.url.includes('index')) {
+    if(req.url.includes('/name')) {
       // console.log(req.url)
+
       const parseData = qs.parse(req.url, true);
-      console.log(parseData);
+      // console.log(parseData);
       const valueData = Object.values(parseData);
       // console.log(valueData[0]);
       const printData = findPokeMoudle(valueData[0])
-      console.log(printData)
+      console.log("모듈 결과 값"+printData)
       // res.writeHead(200, {'Content-Type' : 'text/html'})
       // res.write("hello");
       res.end(`${printData}`)
