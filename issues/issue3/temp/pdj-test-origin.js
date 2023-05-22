@@ -43,7 +43,7 @@ const mainTextImg = multiAndSingleTagMaker(
   "main-text-img",
   1,
   (ele) => {
-    ele.src = "/src/views/img/img-13.png";
+    ele.src = "./img-13.png";
   }
 );
 
@@ -54,7 +54,6 @@ const form = tagMaker("form", mainTextContainer, {
 
 const textInput = tagMaker("input", form, {
   type: "text",
-  name: "name",
 });
 
 const submitButton = tagMaker("button", form, {
@@ -83,10 +82,6 @@ allMightyStyleEditor(mainTextSub, mainTextSubCss, (ele) => {});
 allMightyStyleEditor(mainTextImg, mainTextImgCss, (ele) => {});
 
 // ! 포켓몬 랜덤 생성해보기
-
-form.addEventListener("submit", function () {
-  console.log("제출 확인");
-});
 
 // form.addEventListener("submit", function (event) {
 //   console.log("제출 확인");

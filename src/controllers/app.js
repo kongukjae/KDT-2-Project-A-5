@@ -36,7 +36,8 @@ const server = http.createServer((req, res) => {
         res.end();
       }
       // html파일 요청
-      if (req.url.endsWith(".html")) {
+      if (req.url.endsWith(".html") || req.url.endsWith(".json")) {
+        // if (req.url.endsWith(".html")) {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.write(fs.readFileSync(path.join(root, req.url), "utf-8"));
         res.end();
@@ -47,6 +48,12 @@ const server = http.createServer((req, res) => {
         fs.readFileSync(path.join(root, req.url), "utf-8");
         res.end();
       }
+      // // json파일 요청
+      // if (req.url.endsWith(".json")) {
+      //   res.writeHead(200, { "Content-Type": "text/plain" });
+      //   fs.readFileSync(path.join(root, req.url), "utf-8");
+      //   res.end();
+      // }
       // js파일 요청
       if (req.url.endsWith(".js")) {
         res.writeHead(200, { "Content-Type": "text/javascript" });

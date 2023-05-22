@@ -1,6 +1,6 @@
 // ! 포켓몬 랜덤 생성해보기
-
-form.addEventListener("submit", function (event) {
+const submitButton = document.querySelector("");
+submitButton.addEventListener("click", function (event) {
   console.log("제출 확인");
   event.preventDefault();
   const xhr = new XMLHttpRequest();
