@@ -27,6 +27,8 @@ console.log(findPokeMoudle('bulbasaur'));
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
+    const parseData = qs.parse(req.url);
+    console.log(parseData);
     if(req.url === '/') {
       // ! 호출 할 파일이 없어서 임시로 해 놓음
       res.writeHead(200, {'Content-Type' : 'text/html'});
@@ -37,12 +39,12 @@ const server = http.createServer((req, res)=> {
     if (req.url.endsWith(".html")) {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.write(fs.readFileSync(path.join(root, req.url), "utf-8"));
-      req.on("data", (chunk)=> {
-        let urlData = "";
-        const parsedData = qs.parse(req.url);
-        urlData += parsedData;
-        console.log(urlData);
-      })
+      // req.on("data", (chunk)=> {
+      //   let urlData = "";
+      //   const parsedData = qs.parse(req.url);
+      //   urlData += parsedData;
+      //   console.log(urlData);
+      // })
       res.end();
     }
     // css파일 요청
