@@ -29,6 +29,8 @@ const server = http.createServer((req, res)=> {
   if(req.method === 'GET') {
     const parseData = qs.parse(req.url);
     console.log(parseData);
+    // const test = JSON.parse(parseData);
+    // console.log(test)
     if(req.url === '/') {
       // ! 호출 할 파일이 없어서 임시로 해 놓음
       res.writeHead(200, {'Content-Type' : 'text/html'});
