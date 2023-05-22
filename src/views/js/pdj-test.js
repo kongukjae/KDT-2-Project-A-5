@@ -1,6 +1,5 @@
 import all_mighty_editor from "../../../utils/all-mighty-editor.js";
 import tagMaker from "../../../utils/tagMaker.js";
-
 const {
   multiAndSingleTagMaker,
   positionEditor,
