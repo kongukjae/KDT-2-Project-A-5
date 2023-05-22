@@ -7,32 +7,32 @@ const __fileName = fileURLToPath(import.meta.url);
 const __dirName = path.dirname(__fileName);
 const root = path.join(__dirName, "../../");
 // console.log("루트 경로입니다 :  " + root );
+
 let pokeJSONFile = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8");
 // 파싱 된 포켓몬 데이터
 let parsedPoke = JSON.parse(pokeJSONFile);
-// console.log(JSON.parse(test));
-// ? 들어온 요청에 맞는 데이터를 찾아주는 함수 -> 나중에는 GET 요청 데이터를 매개변수로 넣을 것
-function findPokeMoudle(inputData) {
+
+// url 데이터 처리 함수
+function findPokeMoudle(urlValue) {
   const result = parsedPoke.filter((x) => {
-  if(x === inputData) {
+  if(x === urlValue) {
     return true;
   }
 })
   return result;
 };
-// 요청 들어온 값에 맞는 데이터 확인
-console.log(findPokeMoudle('bulbasaur'));
-
 
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
-    const parseData = qs.parse(req.url, true);
-    console.log(parseData);
-    const urlValue = Object.values(parseData);
-    console.log(urlValue);
-    // const test = JSON.parse(parseData);
-    // console.log(test)
+    // const parseData = qs.parse(req.url, true);
+    //   console.log(parseData);
+    // const parseData = qs.parse(req.url, true);
+    // const urlValue = Object.values(parseData);
+    // console.log(urlValue);
+    // console.log(findPokeMoudle(urlValue[0]));
+    // res.write(`test${findPokeMoudle(urlValue[0])}`);
+    // ? 들어온 요청에 맞는 데이터를 찾아주는 함수 -> 나중에는 GET 요청 데이터를 매개변수로 넣을 것
     if(req.url === '/') {
       // ! 호출 할 파일이 없어서 임시로 해 놓음
       res.writeHead(200, {'Content-Type' : 'text/html'});
@@ -43,6 +43,9 @@ const server = http.createServer((req, res)=> {
     if (req.url.endsWith(".html")) {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.write(fs.readFileSync(path.join(root, req.url), "utf-8"));
+      // const urlValue = Object.values(parseData);
+      // console.log(urlValue);
+      // console.log(findPokeMoudle(urlValue[0]));
       // req.on("data", (chunk)=> {
       //   let urlData = "";
       //   const parsedData = qs.parse(req.url);
