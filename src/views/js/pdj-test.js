@@ -47,7 +47,7 @@ const mainTextImg = multiAndSingleTagMaker(
   }
 );
 
-const form = tagMaker("form", mainTextContainer, {
+const form = tagMaker("div", mainTextContainer, {
   id: "submit_form",
   method: "GET",
 });
