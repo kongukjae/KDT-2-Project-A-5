@@ -80,7 +80,11 @@ const server = http.createServer((req, res)=> {
       const parseData = qs.parse(req.url, true);
       console.log(parseData);
       const valueData = Object.values(parseData);
-      console.log(valueData[0]);
+      // console.log(valueData[0]);
+      const printData = findPokeMoudle(valueData[0])
+      res.writeHead(200, {'Content-Type' : 'text/html'})
+      res.write("hello");
+      res.end()
       // console.log("이거는 url이 파싱된 데이터 :" + parseData);
     // const parseData = qs.parse(req.url, true);
     // const urlValue = Object.values(parseData);
