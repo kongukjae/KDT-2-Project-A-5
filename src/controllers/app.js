@@ -12,7 +12,7 @@ let pokeJSONFile = fs.readFileSync(`${root}/src/models/pokemonNames.json`, "utf8
 // 파싱 된 포켓몬 데이터
 let parsedPoke = JSON.parse(pokeJSONFile);
 
-// url 데이터 처리 함수
+// client input 포켓몬 데이터 처리 함수
 function findPokeMoudle(urlValue) {
   const result = parsedPoke.filter((x) => {
   if(x === urlValue) {
@@ -25,8 +25,8 @@ function findPokeMoudle(urlValue) {
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
-    const parseData = qs.parse(req.url, true);
-      console.log(parseData);
+    // const parseData = qs.parse(req.url, true);
+    //   console.log(parseData);
     // const parseData = qs.parse(req.url, true);
     // const urlValue = Object.values(parseData);
     // console.log(urlValue);
@@ -75,16 +75,17 @@ const server = http.createServer((req, res)=> {
       res.write(fs.readFileSync(path.join(root, req.url)));
       res.end();
     }
-    if(req.url.includes('index.html')) {
+    if(req.url.includes('index')) {
       // console.log(req.url)
       const parseData = qs.parse(req.url, true);
       console.log(parseData);
       const valueData = Object.values(parseData);
       // console.log(valueData[0]);
       const printData = findPokeMoudle(valueData[0])
-      res.writeHead(200, {'Content-Type' : 'text/html'})
-      res.write("hello");
-      res.end()
+      console.log(printData)
+      // res.writeHead(200, {'Content-Type' : 'text/html'})
+      // res.write("hello");
+      res.end(`${printData}`)
       // console.log("이거는 url이 파싱된 데이터 :" + parseData);
     // const parseData = qs.parse(req.url, true);
     // const urlValue = Object.values(parseData);
