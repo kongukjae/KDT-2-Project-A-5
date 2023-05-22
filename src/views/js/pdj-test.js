@@ -55,6 +55,7 @@ const form = tagMaker("form", mainTextContainer, {
 const textInput = tagMaker("input", form, {
   type: "text",
   name: "name",
+  id : "input",
 });
 
 const submitButton = tagMaker("button", form, {
@@ -86,15 +87,18 @@ allMightyStyleEditor(mainTextImg, mainTextImgCss, (ele) => {});
 
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // 폼 제출 기본 동작 방지
+
   console.log("제출 확인");
-  fetch("/name")
-    .then((response) => response.json())
+  const input = document.getElementById('input');
+  console.log(input.value)
+  fetch(`/name?id=${input.value}`)
     .then((data) => {
-      const pokemonName = data.name;
-      // 응답 데이터를 이용하여 h1 태그를 생성하는 로직을 작성합니다.
-      const responsePokemon = document.createElement("h1");
-      responsePokemon.textContent = pokemonName;
-      document.body.appendChild(responsePokemon);
+      // const pokemonName = data.name;
+      // // 응답 데이터를 이용하여 h1 태그를 생성하는 로직을 작성합니다.
+      // const responsePokemon = document.createElement("h1");
+      // responsePokemon.textContent = pokemonName;
+      // document.body.appendChild(responsePokemon);
+      console.log(data);
     });
 });
 
