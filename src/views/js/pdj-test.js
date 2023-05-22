@@ -50,11 +50,11 @@ const mainTextImg = multiAndSingleTagMaker(
 const form = tagMaker("form", mainTextContainer, {
   id: "submit_form",
   method: "GET",
-  action : "name"
 });
 
 const textInput = tagMaker("input", form, {
   type: "text",
+  name: "name",
 });
 
 const submitButton = tagMaker("button", form, {
@@ -83,6 +83,10 @@ allMightyStyleEditor(mainTextSub, mainTextSubCss, (ele) => {});
 allMightyStyleEditor(mainTextImg, mainTextImgCss, (ele) => {});
 
 // ! 포켓몬 랜덤 생성해보기
+
+form.addEventListener("submit", function () {
+  console.log("제출 확인");
+});
 
 // form.addEventListener("submit", function (event) {
 //   console.log("제출 확인");
