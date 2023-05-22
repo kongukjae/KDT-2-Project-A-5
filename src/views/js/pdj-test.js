@@ -55,12 +55,15 @@ const form = tagMaker("form", mainTextContainer, {
 const textInput = tagMaker("input", form, {
   type: "text",
   name: "name",
-  id : "input",
+  id: "input",
 });
 
 const submitButton = tagMaker("button", form, {
   type: "submit",
   innerText: "제출",
+});
+const nameDiv = tagMaker("div", form, {
+  innerText: "이름이 입력",
 });
 
 //* CSS 부분
@@ -89,17 +92,19 @@ form.addEventListener("submit", function (event) {
   event.preventDefault(); // 폼 제출 기본 동작 방지
 
   console.log("제출 확인");
-  const input = document.getElementById('input');
-  console.log(input.value)
-  fetch(`/name?id=${input.value}`)
-    .then((data) => {
-      // const pokemonName = data.name;
-      // // 응답 데이터를 이용하여 h1 태그를 생성하는 로직을 작성합니다.
-      // const responsePokemon = document.createElement("h1");
-      // responsePokemon.textContent = pokemonName;
-      // document.body.appendChild(responsePokemon);
-      console.log(data);
-    });
+  const input = document.getElementById("input");
+  console.log(input.value);
+  fetch(`/name?id=${input.value}`).then((data) => {
+    // const pokemonName = data.name;
+    // // 응답 데이터를 이용하여 h1 태그를 생성하는 로직을 작성합니다.
+    // const responsePokemon = document.createElement("h1");
+    // responsePokemon.textContent = pokemonName;
+    // document.body.appendChild(responsePokemon);
+    console.log(data);
+    let tmpA = data.url.split("?");
+    nameDiv.innerText = tmpA[1];
+    console.log(tmpA);
+  });
 });
 
 // form.addEventListener("submit", function (event) {
