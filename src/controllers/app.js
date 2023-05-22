@@ -36,6 +36,7 @@ const server = http.createServer((req, res)=> {
     // html파일 요청
     if (req.url.endsWith(".html")) {
       res.writeHead(200, { "Content-Type": "text/html" });
+    
       res.write(fs.readFileSync(path.join(root, req.url), "utf-8"));
       res.end();
     }
@@ -60,15 +61,11 @@ const server = http.createServer((req, res)=> {
       res.write(fs.readFileSync(path.join(root, req.url)));
       res.end();
     }
-    if(req.url ==='name') {
-      console.log(req.url)
-      // // 클라이언트로 부터 받은 데이터를 ?를 기준으로 나누려고 함
-      // const getData = req.url.split('?');
-      // // 로직 들어갈 자리고
-      // function readPokeData() {
-      // // let pokeData = fs.readFileSync("/src/models/pokemonNames.json");
-      // // console.log(pokeData);
-      //   }
+    if(req.url.includes("index.html")) {
+      const getData = req.url.split('?',2);
+      console.log('test',getData);
+      
+    console.log(req.url)
     }
   }
   if(req.method === 'POST') {
