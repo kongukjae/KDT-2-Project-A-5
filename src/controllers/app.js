@@ -37,6 +37,12 @@ const server = http.createServer((req, res)=> {
     if (req.url.endsWith(".html")) {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.write(fs.readFileSync(path.join(root, req.url), "utf-8"));
+      req.on("data", (chunk)=> {
+        let urlData = "";
+        const parsedData = qs.parse(req.url);
+        urlData += parsedData;
+        console.log(urlData);
+      })
       res.end();
     }
     // css파일 요청
