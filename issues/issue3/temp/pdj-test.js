@@ -93,7 +93,7 @@ submitButton.addEventListener("click", function (event) {
   const xhr = new XMLHttpRequest();
   // 문서가 서버에 데이터 요청 시작
 
-  let random = Math.floor(Math.random() * 1010);
+  // let random = Math.floor(Math.random() * 1010);
   // 현존하는 포켓몬 수(1010) 범위 내에서 무작위 숫자 생성하도록 변수 선언
 
   // const _URL = "https://pokeapi.co/api/v2/pokemon/" + random;
@@ -112,13 +112,13 @@ submitButton.addEventListener("click", function (event) {
     const _PokeData = JSON.parse(xhr.response);
     // JSON은 자바스크립트의 객체 방식을 데이터로 표현한 것.
     // 자바스크립트처럼 보이지만 진짜 자바스크립트는 아니기 때문에 해석 작업이 필요함. 그것에 필요한 명령어가 JSON.parse
-    // if (textInput.value !== null) {
-    //   for (let i = 0; i < _PokeData.length; i++) {
-    //     if (textInput.value === _PokeData[i]) {
-    //       nameDiv.innerText = _PokeData[i];
-    //     }
-    //   }
-    // }
+    if (textInput.value !== null) {
+      for (let i = 0; i < _PokeData.length; i++) {
+        if (textInput.value === _PokeData[i]) {
+          nameDiv.innerText = _PokeData[i];
+        }
+      }
+    }
     console.log(_PokeData);
   });
 });
