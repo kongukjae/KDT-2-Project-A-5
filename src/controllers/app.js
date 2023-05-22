@@ -27,8 +27,10 @@ console.log(findPokeMoudle('bulbasaur'));
 const server = http.createServer((req, res)=> {
   try {
   if(req.method === 'GET') {
-    const parseData = qs.parse(req.url);
+    const parseData = qs.parse(req.url, true);
     console.log(parseData);
+    const urlValue = Object.values(parseData);
+    console.log(urlValue);
     // const test = JSON.parse(parseData);
     // console.log(test)
     if(req.url === '/') {
