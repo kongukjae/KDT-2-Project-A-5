@@ -1,5 +1,6 @@
 import all_mighty_editor from "../../../utils/all-mighty-editor.js";
 import tagMaker from "../../../utils/tagMaker.js";
+
 const {
   multiAndSingleTagMaker,
   positionEditor,
@@ -84,8 +85,18 @@ allMightyStyleEditor(mainTextImg, mainTextImgCss, (ele) => {});
 
 // ! 포켓몬 랜덤 생성해보기
 
-form.addEventListener("submit", function () {
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // 폼 제출 기본 동작 방지
   console.log("제출 확인");
+  fetch("/name")
+    .then((response) => response.json())
+    .then((data) => {
+      const pokemonName = data.name;
+      // 응답 데이터를 이용하여 h1 태그를 생성하는 로직을 작성합니다.
+      const responsePokemon = document.createElement("h1");
+      responsePokemon.textContent = pokemonName;
+      document.body.appendChild(responsePokemon);
+    });
 });
 
 // form.addEventListener("submit", function (event) {
