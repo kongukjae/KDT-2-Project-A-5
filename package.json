@@ -1,0 +1,20 @@
+{
+  "name": "kdt-2-project-a-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kongukjae/KDT-2-Project-A-5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kongukjae/KDT-2-Project-A-5/issues"
+  },
+  "homepage": "https://github.com/kongukjae/KDT-2-Project-A-5#readme"
+}
