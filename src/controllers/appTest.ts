@@ -15,7 +15,7 @@ let pokeJSONFile = fs.readFileSync(
 let parsedPoke = JSON.parse(pokeJSONFile);
 
 // client input 포켓몬 데이터 처리 함수
-function findPokeMoudle(urlValue : string) : string[] {
+function findPokeModule(urlValue : string) : string[] {
   const result = parsedPoke.filter((x : string) => {
     if (x === urlValue) {
       return true;
@@ -26,11 +26,20 @@ function findPokeMoudle(urlValue : string) : string[] {
 
 // get요청 처리
 app.get("/", (req, res)=> {
-  res.send("Hello World");
+  res.send("hELLO WORLD");
 })
-
+app.get("/name", (req, res) => {
+  const parseData = qs.parse(req.url, { ignoreQueryPrefix: true });
+  const valueData = Object.values(parseData);
+  const printData = findPokeModule(valueData[0] as string);
+  console.log("모듈 결과 값" + printData);
+  res.send(`${printData}`);
+});
+// MIME 별 파일 불러오는 곳
+app.use(express.static(root));
+// 서버 실행
 app.listen(8080, ()=> {
-  console.log("서버가 정상 실행됐습니다")
+  console.log("서버가 정상 실행됐습니다");
 })
 
 // findPokeMoudle("pikachu")
