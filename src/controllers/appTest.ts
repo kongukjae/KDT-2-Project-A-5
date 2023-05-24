@@ -29,6 +29,9 @@ app.get("/", (req, res)=> {
   res.send("Hello World");
 })
 
+app.listen(8080, ()=> {
+  console.log("서버가 정상 실행됐습니다")
+})
 
 // findPokeMoudle("pikachu")
 
