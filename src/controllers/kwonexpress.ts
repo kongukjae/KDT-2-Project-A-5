@@ -15,7 +15,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 app.use(express.static(path.join(root, "/src/views")));
 
-
 const myMiddleware = (req : Request, res : Response, next : NextFunction) => {
   console.log("미들웨어 함수가 실행되었습니다.");
   next(); // 다음 미들웨어로 제어를 전달합니다.
