@@ -3,12 +3,13 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 import * as fs from "fs";
 import * as qs from "qs";
-const __fileName = (import.meta as any).url;
-const __dirName = path.dirname(__fileName);
-const root = path.join(__dirName, "../../");
-// console.log("루트 경로입니다 :  " + root );
-
-console.log(__fileName)
+// const __fileName = (__dirname);
+// const __dirName = path.dirname(__fileName);
+const root = path.join(__dirname, "../../");
+// // console.log("루트 경로입니다 :  " + root );
+// ? 찾았다 내 루트
+console.log(root)
+// console.log(__fileName)
 // let pokeJSONFile = fs.readFileSync(
 //   `${root}/src/models/pokemonNames.json`,
 //   "utf8"
