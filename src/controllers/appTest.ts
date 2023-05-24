@@ -86,9 +86,9 @@ const server = http.createServer((req: http.IncomingMessage, res: http.ServerRes
 
         const parseData = qs.parse(req.url, { ignoreQueryPrefix: true });
         // console.log(parseData);
-        const valueData= Object.values(parseData);
+        const valueData = Object.values(parseData);
         // console.log(valueData[0]);
-        const printData = findPokeMoudle(valueData[0]);
+        const printData = findPokeMoudle(valueData[0] as string);
         console.log("모듈 결과 값" + printData);
         // res.writeHead(200, {'Content-Type' : 'text/html'})
         // res.write("hello");
