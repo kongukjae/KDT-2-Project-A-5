@@ -1,15 +1,12 @@
-import * as http from "http";
-import * as path from "path";
-import { fileURLToPath } from "url";
-import * as fs from "fs";
-import * as qs from "qs";
-// const __fileName = fileURLToPath(import.meta.url);
-// const __dirName = path.dirname(__fileName);
-// const root = path.join(__dirName, "../../");
-const fileName = path.resolve(import.meta.url.replace("../../"))
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = require("path");
+var url_1 = require("url");
+var __fileName = (0, url_1.fileURLToPath)(import.meta.url);
+var __dirName = path.dirname(__fileName);
+var root = path.join(__dirName, "../../");
 // console.log("루트 경로입니다 :  " + root );
-// console.log(__fileName)
+console.log(__fileName);
 // console.log(__dirName)
 // console.log(root)
 // let pokeJSONFile = fs.readFileSync(
@@ -18,7 +15,6 @@ const fileName = path.resolve(import.meta.url.replace("../../"))
 // );
 // // 파싱 된 포켓몬 데이터
 // let parsedPoke = JSON.parse(pokeJSONFile);
-
 // // client input 포켓몬 데이터 처리 함수
 // function findPokeMoudle(urlValue : string) {
 //   const result = parsedPoke.filter((x : string) => {
@@ -28,7 +24,6 @@ const fileName = path.resolve(import.meta.url.replace("../../"))
 //   });
 //   return result;
 // }
-
 // const server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
 //   try {
 //     if (req.method === "GET") {
@@ -84,7 +79,6 @@ const fileName = path.resolve(import.meta.url.replace("../../"))
 //       }
 //       if (req.url.includes("/name")) {
 //         // console.log(req.url)
-
 //         const parseData = qs.parse(req.url, true);
 //         // console.log(parseData);
 //         const valueData = Object.values(parseData);
