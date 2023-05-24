@@ -1,10 +1,11 @@
-import * as http from "http";
-import * as path from "path";
+import express from "express"
+import path from "path";
 import { fileURLToPath } from "url";
-import * as fs from "fs";
-import * as qs from "qs";
+import fs from "fs";
+import qs from "qs";
 // const __fileName = (__dirname);
 // const __dirName = path.dirname(__fileName);
+const app = express();
 const root = path.join(__dirname, "../../");
 // // console.log("루트 경로입니다 :  " + root );
 // ? 찾았다 내 루트
