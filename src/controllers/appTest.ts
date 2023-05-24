@@ -3,15 +3,12 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 import * as fs from "fs";
 import * as qs from "qs";
-// const __fileName = fileURLToPath(import.meta.url);
-// const __dirName = path.dirname(__fileName);
-// const root = path.join(__dirName, "../../");
-const fileName = path.resolve(import.meta.url.replace("../../"))
-
+const __fileName = (import.meta as any).url;
+const __dirName = path.dirname(__fileName);
+const root = path.join(__dirName, "../../");
 // console.log("루트 경로입니다 :  " + root );
-// console.log(__fileName)
-// console.log(__dirName)
-// console.log(root)
+
+console.log(__fileName)
 // let pokeJSONFile = fs.readFileSync(
 //   `${root}/src/models/pokemonNames.json`,
 //   "utf8"
@@ -20,7 +17,7 @@ const fileName = path.resolve(import.meta.url.replace("../../"))
 // let parsedPoke = JSON.parse(pokeJSONFile);
 
 // // client input 포켓몬 데이터 처리 함수
-// function findPokeMoudle(urlValue : string) {
+// function findPokeMoudle(urlValue : string) : boolean {
 //   const result = parsedPoke.filter((x : string) => {
 //     if (x === urlValue) {
 //       return true;
