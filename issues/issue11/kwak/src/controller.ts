@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 const app:express.Application = express();
-const root:string = path.join(__dirname, '../../');
+const root:string = path.join(__dirname, '../');
 
 app.get('/', (req:express.Request, res:express.Response) => {
   res.sendFile(path.join(root, './bundle/index.html'));
