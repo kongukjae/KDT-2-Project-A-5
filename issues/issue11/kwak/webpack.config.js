@@ -3,8 +3,8 @@ import path from "path";
 import webpack from "webpack";
 
 export default {
-  mode: prod ? 'production' : 'development',
-  devtool: prod ? 'hidden-source-map' : 'eval',
+  mode: 'development',
+  devtool: 'hidden-source-map',
   entry: './src/index.tsx',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -18,7 +18,7 @@ export default {
     ],
   },
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/bundle'),
     filename: 'bundle.js',
   },
   plugins: [
