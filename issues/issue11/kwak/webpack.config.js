@@ -29,4 +29,11 @@ export default {
       template: './src/index.html',
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+    inline: true,
+    port: 8085,
+    hot: true,
+    publicPath: '/',
+  }
 }
