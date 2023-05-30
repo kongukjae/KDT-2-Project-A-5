@@ -1,8 +1,8 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import path from "path";
-import webpack from "webpack";
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const webpack = require("webpack");
 
-export default {
+module.exports = {
   mode: 'development',
   devtool: 'hidden-source-map',
   entry: './src/index.tsx',
