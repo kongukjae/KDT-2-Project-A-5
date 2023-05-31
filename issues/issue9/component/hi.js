@@ -6,3 +6,5 @@ function hi () {
     hi
   </div>
 }
+
+export default hi; 
