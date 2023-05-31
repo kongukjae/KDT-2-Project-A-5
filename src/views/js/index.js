@@ -8,7 +8,7 @@ render(
   <article>
     <Header />
     <div className="main">
-      <Main />
+      <Main style={{ color: "red" }} />
     </div>
   </article>,
   document.getElementById("root")
