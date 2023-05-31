@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: "./src/index.js",
+    index: "./src/views/js/index.js",
   },
   output: {
     path: path.join(__dirname, 'public'),
@@ -25,11 +25,11 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: [".js"]
+    extensions: [".js",".jsx"]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: "./src/views/html/testIndex.html"
     }),
   ]
 }

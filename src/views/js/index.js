@@ -1,15 +1,18 @@
 import React from "react";
-import { render } from "react-dom";
+// import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client"
+import App from "./App"
 
-import Header from "./header.js";
-import Main from "./main.js";
+// ReactDOM.render(
+  // <article>
+    {/* <Header /> */}
+    {/* <div className="main"> */}
+      {/* <Main style={{ color: "red" }} /> */}
+    {/* </div> */}
+  {/* </article>, */}
+  // document.getElementById("root")
+// );
 
-render(
-  <article>
-    <Header />
-    <div className="main">
-      <Main style={{ color: "red" }} />
-    </div>
-  </article>,
-  document.getElementById("root")
-);
+const root = createRoot(document.getElementById("root"));
+// const root = document.getElementById("root");
+root.render(<App />);
