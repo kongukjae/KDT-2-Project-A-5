@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 
-import header from "./header.js";
-import main from "./main.js";
+import Header from "./header.js";
+import Main from "./main.js";
 
 render(
   <article>
