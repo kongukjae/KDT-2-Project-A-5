@@ -6,5 +6,5 @@ export default () => {
     backgroundColor:"green",
     color:"white",
     innerText:"YeJun",
-  }}, "Hello, React!")
+  }}, "kwonyejun 입니다.")
 }
