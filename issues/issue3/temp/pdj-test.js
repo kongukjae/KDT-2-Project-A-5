@@ -11,6 +11,7 @@ const {
 const root = document.getElementById("root");
 kingGodFlexEditor(root, "row", "center", "center");
 
+
 //* 엘리먼트 생성 페이지
 const mainDIv = multiAndSingleTagMaker(root, "div", "main-div", 1, (ele) => {});
 const mainTextContainer = multiAndSingleTagMaker(
