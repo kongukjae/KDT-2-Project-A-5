@@ -6,9 +6,7 @@ export default ()=> {
   return (
   <>
     <Header />
-    <div className="main">
-      <Main style={{ color: "red" }} />
-    </div>
+      <Main/>
   </>
   )
 }
