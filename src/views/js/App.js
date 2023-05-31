@@ -5,7 +5,7 @@ import Main2 from './main2';
 
 export default ()=> {
   return (
-  <div style={Css}>
+  <div >
     <Header />
     <div className="main">
       <Main style={{ color: "red" }} />
