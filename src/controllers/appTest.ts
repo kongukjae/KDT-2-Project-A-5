@@ -25,8 +25,11 @@ function findPokeModule(urlValue : string) : string[] {
 }
 
 // get요청 처리
+app.use(express.static(`${root}/src/views/html`));
 app.get("/", (req, res)=> {
-  res.send("hELLO WORLD");
+  // res.send("hELLO WORLD");
+  res.sendFile('index.html')
+  app.use(express.static(root))
 })
 app.get("/name", (req, res) => {
   const parseData = qs.parse(req.url, { ignoreQueryPrefix: true });
