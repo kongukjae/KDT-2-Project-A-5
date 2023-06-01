@@ -7,7 +7,7 @@ export default function Screen() {
   return (
     <>
       <div className="container">
-        <Header headLiner={"홈"} />
+        <Header/>
         <Main />
         <Nav />
       </div>
