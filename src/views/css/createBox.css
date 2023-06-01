@@ -2,43 +2,45 @@
   display: flex;
   height: 30%;
   width: 100%;
-  background-color: rgb(178, 236, 217);
+  /* background-color: rgb(178, 236, 217); */
   flex-direction: column;
   justify-content: center;
   /* align-content: center; */
-  align-items: baseline;
+  /* align-items: baseline; */
 }
 
-.magicBoxScroll{
+.magicBoxScroll {
   height: 100%;
-  width: 83%;
-  overflow-x:scroll;
-
+  width: 100%;
+  overflow-x: scroll;
 }
 .magicBoxLayout {
-  height: 90%;
+  height: 100%;
   width: 1300px;
   /* background-color: rgb(139, 52, 165); */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
- /* 세로 방향 스크롤 숨김 */
+  /* 세로 방향 스크롤 숨김 */
 }
 
 .magicBoxScroll::-webkit-scrollbar {
   display: none;
 }
 
-
-.mainLayout> :nth-child(1) {
+.mainLayout > :nth-child(1) {
   margin-left: 36px;
   width: 100%;
 }
 
-
 .magicBox {
   height: 80%;
   width: 12%;
-  background-color: rgb(191, 218, 95);
+  box-shadow: 0px 1px 5px grey;
   border-radius: 30px;
+  opacity: 1;
+}
+
+.magicBox.center {
+  opacity: 1;
 }

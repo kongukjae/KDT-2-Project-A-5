@@ -12,7 +12,7 @@ export default () => {
   useEffect(() => {
     addTagToLayout(<Thumbnail />);
   }, []);
- 
+
   return <>
     <div className="magicBox">
     {showLayout}
