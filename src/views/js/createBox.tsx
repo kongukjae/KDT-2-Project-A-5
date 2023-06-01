@@ -8,7 +8,7 @@ interface MyComponentProps {
 }
 
 const MyComponent: React.FC<MyComponentProps> = (text) => {
-  const [showText, setShowText] = useState(true);
+  // const [showText, setShowText] = useState(true);
   //useState 함수의 제네릭 타입 매개변수로 JSX.Element[]를 지정하여 showLayout 상태의 타입을 JSX.Element 배열로 설정합니다.
   const [showLayout, setShowLayout] = useState<JSX.Element[]>([]);
   // const toggleText = () => {
@@ -23,11 +23,27 @@ const MyComponent: React.FC<MyComponentProps> = (text) => {
   // 태그 추가 하는 곳
   useEffect(() => {
     addTagToLayout(<Magic />);
+    addTagToLayout(<Magic />);
+
+    addTagToLayout(<Magic />);
+
+    addTagToLayout(<Magic />);
+
+    addTagToLayout(<Magic />);
+
+    addTagToLayout(<Magic />);
+
+    addTagToLayout(<Magic />);
+
+
   }, []);
   return (
     <div className='mainLayout'>
       <h2>{text.h2}</h2>
-      <div className='magicBoxLayout'> {showLayout}</div>
+      <div className='magicBoxScroll'>
+        <div className='magicBoxLayout'>
+          {showLayout}</div>
+      </div>
     </div>
   );
 };

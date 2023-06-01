@@ -1,19 +1,44 @@
-
-.mainLayout{
+.mainLayout {
+  display: flex;
   height: 30%;
   width: 100%;
   background-color: rgb(178, 236, 217);
+  flex-direction: column;
+  justify-content: center;
+  /* align-content: center; */
+  align-items: baseline;
 }
-.magicBoxLayout{
+
+.magicBoxScroll{
   height: 100%;
-  background-color: rgb(139, 52, 165);
+  width: 83%;
+  overflow-x:scroll;
+
+}
+.magicBoxLayout {
+  height: 90%;
+  width: 1300px;
+  /* background-color: rgb(139, 52, 165); */
   display: flex;
   justify-content: space-between;
   align-items: center;
+ /* 세로 방향 스크롤 숨김 */
 }
-.magicBox{
+
+.magicBoxScroll::-webkit-scrollbar {
+  display: none;
+}
+
+
+.mainLayout> :nth-child(1) {
+  margin-left: 36px;
+  width: 100%;
+}
+
+
+.magicBox {
   height: 80%;
-  width: 40%;
+  width: 12%;
   background-color: rgb(191, 218, 95);
   border-radius: 30px;
 }
