@@ -1,15 +1,15 @@
-import mysql from "mysql2"
-import dotenv from "dotenv"
-dotenv.config({path : "../../.env"})
-const dbConnect = mysql.createConnection( {
-  // host : process.env.db_host,
-  // user : process.env.db_user,
-  // password : process.env.db_password,
-  // database : process.env.db_database
-  host : "localhost",
-  user : "root",
-  password : "1234",
-  database : "stocktaxi"
+import mysql from "mysql2";
+import dotenv from "dotenv";
+dotenv.config({ path: "../../.env" });
+const dbConnect = mysql.createConnection({
+  host: process.env.db_host,
+  user: process.env.db_user,
+  password: process.env.db_password,
+  database: process.env.db_database,
+  // host: "192.168.100.64",
+  // user: "admin_dal",
+  // password: "1234",
+  // database: "stocktaxi",
 });
 // ! DB 연결 명령문
 // dbConnect.connect((err)=> {
