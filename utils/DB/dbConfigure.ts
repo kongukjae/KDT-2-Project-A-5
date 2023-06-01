@@ -12,13 +12,13 @@ const dbConnect = mysql.createConnection( {
   database : "stocktaxi"
 });
 // ! DB 연결 명령문
-dbConnect.connect((err)=> {
-  if(err) {
-    console.error("DB연결에 실패했습니다", err);
-    return;
-  }
-  console.log("DB연결에 성공했습니다")
-})
+// dbConnect.connect((err)=> {
+//   if(err) {
+//     console.error("DB연결에 실패했습니다", err);
+//     return;
+//   }
+//   console.log("DB연결에 성공했습니다")
+// })
 // ! DB 연결 끊기 명령문
 // dbConnect.end((err) => {
 //   if (err) {
