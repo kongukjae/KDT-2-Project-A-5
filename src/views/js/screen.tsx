@@ -7,8 +7,8 @@ export default function Screen() {
   return (
     <>
       <div className="container">
-        <Header />
-        <Main/>
+        <Header headLiner={"홈"} />
+        <Main />
         <Nav />
       </div>
     </>

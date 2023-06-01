@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Header() {
+export default function Header({headLiner} : {headLiner : string}) {
   return (
     <>
       <div className="header">
-        <div>샘플텍스트</div>
+        <div className="head_text">{headLiner}</div>
       </div>
     </>
   );

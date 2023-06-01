@@ -25,14 +25,22 @@ body {
 .container > :nth-child(1) {
   width: 430px;
   height: 123px;
+  color: black;
 }
 
+.container > :nth-child(1) > :nth-child(1) {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* 메인 페이지 스타일링 */
 .container > :nth-child(2) {
   width: 430px;
   height: 709px;
   background-color: white;
 }
 
+/* 내비게이션 바 스타일링 */
 .container > :nth-child(3) {
   width: 430px;
   height: 100px;
