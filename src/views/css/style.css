@@ -28,9 +28,11 @@ body {
   color: black;
 }
 
+/* 헤더 타이틀 문구 스타일링 */
 .container > :nth-child(1) > :nth-child(1) {
   font-size: 36px;
   font-weight: bold;
+  padding: 36px;
 }
 
 /* 메인 페이지 스타일링 */
