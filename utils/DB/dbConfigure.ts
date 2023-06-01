@@ -23,4 +23,4 @@ const dbConnect = mysql.createConnection( {
 //   }
 //   console.log("DB와의 연결을 성공적으로 끊었습니다");
 // });
-// export default dbConnect;
+export default dbConnect;
