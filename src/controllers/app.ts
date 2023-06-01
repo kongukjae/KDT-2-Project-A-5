@@ -4,6 +4,7 @@ console.log(__dirname); // 현재 모듈의 디렉토리 경로 출력
 const app = express();
 
 app.use(express.static("../../public"));
+// app.use(express.static("../.."));
 app.get("/", (req, res) => {
   res.status(200).send("OK");
 });
