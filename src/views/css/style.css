@@ -44,6 +44,9 @@ body {
 
 /* 내비게이션 바 스타일링 */
 .container > :nth-child(3) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 430px;
   height: 100px;
   background-color: #3b56d3;
