@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Header from './header';
+import Magic from './magickBox';
 
 // 함수의 컴포넌트 타입을 명시하기 위해서이다.
 // 프로퍼티의 키 값이 무엇이 들어 오든 다 받을수 있다.
 interface MyComponentProps {
-  [aaa: string]: string;
+  [key: string]: string;
 }
 
 const MyComponent: React.FC<MyComponentProps> = (text) => {
@@ -20,14 +20,14 @@ const MyComponent: React.FC<MyComponentProps> = (text) => {
     setShowLayout((prevLayout: JSX.Element[]) => [...prevLayout, tag]);
   };
 
-  // 태그 추가 예시
+  // 태그 추가 하는 곳
   useEffect(() => {
-    addTagToLayout(<Header />);
+    addTagToLayout(<Magic />);
   }, []);
   return (
     <div className='mainLayout'>
-      <h2>{text.test}</h2>
-      {showLayout}
+      <h2>{text.h2}</h2>
+      <div className='magicBoxLayout'> {showLayout}</div>
     </div>
   );
 };
