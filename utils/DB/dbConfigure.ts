@@ -1,10 +1,11 @@
 import mysql from "mysql2"
-
+import dotenv from "dotenv"
+dotenv.config({path : "../../.env"})
 const dbConnect = mysql.createConnection( {
-  host : "",
-  user : "",
-  password : "",
-  database : ""
+  host : process.env.db_host,
+  user : process.env.db_user,
+  password : process.env.db_password,
+  database : process.env.db_database
 });
 // ! DB 연결 명령문
 // dbConnect.connect((err)=> {
@@ -22,4 +23,4 @@ const dbConnect = mysql.createConnection( {
 //   }
 //   console.log("DB와의 연결을 성공적으로 끊었습니다");
 // });
-export default dbConnect;
+// export default dbConnect;
