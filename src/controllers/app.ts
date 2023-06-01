@@ -1,13 +1,21 @@
 import express from "express";
+import path from "path";
 
-console.log(__dirname); // 현재 모듈의 디렉토리 경로 출력
+const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
+console.log(root);
+const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
+console.log(rootPublic);
+
 const app = express();
 
-app.use(express.static("../../public"));
-// app.use(express.static("../.."));
+app.use(express.static(root)); //root 디렉토리
+app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
+
 app.get("/", (req, res) => {
-  res.status(200).send("OK");
+  console.log({ root: rootPublic });
+  res.sendFile(`index.html`, { root: rootPublic });
 });
+
 app.use((req, res) => {
   res.status(404).send("not found");
 });
