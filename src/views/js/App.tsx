@@ -1,12 +1,11 @@
 import React from "react";
-import Header from "./header";
+import Screen from "./screen";
 import Main from "./main";
 
 export default () => {
   return (
     <>
-      <Header />
-      <Main />
+      <Screen />
     </>
   );
 };

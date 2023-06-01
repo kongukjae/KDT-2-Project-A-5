@@ -9,5 +9,13 @@ body {
 #root {
   width: 100vw;
   height: 100vh;
-  background-color: tomato;
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 430px;
+  height: 932px;
+  background-color: white;
 }
