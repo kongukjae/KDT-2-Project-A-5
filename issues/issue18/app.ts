@@ -8,6 +8,7 @@ console.log(rootPublic);
 
 const app = express();
 
+ 
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 
