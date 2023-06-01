@@ -3,7 +3,7 @@ import React from "react";
 import { createRoot, Root } from "react-dom/client";
 import App from "./App";
 import "../css/style.css";
-// import "../css/createBox.css";
+import "../css/createBox.css";
 // ReactDOM.render(<App />, document.getElementById("root"));
 
 const root = createRoot(document.getElementById("root") as HTMLElement);

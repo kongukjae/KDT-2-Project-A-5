@@ -1,0 +1,19 @@
+
+.mainLayout{
+  height: 30%;
+  width: 100%;
+  background-color: rgb(178, 236, 217);
+}
+.magicBoxLayout{
+  height: 100%;
+  background-color: rgb(139, 52, 165);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.magicBox{
+  height: 80%;
+  width: 40%;
+  background-color: rgb(191, 218, 95);
+  border-radius: 30px;
+}
