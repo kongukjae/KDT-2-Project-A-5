@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import Thumbnail  from './thumbnail';
 export default () => {
 
   const [showLayout, setShowLayout] = useState<JSX.Element[]>([]);
@@ -10,7 +10,7 @@ export default () => {
 
   // 컴포넌트를 널어 자료 화면을 띄운다.
   useEffect(() => {
-    addTagToLayout(<main></main>);
+    addTagToLayout(<Thumbnail />);
   }, []);
  
   return <>
