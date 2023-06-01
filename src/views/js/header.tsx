@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function Header() {
-  const [title, setTitle] = useState("홈");
-  const changeTitle = () => {
-    // 새로운 제목으로 변경
-    setTitle("페이지 이름 바뀜");
-  };
-
-  return (
-    <>
-      <div className="header">
-        <div className="head_text" onClick={changeTitle}>{title}</div>
-      </div>
-    </>
-  );
+interface HeaderProps {
+  title: string;
 }
+
+const Header: React.FC<HeaderProps> = ({ title }) => {
+  return (
+    <div className="header">
+      <div className="head_text">{title}</div>
+    </div>
+  );
+};
+
+export default Header;
