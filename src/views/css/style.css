@@ -12,10 +12,30 @@ body {
   background-color: wheat;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .container {
   width: 430px;
   height: 932px;
   background-color: white;
+}
+
+/* 헤더 스타일링 */
+.container > :nth-child(1) {
+  width: 430px;
+  height: 123px;
+  background-color: #d9d9d9;
+}
+
+.container > :nth-child(2) {
+  width: 430px;
+  height: 709px;
+  background-color: white;
+}
+
+.container > :nth-child(3) {
+  width: 430px;
+  height: 100px;
+  background-color: #9f9f9f;
 }
