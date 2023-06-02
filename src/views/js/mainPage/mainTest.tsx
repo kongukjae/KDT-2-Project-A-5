@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Header from "../bankAccout/header";
-import Nav from "../nav";
+import Header from "../../../../utils/Components/header";
+import Nav from "../../../../utils/Components/nav";
 import Main from "./main";
-
 
 const ScreenTwo: React.FC = () => {
   const [title, setTitle] = useState("홈");
@@ -15,7 +14,7 @@ const ScreenTwo: React.FC = () => {
     <div className="container">
       <Header title={title} />
       <Main />
-      <Nav changeTitle={changeTitle} />
+      <Nav />
     </div>
   );
 };

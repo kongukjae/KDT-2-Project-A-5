@@ -1,5 +1,5 @@
 import React from "react";
-import ContentsBox from "../../../../utils/Components/contentsBoxArea";
+import ContentsBox from "./contentsBoxArea";
 import "../../css/style";
 
 export default function Main() {
