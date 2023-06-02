@@ -8,7 +8,7 @@ export default () => {
     <>
       <Routes>
         <Route path="/" element={<Screen />}></Route>
-        <Screen />
+        {/* <Screen />   */}
       </Routes>
     </>
   );
