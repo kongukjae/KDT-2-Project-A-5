@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Header from "./header";
-import Nav from "./nav";
-import Main from './main'
+import Header from "../../../../utils/Components/header";
+import Nav from "../../../../utils/Components/nav";
+import Main from "./main";
 
 interface ScreenProps {
   title: string;

@@ -1,6 +1,6 @@
 import React from "react";
-import Creat from "./contentsBoxArea";
-import "../css/style.css";
+import Creat from "../../../../utils/Components/contentsBoxArea";
+import "../../css/style";
 
 export default function Main() {
   return (

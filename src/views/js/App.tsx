@@ -1,6 +1,6 @@
 import React from "react";
 // import Screen from "./screen";
-import ScreenTwo from "./screenTwo";
+import ScreenTwo from "./mainPage/screen";
 
 export default () => {
   return (

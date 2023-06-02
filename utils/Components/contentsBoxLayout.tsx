@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Thumbnail  from './thumbnail';
+import React, { useState, useEffect } from "react";
+import Thumbnail from "./thumbnail";
 export default () => {
-
   const [showLayout, setShowLayout] = useState<JSX.Element[]>([]);
 
   const addTagToLayout = (tag: JSX.Element) => {
@@ -13,8 +12,9 @@ export default () => {
     addTagToLayout(<Thumbnail />);
   }, []);
 
-  return <>
-    <div className="contentBox">
-    {showLayout}
-    </div></>
-}
+  return (
+    <>
+      <div className="contentBox">{showLayout}</div>
+    </>
+  );
+};
