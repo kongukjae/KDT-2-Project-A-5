@@ -5,7 +5,7 @@ const path = require("path");
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 let company = "IBM" // [배열로 회사 넣으셔도 됨]
 const root = path.join(__dirname, "..", "..");
-const endpoint = `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=${company}&apikey=${process.env.alpahvantageKey}`;
+const endpoint = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${company}&interval=5min&apikey=${process.env.alpahvantageKey}`;
 
 // const endpoint = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=6wMJY1qQYOLCEIYgaZb6eFt4aJ6MPuk%2B0OpXJ4o4rQgOFvRbvzJbI%2BhtE7CpvoAgiw6v0YDe%2FU%2ByjH0CP2Fpyg%3D%3D&numOfRows=10&pageNo=1&resultType=json`; //벡틱처리 전 풀 주소
 
