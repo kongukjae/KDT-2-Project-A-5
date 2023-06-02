@@ -6,7 +6,7 @@ interface ScreenProps {
   title: string;
 }
 
-const ScreenTwo: React.FC = () => {
+const Screen: React.FC = () => {
   const [title, setTitle] = useState("홈");
 
   const changeTitle = (newTitle: string) => {
@@ -20,4 +20,4 @@ const ScreenTwo: React.FC = () => {
   );
 };
 
-export default ScreenTwo;
+export default Screen;
