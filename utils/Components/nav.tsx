@@ -24,15 +24,15 @@ import { Link } from "react-router-dom";
 export default function navigation() {
   return (
     <div className="navigation">
-      <Link to="/home">
+      {/* <Link to="/home"> */}
         <BsHouse size={40} color="white"/>
-      </Link>
-      <Link to="/station">
+      {/* </Link> */}
+      {/* <Link to="/station"> */}
         <BiCar size={40} color="white"/>
-      </Link>
-      <Link to="/account">
+      {/* </Link> */}
+      {/* <Link to="/account"> */}
         <SlWallet size={40} color="white"/>
-      </Link>
+      {/* </Link> */}
     </div>
   );
 } 
