@@ -1,11 +1,17 @@
 import React from "react";
 // import Screen from "./screen";
-import ScreenTwo from "./mainPage/screen";
+import Screen from "./mainPage/mainPagescreen";
+import { Routes, Route } from "react-router-dom";
+
 
 export default () => {
   return (
     <>
-      <ScreenTwo />
+    <Routes>
+      <Route path="/" element={<Screen/>}></Route>
+      <Route path="/home" element={<Screen/>}></Route>
+        <Screen />
+    </Routes>
     </>
   );
 };
