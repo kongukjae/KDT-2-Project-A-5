@@ -14,9 +14,9 @@ const ScreenTwo: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <Main />
-    </div>
+    </>
   );
 };
 

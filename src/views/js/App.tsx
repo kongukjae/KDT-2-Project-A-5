@@ -8,9 +8,11 @@ import Nav from "../../../utils/Components/nav"
 export default () => {
   return (
     <>
+      <div className="container">
       <Header title={"호옴"}/>
       <Screen />
       <Nav />
+      </div>
     </>
   );
 };
