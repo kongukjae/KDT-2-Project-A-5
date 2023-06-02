@@ -5,14 +5,14 @@ const path = require("path");
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 
 const root = path.join(__dirname, "..", "..");
-const apiKey = process.env.apiKey; // 여기에 인증키를 입력하세요
-const maxNum = 2178976; // 토탈 카운트
-const numOfRows = maxNum; // 임의의 숫자로 입력.
-const pageNo = 1;
-const startTime = 20230529;
-const endTime = 20230531;
-const endpoint = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${apiKey}&numOfRows=${numOfRows}&pageNo=${pageNo}&resultType=json&beginBasDt=${startTime}&endBasDt=${endTime}`;
-// const endpoint = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=6wMJY1qQYOLCEIYgaZb6eFt4aJ6MPuk%2B0OpXJ4o4rQgOFvRbvzJbI%2BhtE7CpvoAgiw6v0YDe%2FU%2ByjH0CP2Fpyg%3D%3D&numOfRows=10&pageNo=1&resultType=json`; //벡틱처리 전 풀 주소
+const apiKey = process.env.alphaApiKey; // 여기에 인증키를 입력하세요
+const sylbol = "IBM";
+console.log(apiKey);
+const endpoint = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${sylbol}&apikey=${apiKey}`; //벡틱처리 전 풀 주소
+
+// interface Response {
+//   data: string;
+// }
 
 axios
   .get(endpoint)
