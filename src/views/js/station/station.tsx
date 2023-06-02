@@ -1,11 +1,12 @@
+
 import React, { useState } from "react";
-import Account from "../../../../utils/Components/account";
+import Station from "../../../../utils/Components/station";
 
 
 const Screen: React.FC = () => {
   return (
     <>
-      <Account />
+      <Station />
     </>
   );
 };

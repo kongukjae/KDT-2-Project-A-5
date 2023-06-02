@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import Screen from "./screen";
 import Header from "../../../utils/Components/header";
 import MainScreen from "./mainPage/mainScreen";
+import StationScreen from "./station/station"
 import AccountScreen from "./account/accountScreen";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -41,7 +42,7 @@ export default () => {
         <Routes>
           <Route path="/" element={<MainScreen />} />
           <Route path="/home" element={<MainScreen />} />
-          <Route path="/station" element={<MainScreen />} />
+          <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
         <Nav />
