@@ -32,26 +32,71 @@ const timeout = setTimeout(() => {
   controller.abort();
 }, 5000);
 
-fetch(`https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=CNY&apikey=${apiKey}`, {
-  method: 'GET',
-  headers: headers
-})
-.then(response => {
-  return response.json();
-})
-.then(data => {
-  const datatest = JSON.stringify(data,null,2);
-fs.writeFile('test.json', datatest, (error) => {
+// ! 애플 데이터를 가지고 와서 
+// fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=AAPL&apikey=${apiKey}`, {
+//   method: 'GET',
+//   headers: headers
+// })
+// .then(response => {
+//   return response.json();
+// })
+// .then(data => {
+//   const datatest = JSON.stringify(data,null,2);
+// fs.writeFile('test.json', datatest, (error) => {
+
+// });
+//   console.log("이게 데이터야",data); // 여기서 데이터를 사용합니다
+// })
+// .catch(error => {
+//   console.error(error);
+// })
+// .finally(() => {
+//   clearTimeout(timeout);
+// });
+
+
+addData();
+function addData(): void {
+
+  const datatest = fs.readFileSync('./test.json', 'utf8');
+  const parseData = JSON.parse(datatest);
+  let dayList : string[] = [];
+  // console.log(parseData["Weekly Time Series"]);
+  for (const key in parseData["Weekly Time Series"]) {
+    dayList.push(key)
+  }
+  // 애플 주가의 날짜 스트링값 배열 길이 값 찾기
+  console.log()
+
+  // 데이터 값
+  console.log(Object.values(parseData["Weekly Time Series"][dayList[0]]))
+
+  // 주식 종목 회사 이름
+  const stockName = parseData["Meta Data"]["2. Symbol"];
  
-});
-  console.log("이게 데이터야",data); // 여기서 데이터를 사용합니다
-})
-.catch(error => {
-  console.error(error);
-})
-.finally(() => {
-  clearTimeout(timeout);
-});
+  dbConnect.query(`create table ${stockName}(
+    day DATE NOT NULL,
+    open DOUBLE,
+    high DOUBLE,
+    low DOUBLE,
+    close DOUBLE,
+    volume DOUBLE
+  );`, (err, result) => {
+    console.log(result);
+    if(err){
+      console.log(err)
+    }
+    for (let i = 0; i < dayList.length; i++) {
+      const test = Object.values(parseData["Weekly Time Series"][dayList[i]])
+      dbConnect.query(`insert  INTO ${stockName}(day, open, high, low,close, volume) VALUES("${dayList[i]}",${test[0]}, ${test[1]}, ${test[2]}, ${test[3]},${test[4]});`, (err, result) =>{
+        if(err){
+          console.log(err)
+        }
+        // console.log("성공")
+      })
+    }
+  })
+}
 
 
 
