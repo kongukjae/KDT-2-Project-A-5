@@ -54,7 +54,7 @@ const timeout = setTimeout(() => {
 //   clearTimeout(timeout);
 // });
 
-
+// 회사 명으로 테이블을 생성을 하고 데이터를 날짜 별로 튜플을 생성을 하였다.
 addData();
 function addData(): void {
 
