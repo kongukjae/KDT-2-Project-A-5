@@ -54,7 +54,10 @@ body {
   border-top-right-radius: 32px;
 }
 
-
-.navigation :nth-child(-n+3) {
+.navigation :nth-child(-n + 3) {
   cursor: pointer;
+}
+
+.main {
+  overflow-y: scroll;
 }
