@@ -1,5 +1,5 @@
 import React from "react";
-import Creat from "./createBox";
+import Creat from "./contentsBoxArea";
 import "../css/style.css";
 
 export default function Main() {

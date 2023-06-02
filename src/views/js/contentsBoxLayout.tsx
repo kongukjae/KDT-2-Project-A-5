@@ -14,7 +14,7 @@ export default () => {
   }, []);
 
   return <>
-    <div className="magicBox">
+    <div className="contentBox">
     {showLayout}
     </div></>
 }
