@@ -1,0 +1,46 @@
+.mainLayout {
+  display: flex;
+  height: 30%;
+  width: 100%;
+  /* background-color: rgb(178, 236, 217); */
+  flex-direction: column;
+  justify-content: center;
+  /* align-content: center; */
+  /* align-items: baseline; */
+}
+
+.magicBoxScroll {
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+}
+.magicBoxLayout {
+  height: 100%;
+  width: 1300px;
+  /* background-color: rgb(139, 52, 165); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* 세로 방향 스크롤 숨김 */
+}
+
+.magicBoxScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mainLayout > :nth-child(1) {
+  margin-left: 36px;
+  width: 100%;
+}
+
+.magicBox {
+  height: 70%;
+  width: 11%;
+  box-shadow: 0px 1px 5px grey;
+  border-radius: 30px;
+  opacity: 1;
+}
+
+.magicBox.center {
+  opacity: 1;
+}

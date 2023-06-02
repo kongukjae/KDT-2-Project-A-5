@@ -1,0 +1,63 @@
+* {
+  margin: 0px;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-color: #023047;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 430px;
+  height: 932px;
+  background-color: white;
+}
+
+/* 헤더 스타일링 */
+.container > :nth-child(1) {
+  width: 430px;
+  height: 123px;
+  color: black;
+}
+
+/* 헤더 타이틀 문구 스타일링 */
+.container > :nth-child(1) > :nth-child(1) {
+  font-size: 36px;
+  font-weight: bold;
+  padding: 36px;
+}
+
+/* 메인 페이지 스타일링 */
+.container > :nth-child(2) {
+  width: 430px;
+  height: 709px;
+  background-color: white;
+}
+
+/* 내비게이션 바 스타일링 */
+.container > :nth-child(3) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 430px;
+  height: 100px;
+  background-color: #3b56d3;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+}
+
+.navigation :nth-child(-n + 3) {
+  cursor: pointer;
+}
+
+.main {
+  overflow-y: scroll;
+}
