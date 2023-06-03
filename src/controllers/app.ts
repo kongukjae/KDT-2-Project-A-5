@@ -6,9 +6,7 @@ import dotenv from "dotenv"
 import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
-// console.log(root);
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
-// console.log(rootPublic);
 
 const app = express();
 // DB 연결
@@ -19,32 +17,14 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-// 최초 접속시에 주식 데이터 요청
-// const apiKey = process.env.alphaApiKey; // 여기에 인증키를 입력하세요
-// const symbol = "IBM";
-// const endpoint = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`; //벡틱처리 전 풀 주소
-// axios
-//   .get(endpoint)
-//   .then((response: any) => {
-//     // 응답을 처리하는 코드
-//     const jsonData = response.data;
-//     fs.writeFileSync(
-//       root + "/stockData.json",
-//       JSON.stringify(jsonData, null, 2)
-//     ); //저장되는 파일은 .gitignore처리 함
-//     console.log(jsonData);
-//   })
-//   .catch((error: Error) => {
-//     // 에러를 처리하는 코드
-//     console.error(error);
-//   });
+let stockData = null;
 // 알파벤티지에 주식 데이터 요청하는 함순
   async function stockDataRequest() {
     try {
       const symbol = "IBM";
       const apiKey = process.env.alphaApiKey;
       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
-      const stockData = response.data;
+      stockData = response.data;
       console.log(stockData);
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
