@@ -3,7 +3,7 @@ import path from "path";
 import dbConnect from "../../utils/DB/dbConfigure";
 import axios from "axios";
 import dotenv from "dotenv"
-import fs from "fs";
+// import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
