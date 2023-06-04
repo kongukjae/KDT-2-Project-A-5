@@ -3,12 +3,16 @@ import path from "path";
 import dbConnect from "../../utils/DB/dbConfigure";
 import axios from "axios";
 import dotenv from "dotenv"
+import { Server } from "socket.io";
+import http from "http";
+
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
-
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 // DB 연결
 dbConnect.connect((err) => {
   if (err) {
@@ -18,7 +22,7 @@ dbConnect.connect((err) => {
   console.log("DB연결에 성공했습니다");
 });
 let stockData = null;
-// 알파벤티지에 주식 데이터 요청하는 함순
+// 알파벤티지에 주식 데이터 요청하는 함수
   async function stockDataRequest() {
     try {
       const symbol = "IBM";
@@ -26,6 +30,8 @@ let stockData = null;
       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
       stockData = response.data;
       console.log(stockData);
+      // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+      io.emit("stockDataUpdate", stockData);
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
     }
