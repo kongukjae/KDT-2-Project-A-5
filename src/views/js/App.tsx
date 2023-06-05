@@ -4,6 +4,7 @@ import Header from "../../../utils/Components/header";
 import MainScreen from "./mainPage/mainScreen";
 import StationScreen from "./station/station"
 import AccountScreen from "./account/accountScreen";
+import SignUpScreen from "./signUp/signUp"
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
 
@@ -23,6 +24,9 @@ export default () => {
       case "/station":
         setPageTtle("정류장");
         break;
+      case "/signup":
+        setPageTtle("회원가입");
+        break;
       default:
         setPageTtle("홈");
         break;
@@ -41,6 +45,7 @@ export default () => {
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<MainScreen />} />
+          <Route path="/signup" element={<SignUpScreen/>}/>
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
