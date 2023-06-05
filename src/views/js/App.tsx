@@ -6,31 +6,31 @@ import StationScreen from "./station/station"
 import AccountScreen from "./account/accountScreen";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
-import LoginPage from "./login/LoginPage";
-import Loading from "./loading/Loading";
+import FirstPage from "./firstPage/firstPageScreen";
+import IntroPage from "./IntroPage/IntroPageScreen";
 
 export default () => {
   const location = useLocation();
-  const [pageTitle, setPageTtle] = useState("호옴");
+  const [pageTitle, setPageTitle] = useState("");
   
 
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
     switch (location.pathname) {
       case "/home":
-        setPageTtle("홈");
+        setPageTitle("홈");
         break;
       case "/account":
-        setPageTtle("계좌");
+        setPageTitle("계좌");
         break;
       case "/station":
-        setPageTtle("정류장");
+        setPageTitle("정류장");
         break;
-      case "/login"
-        setPageTtle("함께 투자하는 즐거움"+"Stock TOGETHER");
+      case "/login":
+        setPageTitle("함께 투자하는 즐거움"+"Stock TOGETHER");
         break;
       default: "/"
-        setPageTtle("함께 투자하는 즐거움"+"Stock TOGETHER");
+        setPageTitle("함께 투자하는 즐거움"+"Stock TOGETHER");
         break;
     }
   }, [location.pathname]); // location.pathname이 바뀔 때마다 실행된다.
@@ -46,8 +46,8 @@ export default () => {
       <div className="container">
         <Header title={pageTitle} />
         <Routes>
-          <Route path="/" element={<Loading />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/login" element={<FirstPage />} />
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />

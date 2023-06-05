@@ -5,7 +5,7 @@ import picture1 from '../../src/views/img/img-13.png';
 
 type LoadingProps = {};
 
-function Loading(props: LoadingProps) {
+function introPage (props: LoadingProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,4 +24,4 @@ function Loading(props: LoadingProps) {
   );
 }
 
-export default Loading;
+export default introPage;

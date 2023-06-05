@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Loading from '../../../../utils/Components/loading'
+import FirstPage from '../../../../utils/Components/firstPage'
 
 
 const Screen: React.FC = () => {
   return (
     <>
-      <Loading/>
+      <FirstPage/>
     </>
   );
 };
