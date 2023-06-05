@@ -5,7 +5,7 @@ import MainScreen from "./mainPage/mainScreen";
 import StationScreen from "./station/station";
 import AccountScreen from "./account/accountScreen";
 import LoginScreen from "./loginPage/loginScreen";
-import SignUpScreen from "./signUp/signUp";
+import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
 import FirstPage from "./firstPage/firstPageScreen";
