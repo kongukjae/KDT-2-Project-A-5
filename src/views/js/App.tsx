@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import Screen from "./screen";
+import { Route, Routes, useLocation } from "react-router-dom";
+import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
-import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station"
-import AccountScreen from "./account/accountScreen";
 import Nav from "../../../utils/Components/nav";
-import { Routes, Route, useLocation } from "react-router-dom";
-
+import AccountScreen from "./account/accountScreen";
+import MainScreen from "./mainPage/mainScreen";
+import StationScreen from "./station/station";
+const socket = io('http://localhost:8080');
+// socket.on("stockDataUpdate", (stockData : {})=> {
+//   console.log("이건 서버로 부터 받아온 주식 데이터 : " + stockData);
+// })
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTtle] = useState("호옴");
@@ -35,7 +39,7 @@ export default () => {
   // // useEffect(() => {
   // //   const url = useParams();
   // // });
-  return (
+  return 
     <>
       <div className="container">
         <Header title={pageTitle} />
