@@ -27,7 +27,7 @@ export default () => {
       case "/station":
         setPageTitle("정류장");
         break;
-      case "/":
+      case "/first":
         setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
         break;
       case "/login":
