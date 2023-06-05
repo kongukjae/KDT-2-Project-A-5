@@ -48,7 +48,7 @@ export default () => {
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="/login" element={<FirstPage />} />
+          <Route path="/first" element={<FirstPage />} />
           <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/home" element={<MainScreen />} />
@@ -57,6 +57,7 @@ export default () => {
         </Routes>
         {[
           "/",
+          "/first",
           "/signup",
           "/login",
           // 다른 관련된 페이지들
