@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 // import Screen from "./screen";
 import Header from "../../../utils/Components/header";
 import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station"
+import StationScreen from "./station/station";
 import AccountScreen from "./account/accountScreen";
+import LoginScreen from "./loginPage/loginScreen";
+import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
 import FirstPage from "./firstPage/firstPageScreen";
@@ -12,7 +14,6 @@ import IntroPage from "./IntroPage/IntroPageScreen";
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  
 
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
@@ -26,34 +27,47 @@ export default () => {
       case "/station":
         setPageTitle("정류장");
         break;
-      case "/login":
-        setPageTitle("함께 투자하는 즐거움"+"Stock TOGETHER");
+      case "/first":
+        setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
         break;
-      default: "/"
-        setPageTitle("함께 투자하는 즐거움"+"Stock TOGETHER");
+      case "/login":
+        setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
+        break;
+      case "/signup":
+        setPageTitle("회원가입");
+        break;
+      default:
+        setPageTitle("홈");
         break;
     }
   }, [location.pathname]); // location.pathname이 바뀔 때마다 실행된다.
-  // const [title, setTitle] = useState("홈");
-  // const changeTitle = () => {
-  //   setTitle("다른 페이지");
-  // };
-  // // useEffect(() => {
-  // //   const url = useParams();
-  // // });
+
   return (
     <>
       <div className="container">
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="/login" element={<FirstPage />} />
+          <Route path="/first" element={<FirstPage />} />
+          <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
+        {[
+          "/",
+          "/first",
+          "/signup",
+          "/login",
+          // 애플리케이션의 현재 주소가 해당 객체 안에 있을 경우
+          // Nav 컴포넌트를 null 처리한다. (숨긴다)
+          // 추가적으로 Nav 컴포넌트가 필요하지 않은 페이지를 제작할 경우
+          // 이 영역에서 주소를 처리하는 식으로 Nav 컴포넌트를 숨길 수 있다.
+        ].includes(location.pathname) ? null : (
+          <Nav />
+        )}
         {/* <Nav /> */}
-        {(location.pathname !== "/login" && location.pathname !== "/") && <Nav />}
       </div>
     </>
   );
