@@ -60,7 +60,10 @@ export default () => {
           "/first",
           "/signup",
           "/login",
-          // 다른 관련된 페이지들
+          // 애플리케이션의 현재 주소가 해당 객체 안에 있을 경우
+          // Nav 컴포넌트를 null 처리한다. (숨긴다)
+          // 추가적으로 Nav 컴포넌트가 필요하지 않은 페이지를 제작할 경우
+          // 이 영역에서 주소를 처리하는 식으로 Nav 컴포넌트를 숨길 수 있다.
         ].includes(location.pathname) ? null : (
           <Nav />
         )}

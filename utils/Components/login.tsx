@@ -5,8 +5,6 @@ import "../../src/views/css/style";
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleChangeEmail = (e: any) => {
     setEmail(e.target.value);
@@ -14,14 +12,6 @@ export default function Main() {
 
   const handleChangePassword = (e: any) => {
     setPassword(e.target.value);
-  };
-
-  const handleChangeName = (e: any) => {
-    setName(e.target.value);
-  };
-
-  const handleChangePhoneNumber = (e: any) => {
-    setPhoneNumber(e.target.value);
   };
 
   const handleSubmit = (e: any) => {
