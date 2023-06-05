@@ -15,7 +15,7 @@ const io = new Server(ioServer);
 // ! socket 연결
 io.on("connect", (socket : Socket)=> {
   console.log("웹 소켓과 연결 됐습니다.");
-  socket.emit("hello", (data : any)=> {
+  socket.on("hello", (data : any)=> {
     console.log(data);
   })
 })

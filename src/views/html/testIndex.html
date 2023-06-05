@@ -10,7 +10,7 @@
   <body>
     <div id="root"></div>
     <script>
-        const socket = io("localhost:8080");
+        const socket = io();
         socket.on("connect", (data) => {
           socket.emit("hello", "대머리")
         });
