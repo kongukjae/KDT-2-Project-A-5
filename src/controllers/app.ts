@@ -32,7 +32,7 @@ async function stockDataRequest() {
     const apiKey = process.env.alphaApiKey;
     const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
     stockData = response.data;
-    console.log(stockData);
+    // console.log(stockData);
     // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
     io.emit("stockDataUpdate", stockData);
   } catch (error) {
