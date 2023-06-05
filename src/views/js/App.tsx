@@ -4,6 +4,7 @@ import Header from "../../../utils/Components/header";
 import MainScreen from "./mainPage/mainScreen";
 import StationScreen from "./station/station";
 import AccountScreen from "./account/accountScreen";
+import LoginScreen from "./loginPage/loginScreen";
 import SignUpScreen from "./signUp/signUp";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -40,11 +41,18 @@ export default () => {
         <Routes>
           <Route path="/" element={<MainScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
-        {location.pathname !== "/signup" && <Nav />}
+        {[
+          "/signup",
+          "/login",
+          // 다른 관련된 페이지들
+        ].includes(location.pathname) ? null : (
+          <Nav />
+        )}
         {/* <Nav /> */}
       </div>
     </>
