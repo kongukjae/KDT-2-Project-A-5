@@ -6,6 +6,7 @@ import StationScreen from "./station/station"
 import AccountScreen from "./account/accountScreen";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
+import LoginPage from "./login/LoginPage";
 
 export default () => {
   const location = useLocation();
@@ -40,7 +41,7 @@ export default () => {
       <div className="container">
         <Header title={pageTitle} />
         <Routes>
-          <Route path="/" element={<MainScreen />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
