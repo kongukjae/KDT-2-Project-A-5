@@ -9,7 +9,11 @@ export default () => {
 
   // 컴포넌트를 널어 자료 화면을 띄운다.
   useEffect(() => {
-    addTagToLayout(<Thumbnail />);
+    addTagToLayout(
+      <Thumbnail>
+        <></>
+      </Thumbnail>
+    );
   }, []);
 
   return (
