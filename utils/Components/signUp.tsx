@@ -55,6 +55,10 @@ export default function Main() {
     setAdvertisementCheck(e.target.checked);
   };
 
+  const handleAllCheckChange = (e: any) => {
+    setAllCheck(e.target.checked);
+    // 다른 체크박스들의 상태도 변경할 수 있도록 로직 추가
+  };
   // ! 이 영역까지 약관 동의에 관한 내용
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -88,112 +92,107 @@ export default function Main() {
       .catch((error) => {
         console.error(error);
       });
-
-    const handleAllCheckChange = (e: any) => {
-      setAllCheck(e.target.checked);
-      // 다른 체크박스들의 상태도 변경할 수 있도록 로직 추가
-    };
-
-    // const handleSubmit = (e: any) => {
-    //   e.preventDefault();
-    // };
-    return (
-      <>
-        <div className="main">
-          <form onSubmit={handleSubmit}>
-            <input
-              name="userId"
-              type="email"
-              placeholder="이메일"
-              value={email}
-              onChange={handleChangeEmail}
-            />
-            <input
-              name="password"
-              type="password"
-              placeholder="비밀번호"
-              value={password}
-              onChange={handleChangePassword}
-            />
-            <input
-              name="userName"
-              type="text"
-              placeholder="이름"
-              value={name}
-              onChange={handleChangeName}
-            />
-            <input
-              name="phoneNum"
-              type="number"
-              placeholder="휴대전화번호"
-              value={phoneNumber}
-              onChange={handleChangePhoneNumber}
-            />
-            <label htmlFor="allCheck">전체 동의하기</label>
-            <input
-              id="allCheck"
-              type="checkbox"
-              checked={allCheck}
-              onChange={handleAllCheckChange}
-            />
-            {/* <input id="allCheck" type="checkbox" /> */}
-            <label htmlFor="ageCheck">만 나이 14세</label>
-            <input
-              id="ageCheck"
-              name="ageCheck"
-              type="checkbox"
-              checked={ageCheck}
-              onChange={handleAgeCheck}
-            />
-            <label htmlFor="TermOfUseCheck">스톡투게더 이용약관 동의</label>
-            <input
-              id="TermOfUseCheck"
-              name="TermOfUseCheck"
-              type="checkbox"
-              checked={termOfUseCheck}
-              onChange={handleTermsOfUseCheck}
-            />
-            {/* EFT : Electronic Financial Transaction, 전자금융거래  */}
-            <label htmlFor="EFTUseCheck">전자금융거래 이용약관 동의</label>
-            <input
-              id="EFTUseCheck"
-              name="TermOfUseCheck"
-              type="checkbox"
-              checked={eftUseCheck}
-              onChange={(e) => handleEftUseCheck}
-            />
-            {/* Personal Information Agreement, 개인정보 제 3자 제공 동의) */}
-            <label htmlFor="PIAUseCheck">개인정보 제 3자 제공 동의</label>
-            <input
-              id="PIAUseCheck"
-              name="PIAUseCheck"
-              type="checkbox"
-              checked={piaUseCheck}
-              onChange={handlePiaUseCheck}
-            />
-
-            <label htmlFor="marketingUseCheck">
-              마케팅 목적의 개인정보 수집 및 이용 동의
-            </label>
-            <input
-              id="marketingUseCheck"
-              name="marketingUseCheck"
-              type="checkbox"
-              checked={marketingUseCheck}
-              onChange={handleMarketingUseCheck}
-            />
-            <label htmlFor="advertisement">광고성 정보 수신 동의</label>
-            <input
-              id="advertisement"
-              name="advertisement"
-              type="checkbox"
-              checked={advertisementCheck}
-              onChange={handleAdvertisementCheck}
-            />
-            <button type="submit">회원가입</button>
-          </form>
-        </div>
-      </>
-    );
   };
+
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  // };
+  return (
+    <>
+      <div className="main">
+        <form onSubmit={handleSubmit}>
+          <input
+            name="userId"
+            type="email"
+            placeholder="이메일"
+            value={email}
+            onChange={handleChangeEmail}
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={handleChangePassword}
+          />
+          <input
+            name="userName"
+            type="text"
+            placeholder="이름"
+            value={name}
+            onChange={handleChangeName}
+          />
+          <input
+            name="phoneNum"
+            type="number"
+            placeholder="휴대전화번호"
+            value={phoneNumber}
+            onChange={handleChangePhoneNumber}
+          />
+          <label htmlFor="allCheck">전체 동의하기</label>
+          <input
+            id="allCheck"
+            type="checkbox"
+            checked={allCheck}
+            onChange={handleAllCheckChange}
+          />
+          {/* <input id="allCheck" type="checkbox" /> */}
+          <label htmlFor="ageCheck">만 나이 14세</label>
+          <input
+            id="ageCheck"
+            name="ageCheck"
+            type="checkbox"
+            checked={ageCheck}
+            onChange={handleAgeCheck}
+          />
+          <label htmlFor="TermOfUseCheck">스톡투게더 이용약관 동의</label>
+          <input
+            id="TermOfUseCheck"
+            name="TermOfUseCheck"
+            type="checkbox"
+            checked={termOfUseCheck}
+            onChange={handleTermsOfUseCheck}
+          />
+          {/* EFT : Electronic Financial Transaction, 전자금융거래  */}
+          <label htmlFor="EFTUseCheck">전자금융거래 이용약관 동의</label>
+          <input
+            id="EFTUseCheck"
+            name="TermOfUseCheck"
+            type="checkbox"
+            checked={eftUseCheck}
+            onChange={(e) => handleEftUseCheck}
+          />
+          {/* Personal Information Agreement, 개인정보 제 3자 제공 동의) */}
+          <label htmlFor="PIAUseCheck">개인정보 제 3자 제공 동의</label>
+          <input
+            id="PIAUseCheck"
+            name="PIAUseCheck"
+            type="checkbox"
+            checked={piaUseCheck}
+            onChange={handlePiaUseCheck}
+          />
+
+          <label htmlFor="marketingUseCheck">
+            마케팅 목적의 개인정보 수집 및 이용 동의
+          </label>
+          <input
+            id="marketingUseCheck"
+            name="marketingUseCheck"
+            type="checkbox"
+            checked={marketingUseCheck}
+            onChange={handleMarketingUseCheck}
+          />
+          <label htmlFor="advertisement">광고성 정보 수신 동의</label>
+          <input
+            id="advertisement"
+            name="advertisement"
+            type="checkbox"
+            checked={advertisementCheck}
+            onChange={handleAdvertisementCheck}
+          />
+          <button type="submit">회원가입</button>
+        </form>
+      </div>
+    </>
+  );
 }
