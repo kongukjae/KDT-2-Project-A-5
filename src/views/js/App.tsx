@@ -7,10 +7,12 @@ import AccountScreen from "./account/accountScreen";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
 import LoginPage from "./login/LoginPage";
+import Loading from "./loading/Loading";
 
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTtle] = useState("호옴");
+  
 
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
@@ -24,7 +26,10 @@ export default () => {
       case "/station":
         setPageTtle("정류장");
         break;
-        default: "/"
+      case "/login"
+        setPageTtle("함께 투자하는 즐거움"+"Stock TOGETHER");
+        break;
+      default: "/"
         setPageTtle("함께 투자하는 즐거움"+"Stock TOGETHER");
         break;
     }
@@ -41,12 +46,14 @@ export default () => {
       <div className="container">
         <Header title={pageTitle} />
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<Loading />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
-        <Nav />
+        {/* <Nav /> */}
+        {(location.pathname !== "/login" && location.pathname !== "/") && <Nav />}
       </div>
     </>
   );
