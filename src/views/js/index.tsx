@@ -10,6 +10,8 @@ import style from "../css/style.module.css"
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <BrowserRouter>
-    <App />
+    <div className={style.root}>
+      <App />
+    </div>
   </BrowserRouter>
 );
