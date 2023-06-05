@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import ContentsBox from "./contentsBoxArea";
-import "../../src/views/css/style";
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -15,22 +13,53 @@ export default function Main() {
   const [marketingUseCheck, setMarketingUseCheck] = useState(false);
   const [advertisementCheck, setAdvertisementCheck] = useState(false);
 
-  const handleChangeEmail = (e: any) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (e: any) => {
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleChangeName = (e: any) => {
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const handleChangePhoneNumber = (e: any) => {
+  const handleChangePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(e.target.value);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("제출 확인");
+
+    const data = {
+      email: email,
+      password: password,
+      name: name,
+      phoneNumber: phoneNumber
+    };
+
+    fetch("/creataccount", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("POST 요청이 실패했습니다.");
+        }
+      })
+      .then(data => {
+        console.log(data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+      })
+      .catch(error => {
+        console.error(error);
+      });
   
   const handleAllCheckChange = (e: any) => {
     setAllCheck(e.target.checked);
@@ -138,4 +167,5 @@ export default function Main() {
       </div>
     </>
   );
+}
 }
