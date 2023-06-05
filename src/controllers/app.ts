@@ -128,8 +128,14 @@ app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문
 app.post('/creataccount', (req, res) => {
 
   const postData = req.body; // 요청의 본문을 가져옵니다.
-  console.log("데이터",postData); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-  
+  console.log("데이터",postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+  dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result);
+    
+  });
   res.send('POST 요청이 성공적으로 처리되었습니다.');
 })
 
