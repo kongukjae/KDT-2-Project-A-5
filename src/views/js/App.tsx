@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import Screen from "./screen";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "../../../utils/Components/header";
-import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station"
-import AccountScreen from "./account/accountScreen";
 import Nav from "../../../utils/Components/nav";
-import { Routes, Route, useLocation } from "react-router-dom";
+import AccountScreen from "./account/accountScreen";
+import MainScreen from "./mainPage/mainScreen";
+import StationScreen from "./station/station";
 
 export default () => {
   const location = useLocation();
