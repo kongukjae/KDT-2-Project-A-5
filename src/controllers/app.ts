@@ -14,7 +14,12 @@ const server = createServer(app);
 const io = new Server(server);
 // console.log(io)
 //? 소켓 서버 연결 확인
-
+io.on("connection", (socket)=> {
+  console.log("소켓 서버가 정상 연결됐습니다.");
+  socket.on("disconnection", ()=> {
+    console.log("소켓 서버와 연결이 끊김")
+  })
+})
 
 
 // DB 연결
