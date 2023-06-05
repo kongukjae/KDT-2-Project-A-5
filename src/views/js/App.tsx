@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 // import Screen from "./screen";
 import Header from "../../../utils/Components/header";
 import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station"
+import StationScreen from "./station/station";
 import AccountScreen from "./account/accountScreen";
-import SignUpScreen from "./signUp/signUp"
+import SignUpScreen from "./signUp/signUp";
 import Nav from "../../../utils/Components/nav";
 import { Routes, Route, useLocation } from "react-router-dom";
 
@@ -32,25 +32,20 @@ export default () => {
         break;
     }
   }, [location.pathname]); // location.pathname이 바뀔 때마다 실행된다.
-  // const [title, setTitle] = useState("홈");
-  // const changeTitle = () => {
-  //   setTitle("다른 페이지");
-  // };
-  // // useEffect(() => {
-  // //   const url = useParams();
-  // // });
+
   return (
     <>
       <div className="container">
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<MainScreen />} />
-          <Route path="/signup" element={<SignUpScreen/>}/>
+          <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
-        <Nav />
+        {location.pathname !== "/signup" && <Nav />}
+        {/* <Nav /> */}
       </div>
     </>
   );
