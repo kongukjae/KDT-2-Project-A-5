@@ -7,6 +7,13 @@ export default function Main() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [allCheck, setAllCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
+  const [termOfUseCheck, setTermOfUseCheck] = useState(false);
+  const [eftUseCheck, setEftUseCheck] = useState(false);
+  const [piaUseCheck, setPiaUseCheck] = useState(false);
+  const [marketingUseCheck, setMarketingUseCheck] = useState(false);
+  const [advertisementCheck, setAdvertisementCheck] = useState(false);
 
   const handleChangeEmail = (e: any) => {
     setEmail(e.target.value);
@@ -27,6 +34,11 @@ export default function Main() {
   const handleSubmit = (e: any) => {
     console.log("제출 확인");
     e.preventDefault();
+  };
+
+  const handleAllCheckChange = (e: any) => {
+    setAllCheck(e.target.checked);
+    // 다른 체크박스들의 상태도 변경할 수 있도록 로직 추가
   };
 
   return (
@@ -62,17 +74,48 @@ export default function Main() {
             onChange={handleChangePhoneNumber}
           />
           <label htmlFor="allCheck">전체 동의하기</label>
+          <input
+            id="allCheck"
+            type="checkbox"
+            checked={allCheck}
+            onChange={handleAllCheckChange}
+          />
           <input id="allCheck" type="checkbox" />
           <label htmlFor="ageCheck">만 나이 14세</label>
-          <input id="ageCheck" name="ageCheck" type="checkbox" />
+          <input
+            id="ageCheck"
+            name="ageCheck"
+            type="checkbox"
+            checked={ageCheck}
+            onChange={(e) => setAgeCheck(e.target.checked)}
+          />
           <label htmlFor="TermOfUseCheck">스톡투게더 이용약관 동의</label>
-          <input id="TermOfUseCheck" name="TermOfUseCheck" type="checkbox" />
+          <input
+            id="TermOfUseCheck"
+            name="TermOfUseCheck"
+            type="checkbox"
+            checked={termOfUseCheck}
+            onChange={(e) => setTermOfUseCheck(e.target.checked)}
+          />
           {/* EFT : Electronic Financial Transaction, 전자금융거래  */}
           <label htmlFor="EFTUseCheck">전자금융거래 이용약관 동의</label>
-          <input id="EFTUseCheck" name="TermOfUseCheck" type="checkbox" />
+          <input
+            id="EFTUseCheck"
+            name="TermOfUseCheck"
+            type="checkbox"
+            checked={eftUseCheck}
+            onChange={(e) => setEftUseCheck(e.target.checked)}
+          />
           {/* Personal Information Agreement, 개인정보 제 3자 제공 동의) */}
           <label htmlFor="PIAUseCheck">개인정보 제 3자 제공 동의</label>
-          <input id="PIAUseCheck" name="PIAUseCheck" type="checkbox" />
+          <input
+            id="PIAUseCheck"
+            name="PIAUseCheck"
+            type="checkbox"
+            checked={piaUseCheck}
+            onChange={(e) => setPiaUseCheck(e.target.checked)}
+          />
+
           <label htmlFor="marketingUseCheck">
             마케팅 목적의 개인정보 수집 및 이용 동의
           </label>
@@ -80,9 +123,17 @@ export default function Main() {
             id="marketingUseCheck"
             name="marketingUseCheck"
             type="checkbox"
+            checked={marketingUseCheck}
+            onChange={(e) => setMarketingUseCheck(e.target.checked)}
           />
           <label htmlFor="advertisement">광고성 정보 수신 동의</label>
-          <input id="advertisement" name="advertisement" type="checkbox" />
+          <input
+            id="advertisement"
+            name="advertisement"
+            type="checkbox"
+            checked={advertisementCheck}
+            onChange={(e) => setAdvertisementCheck(e.target.checked)}
+          />
           <button type="submit">회원가입</button>
         </form>
       </div>
