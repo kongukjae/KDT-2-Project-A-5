@@ -1,9 +1,9 @@
 /* 헤드 텍스트 안보이게 */
 
 /*  */
-.container > :nth-child(2) {
+/* .container > :nth-child(2) {
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-evenly;
-}
+} */

@@ -160,7 +160,7 @@ export default function Main() {
             name="TermOfUseCheck"
             type="checkbox"
             checked={eftUseCheck}
-            onChange={(e) => handleEftUseCheck}
+            onChange={handleEftUseCheck}
           />
           {/* Personal Information Agreement, 개인정보 제 3자 제공 동의) */}
           <label htmlFor="PIAUseCheck">개인정보 제 3자 제공 동의</label>
