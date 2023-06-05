@@ -14,7 +14,7 @@ const socket = io('http://localhost:8080');
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTtle] = useState("호옴");
-
+  const [stockData, setStockData] = useState(null);
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
     switch (location.pathname) {
@@ -36,10 +36,15 @@ export default () => {
   // const changeTitle = () => {
   //   setTitle("다른 페이지");
   // };
-  // // useEffect(() => {
-  // //   const url = useParams();
-  // // });
-  return 
+  // useEffect(() => {
+  //   const url = useParams();
+  // });
+  useEffect(()=> {
+    socket.on("stockDataUpdate", stockData => {
+      setStockData(stockData);
+    })
+  })
+  return
     <>
       <div className="container">
         <Header title={pageTitle} />
@@ -48,9 +53,9 @@ export default () => {
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
+          <div> stockData={stockData}</div>
         </Routes>
         <Nav />
       </div>
     </>
-  );
 };
