@@ -1,18 +1,22 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import express from "express";
-import http from "http";
+import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
-
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
 const app = express();
-const server = http.createServer(app);
+const server = createServer(app);
 const io = new Server(server);
+// console.log(io)
+//? 소켓 서버 연결 확인
+
+
+
 // DB 연결
 dbConnect.connect((err) => {
   if (err) {
@@ -136,4 +140,7 @@ app.use((req, res) => {
 
 app.listen(8080, () => {
   console.log("connected");
+});
+server.listen(3030, () => {
+  console.log("소켓 서버 정상 실행.");
 });
