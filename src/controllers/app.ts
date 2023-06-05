@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
 import path from "path";
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
@@ -13,13 +13,13 @@ const app = express();
 const ioServer = createServer(app);
 const io = new Server(ioServer);
 // ! socket 연결
-io.on("connect", (socket : Socket)=> {
+io.on("connect", (socket)=> {
   console.log("웹 소켓과 연결 됐습니다.");
   socket.emit("hello", (data : any)=> {
     console.log(data);
   })
 })
-io.on("disconnect", (socket : Socket)=> {
+io.on("disconnect", (socket)=> {
   console.log("소켓 서버와 연결이 끊겼습니다.")
 })
 
@@ -140,9 +140,9 @@ app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-app.listen(8080, () => {
-  console.log("connected");
-});
-ioServer.listen(3030, ()=> {
+// app.listen(8080, () => {
+//   console.log("connected");
+// });
+ioServer.listen(8080, ()=> {
   console.log("웹소켓과 연결 시도")
 })
