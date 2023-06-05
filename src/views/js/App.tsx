@@ -24,8 +24,8 @@ export default () => {
       case "/station":
         setPageTtle("정류장");
         break;
-      default:
-        setPageTtle("홈");
+        default: "/"
+        setPageTtle("함께 투자하는 즐거움"+"Stock TOGETHER");
         break;
     }
   }, [location.pathname]); // location.pathname이 바뀔 때마다 실행된다.
