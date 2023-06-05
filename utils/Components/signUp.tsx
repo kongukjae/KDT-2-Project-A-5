@@ -94,9 +94,9 @@ export default function Main() {
       // 다른 체크박스들의 상태도 변경할 수 있도록 로직 추가
     };
 
-    const handleSubmit = (e: any) => {
-      e.preventDefault();
-    };
+    // const handleSubmit = (e: any) => {
+    //   e.preventDefault();
+    // };
     return (
       <>
         <div className="main">
