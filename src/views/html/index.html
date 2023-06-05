@@ -21,14 +21,5 @@
       type="module"
       src="../../../issues/issue3/temp/pokeDataLoad.js" -->
     <!-- ></script> -->
-    <script src="/socket.io/socket.io.js">
-      const socket = io('localhost:8080')
-      io.on("connection", (socket)=> {
-  console.log("소켓 서버가 정상 연결됐습니다.");
-  socket.on("disconnection", ()=> {
-    console.log("소켓 서버와 연결이 끊김")
-  })
-})
-    </script>
   </body>
 </html>

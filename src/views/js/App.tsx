@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+// import SocketConnectModule from "../../../utils/Components/SocketConnectModule";
 import AccountScreen from "./account/accountScreen";
 import MainScreen from "./mainPage/mainScreen";
 import StationScreen from "./station/station";
 // socket.on("stockDataUpdate", (stockData : {})=> {
 //   console.log("이건 서버로 부터 받아온 주식 데이터 : " + stockData);
 // })
-export default () => {
+export default () : any  => {
   const location = useLocation();
   const [pageTitle, setPageTtle] = useState("호옴");
   useEffect(() => {
@@ -47,6 +48,7 @@ export default () => {
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
         <Nav />
+        {/* <SocketConnectModule></SocketConnectModule> */}
       </div>
     </>
 };

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-const socket = io("http://localhost:3030");
+const socket = io("http://localhost:2020");
 
 const SocketConnectModule = (): JSX.Element => {
   const [stockData, setStockData] = useState(null);
   useEffect(() => {
-    const socket = io("http://localhost:3030");
 
     // socket.on("connect", () => {
     //   console.log("소켓 서버에 연결되었습니다.");
@@ -13,6 +12,9 @@ const SocketConnectModule = (): JSX.Element => {
     // socket.on("disconnect", () => {
     //   console.log("소켓 서버와의 연결이 해제되었습니다.");
     // });
+    socket.on("connect", ()=> {
+      socket.emit("hello", "대머리")
+    })
     socket.on("stockDataUpdate", (data)=> {
       console.log(data);
       setStockData(data);

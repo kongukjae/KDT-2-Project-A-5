@@ -1,1 +1,5 @@
-<!doctype html><html lang="ko"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Document</title><script defer="defer" src="index.bundle.js"></script></head><body><div id="root"></div></body></html>
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Document</title><script defer="defer" src="index.bundle.js"></script></head><body><div id="root"></div><script src="/socket.io/socket.io.js"></script><script>const socket = io("localhost:8080");
+        console.log("소켓 서버가 정상 연결됐습니다.");
+        socket.on("connect", () => {
+          socket.emit("hello", "hello")
+        });</script></body></html>

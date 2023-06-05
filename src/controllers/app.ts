@@ -1,7 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import express from "express";
-import { createServer } from "http";
+import http from "http";
 import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
@@ -10,14 +10,20 @@ dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
 const app = express();
-const server = createServer(app);
-const io = new Server(server);
+const ioServer =  http.createServer(app)
+const io = new Server(ioServer)
 // console.log(io)
 //? 소켓 서버 연결 확인
 io.on("connection", (socket)=> {
   console.log("소켓 서버가 정상 연결됐습니다.");
+  socket.on("connect",(data)=> {
+    console.log(data);
+  })
   socket.on("disconnection", ()=> {
     console.log("소켓 서버와 연결이 끊김")
+  })
+  socket.on("hello", (data)=> {
+    console.log(data);
   })
 })
 
@@ -137,15 +143,16 @@ stockDataRequest();
 //   })
 // }
 
-
-
+app.get('/', (req, res)=> {
+  res.sendFile('index.html', {root: rootPublic});
+})
 app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-app.listen(8080, () => {
-  console.log("connected");
-});
-server.listen(3030, () => {
+// app.listen(8080, () => {
+//   console.log("connected");
+// });
+ioServer.listen(8080, () => {
   console.log("소켓 서버 정상 실행.");
 });
