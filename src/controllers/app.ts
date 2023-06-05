@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
 import path from "path";
-import { Server } from "socket.io";
+import { Server, Socket } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
@@ -13,13 +13,13 @@ const app = express();
 const ioServer = createServer(app);
 const io = new Server(ioServer);
 // ! socket 연결
-io.on("connect", (socket)=> {
+io.on("connect", (socket : Socket)=> {
   console.log("웹 소켓과 연결 됐습니다.");
   socket.emit("hello", (data : any)=> {
     console.log(data);
   })
 })
-io.on("disconnect", (socket)=> {
+io.on("disconnect", (socket : Socket)=> {
   console.log("소켓 서버와 연결이 끊겼습니다.")
 })
 
