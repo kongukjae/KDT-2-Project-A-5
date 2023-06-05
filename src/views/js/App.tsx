@@ -14,7 +14,6 @@ import IntroPage from "./IntroPage/IntroPageScreen";
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  
 
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
@@ -28,8 +27,11 @@ export default () => {
       case "/station":
         setPageTitle("정류장");
         break;
+      case "/":
+        setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
+        break;
       case "/login":
-        setPageTitle("함께 투자하는 즐거움"+"Stock TOGETHER");
+        setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
         break;
       case "/signup":
         setPageTitle("회원가입");
@@ -54,6 +56,7 @@ export default () => {
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
         {[
+          "/",
           "/signup",
           "/login",
           // 다른 관련된 페이지들
