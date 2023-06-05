@@ -80,7 +80,7 @@ export default function Main() {
             checked={allCheck}
             onChange={handleAllCheckChange}
           />
-          <input id="allCheck" type="checkbox" />
+          {/* <input id="allCheck" type="checkbox" /> */}
           <label htmlFor="ageCheck">만 나이 14세</label>
           <input
             id="ageCheck"
