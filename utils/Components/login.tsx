@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ContentsBox from "./contentsBoxArea";
 // import "../../src/views/css/style";
-import style from "../css/style.module.css"
+import style from "../../src/views/css/style.module.css"
 
 
 export default function Main() {

@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../css/style.module.css"
+import style from "../../src/views/css/style.module.css"
 
 
 interface HeaderProps {

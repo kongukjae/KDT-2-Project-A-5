@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Thumbnail from "./thumbnail";
+
+import boxStyle from "../../src/views/css/contentsBox.module.css";
+
 export default () => {
   const [showLayout, setShowLayout] = useState<JSX.Element[]>([]);
 
@@ -14,7 +17,7 @@ export default () => {
 
   return (
     <>
-      <div className="contentBox">{showLayout}</div>
+      <div className={boxStyle.contentBox}>{showLayout}</div>
     </>
   );
 };
