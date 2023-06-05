@@ -23,6 +23,10 @@ module.exports = {
         test: [/\.css$/],
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: [/\.png$/],
+        use: ["file-loader"],
+      },
     ],
   },
   devServer: {
@@ -31,7 +35,7 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".css",".png"],
   },
   plugins: [
     new HtmlWebpackPlugin({
