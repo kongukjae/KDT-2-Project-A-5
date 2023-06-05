@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import * as fs from 'fs';
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import dbConnect from "../../utils/DB/dbConfigure";
 import axios from "axios";
 import dotenv from "dotenv"
