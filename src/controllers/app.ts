@@ -15,6 +15,9 @@ const io = new Server(ioServer);
 // ! socket 연결
 io.on("connect", (socket : Socket)=> {
   console.log("웹 소켓과 연결 됐습니다.");
+  socket.emit("hello", (data : any)=> {
+    console.log(data);
+  })
 })
 io.on("disconnect", (socket : Socket)=> {
   console.log("소켓 서버와 연결이 끊겼습니다.")
@@ -36,7 +39,7 @@ let stockData = null;
       const apiKey = process.env.alphaApiKey;
       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
       stockData = response.data;
-      console.log(stockData);
+      // console.log(stockData);
       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
       io.emit("stockDataUpdate", stockData);
     } catch (error) {
@@ -130,7 +133,9 @@ app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째�
 // }
 
 
-
+app.get('/', (req, res)=> {
+  res.sendFile('index.html', {root : rootPublic});
+})
 app.use((req, res) => {
   res.status(404).send("not found");
 });
