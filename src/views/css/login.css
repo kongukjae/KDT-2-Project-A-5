@@ -1,6 +1,4 @@
-/* 헤드 텍스트 안보이게 */
-
-/*  */
+/* 화면 내부 중앙 정렬 */
 .container > :nth-child(2) {
 display: flex;
 flex-direction: column;
