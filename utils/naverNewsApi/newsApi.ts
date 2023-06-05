@@ -5,12 +5,12 @@ const app2 = express2();
 const dotenv2 = require("dotenv");
 dotenv2.config({ path: "../../.env" });
 
-const client_id = `${process.env.naverDevClientId}`;
-const client_secret = `${process.env.naverDevClientSec}`;
-const displayLength = 1;
-const category = 101;
+const client_id = `${process.env.naverDevClientId}`; // 네이버 개발자 클라이언트 아이디
+const client_secret = `${process.env.naverDevClientSec}`; // 네이버 개발자 클라이언트 시크릿
+const displayLength = 1; // 표시할 검색 결과 수
+const category = 101; // 뉴스 카테고리 코드
 
-//meta태그의 name = og:image 부분의 url을 추출하는 함수
+// og:image 메타 태그에서 URL을 추출하는 함수
 const getPageData = async (url: string) => {
   try {
     const response = await axios2.get(url);
@@ -23,21 +23,23 @@ const getPageData = async (url: string) => {
 
     return ogImageUrl;
   } catch (error) {
-    console.error("Error:", error);
+    console.error("에러:", error);
     return null;
   }
 };
 
 app2.get("/search/news", async (req: any, res: any) => {
-  const query = req.query.query as string;
+  const query = req.query.query;
 
   try {
     let api_url = "";
     if (!query) {
+      //search/new일떄는 경제 카테고리의 최신 기사만 10개 보여줌
       api_url = `https://openapi.naver.com/v1/search/news?query=${encodeURIComponent(
         "경제"
       )}&display=${displayLength}&category=${category}`;
     } else {
+      //search/news?query=검색어 가 있다면 보여줄 주소
       api_url = `https://openapi.naver.com/v1/search/news?query=${encodeURIComponent(
         query
       )}&display=${displayLength}&category=${category}`;
@@ -54,26 +56,26 @@ app2.get("/search/news", async (req: any, res: any) => {
 
     // og:image URL 추출
     const ogImageUrl = await getPageData(response.data.items[0].link);
-    //임시로 보내는 객체
+    // 임시로 보내는 객체
     const searchData = [
-      { title: "News 1", content: "This is news 1" },
-      { title: "News 2", content: "This is news 2" },
-      { title: "News 3", content: "This is news 3" },
+      { title: "뉴스 1", content: "이것은 뉴스 1입니다." },
+      { title: "뉴스 2", content: "이것은 뉴스 2입니다." },
+      { title: "뉴스 3", content: "이것은 뉴스 3입니다." },
     ];
-    res.join(searchData);
+    res.json(searchData);
     // res.status(200).json({
     //   ...response.data,
     //   ogImageUrl: ogImageUrl,
     // });
     console.log(response.data.items[0].title);
     console.log(response.data.items[0].link);
-    console.log(`thumbnail사진 : ${ogImageUrl}`);
+    console.log(`썸네일 사진: ${ogImageUrl}`);
     console.log(response.data.items[0].description);
-    console.log("-----------단 나누기-------------");
+    console.log("------------------");
   } catch (error: any) {
     if (error.response) {
       res.status(error.response.status).end();
-      console.log("error =", error.response.status);
+      console.log("에러 =", error.response.status);
     } else {
       res.status(500).end();
       console.error(error);
