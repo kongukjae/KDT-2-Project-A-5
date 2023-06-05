@@ -1,5 +1,9 @@
+// * 리액트 관련 라이브러리
 import React, { useState, useEffect } from "react";
-// import Screen from "./screen";
+import { Routes, Route, useLocation } from "react-router-dom";
+
+
+// * 페이지 관련 컴포넌트
 import Header from "../../../utils/Components/header";
 import MainScreen from "./mainPage/mainScreen";
 import StationScreen from "./station/station";
@@ -7,9 +11,11 @@ import AccountScreen from "./account/accountScreen";
 import LoginScreen from "./loginPage/loginScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
-import { Routes, Route, useLocation } from "react-router-dom";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
+
+import style from "../css/style.module.css"
+
 
 export default () => {
   const location = useLocation();
@@ -44,7 +50,7 @@ export default () => {
 
   return (
     <>
-      <div className="container">
+      <div className={style.container}>
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<IntroPage />} />

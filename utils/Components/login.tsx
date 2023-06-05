@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ContentsBox from "./contentsBoxArea";
-import "../../src/views/css/style";
+// import "../../src/views/css/style";
+import style from "../css/style.module.css"
+
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ export default function Main() {
 
   return (
     <>
-      <div className="main">
+      <div className={style.main}>
         <form onSubmit={handleSubmit}>
           <input
             name="userId"

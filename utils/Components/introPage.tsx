@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../../src/views/css/login";
+
 // import StockTogetherLogo from '../src/views/img/stock_together_logo';
 
 type LoadingProps = {};
