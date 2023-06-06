@@ -6,7 +6,7 @@ import loginStyle from "../../src/views/css/login.module.css";
 export default function Login() {
   return (
     <>
-      <div className="main">
+      <div className={loginStyle.main}>
         <img src="img/stock_together_logo.png" width="80%" alt="이미지" />
         <button type="submit">Google을 이용하여 시작하기</button>
         <Link to="/signup">

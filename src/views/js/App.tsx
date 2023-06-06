@@ -14,8 +14,6 @@ import Nav from "../../../utils/Components/nav";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
 
-
-
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
@@ -23,6 +21,9 @@ export default () => {
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
     switch (location.pathname) {
+      case "/":
+        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
+        break;
       case "/home":
         setPageTitle("홈");
         break;
@@ -33,10 +34,10 @@ export default () => {
         setPageTitle("정류장");
         break;
       case "/first":
-        setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
+        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
         break;
       case "/login":
-        setPageTitle("함께 투자하는 즐거움" + "Stock TOGETHER");
+        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
         break;
       case "/signup":
         setPageTitle("회원가입");
