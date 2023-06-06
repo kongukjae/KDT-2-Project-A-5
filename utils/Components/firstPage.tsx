@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../src/views/css/login";
+import loginStyle from "../../src/views/css/login.module.css";
 // import StockTogetherLogo from "../../src/views/img/img-13.png";
 
 export default function Login() {
   return (
     <>
-      <div>
+      <div className="main">
         <img src="img/stock_together_logo.png" width="80%" alt="이미지" />
         <button type="submit">Google을 이용하여 시작하기</button>
         <Link to="/signup">

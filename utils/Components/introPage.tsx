@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "../../src/views/css/login";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../src/views/css/login.module";
 // import StockTogetherLogo from '../src/views/img/stock_together_logo';
 
 type LoadingProps = {};
 
-function introPage (props: LoadingProps) {
+function introPage(props: LoadingProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/first');
+      navigate("/first");
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -18,7 +18,7 @@ function introPage (props: LoadingProps) {
   return (
     <>
       <div>
-        <img src={"img/stock_together_logo.png"} width='80%' alt="이미지" />
+        <img src={"img/stock_together_logo.png"} width="80%" alt="이미지" />
       </div>
     </>
   );
