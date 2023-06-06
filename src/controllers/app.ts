@@ -15,9 +15,9 @@ const io = new Server(ioServer);
 // ! socket 연결
 io.on("connect", (socket : Socket)=> {
   console.log("웹 소켓과 연결 됐습니다.");
-  socket.on("hello", (data : any)=> {
-    console.log(data);
-  })
+  // socket.on("hello", (data : any)=> {
+  //   console.log(data);
+  // })
 })
 io.on("disconnect", (socket : Socket)=> {
   console.log("소켓 서버와 연결이 끊겼습니다.")

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Screen from "./screen";
-import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "../../../utils/Components/header";
-import Nav from "../../../utils/Components/nav";
-import AccountScreen from "./account/accountScreen";
 import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station";
-
+import StationScreen from "./station/station"
+import AccountScreen from "./account/accountScreen";
+import Nav from "../../../utils/Components/nav";
+import { Routes, Route, useLocation } from "react-router-dom";
+import socketComponent from "../../../utils/Components/socket/socketComponent";
+console.log(socketComponent)
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTtle] = useState("호옴");
@@ -38,6 +39,7 @@ export default () => {
   return (
     <>
       <div className="container">
+        <socketComponent>
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<MainScreen />} />
@@ -46,6 +48,7 @@ export default () => {
           <Route path="/account" element={<AccountScreen />} />
         </Routes>
         <Nav />
+        </socketComponent>
       </div>
     </>
   );
