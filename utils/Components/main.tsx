@@ -40,29 +40,12 @@ export default function Main() {
       <div className="main">
         <h3>국내 증시</h3>
         <div className="stockArea">
-          {/* <ContentBox
-            stockName="애플"
-            stockPrice="177.83 USD"
-            stockChangePercentage="-1.73%"
-            stockChartGraph="GRAPH"
-          />
-          <ContentBox
-            stockName="삼성전자"
-            stockPrice="63000 KRW"
-            stockChangePercentage="+2.23%"
-            stockChartGraph="GRAPH"
-          /> */}
           {domesticStockMarket}
         </div>
         <h3>내가 자주 본 종목</h3>
 
         <div className="myStockArea">
-          <ContentBox
-            stockName="삼성전자"
-            stockPrice="63000 KRW"
-            stockChangePercentage="+2.23%"
-            stockChartGraph="GRAPH"
-          />
+          {domesticStockMarket}
         </div>
         <h3>모범 운전수</h3>
 
