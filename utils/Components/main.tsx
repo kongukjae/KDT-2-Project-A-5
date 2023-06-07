@@ -4,6 +4,8 @@ import ContentBox from "./stockContentsBox";
 import DriverContentBox from "./driverContentsBox";
 import NewsContentBox from "./newsContentsBox";
 
+import "../../src/views/css/Area";
+
 export default function Main() {
   return (
     <>
