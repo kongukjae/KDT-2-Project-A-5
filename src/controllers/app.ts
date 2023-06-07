@@ -1,12 +1,10 @@
 import express from "express";
 import path from "path";
-import * as fs from 'fs';
 // import dotenv from "dotenv";
-import dbConnect from "../../utils/DB/dbConfigure";
-import axios from "axios";
-import dotenv from "dotenv"
-import { Server } from "socket.io";
+import dotenv from "dotenv";
 import http from "http";
+import { Server } from "socket.io";
+import dbConnect from "../../utils/DB/dbConfigure";
 
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
@@ -143,6 +141,6 @@ app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-app.listen(8080, () => {
+app.listen(8085, () => {
   console.log("connected");
 });

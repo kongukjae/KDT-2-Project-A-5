@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import StockDataComponent from "./stockDataComponent";
 import StockThumbnail from "./stockThumbnail";
 export default () => {
   const [showLayout, setShowLayout] = useState<JSX.Element[]>([]);
@@ -16,6 +16,7 @@ export default () => {
   return (
     <>
       <div className="contentBox">{showLayout}</div>
+      <StockDataComponent></StockDataComponent>
     </>
   );
 };
