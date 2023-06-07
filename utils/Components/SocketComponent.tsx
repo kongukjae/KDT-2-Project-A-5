@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from "socket.io-client";
 
-const socketComponent = (): JSX.Element => {
+const SocketComponent = (): JSX.Element => {
   // 주식 데이터 변화 감지
   const [stockData, setStockData] = useState<any>(null);
 
@@ -42,4 +42,4 @@ const socketComponent = (): JSX.Element => {
   );
 };
 
-export default socketComponent;
+export default SocketComponent;
