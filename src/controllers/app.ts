@@ -1,11 +1,17 @@
-import express,{Request, Response} from "express";
-import path from "path";
 import axios from "axios";
-import dotenv from "dotenv";
-import http from "http";
-import { Server } from "socket.io";
 import crypto from 'crypto';
+import dotenv from "dotenv";
+import express, { Request, Response } from "express";
+import http from "http";
+import path from "path";
+import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
+//protocol buffers모듈
+// import protobuf from "protobufjs";
+//"stock.proto" 파일을 로드해 Protocol Buffers 정의를 포함하는 root 객체를 생성
+// const protobufjsObj = protobuf.loadSync("stock.proto");
+// root 객체에서 "Stock"라는 메시지 유형을 찾아 반환
+// const Stock = protobufjsObj.lookupType("Stock");
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -24,9 +30,15 @@ io.on("connect", (socket)=> {
       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
       stockData = response.data;
       console.log(stockData);
-        //소켓으로 주식 데이터 전송
-        socket.emit("stockDataUpdate", stockData);
-      // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+      // Protocol Buffers 메시지 객체 생성
+      // const message = Stock.create(stockData);
+
+      // Protocol Buffers 직렬화
+      // const buffer = Stock.encode(message).finish();
+
+        // 클라이언트로 Protocol Buffers 데이터 전송
+        // socket.emit("stockDataUpdate", buffer);
+
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
     }
