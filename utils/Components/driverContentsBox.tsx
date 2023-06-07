@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-interface DriverBoxProps {
+interface DriverContentsBoxProps {
   driverName: string;
   driverNoAccidentCount: string;
   driverGoodTag: string;
   driverBadTag: string;
 }
 
-export default function ContentBox({
-  driverName,
-  driverNoAccidentCount,
-  driverGoodTag,
-  driverBadTag,
-}: DriverBoxProps) {
+export default function DriverContentsBox(props: DriverContentsBoxProps) {
+  const { driverName, driverNoAccidentCount, driverGoodTag, driverBadTag } =
+    props;
+
   return (
     <div className="driverContentsBox">
       <div className="driverName">{driverName}</div>
