@@ -125,16 +125,30 @@ app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째�
 // }
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
 app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+class User {
+  // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
+  userName: string;
+  password: string;
+  userphoneNum: string;
+  userAccountNum: string;
+  constructor(userName: string, password: string, userphoneNum: string, userAccountNum: string) {
+    this.userName = userName;
+    this.password = password;
+    this.userphoneNum = userphoneNum;
+    this.userAccountNum = userAccountNum;
+  }
+
+}
 app.post('/creataccount', (req, res) => {
 
   const postData = req.body; // 요청의 본문을 가져옵니다.
-  console.log("데이터",postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+  console.log("데이터", postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
   dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
     if (err) {
       console.log(err);
     }
     console.log(result);
-    
+
   });
   res.send('POST 요청이 성공적으로 처리되었습니다.');
 })
