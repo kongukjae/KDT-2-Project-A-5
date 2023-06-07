@@ -18,7 +18,6 @@ const data = async () => {
       "X-Naver-Client-Secret": `${client_secret}`,
     },
   });
-  console.log(await request.data.items);
 };
 
-export default data();
+export default data;
