@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import FirstPage from '../../../../utils/Components/firstPage'
-
+import React from "react";
+import FirstPage from '../../../../utils/Components/firstPage';
 
 const Screen: React.FC = () => {
   return (
