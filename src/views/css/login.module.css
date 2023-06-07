@@ -1,0 +1,9 @@
+/* 헤드 텍스트 안보이게 */
+
+/*  */
+.main {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+}

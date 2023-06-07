@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import ContentBox from "./contentsBoxLayout";
+import React, { useState, useEffect } from "react";
+import DriverContentBox from "./driverContentsBoxLayout";
 
 // 함수의 컴포넌트 타입을 명시하기 위해서이다.
 // 프로퍼티의 키 값이 무엇이 들어 오든 다 받을수 있다.
-interface MyComponentProps {
+interface driverContentsBoxProps {
   [key: string]: string;
 }
 
-const MyComponent: React.FC<MyComponentProps> = (text) => {
+const DriverContentsBox: React.FC<driverContentsBoxProps> = (text) => {
   // const [showText, setShowText] = useState(true);
   //useState 함수의 제네릭 타입 매개변수로 JSX.Element[]를 지정하여 showLayout 상태의 타입을 JSX.Element 배열로 설정합니다.
   const [showLayout, setShowLayout] = useState<JSX.Element[]>([]);
@@ -22,13 +22,13 @@ const MyComponent: React.FC<MyComponentProps> = (text) => {
 
   // 태그 추가 하는 곳
   useEffect(() => {
-    addTagToLayout(<ContentBox />);
-    addTagToLayout(<ContentBox />);
-    addTagToLayout(<ContentBox />);
-    addTagToLayout(<ContentBox />);
-    addTagToLayout(<ContentBox />);
-    addTagToLayout(<ContentBox />);
-    addTagToLayout(<ContentBox />);
+    addTagToLayout(<DriverContentBox />);
+    addTagToLayout(<DriverContentBox />);
+    addTagToLayout(<DriverContentBox />);
+    addTagToLayout(<DriverContentBox />);
+    addTagToLayout(<DriverContentBox />);
+    addTagToLayout(<DriverContentBox />);
+    addTagToLayout(<DriverContentBox />);
   }, []);
   return (
     <div className="contentsBoxLayout">
@@ -40,4 +40,4 @@ const MyComponent: React.FC<MyComponentProps> = (text) => {
   );
 };
 
-export default MyComponent;
+export default DriverContentsBox;
