@@ -6,17 +6,44 @@ export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleChangeEmail = (e: any) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (e: any) => {
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("제출 확인");
     e.preventDefault();
+
+    const data = {
+      userId: email,
+      password: password,
+    };
+
+    fetch("/signIn", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("POST 요청이 실패했습니다.");
+        }
+      })
+      .then((data) => {
+        console.log(data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   };
 
   return (

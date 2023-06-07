@@ -89,9 +89,15 @@ app.post('/creataccount', (req, res) => {
       
       });
       // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
-      res.send('POST 요청이 성공적으로 처리되었습니다.');
+      res.send('true');
     })
 
+
+// 로그인 데이터 받기
+    app.post('/signIn', (req : Request, res : Response) => {
+      console.log('signIn',req.body);
+
+    })
     app.use((req, res) => {
       res.status(404).send("not found");
     });
@@ -99,7 +105,6 @@ app.post('/creataccount', (req, res) => {
     app.listen(8080, () => {
       console.log("connected");
     });
-    
     // let stockData = null;
     // // 알파벤티지에 주식 데이터 요청하는 함수
     //   async function stockDataRequest() {
