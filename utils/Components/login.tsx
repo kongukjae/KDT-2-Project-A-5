@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../../src/views/css/style";
+import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -16,7 +18,7 @@ export default function Main() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("제출 확인");
     e.preventDefault();
-
+  
     const data = {
       userId: email,
       password: password,
@@ -38,6 +40,13 @@ export default function Main() {
       })
       .then((data) => {
         console.log(data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+        if(data === true){
+          console.log('data =', data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+          navigate('/home');
+        }
+        else if(data === false){
+          alert('로그인 실패')
+        }
       })
       .catch((error) => {
         console.error(error);
