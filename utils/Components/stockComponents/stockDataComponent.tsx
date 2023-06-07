@@ -34,7 +34,7 @@ const StockDataComponent = (): JSX.Element => {
   return (
     <div>
       <h1>안녕</h1>
-      {stockData}
+      {stockData['Meta Data']}이것은 심볼 데이터
     </div>
   );
 };

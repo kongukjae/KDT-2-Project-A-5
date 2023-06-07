@@ -14,10 +14,30 @@ const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\K
 const app = express();
 const socketServer = http.createServer(app);
 const io = new Server(socketServer);
+//최초 주식 데이터
+let stockData : any = null;
 io.on("connect", (socket)=> {
   console.log("소켓에 최초 연결 됐습니다 - 서버");
-  //소켓 연결 확인 테스트
-  socket.emit("hello", "서버 : 안녕?");
+  // 알파벤티지에 주식 데이터 요청하는 함수
+  async function stockDataRequest() {
+    try {
+      const symbol = "IBM";
+      const apiKey = process.env.alphaApiKey;
+      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
+      stockData = response.data;
+      console.log(stockData);
+        //소켓으로 주식 데이터 전송
+        socket.emit("stockDataUpdate", stockData);
+      // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+    } catch (error) {
+      console.error('주식 데이터를 받아오는데 실패했습니다', error);
+    }
+    // 3분에 한번씩 주식데이터 요청
+    setTimeout(stockDataRequest, 3 * 60 * 1000);
+  }
+  // 최초 주식 데이터 요청
+  stockDataRequest();
+  // 소켓 연결 해제
   socket.on("disconnect", ()=> {
     console.log("소켓에 연결 해제됐습니다 - 서버");
   })
@@ -30,25 +50,6 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-let stockData = null;
-// 알파벤티지에 주식 데이터 요청하는 함수
-  async function stockDataRequest() {
-    try {
-      const symbol = "IBM";
-      const apiKey = process.env.alphaApiKey;
-      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
-      stockData = response.data;
-      console.log(stockData);
-      // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
-      io.emit("stockDataUpdate", stockData);
-    } catch (error) {
-      console.error('주식 데이터를 받아오는데 실패했습니다', error);
-    }
-    // 3분에 한번씩 주식데이터 요청
-    setTimeout(stockDataRequest, 3 * 60 * 1000);
-  }
-  // 최초 주식 데이터 요청
-  stockDataRequest();
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 
