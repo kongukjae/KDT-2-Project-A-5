@@ -154,7 +154,8 @@ class User {
 app.post('/creataccount', (req, res) => {
   const postData = req.body; // 요청의 본문을 가져옵니다.
   const test = new User(postData.email,postData.password,postData.name,postData.phoneNumber,123412314)
-  console.log('테스트 클래스',test.crypto);
+  // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
+  console.log('테스트 클래스 비밀번호 암호화',test.crypto(postData.password));
   console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
   // dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
   //   if (err) {
