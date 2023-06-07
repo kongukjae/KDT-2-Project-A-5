@@ -6,14 +6,6 @@ import http from "http";
 import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
-//protocol buffers모듈
-import protobuf from "protobufjs";
-//"stock.proto" 파일을 로드해 Protocol Buffers 정의를 포함하는 root 객체를 생성
-//"stock.proto" 파일을 로드해 Protocol Buffers 정의를 포함하는 root 객체를 생성
-const protobufjsObj = protobuf.loadSync("./stock.proto");
-// root 객체에서 "StockData"라는 메시지 유형을 찾아 반환
-const StockData = protobufjsObj.lookupType("StockData"); // 수정된 부분입니다.
-const MetaData = StockData.lookupType("MetaData"); // 수정된 부분입니다.
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -31,23 +23,11 @@ io.on("connect", (socket)=> {
       const apiKey = process.env.alphaApiKey;
       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
       stockData = response.data;
-      console.log(stockData);
-      // Protocol Buffers 메시지 객체 생성
-      const metaDataMessage = MetaData.create(stockData.meta_data); // 수정된 부분입니다.
-      const stockDataMessage = StockData.create({
-        meta_data: metaDataMessage,
-        time_series: stockData.time_series
-      });
-      
-      // Protocol Buffers 직렬화
-      const buffer = StockData.encode(stockDataMessage).finish();
-
-      // 클라이언트로 Protocol Buffers 데이터 전송
-      socket.emit("stockDataUpdate", buffer);
-
-        // 클라이언트로 Protocol Buffers 데이터 전송
-        // socket.emit("stockDataUpdate", buffer);
-
+      // console.log(stockData);
+      //api로 받아온 데이터 json으로 전송
+      let jsonData = JSON.stringify(stockData);
+      console.log(jsonData);
+      socket.emit("stockDataUpdate", jsonData);
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
     }
