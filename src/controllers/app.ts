@@ -8,8 +8,8 @@ import dotenv from "dotenv";
 import { Server } from "socket.io";
 import http from "http";
 import cryto from "crypto";
-// import cheerio from "cheerio";
-const cheerio = require("cheerio");
+import cheerio from "cheerio";
+// const cheerio = require("cheerio");
 
 const $ = cheerio.load(path.join(__dirname)); // 테스트용
 
