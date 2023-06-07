@@ -1,4 +1,4 @@
-import express from "express";
+import express,{Request, Response} from "express";
 import path from "path";
 import * as fs from 'fs';
 // import dotenv from "dotenv";
@@ -45,6 +45,9 @@ dbConnect.connect((err) => {
 //   stockDataRequest();
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
+app.get('*', (req : Request, res : Response) => {
+  res.sendFile(path.join(rootPublic,"index.html"));
+})
 
 // 회사 명으로 테이블을 생성을 하고 데이터를 날짜 별로 튜플을 생성을 하였다.
 // addData();
