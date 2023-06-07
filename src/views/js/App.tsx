@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+import SocketComponent from "../../../utils/Components/socketComponent";
 import AccountScreen from "./account/accountScreen";
 import MainScreen from "./mainPage/mainScreen";
 import StationScreen from "./station/station";
-
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTtle] = useState("호옴");
@@ -44,6 +44,7 @@ export default () => {
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
+          <Route path="/socket" element={<SocketComponent />} /> {/* SocketComponent 추가 */}
         </Routes>
         <Nav />
       </div>

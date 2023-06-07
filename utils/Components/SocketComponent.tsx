@@ -12,7 +12,10 @@ const SocketComponent = (): JSX.Element => {
     // 소켓 연결 시
     socket.on("connect", () => {
       console.log("소켓 정상 연결(클라이언트)");
-
+      //연결 테스트
+      socket.on("hello", (data)=> {
+        console.log(data);
+      })
       // 주식 데이터 받아오는 구간
       socket.on("stockDataUpdate", (updatedData: string) => {
         console.log(updatedData);

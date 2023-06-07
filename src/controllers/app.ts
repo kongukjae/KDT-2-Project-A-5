@@ -14,15 +14,17 @@ const ioServer = createServer(app);
 const io = new Server(ioServer);
 // ! socket 연결
 io.on("connect", (socket : Socket)=> {
-  // 소켓 최초 접속 이벤트
+  //소켓 최초 접속
   console.log("웹 소켓과 연결 됐습니다.");
-  socket.on("hello", (data : any)=> {
-    console.log(data);
-  });
-// 소켓 연결 끊겼을 때
-  io.on("disconnect", (socket : Socket)=> {
+  // socket.on("hello", (data : any)=> {
+  //   console.log(data);
+  // })
+  //연결 테스트
+  socket.emit("hello", "hello");
+  //소켓 연결 끊겼을 때
+  socket.on("disconnect", ()=> {
     console.log("소켓 서버와 연결이 끊겼습니다.")
-  })
+  });
 })
 
 
@@ -44,6 +46,7 @@ let stockData = null;
       stockData = response.data;
       // console.log(stockData);
       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+      io.emit("stockDataUpdate", stockData);
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
     }
