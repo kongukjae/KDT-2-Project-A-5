@@ -1,23 +1,23 @@
 import React from "react";
 
 interface NewsContentsBoxProps {
-  NewsContentsBoxNewsPaper: string;
-  NewsContentsBoxThumbnail: string;
-  NewsContentsBoxTitleText: string;
+  NewsPaper: string;
+  NewsThumbnail: string;
+  NewsTitleText: string;
 }
 
 export default function NewsContentsBox(props: NewsContentsBoxProps) {
   const {
-    NewsContentsBoxNewsPaper,
-    NewsContentsBoxThumbnail,
-    NewsContentsBoxTitleText,
+    NewsPaper,
+    NewsThumbnail,
+    NewsTitleText,
   } = props;
 
   return (
     <div className="newsContentsBox">
-      <div className="NewsContentsBoxNewsPaper">{NewsContentsBoxNewsPaper}</div>
-      <div className="NewsContentsBoxThumbnail">{NewsContentsBoxThumbnail}</div>
-      <div className="NewsContentsBoxTitleText">{NewsContentsBoxTitleText}</div>
+      <div className="newsPaper">{NewsPaper}</div>
+      <div className="newsThumbnail">{NewsThumbnail}</div>
+      <div className="newsTitleText">{NewsTitleText}</div>
     </div>
   );
 }
