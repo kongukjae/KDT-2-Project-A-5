@@ -22,13 +22,13 @@ const NewsContentsBox: React.FC<newsContentsBoxProps> = (text) => {
 
   // 태그 추가 하는 곳
   useEffect(() => {
-    addTagToLayout(<NewsContentsBox />);
-    addTagToLayout(<NewsContentsBox />);
-    addTagToLayout(<NewsContentsBox />);
-    addTagToLayout(<NewsContentsBox />);
-    addTagToLayout(<NewsContentsBox />);
-    addTagToLayout(<NewsContentsBox />);
-    addTagToLayout(<NewsContentsBox />);
+    addTagToLayout(<NewsContentBox />);
+    addTagToLayout(<NewsContentBox />);
+    addTagToLayout(<NewsContentBox />);
+    addTagToLayout(<NewsContentBox />);
+    addTagToLayout(<NewsContentBox />);
+    addTagToLayout(<NewsContentBox />);
+    addTagToLayout(<NewsContentBox />);
   }, []);
   return (
     <div className="contentsBoxLayout">
