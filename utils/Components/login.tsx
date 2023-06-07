@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ContentsBox from "./contentsBoxArea";
 import "../../src/views/css/style";
 
 export default function Main() {
