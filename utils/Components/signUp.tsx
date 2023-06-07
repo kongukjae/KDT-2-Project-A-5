@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,8 @@ export default function Main() {
   const [piaUseCheck, setPiaUseCheck] = useState(false);
   const [marketingUseCheck, setMarketingUseCheck] = useState(false);
   const [advertisementCheck, setAdvertisementCheck] = useState(false);
+  // useNavigate 훅을 사용하여 navigate 함수를 가져옵니다. 이후 navigate 함수를 사용하여 페이지 전환 및 브라우저 내비게이션을 수행할 수 있습니다.
+  const navigate = useNavigate();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -87,7 +90,10 @@ export default function Main() {
         }
       })
       .then((data) => {
-        console.log(data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+        if(data === true){
+          console.log('data =', data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+          navigate('/first');
+        }
       })
       .catch((error) => {
         console.error(error);
