@@ -7,15 +7,13 @@ interface ContentsBoxProps {
   stockChartGraph: string;
 }
 
-export default function StoockThumbnail({
-  stockName,
-  stockPrice,
-  stockChangePercentage,
-  stockChartGraph,
-}: ContentsBoxProps) {
+export default function ContentBox(props: ContentsBoxProps) {
+  const { stockName, stockPrice, stockChangePercentage, stockChartGraph } =
+    props;
+
   return (
-    <div className="ContentsBox">
-      <div className="StockName">{stockName}</div>
+    <div className="stockContentsBox">
+      <div className="stockName">{stockName}</div>
       <div className="stockPrice">{stockPrice}</div>
       <div className="stockChangePercentage">{stockChangePercentage}</div>
       <div className="stockChartGraph">{stockChartGraph}</div>
