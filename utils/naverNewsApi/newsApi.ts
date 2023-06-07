@@ -1,6 +1,6 @@
 const express2 = require("express");
 const axios2 = require("axios");
-const cheerio = require("cheerio");
+const cheerio2 = require("cheerio");
 const app2 = express2();
 const dotenv2 = require("dotenv");
 dotenv2.config({ path: "../../.env" });
@@ -8,6 +8,7 @@ dotenv2.config({ path: "../../.env" });
 const client_id = `${process.env.naverDevClientId}`; // 네이버 개발자 클라이언트 아이디
 const client_secret = `${process.env.naverDevClientSec}`; // 네이버 개발자 클라이언트 시크릿
 const displayLength = 1; // 표시할 검색 결과 수
+// 검색할 카테고리 코드 (정치: 100, 경제: 101, 사회: 102, 생활/문화: 103, 세계: 104, IT/과학: 105)
 const category = 101; // 뉴스 카테고리 코드
 
 // og:image 메타 태그에서 URL을 추출하는 함수
@@ -15,7 +16,7 @@ const getPageData = async (url: string) => {
   try {
     const response = await axios2.get(url);
     const html = response.data;
-    const $ = cheerio.load(html);
+    const $ = cheerio2.load(html);
 
     // og:image 태그 추출
     const ogImageTag = $('meta[property="og:image"]');
@@ -34,7 +35,7 @@ app2.get("/search/news", async (req: any, res: any) => {
   try {
     let api_url = "";
     if (!query) {
-      //search/new일떄는 경제 카테고리의 최신 기사만 10개 보여줌
+      //search/new일때는 경제 카테고리의 최신 기사만 10개 보여줌
       api_url = `https://openapi.naver.com/v1/search/news?query=${encodeURIComponent(
         "경제"
       )}&display=${displayLength}&category=${category}`;
@@ -54,15 +55,16 @@ app2.get("/search/news", async (req: any, res: any) => {
 
     const response = await axios2.get(api_url, options);
 
-    // og:image URL 추출
+    // og:image URL 추출(cheerio)
     const ogImageUrl = await getPageData(response.data.items[0].link);
-    // 임시로 보내는 객체
+    // 임시로 보내는 객체, 주석처리 가능
     const searchData = [
       { title: "뉴스 1", content: "이것은 뉴스 1입니다." },
       { title: "뉴스 2", content: "이것은 뉴스 2입니다." },
       { title: "뉴스 3", content: "이것은 뉴스 3입니다." },
     ];
-    res.json(searchData);
+
+    res.json(searchData); //임시객체 주석처리시 동반 주석처리
     // res.status(200).json({
     //   ...response.data,
     //   ogImageUrl: ogImageUrl,
