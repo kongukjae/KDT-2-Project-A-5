@@ -13,7 +13,7 @@ const StockDataComponent = (): JSX.Element => {
     socket.on("connect", () => {
       console.log("소켓 정상 연결 - 클라이언트");
       //소켓 연결 테스트
-      socket.on("hello", (data)=> {
+      socket.on("hello", (data : any)=> {
         console.log("클라이언트가 받은 데이터 : " + data);
       })
       // 주식 데이터 받아오는 구간
