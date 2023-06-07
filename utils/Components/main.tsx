@@ -1,6 +1,7 @@
 import React from "react";
 import ContentsBox from "./contentsBoxArea";
 import "../../src/views/css/style";
+import ApiResponse from "./apiResponse";
 
 export default function Main() {
   return (
@@ -10,6 +11,7 @@ export default function Main() {
         <ContentsBox h2="내가 자주 본 종목" />
         <ContentsBox h2="모범 운전수" />
         <ContentsBox h2="뉴스" />
+        <ApiResponse />
       </div>
     </>
   );
