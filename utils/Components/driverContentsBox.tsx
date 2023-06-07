@@ -7,6 +7,10 @@ interface DriverContentsBoxProps {
   driverBadTag: string;
 }
 
+// interface DriverContentsBoxProps {
+//   [driverName: string]: string;
+// }
+
 export default function DriverContentsBox(props: DriverContentsBoxProps) {
   const { driverName, driverNoAccidentCount, driverGoodTag, driverBadTag } =
     props;
