@@ -8,18 +8,30 @@ import NewsContentBox from "./newsContentsBox";
 import "../../src/views/css/Area";
 
 // ? 샘플 데이터
+// ? 가상으로 만들어진 주식 데이터를 불러옵니다.
 import { southKoreaStock } from "../../src/models/stockdata";
 
 export default function Main() {
-  // domesticStockMarket : 국내 증시
+  // ? domesticStockMarket : 국내 증시
+
+  // ? 주식 데이터를 넣기 위해 우선 비어있는 배열을 선언합니다.
   let domesticStockMarket = [];
+
+  // ? 가상으로 만들어진 주식 데이터의 length만큼 반복문을 실행합니다.
+  // ! 주식 데이터가 길어진다면, 매우 많은 수의 ContentBox가 만들어질테니
+  // ! 필요에 따라 length 값을 넣지 말고 숫자를 넣는 것도 좋을 것 같습니다.
   for (let i = 0; i < southKoreaStock.length; i++) {
+    // ! 아까 만든 비어있는 배열에
+    // ! 가상 주식 데이터의 length만큼 push() 메서드를 실행합니다.
     domesticStockMarket.push(
       <ContentBox
         stockName={southKoreaStock[i].stockName}
         stockPrice={southKoreaStock[i].stockPrice}
         stockChangePercentage={southKoreaStock[i].stockChangePercentage}
         stockChartGraph={southKoreaStock[i].stockChartGraph}
+        // ! 컴포넌트의 props에는 가상 주식 데이터의 key값을 넣어줍니다.
+        // ! 이렇게 추가된 배열은 이후 render 할 때 호출해줍니다.
+        // ! (현재 55번째 줄에 들어가있음)
       />
     );
   }
