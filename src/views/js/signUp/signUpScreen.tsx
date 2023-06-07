@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Account from "../../../../utils/Components/account";
-import Nav from "../../../../utils/Components/nav";
+import SignUp from "../../../../utils/Components/signUp";
+
 
 const Screen: React.FC = () => {
   return (
     <>
-      <Account />
+      <SignUp />
     </>
   );
 };
