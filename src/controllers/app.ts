@@ -1,13 +1,11 @@
 import express,{Request, Response} from "express";
 import path from "path";
-// import dotenv from "dotenv";
 import axios from "axios";
 import dotenv from "dotenv";
 import http from "http";
 import { Server } from "socket.io";
 import crypto from 'crypto';
 import dbConnect from "../../utils/DB/dbConfigure";
-// import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
