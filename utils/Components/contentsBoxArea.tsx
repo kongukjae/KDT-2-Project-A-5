@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ContentBox from "./ContentsBoxLayout";
+import ContentBox from "./contentsBoxLayout";
 
 // 함수의 컴포넌트 타입을 명시하기 위해서이다.
 // 프로퍼티의 키 값이 무엇이 들어 오든 다 받을수 있다.
