@@ -7,6 +7,7 @@ import axios from "axios";
 import dotenv from "dotenv"
 import { Server } from "socket.io";
 import http from "http";
+import cryto from "crypto";
 
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
@@ -127,29 +128,38 @@ app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설
 app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
 class User {
   // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
+  email: string
   userName: string;
-  password: string;
-  userphoneNum: string;
-  userAccountNum: string;
-  constructor(userName: string, password: string, userphoneNum: string, userAccountNum: string) {
+  _password: string;
+  userphoneNum: number;
+  userAccountNum: number;
+  constructor(email: string,  password: string, userName: string,userphoneNum: number, userAccountNum: number) {
+    this.email = email;
+    this._password = password;
     this.userName = userName;
-    this.password = password;
     this.userphoneNum = userphoneNum;
     this.userAccountNum = userAccountNum;
   }
+  crypto = (pw : string) => {
+    this._password =  cryto.createHash("sha512").update(pw).digest("base64");
+    return this._password;
+  }
+
 
 }
+
 app.post('/creataccount', (req, res) => {
-
   const postData = req.body; // 요청의 본문을 가져옵니다.
-  console.log("데이터", postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-  dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(result);
+  const test = new User(postData.email,postData.password,postData.name,postData.phoneNumber,123412314)
+  console.log('테스트 클래스',test.crypto);
+  console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+  // dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   console.log(result);
 
-  });
+  // });
   res.send('POST 요청이 성공적으로 처리되었습니다.');
 })
 
