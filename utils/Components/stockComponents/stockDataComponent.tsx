@@ -11,10 +11,10 @@ const StockDataComponent = (): JSX.Element => {
 
     // 소켓 연결 시
     socket.on("connect", () => {
-      console.log("소켓 정상 연결(클라이언트)");
-      //연결 테스트
+      console.log("소켓 정상 연결 - 클라이언트");
+      //소켓 연결 테스트
       socket.on("hello", (data)=> {
-        console.log(data);
+        console.log("클라이언트가 받은 데이터 : " + data);
       })
       // 주식 데이터 받아오는 구간
       socket.on("stockDataUpdate", (updatedData: string) => {
@@ -34,11 +34,7 @@ const StockDataComponent = (): JSX.Element => {
   return (
     <div>
       <h1>안녕</h1>
-      {stockData && stockData['Time Series (Daily)'] && (
-        <div>
-          <h2>종목: {stockData}</h2>
-        </div>
-      )}
+      {stockData}
     </div>
   );
 };
