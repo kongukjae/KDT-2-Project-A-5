@@ -34,7 +34,12 @@ export default function Main() {
 
   for (let i = 0; i < bestDriverdata.length; i++) {
     bestDriverData.push(
-      <DriverContentBox/>
+      <DriverContentBox
+        driverName={bestDriverData[i].driverName}
+        driverNoAccidentCount={bestDriverData[i].driverNoAccidentCount}
+        driverGoodTag={bestDriverData[i].driverGoodTag[i]}
+        driverBadTag={bestDriverData[i].driverBadTag[i]}
+      />
     );
   }
 
