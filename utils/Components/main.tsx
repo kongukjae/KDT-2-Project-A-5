@@ -1,6 +1,6 @@
 import React from "react";
 import "../../src/views/css/style";
-import ContentBox from "./stockcontentsBox";
+import ContentBox from "./stockContentsBox";
 import DriverContentsBox from "./driverContentsBox";
 import NewsContentsBox from "./newsContentsBox";
 
