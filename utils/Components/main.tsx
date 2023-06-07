@@ -30,15 +30,15 @@ export default function Main() {
     );
   }
 
-  let bestDriverdata = [];
+  let bestDriverDataBox = [];
 
-  for (let i = 0; i < bestDriverdata.length; i++) {
-    bestDriverData.push(
+  for (let i = 0; i < bestDriverData.length; i++) {
+    bestDriverDataBox.push(
       <DriverContentBox
         driverName={bestDriverData[i].driverName}
         driverNoAccidentCount={bestDriverData[i].driverNoAccidentCount}
-        driverGoodTag={bestDriverData[i].driverGoodTag[i]}
-        driverBadTag={bestDriverData[i].driverBadTag[i]}
+        driverGoodTag={bestDriverData[i].driverGoodTag}
+        driverBadTag={bestDriverData[i].driverBadTag}
       />
     );
   }
@@ -49,24 +49,9 @@ export default function Main() {
         <h3>국내 증시</h3>
         <div className="stockArea">{domesticStockMarket}</div>
         <h3>내가 자주 본 종목</h3>
-
         <div className="myStockArea">{domesticStockMarket}</div>
         <h3>모범 운전수</h3>
-
-        <div className="driverArea">
-          <DriverContentBox
-            driverName="박준형"
-            driverNoAccidentCount="무사고 83일"
-            driverGoodTag="방어운전"
-            driverBadTag="급발진"
-          />
-          <DriverContentBox
-            driverName="운전수"
-            driverNoAccidentCount="무사고 0일"
-            driverGoodTag="방어운전"
-            driverBadTag="급발진"
-          />
-        </div>
+        <div className="driverArea">{bestDriverDataBox}</div>
         <h3>뉴스</h3>
         <div className="newsArea">
           <NewsContentBox
