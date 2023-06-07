@@ -17,12 +17,11 @@ const StockDataComponent = (): JSX.Element => {
         console.log("클라이언트가 받은 데이터 : " + data);
       })
       // 주식 데이터 받아오는 구간
-      socket.on("stockDataUpdate", (updatedData: string) => {
+      socket.on("stockDataUpdate", (updatedData: any) => {
         console.log(updatedData);
         // 파싱
         // let parsedData = JSON.parse(updatedData);
         // 업데이트 된 데이터 담기
-        console.log(setStockData(updatedData));
         setStockData(updatedData);
       });
     });
