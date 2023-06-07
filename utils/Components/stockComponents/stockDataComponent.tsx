@@ -20,9 +20,10 @@ const StockDataComponent = (): JSX.Element => {
       socket.on("stockDataUpdate", (updatedData: string) => {
         console.log(updatedData);
         // 파싱
-        let parsedData = JSON.parse(updatedData);
+        // let parsedData = JSON.parse(updatedData);
         // 업데이트 된 데이터 담기
-        setStockData(parsedData);
+        console.log(setStockData(updatedData));
+        setStockData(updatedData);
       });
     });
 
@@ -34,7 +35,7 @@ const StockDataComponent = (): JSX.Element => {
   return (
     <div>
       <h1>안녕</h1>
-      {stockData['Meta Data']}이것은 심볼 데이터
+      {stockData}이것은 심볼 데이터
     </div>
   );
 };
