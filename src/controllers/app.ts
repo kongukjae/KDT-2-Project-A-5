@@ -8,6 +8,7 @@ import dotenv from "dotenv"
 import { Server } from "socket.io";
 import http from "http";
 import cryto from "crypto";
+import { addAbortSignal } from "stream";
 
 // import fs from "fs";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
@@ -24,33 +25,97 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-// let stockData = null;
-// // 알파벤티지에 주식 데이터 요청하는 함수
-//   async function stockDataRequest() {
-//     try {
-//       const symbol = "IBM";
-//       const apiKey = process.env.alphaApiKey;
-//       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
-//       stockData = response.data;
-//       console.log(stockData);
-//       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
-//       io.emit("stockDataUpdate", stockData);
-//     } catch (error) {
-//       console.error('주식 데이터를 받아오는데 실패했습니다', error);
-//     }
-//     // 3분에 한번씩 주식데이터 요청
-//     setTimeout(stockDataRequest, 3 * 60 * 1000);
-//   }
-//   // 최초 주식 데이터 요청
-//   stockDataRequest();
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req : Request, res : Response) => {
   res.sendFile(path.join(rootPublic,"index.html"));
 })
+app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
+app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+class User {
+  // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
+  private password: string;
+  userName: string;
+  userId: string;
+  phoneNum: number;
+  userAccountNum: number;
+  
+  // 출력 될 때 순서를 생각 해서 작서을 한다.
+  constructor(userId: string, password: string, userName: string, phoneNum: number, userAccountNum: number) {
+    this.userId = userId; // userId 이다 헷갈려서 적어 놓기
+    this.password = this.crypto(password); // 생성자에서 암호화 수행
+    this.userName = userName;
+    this.phoneNum = phoneNum;
+    this.userAccountNum = userAccountNum;
+    // userId password, userName, phoneNum,userAccountNum 테이블 어트리뷰트 순서
+  }
 
-// 회사 명으로 테이블을 생성을 하고 데이터를 날짜 별로 튜플을 생성을 하였다.
-// addData();
+  set _password(value: string) {
+    this.password = this.crypto(value); // 암호화하여 속성에 저장
+  }
+
+  get _password() {
+    return this.password; // 암호화된 비밀번호 반환
+  }
+
+  private crypto(pw: string) {
+    return cryto.createHash("sha512").update(pw).digest("base64");
+  }
+  
+}
+
+app.post('/creataccount', (req, res) => {
+
+  const { email, password, name, phoneNumber } = req.body; // 요청의 본문을 가져옵니다.
+  const test = new User(email,password,name,phoneNumber,123412314)
+  console.log('테스트 클래스',test);
+  // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
+  console.log('테스트 클래스 비밀번호 암호화',test._password);
+  console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+
+  const keys =Object.keys(test);
+  console.log('키값',keys.join(','));
+  dbConnect.query(`insert INTO user_infor(${keys.join(',')}) VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});`, (err, result) => {
+      if (err) {
+          console.log(err);
+        }
+        console.log(result);
+      
+      });
+     
+      res.send('POST 요청이 성공적으로 처리되었습니다.');
+    })
+
+    app.use((req, res) => {
+      res.status(404).send("not found");
+    });
+    
+    app.listen(8080, () => {
+      console.log("connected");
+    });
+    
+    // let stockData = null;
+    // // 알파벤티지에 주식 데이터 요청하는 함수
+    //   async function stockDataRequest() {
+    //     try {
+    //       const symbol = "IBM";
+    //       const apiKey = process.env.alphaApiKey;
+    //       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
+    //       stockData = response.data;
+    //       console.log(stockData);
+    //       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+    //       io.emit("stockDataUpdate", stockData);
+    //     } catch (error) {
+    //       console.error('주식 데이터를 받아오는데 실패했습니다', error);
+    //     }
+    //     // 3분에 한번씩 주식데이터 요청
+    //     setTimeout(stockDataRequest, 3 * 60 * 1000);
+    //   }
+    //   // 최초 주식 데이터 요청
+    //   stockDataRequest();
+    
+    // 회사 명으로 테이블을 생성을 하고 데이터를 날짜 별로 튜플을 생성을 하였다.
+    // addData();
 // function addData(): void {
 
 // const apiKey = `${process.env.apiKey}`;
@@ -127,50 +192,3 @@ app.get('*', (req : Request, res : Response) => {
 //     }
 //   })
 // }
-app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-class User {
-  // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
-  email: string
-  userName: string;
-  _password: string;
-  userphoneNum: number;
-  userAccountNum: number;
-  constructor(email: string,  password: string, userName: string,userphoneNum: number, userAccountNum: number) {
-    this.email = email;
-    this._password = password;
-    this.userName = userName;
-    this.userphoneNum = userphoneNum;
-    this.userAccountNum = userAccountNum;
-  }
-  crypto = (pw : string) => {
-    this._password =  cryto.createHash("sha512").update(pw).digest("base64");
-    return this._password;
-  }
-
-
-}
-
-app.post('/creataccount', (req, res) => {
-  const postData = req.body; // 요청의 본문을 가져옵니다.
-  const test = new User(postData.email,postData.password,postData.name,postData.phoneNumber,123412314)
-  // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
-  console.log('테스트 클래스 비밀번호 암호화',test.crypto(postData.password));
-  console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-  // dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   console.log(result);
-
-  // });
-  res.send('POST 요청이 성공적으로 처리되었습니다.');
-})
-
-app.use((req, res) => {
-  res.status(404).send("not found");
-});
-
-app.listen(8080, () => {
-  console.log("connected");
-});
