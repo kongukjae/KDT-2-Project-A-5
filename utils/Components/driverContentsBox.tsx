@@ -3,13 +3,9 @@ import React from "react";
 interface DriverContentsBoxProps {
   driverName: string;
   driverNoAccidentCount: string;
-  driverGoodTag: string;
-  driverBadTag: string;
+  driverGoodTag: string[];
+  driverBadTag: string[];
 }
-
-// interface DriverContentsBoxProps {
-//   [driverName: string]: string;
-// }
 
 export default function DriverContentsBox(props: DriverContentsBoxProps) {
   const { driverName, driverNoAccidentCount, driverGoodTag, driverBadTag } =
