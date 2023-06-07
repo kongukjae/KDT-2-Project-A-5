@@ -4,7 +4,6 @@ import io from "socket.io-client";
 const StockDataComponent = (): JSX.Element => {
   // 주식 데이터 변화 감지
   const [stockData, setStockData] = useState<any>(null);
-
   // 주식 데이터 웹소켓으로 받아오기
   useEffect(() => {
     const socket = io('localhost:8085');
@@ -18,11 +17,11 @@ const StockDataComponent = (): JSX.Element => {
       })
       // 주식 데이터 받아오는 구간
       socket.on("stockDataUpdate", (updatedData: any) => {
-        console.log(updatedData);
+        console.log(updatedData['Meta Data']['2. Symbol']);
         // 파싱
         // let parsedData = JSON.parse(updatedData);
         // 업데이트 된 데이터 담기
-        setStockData(updatedData);
+        setStockData(updatedData['Meta Data']['2. Symbol']);
       });
     });
 
@@ -34,7 +33,7 @@ const StockDataComponent = (): JSX.Element => {
   return (
     <div>
       <h1>안녕</h1>
-      {stockData}이것은 심볼 데이터
+      {stockData}
     </div>
   );
 };
