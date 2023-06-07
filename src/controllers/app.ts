@@ -74,15 +74,21 @@ app.post('/creataccount', (req, res) => {
   console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
 
   const keys =Object.keys(test);
+  const values =Object.values(test);
+
   console.log('키값',keys.join(','));
-  dbConnect.query(`insert INTO user_infor(${keys.join(',')}) VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});`, (err, result) => {
+  console.log('벨류',values.map(x => {
+    return "'" + x + "'";
+  }).join(','));
+
+  dbConnect.query(`insert INTO user_infor(${keys.join(',')}) VALUES(?);`,[values], (err, result) => {
       if (err) {
           console.log(err);
         }
         console.log(result);
       
       });
-     
+      // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
       res.send('POST 요청이 성공적으로 처리되었습니다.');
     })
 
