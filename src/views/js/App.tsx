@@ -13,6 +13,7 @@ import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
+import Deposit from "../../../utils/Components/deposit";
 
 export default () => {
   const location = useLocation();
@@ -39,6 +40,9 @@ export default () => {
       case "/login":
         setPageTitle("함께 투자하는 즐거움" + "Stock Together");
         break;
+      case "/deposit":
+        setPageTitle("계좌");
+        break;
       case "/signup":
         setPageTitle("회원가입");
         break;
@@ -60,6 +64,7 @@ export default () => {
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
+          <Route path="/deposit" element={<Deposit />} />
         </Routes>
         {[
           "/",

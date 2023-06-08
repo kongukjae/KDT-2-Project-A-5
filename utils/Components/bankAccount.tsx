@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { Router, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Deposit from './deposit'
+
 import "../../src/views/css/style";
 
 function addCommasToNumber(number: number): string {
@@ -16,9 +20,13 @@ export default function Account() {
 
   return (
     <div>
-      <p>계좌 잔액: {addCommasToNumber(balance)}</p>
-      <button onClick={() => handleDeposit(1000)}>1000 추가</button>
-      {/* 추가적인 버튼 또는 로직을 여기에 추가할 수 있습니다 */}
+        <p className='myAccount'>계좌 잔액: {addCommasToNumber(balance)}</p>
+        
+        <Link to="/deposit">
+        <button>입금</button>
+      </Link>
+        {/* 추가적인 버튼 또는 로직을 여기에 추가할 수 있습니다 */}
     </div>
+
   );
 }

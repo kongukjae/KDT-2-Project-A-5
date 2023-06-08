@@ -1,6 +1,9 @@
 .driverArea {
   display: flex;
 }
+.driverContentsBox{
+  width: 70%;
+}
 .newsArea {
   display: flex;
 }
