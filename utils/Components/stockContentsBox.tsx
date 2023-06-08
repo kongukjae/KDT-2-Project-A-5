@@ -10,7 +10,7 @@ interface ContentsBoxProps {
 }
 const stockData = (): JSX.Element => {
   const [stock, setStocks] = useState<ContentsBoxProps[]>([]);
-  let stocktest = useContext<stockContextType | null>(stockContext);
+  let stocktest = useContext<stockContextType[] | null>(stockContext);
 console.log("심볼 데이터 ", stocktest);
   useEffect(() => {
     setStocks(southKoreaStock);
