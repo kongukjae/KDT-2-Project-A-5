@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
 // import Screen from "./screen";
+// import StockDataComponent from "../../../utils/Components/stockDataComponent";
 // ? 리액트 컴포넌트
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
@@ -13,17 +14,19 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-
+//주식 데이터 컨텍스트 생성
+const stockDataContext = React.createContext(null);
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-
   const socket = io('localhost:8085');
     // 소켓 연결
+  let stockContextData : string = "대머리";
     socket.on("connect", () => {
       console.log("소켓 정상 연결 - 클라이언트");
       socket.on("stockDataUpdate", (updatedData)=> {
-        console.log(updatedData);
+        // console.log(updatedData);
+        // stockContextData  = JSON.parse(updatedData);
       })
       });
   useEffect(() => {
@@ -60,19 +63,23 @@ export default () => {
     <>
       <div className="container">
         <Header title={pageTitle} />
+        <stockDataContext.Provider value={stockContextData}>
         <Routes>
           <Route path="/" element={<IntroPage />} />
           // 소켓이 필요한 아이들
+          
           <Route path="/station" element={<StationScreen />} />
           <Route path="/home" element={<MainScreen />} />
+
           // 소켓이 필요 없는 아이들
           <Route path="/first" element={<FirstPage />} />
+         
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/account" element={<AccountScreen />} />
           
         </Routes>
-
+        </stockDataContext.Provider>
         {[
           "/",
           "/first",
