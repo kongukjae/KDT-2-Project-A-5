@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+//가상의 주식 데이터
 import { southKoreaStock } from "../../src/models/stockdata";
 interface ContentsBoxProps {
   stockName: string;
@@ -14,18 +15,22 @@ const stockData = (): JSX.Element => {
     setStocks(southKoreaStock);
     console.log("stockdata 컴포넌트 불러옴");
   }, []);
-// 
+//
 
   return (
     <>
       {stock.length > 0 ? (
         stock.map((element: ContentsBoxProps) => (
           <div className="stockContentsBox">
+            //회사
             <div className="stockName">{element.stockName}</div>
+            //주가
             <div className="stockPrice">{element.stockPrice}</div>
+            //등락율
             <div className="stockChangePercentage">
               {element.stockChangePercentage}
             </div>
+            //그래프(차트)
             <div className="stockChartGraph">{element.stockChartGraph}</div>
           </div>
         ))

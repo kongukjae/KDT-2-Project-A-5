@@ -1,12 +1,11 @@
-import express, { Request, Response } from "express";
-import path from "path";
 import axios from "axios";
 import crypto from 'crypto';
 import dotenv from "dotenv";
+import express, { Request, Response } from "express";
 import http from "http";
+import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
-import { BiBox } from "react-icons/Bi";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -158,9 +157,9 @@ app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-app.listen(8080, () => {
-  console.log("connected");
-});
+// app.listen(8080, () => {
+//   console.log("connected");
+// });
 // let stockData = null;
 // // 알파벤티지에 주식 데이터 요청하는 함수
 //   async function stockDataRequest() {

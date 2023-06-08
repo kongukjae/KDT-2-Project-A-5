@@ -1,3 +1,4 @@
+//가상 주식 데이터
 const southKoreaStock = [
   {
     id: 1,
@@ -37,3 +38,4 @@ const southKoreaStock = [
 ];
 
 export { southKoreaStock };
+
