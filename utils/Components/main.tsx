@@ -3,6 +3,7 @@ import "../../src/views/css/style";
 import StockData from "./stockContentsBox";
 import DriverContentBox from "./driverContentsBox";
 import NewsContentBox from "./newsContentsBox";
+import { DriverData } from "./driver";
 
 // ? CSS
 import "../../src/views/css/Area";
@@ -59,6 +60,19 @@ export default function Main() {
       />
     );
   }
+  let driverArea = [];
+
+  for (let i = 0; i < DriverData.length && i < 5; i++) {
+    const driver = DriverData[i];
+    driverArea.push(
+      <DriverContentsBox
+        driverName={driver.driverName}
+        driverOperationsCount={""}
+        driverNoAccidentCount={driver.driverNoAccidentCount}
+        driverGoodTag={driver.driverGoodTag}
+        driverBadTag={driver.driverBadTag}       />
+    );
+  }
 
   return (
     <>
@@ -72,7 +86,9 @@ export default function Main() {
           <StockData />
         </div>
         <h3>모범 운전수</h3>
-        <div className="driverArea">{bestDriverDataBox}</div>
+
+        <div className="driverArea">{driverArea}</div>
+
         <h3>뉴스</h3>
         <div className="newsArea">
           {/* {newsDataBox} */}
