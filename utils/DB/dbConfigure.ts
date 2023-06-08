@@ -6,10 +6,6 @@ const dbConnect = mysql.createConnection({
   user: process.env.db_user,
   password: process.env.db_password,
   database: process.env.db_database,
-  // host: "localhost",
-  // user: "root",
-  // password: "eowjdehd2465@",
-  // database: "testdb",
 });
 // ! DB 연결 명령문
 // dbConnect.connect((err)=> {

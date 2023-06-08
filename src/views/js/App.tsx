@@ -11,13 +11,13 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-import stockContext, { stockContextType } from './stockContext';
+import stockContext from './stockContext';
 
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState<stockContextType | undefined>(undefined);
+  const [stockContextData, setStockContextData] = useState<any>(null);
 
 
   useEffect(() => {
@@ -64,13 +64,12 @@ export default function App() {
       <div className="container">
         <Header title={pageTitle} />
         {/* context를 활용하여 주식데이터 사용 가능 -> 사용할 땐 useContext */}
-        <stockContext.Provider value={stockContextData}>
+        <stockContext.Provider value={stockContext}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
             {/* 소켓이 필요한 아이들 */}
             <Route path="/station" element={<StationScreen />} />
             <Route path="/home" element={<MainScreen />} />
-            <Route path='stock' element= {<StockScreen />}
             {/* 소켓이 필요 없는 아이들 */}
             <Route path="/first" element={<FirstPage />} />
             <Route path="/login" element={<LoginScreen />} />

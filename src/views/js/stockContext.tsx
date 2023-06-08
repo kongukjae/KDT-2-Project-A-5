@@ -1,11 +1,10 @@
 import { createContext } from 'react';
 
 interface stockContextType  {
-  symbol : string,
-  price : string,
+  "Meta Data": "MetaData";
+  "Time Series (Daily)": "TimeSeriesDaily";
 }
-
-const stockContext = createContext<stockContextType | null>(null);
+const stockContext = createContext<any>(null);
 
 export default stockContext;
 export type { stockContextType }; // 추가
