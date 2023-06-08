@@ -126,9 +126,9 @@ app.post('/creataccount', (req, res) => {
       res.status(404).send("not found");
     });
     
-    app.listen(8080, () => {
-      console.log("connected");
-    });
+    // app.listen(8080, () => {
+    //   console.log("connected");
+    // });
     // let stockData = null;
     // // 알파벤티지에 주식 데이터 요청하는 함수
     //   async function stockDataRequest() {
@@ -227,25 +227,25 @@ app.post('/creataccount', (req, res) => {
 //     }
 //   })
 // }
-app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-app.post('/creataccount', (req, res) => {
+// app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
+// app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+// app.post('/creataccount', (req, res) => {
 
-  const postData = req.body; // 요청의 본문을 가져옵니다.
-  console.log("데이터",postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-  dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(result);
+//   const postData = req.body; // 요청의 본문을 가져옵니다.
+//   console.log("데이터",postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+//   dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log(result);
     
-  });
-  res.send('POST 요청이 성공적으로 처리되었습니다.');
-})
+//   });
+//   res.send('POST 요청이 성공적으로 처리되었습니다.');
+// })
 
-app.use((req, res) => {
-  res.status(404).send("not found");
-});
+// app.use((req, res) => {
+//   res.status(404).send("not found");
+// });
 
 // app.listen(8085, () => {
 //   console.log("connected");

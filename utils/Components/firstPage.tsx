@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import loginStyle from "../../src/views/css/login.module.css";
-import StockDataComponent from "./stockDataComponent";
 // import StockTogetherLogo from "../../src/views/img/img-13.png";
 // import StockContentsBoxLayout from "./stockComponents/stockContentsBoxLayout";
 export default function Login() {
@@ -16,9 +15,6 @@ export default function Login() {
         <Link to="/login">
           <p>계정이 이미 있으신가요?</p>
         </Link>
-        <StockDataComponent>
-          
-        </StockDataComponent>
       </div>
     </>
   );

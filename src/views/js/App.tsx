@@ -1,23 +1,31 @@
 // * 리액트 주요 라이브러리
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import io from "socket.io-client";
 // import Screen from "./screen";
-
 // ? 리액트 컴포넌트
 import Header from "../../../utils/Components/header";
-import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station";
-import AccountScreen from "./account/accountScreen";
-import LoginScreen from "./loginPage/loginScreen";
-import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
+import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
+import LoginScreen from "./loginPage/loginScreen";
+import MainScreen from "./mainPage/mainScreen";
+import SignUpScreen from "./signUp/signUpScreen";
+import StationScreen from "./station/station";
 
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
 
+  const socket = io('localhost:8085');
+    // 소켓 연결
+    socket.on("connect", () => {
+      console.log("소켓 정상 연결 - 클라이언트");
+      socket.on("stockDataUpdate", (updatedData)=> {
+        console.log(updatedData);
+      })
+      });
   useEffect(() => {
     // URL 변화에 따라 pageTitle 상태를 업데이트함.
     switch (location.pathname) {
@@ -54,13 +62,17 @@ export default () => {
         <Header title={pageTitle} />
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="/first" element={<FirstPage />} />
-          <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/home" element={<MainScreen />} />
+          // 소켓이 필요한 아이들
           <Route path="/station" element={<StationScreen />} />
+          <Route path="/home" element={<MainScreen />} />
+          // 소켓이 필요 없는 아이들
+          <Route path="/first" element={<FirstPage />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/account" element={<AccountScreen />} />
+          
         </Routes>
+
         {[
           "/",
           "/first",
