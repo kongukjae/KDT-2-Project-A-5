@@ -1,13 +1,12 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 
 interface stockContextType  {
-  [test : string ]: {
-    name: string ;
-    age: string;
-  };
+  symbol : string,
+  price : string,
 }
 
-const stockContext = createContext<stockContextType | undefined>(undefined);
+const stockContext = createContext<stockContextType | null>(null);
 
 export default stockContext;
 export type { stockContextType }; // 추가
+

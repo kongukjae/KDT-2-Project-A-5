@@ -1,9 +1,9 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import stockContext, { stockContextType } from './stockContext';
 import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+import StockContentsBox from "../../../utils/Components/stockContentsBox";
 import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -11,7 +11,7 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-
+import stockContext, { stockContextType } from './stockContext';
 
 
 export default function App() {
@@ -40,7 +40,7 @@ export default function App() {
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("내 정보");
+        setPageTitle("계좌");
         break;
       case "/station":
         setPageTitle("정류장");
@@ -51,12 +51,11 @@ export default function App() {
       case "/login":
         setPageTitle("함께 투자하는 즐거움 Stock Together");
         break;
-      case "/deposit":
-        setPageTitle("계좌");
-        break;
       case "/signup":
         setPageTitle("회원가입");
         break;
+      case "stock":
+        setPageTitle("주식 테스트");
       default:
         setPageTitle("홈");
         break;
@@ -67,16 +66,21 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        <Routes>
-          <Route path="/" element={<IntroPage />} />
-          <Route path="/first" element={<FirstPage />} />
-          <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/home" element={<MainScreen />} />
-          <Route path="/station" element={<StationScreen />} />
-          <Route path="/account" element={<AccountScreen />} />
-          {/* <Route path="/deposit" element={<Deposit />} /> */}
-        </Routes>
+        {/* context를 활용하여 주식데이터 사용 가능 -> 사용할 땐 useContext */}
+        <stockContext.Provider value={stockContextData}>
+          <Routes>
+            <Route path="/" element={<IntroPage />} />
+            {/* 소켓이 필요한 아이들 */}
+            <Route path="/station" element={<StationScreen />} />
+            <Route path="/home" element={<MainScreen />} />
+            {/* 소켓이 필요 없는 아이들 */}
+            <Route path="/first" element={<FirstPage />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/signup" element={<SignUpScreen />} />
+            <Route path="/account" element={<AccountScreen />} />
+            <Route path="/stock" element={<StockContentsBox />} />
+          </Routes>
+        </stockContext.Provider>
         {[
           "/",
           "/first",
