@@ -7,11 +7,7 @@ interface NewsContentsBoxProps {
 }
 
 export default function NewsContentsBox(props: NewsContentsBoxProps) {
-  const {
-    NewsPaper,
-    NewsThumbnail,
-    NewsTitleText,
-  } = props;
+  const { NewsPaper, NewsThumbnail, NewsTitleText } = props;
 
   return (
     <div className="newsContentsBox">
