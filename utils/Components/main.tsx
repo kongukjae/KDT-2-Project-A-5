@@ -1,6 +1,6 @@
 import React from "react";
 import "../../src/views/css/style";
-import StockContentBox from "./stockContentsBox";
+import StockData from "./stockContentsBox";
 import DriverContentBox from "./driverContentsBox";
 import NewsContentBox from "./newsContentsBox";
 
@@ -19,20 +19,20 @@ import NewsAPI from "./newsApiParse";
 export default function Main() {
   // ? 주식 데이터를 넣는 비어있는 배열
   // ? domesticStockMarket : 국내 증시
-  let domesticStockMarket = [];
+  // let domesticStockMarket = [];
 
-  // ? 가상으로 만들어진 주식 데이터의 length만큼 반복문 실행
-  for (let i = 0; i < southKoreaStock.length; i++) {
-    domesticStockMarket.push(
-      <StockContentBox
-        stockName={southKoreaStock[i].stockName}
-        stockPrice={southKoreaStock[i].stockPrice}
-        stockChangePercentage={southKoreaStock[i].stockChangePercentage}
-        stockChartGraph={southKoreaStock[i].stockChartGraph}
-        key={southKoreaStock[i].id}
-      />
-    );
-  }
+  // // ? 가상으로 만들어진 주식 데이터의 length만큼 반복문 실행
+  // for (let i = 0; i < southKoreaStock.length; i++) {
+  //   domesticStockMarket.push(
+  //     <StockContentBox
+  //       stockName={southKoreaStock[i].stockName}
+  //       stockPrice={southKoreaStock[i].stockPrice}
+  //       stockChangePercentage={southKoreaStock[i].stockChangePercentage}
+  //       stockChartGraph={southKoreaStock[i].stockChartGraph}
+  //       key={southKoreaStock[i].id}
+  //     />
+  //   );
+  // }
 
   // ? 모범 운전수 데이터를 넣는 비어있는 비열
   let bestDriverDataBox = [];
@@ -64,9 +64,13 @@ export default function Main() {
     <>
       <div className="main">
         <h3>국내 증시</h3>
-        <div className="stockArea">{domesticStockMarket}</div>
+        <div className="stockArea">
+          <StockData />
+        </div>
         <h3>내가 자주 본 종목</h3>
-        <div className="myStockArea">{domesticStockMarket}</div>
+        <div className="myStockArea">
+          <StockData />
+        </div>
         <h3>모범 운전수</h3>
         <div className="driverArea">{bestDriverDataBox}</div>
         <h3>뉴스</h3>
