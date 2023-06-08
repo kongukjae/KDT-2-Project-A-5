@@ -143,15 +143,14 @@ app.post('/signIn', (req: Request, res: Response) => {
       console.log('err', err)
     }
     // console.log(Object.values(result).length ===0)
-    else if (Object.values(result).length === 0) {
-      console.log('result', result);
+    if (Object.values(result).length === 0) {
       boxTest = false;
-      return boxTest;
+   res.send(boxTest);
     }
     // 로그인 실패
-    console.log('true', result);
-    res.send(boxTest);
-
+    else {
+      res.send(boxTest);
+    }
   })
 })
 app.use((req, res) => {

@@ -44,7 +44,7 @@ export default function Main() {
           console.log('data =', data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
           navigate('/home');
         }
-        else if(data === false){
+        else{
           alert('로그인 실패')
         }
       })
