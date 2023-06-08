@@ -13,7 +13,7 @@ const driverData = (): JSX.Element => {
   const [driver, setDriver] = useState<DriverContentsBoxProps[]>([]);
 
   useEffect(() => {
-    setDriver(DriverData);
+    setDriver(DriverData.slice(0, 5)); // slice 메서드를 이용하여 처음 5개 데이터만 선택
     console.log("driverData 불러옴");
   }, []);
 
