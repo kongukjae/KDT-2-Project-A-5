@@ -11,14 +11,14 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-import stockContext, { stockContextType } from './stockContext';
+import stockContext from './stockContext';
 
 
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState<stockContextType | undefined>(undefined);
+  const [stockContextData, setStockContextData] = useState(null);
 
 
   useEffect(() => {

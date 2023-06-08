@@ -1,12 +1,28 @@
 import { createContext } from 'react';
 
-interface stockContextType  {
-  symbol : string,
-  price : string,
+interface StockContextType {
+  symbol: string;
+  price: string;
+  meta: {
+    information: string;
+    lastRefreshed: string;
+    outputSize: string;
+    timeZone: string;
+  };
+  timeSeries: {
+    [date: string]: {
+      open: string;
+      high: string;
+      low: string;
+      close: string;
+      adjustedClose: string;
+      volume: string;
+      dividendAmount: string;
+      splitCoefficient: string;
+    };
+  };
 }
 
-const stockContext = createContext<stockContextType | null>(null);
+const StockContext = createContext<StockContextType | null>(null);
 
-export default stockContext;
-export type { stockContextType }; // 추가
-
+export default StockContext;

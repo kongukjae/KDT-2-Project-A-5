@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 //가상의 주식 데이터
 import { southKoreaStock } from "../../src/models/stockdata";
-import stockContext, { stockContextType } from "../../src/views/js/stockContext";
+import stockContext from "../../src/views/js/stockContext";
 interface ContentsBoxProps {
   stockName: string;
   stockPrice: string;
@@ -10,14 +10,16 @@ interface ContentsBoxProps {
 }
 const stockData = (): JSX.Element => {
   const [stock, setStocks] = useState<ContentsBoxProps[]>([]);
-  let stocktest = useContext<stockContextType | null>(stockContext);
-console.log("심볼 데이터 ", stocktest);
-let test = stocktest['symbol']
+  const stockData = useContext(stockContext);
+
+  console.dir("심볼 데이터 ", stockData);
+  
+  
   useEffect(() => {
     setStocks(southKoreaStock);
     console.log("stockdata 컴포넌트 불러옴");
   }, []);
-//
+  //
 
   return (
     <>
