@@ -1,6 +1,5 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import stockContext, { stockContextType } from './stockContext';
 import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
@@ -11,6 +10,7 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
+import stockContext, { stockContextType } from './stockContext';
 
 
 
@@ -54,6 +54,8 @@ export default function App() {
       case "/signup":
         setPageTitle("회원가입");
         break;
+      case "stock":
+        setPageTitle("주식 데이터")
       default:
         setPageTitle("홈");
         break;
@@ -70,6 +72,7 @@ export default function App() {
             {/* 소켓이 필요한 아이들 */}
             <Route path="/station" element={<StationScreen />} />
             <Route path="/home" element={<MainScreen />} />
+            <Route path='stock' element= {<StockScreen />}
             {/* 소켓이 필요 없는 아이들 */}
             <Route path="/first" element={<FirstPage />} />
             <Route path="/login" element={<LoginScreen />} />
