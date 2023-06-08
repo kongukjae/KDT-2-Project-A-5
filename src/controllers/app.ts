@@ -26,7 +26,7 @@ io.on("connect", (socket)=> {
       // console.log(stockData);
       //api로 받아온 데이터 json으로 전송
       let jsonData = JSON.stringify(stockData);
-      console.log(jsonData);
+      // console.log(jsonData);
       socket.emit("stockDataUpdate", jsonData);
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
