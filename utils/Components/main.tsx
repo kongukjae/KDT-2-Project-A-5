@@ -13,6 +13,9 @@ import { southKoreaStock } from "../../src/models/stockdata";
 import { bestDriverData } from "../../src/models/driverdata";
 import { newsData } from "../../src/models/newsData";
 
+// ! 데이터
+import NewsAPI from "./newsApiParse";
+
 export default function Main() {
   // ? 주식 데이터를 넣는 비어있는 배열
   // ? domesticStockMarket : 국내 증시
@@ -67,7 +70,10 @@ export default function Main() {
         <h3>모범 운전수</h3>
         <div className="driverArea">{bestDriverDataBox}</div>
         <h3>뉴스</h3>
-        <div className="newsArea">{newsDataBox}</div>
+        <div className="newsArea">
+          {/* {newsDataBox} */}
+          <NewsAPI />
+        </div>
       </div>
     </>
   );
