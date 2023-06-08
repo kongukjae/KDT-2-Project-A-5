@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Station from "../../../../utils/Components/station";
-import axios from "axios";
 
 const Screen: React.FC = () => {
   const [news, setNews] = useState(null);
