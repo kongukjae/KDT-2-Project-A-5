@@ -1,34 +1,28 @@
 import cheerio from "cheerio";
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config({ path: "../../.env" });
 
-const client_id = `${process.env.naverDevClientId}`;
-const client_secret = `${process.env.naverDevClientSec}`;
-const query = "경제";
-const displayLength = `5`;
-const category = 101;
-const api_url = `https://openapi.naver.com/v1/search/news?query=${encodeURIComponent(
-  query
-)}&display=${displayLength}&category=${category}`;
+interface Pata {
+  title: string | undefined;
+  thumbnail: string | undefined;
+  description: string | undefined;
+  repoter: string | undefined;
+  press: string | undefined;
+}
 
-const data = async () => {
-  try {
-    const response = await axios.get(api_url, {
-      headers: {
-        "X-Naver-Client-Id": `${client_id}`,
-        "X-Naver-Client-Secret": `${client_secret}`,
-      },
-    });
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
+const crawlingData = async (url: string) => {
+  const html = await axios.get(url);
+
+  const $ = cheerio.load(html.data);
+  const parseData: Pata = {
+    title: $('meta[property="og:title"]').attr("content"),
+    thumbnail: $('meta[property="og:image"]').attr("content"),
+    description: $("._article_body")
+      .text()
+      .replace(/           /g, "<br>")
+      .trim(),
+    repoter: $(".byline").text().trim(),
+    press: $('meta[property="og:article:author"]').attr("content"),
+  };
+  return parseData;
 };
-
-const fetchData = async () => {
-  const result = await data();
-};
-
-fetchData();
-// export default data;
+export default crawlingData;
