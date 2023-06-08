@@ -40,7 +40,7 @@ export default function App() {
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("계좌");
+        setPageTitle("내 정보");
         break;
       case "/station":
         setPageTitle("정류장");
@@ -50,6 +50,9 @@ export default function App() {
         break;
       case "/login":
         setPageTitle("함께 투자하는 즐거움 Stock Together");
+        break;
+      case "/deposit":
+        setPageTitle("계좌");
         break;
       case "/signup":
         setPageTitle("회원가입");
@@ -64,19 +67,16 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        <stockContext.Provider value={stockContextData}>
-          <Routes>
-            <Route path="/" element={<IntroPage />} />
-            {/* 소켓이 필요한 아이들 */}
-            <Route path="/station" element={<StationScreen />} />
-            <Route path="/home" element={<MainScreen />} />
-            {/* 소켓이 필요 없는 아이들 */}
-            <Route path="/first" element={<FirstPage />} />
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/signup" element={<SignUpScreen />} />
-            <Route path="/account" element={<AccountScreen />} />
-          </Routes>
-        </stockContext.Provider>
+        <Routes>
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/first" element={<FirstPage />} />
+          <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/home" element={<MainScreen />} />
+          <Route path="/station" element={<StationScreen />} />
+          <Route path="/account" element={<AccountScreen />} />
+          {/* <Route path="/deposit" element={<Deposit />} /> */}
+        </Routes>
         {[
           "/",
           "/first",
