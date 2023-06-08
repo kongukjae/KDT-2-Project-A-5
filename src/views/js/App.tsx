@@ -28,7 +28,7 @@ export default () => {
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("계좌");
+        setPageTitle("내 정보");
         break;
       case "/station":
         setPageTitle("정류장");
