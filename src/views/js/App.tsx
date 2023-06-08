@@ -15,18 +15,18 @@ import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 //주식 데이터 컨텍스트 생성
-const stockDataContext = React.createContext(null);
+export const stockDataContext = React.createContext<any>(null);
+const [stockData, setStockData] = useState<any>(null);
 export default () => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const socket = io('localhost:8085');
     // 소켓 연결
-  let stockContextData : string = "대머리";
     socket.on("connect", () => {
       console.log("소켓 정상 연결 - 클라이언트");
-      socket.on("stockDataUpdate", (updatedData)=> {
+      socket.on("stockDataUpdate", (updatedData : string)=> {
         // console.log(updatedData);
-        // stockContextData  = JSON.parse(updatedData);
+        setStockData(updatedData)
       })
       });
   useEffect(() => {
@@ -63,7 +63,7 @@ export default () => {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        <stockDataContext.Provider value={stockContextData}>
+        <stockDataContext.Provider value={stockData}>
         <Routes>
           <Route path="/" element={<IntroPage />} />
           // 소켓이 필요한 아이들
@@ -73,7 +73,6 @@ export default () => {
 
           // 소켓이 필요 없는 아이들
           <Route path="/first" element={<FirstPage />} />
-         
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/account" element={<AccountScreen />} />
