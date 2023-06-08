@@ -11,7 +11,7 @@ import { DriverData } from "../../src/models/driver";
 
 // ! 컨텐츠 박스
 import StockContentsBox from "./stockContentsBox";
-import DriverContentBox from "./driverContentsBox";
+import DriverContentsBox from "./driverContentsBox";
 import NewsContentsBox from "./newsApiParse";
 
 export default function Main() {
@@ -28,7 +28,7 @@ export default function Main() {
         </div>
         <h3>모범 운전수</h3>
         <div className="driverArea">
-          <DriverContentBox />
+          <DriverContentsBox />
         </div>
         <h3>뉴스</h3>
         <div className="newsArea">

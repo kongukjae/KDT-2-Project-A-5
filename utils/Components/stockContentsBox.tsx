@@ -14,7 +14,7 @@ const stockData = (): JSX.Element => {
     setStocks(southKoreaStock);
     console.log("stockdata 컴포넌트 불러옴");
   }, []);
-// 
+  //
 
   return (
     <>
