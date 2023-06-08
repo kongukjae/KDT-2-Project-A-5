@@ -23,8 +23,18 @@ export default function App() {
     socket.on("connect", () => {
       console.log("소켓 정상 연결 - 클라이언트");
       socket.on("stockDataUpdate", (updatedData) => {
-        // const parsedData = JSON.parse(updatedData);
-        setStockContextData(updatedData);
+        const parsedData = JSON.parse(updatedData);
+        // console.log(parsedData);
+        // 회사 정보
+        let symbol = parsedData['Meta Data']['2. Symbol'];
+        let openPrice = parsedData['Time Series (Daily)'];
+        // console.log("회사 정보",symbol);
+        // 필요한 데이터 객체에 저장 -> 데이터 전송받을 때 마다 갱신
+        let priceArray = {
+          symbol : parsedData['Meta Data']['2. Symbol'],
+          price : parsedData['Time Series (Daily)']
+        };
+        console.log('App.tsx의 객체',priceArray);
       });
     });
   }, []);

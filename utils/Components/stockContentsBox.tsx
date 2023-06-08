@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 //가상의 주식 데이터
-import { southKoreaStock } from "../../src/models/stockdata";
 import stockContext, { stockContextType } from "../../src/views/js/stockContext";
 interface ContentsBoxProps {
   stockName: string;
@@ -9,35 +8,29 @@ interface ContentsBoxProps {
   stockChartGraph: string;
 }
 const stockData = (): JSX.Element => {
-  const [stock, setStocks] = useState<ContentsBoxProps[]>([]);
-  let stocktest = useContext<stockContextType[] | null>(stockContext);
-console.log("심볼 데이터 ", stocktest);
-  useEffect(() => {
-    setStocks(southKoreaStock);
-    console.log("stockdata 컴포넌트 불러옴");
-  }, []);
-//
-
+  // const [stock, setStocks] = useState<ContentsBoxProps[]>([]);
+  // context 가져오기
+  let stocktest = useContext<stockContextType | null>(stockContext);
+  // console.log('stocktest의 데이터',stocktest)
+  const [contextData, setContextData] = useState<any>(null);
+  // setContextData(stocktest)
+// console.log("심볼 데이터 ", stocktest);
+  // useEffect(() => {
+  //   setStocks(southKoreaStock);
+  //   console.log("stockdata 컴포넌트 불러옴");
+  // }, []);
+// 컨텍스트 데이터 가져오기 테스트
+useEffect(() => {
+  setContextData(stocktest);
+}, []);
   return (
     <>
-      {stock.length > 0 ? (
-        stock.map((element: ContentsBoxProps) => (
-          <div className="stockContentsBox">
-            //회사
-            <div className="stockName">{element.stockName}</div>
-            //주가
-            <div className="stockPrice">{element.stockPrice}</div>
-            //등락율
-            <div className="stockChangePercentage">
-              {element.stockChangePercentage}
-            </div>
-            //그래프(차트)
-            <div className="stockChartGraph">{element.stockChartGraph}</div>
-          </div>
-        ))
-      ) : (
+      <div>
+      {contextData && contextData.symbol}
+      </div>
+      : (
         <div>loading</div>
-      )}
+      )
     </>
   );
 };
