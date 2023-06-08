@@ -16,7 +16,9 @@ export default function Login() {
         <Link to="/login">
           <p>계정이 이미 있으신가요?</p>
         </Link>
-        <StockDataComponent></StockDataComponent>
+        <StockDataComponent>
+          
+        </StockDataComponent>
       </div>
     </>
   );
