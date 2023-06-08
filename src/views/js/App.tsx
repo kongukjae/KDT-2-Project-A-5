@@ -11,15 +11,15 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-import stockContext from './stockContext';
+import stockContext,{StockContextType} from './stockContext';
 
 
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState(null);
-
+  const [stockContextData, setStockContextData] = useState<any>(null);
+  
 
   useEffect(() => {
     socket.on("connect", () => {
