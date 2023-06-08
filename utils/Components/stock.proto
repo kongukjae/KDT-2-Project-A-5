@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+message StockData {
+  message MetaData {
+    string information = 1;
+    string symbol = 2;
+    string last_refreshed = 3;
+    string output_size = 4;
+    string time_zone = 5;
+  }
+
+  message DailyData {
+    string date = 1;
+    float open = 2;
+    float high = 3;
+    float low = 4;
+    float close = 5;
+    float adjusted_close = 6;
+    int32 volume = 7;
+    float dividend_amount = 8;
+    float split_coefficient = 9;
+  }
+
+  MetaData meta_data = 1;
+  map<string, DailyData> time_series = 2;
+}
