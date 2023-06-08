@@ -1,11 +1,10 @@
-import { createContext } from 'react';
+// import { createContext } from 'react';
 
-interface stockContextType  {
-  "Meta Data": "MetaData";
-  "Time Series (Daily)": "TimeSeriesDaily";
-}
-const stockContext = createContext<any>(null);
+// interface stockContextType {
+//   MetaData: string,
+// }
+// const stockContext = createContext<stockContextType | null>(null);
 
-export default stockContext;
-export type { stockContextType }; // 추가
+// export default stockContext;
+// export type { stockContextType }; // 추가
 

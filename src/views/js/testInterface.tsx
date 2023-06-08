@@ -20,6 +20,6 @@ interface testContextType {
     };
   };
 }
-const stockContext = createContext<testContextType | null>(null)
+const StockContext = createContext<testContextType | null>(null)
 // export default stockContext;
 export type { testContextType };

@@ -11,14 +11,13 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-import stockContext from './stockContext';
-
+import StockContext from "./testInterface";
+//기존 테스트 타입
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const socket = io('localhost:8085');
   const [stockContextData, setStockContextData] = useState<any>(null);
-
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -64,7 +63,7 @@ export default function App() {
       <div className="container">
         <Header title={pageTitle} />
         {/* context를 활용하여 주식데이터 사용 가능 -> 사용할 땐 useContext */}
-        <stockContext.Provider value={stockContext}>
+        <StockContext.Provider value={stockContextData}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
             {/* 소켓이 필요한 아이들 */}
@@ -77,7 +76,7 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/stock" element={<StockContentsBox />} />
           </Routes>
-        </stockContext.Provider>
+        </StockContext.Provider>
         {[
           "/",
           "/first",
