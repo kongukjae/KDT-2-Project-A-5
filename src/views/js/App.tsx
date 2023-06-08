@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+import StockContentsBox from "../../../utils/Components/stockContentsBox";
 import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -11,8 +12,6 @@ import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 import stockContext, { stockContextType } from './stockContext';
-
-
 
 export default function App() {
   const location = useLocation();
@@ -54,8 +53,6 @@ export default function App() {
       case "/signup":
         setPageTitle("회원가입");
         break;
-      case "stock":
-        setPageTitle("주식 데이터")
       default:
         setPageTitle("홈");
         break;
@@ -66,6 +63,7 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
+        {/* context를 활용하여 주식데이터 사용 가능 -> 사용할 땐 useContext */}
         <stockContext.Provider value={stockContextData}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
@@ -78,6 +76,7 @@ export default function App() {
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
+            <Route path="/stock" element={<StockContentsBox />} />
           </Routes>
         </stockContext.Provider>
         {[

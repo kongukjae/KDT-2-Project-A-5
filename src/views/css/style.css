@@ -35,7 +35,7 @@ body {
   padding: 36px;
 }
 
-/* 메인 페이지 스타일링 */
+/* App 내부 페이지 스타일링 */
 .container > :nth-child(2) {
   width: 430px;
   height: 709px;
@@ -58,6 +58,7 @@ body {
   cursor: pointer;
 }
 
+/* 로그인 후 홈 화면 스타일링 */
 .main {
   display: flex;
   flex-direction: column;
@@ -68,4 +69,12 @@ body {
 
 .main::-webkit-scrollbar {
   display: none;
+}
+
+
+.myAccount{
+border: 1px #C4C4C4 solid;
+display: flex;
+justify-content: center;
+
 }
