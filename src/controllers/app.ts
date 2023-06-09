@@ -10,13 +10,16 @@ dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
 const app = express();
-const socketServer = http.createServer(app);
-const io = new Server(socketServer);
-//최초 주식 데이터
-let stockData : any = null;
-io.on("connect", (socket)=> {
-  console.log("소켓에 최초 연결 됐습니다 - 서버");
-  // 알파벤티지에 주식 데이터 요청하는 함수
+// DB 연결
+dbConnect.connect((err) => {
+  if (err) {
+    console.error("DB연결에 실패했습니다", err);
+    return;
+  }
+  console.log("DB연결에 성공했습니다");
+});
+let stockData = null;
+// 알파벤티지에 주식 데이터 요청하는 함수
   async function stockDataRequest() {
     try {
       const symbol = "IBM";
@@ -35,19 +38,6 @@ io.on("connect", (socket)=> {
   }
   // 최초 주식 데이터 요청
   stockDataRequest();
-  // 소켓 연결 해제
-  socket.on("disconnect", ()=> {
-    console.log("소켓에 연결 해제됐습니다 - 서버");
-  })
-})
-// DB 연결
-dbConnect.connect((err) => {
-  if (err) {
-    console.error("DB연결에 실패했습니다", err);
-    return;
-  }
-  console.log("DB연결에 성공했습니다");
-});
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req : Request, res : Response) => {
@@ -87,17 +77,9 @@ class User {
   
 }
 
-app.post('/creataccount', (req, res) => {
-
-  const { email, password, name, phoneNumber } = req.body; // 요청의 본문을 가져옵니다.
-  const test = new User(email,password,name,phoneNumber,123412314)
-  console.log('테스트 클래스',test);
-  // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
-  console.log('테스트 클래스 비밀번호 암호화',test._password);
-  console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-
-  const keys =Object.keys(test);
-  const values =Object.values(test);
+app.get("/", (req, res) => {
+  console.log({ root: rootPublic });
+  res.sendFile(`index.html`, { root: rootPublic });
 
   console.log('키값',keys.join(','));
   console.log('벨류',values.map(x => {
