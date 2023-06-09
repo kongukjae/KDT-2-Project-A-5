@@ -23,9 +23,16 @@ const StockData = (): JSX.Element => {
   // }, []);
 // 컨텍스트 데이터 가져오기 테스트
 console.log(stocktest?.price)
+// 주식 회사 이름
 useEffect(() => {
   if(stocktest) {
-    setContextData(stocktest);
+    setContextData(stocktest.symbol);
+  }
+}, []);
+// 주가 데이터
+useEffect(() => {
+  if(stocktest) {
+    setContextData(stocktest.price);
   }
 }, [stocktest]);
   return (
