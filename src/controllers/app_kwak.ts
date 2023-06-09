@@ -1,12 +1,14 @@
-import express,{Request, Response} from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import axios from "axios";
 import dotenv from "dotenv";
 import http from "http";
 import { Server } from "socket.io";
-import crypto from 'crypto';
+import crypto from "crypto";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsData from "../../utils/naverNewsApi/newsApi";
+import crawlingData from "../../utils/naverNewsApi/crawling";
+
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -14,22 +16,24 @@ const app = express();
 const socketServer = http.createServer(app);
 const io = new Server(socketServer);
 //최초 주식 데이터
-let stockData : any = null;
-io.on("connect", (socket)=> {
+let stockData: any = null;
+io.on("connect", (socket) => {
   console.log("소켓에 최초 연결 됐습니다 - 서버");
   // 알파벤티지에 주식 데이터 요청하는 함수
   async function stockDataRequest() {
     try {
       const symbol = "IBM";
       const apiKey = process.env.alphaApiKey;
-      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
+      const response = await axios.get(
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`
+      );
       stockData = response.data;
       console.log(stockData);
-        //소켓으로 주식 데이터 전송
-        socket.emit("stockDataUpdate", stockData);
+      //소켓으로 주식 데이터 전송
+      socket.emit("stockDataUpdate", stockData);
       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
     } catch (error) {
-      console.error('주식 데이터를 받아오는데 실패했습니다', error);
+      console.error("주식 데이터를 받아오는데 실패했습니다", error);
     }
     // 3분에 한번씩 주식데이터 요청
     setTimeout(stockDataRequest, 3 * 60 * 1000);
@@ -37,10 +41,10 @@ io.on("connect", (socket)=> {
   // 최초 주식 데이터 요청
   stockDataRequest();
   // 소켓 연결 해제
-  socket.on("disconnect", ()=> {
+  socket.on("disconnect", () => {
     console.log("소켓에 연결 해제됐습니다 - 서버");
-  })
-})
+  });
+});
 // DB 연결
 dbConnect.connect((err) => {
   if (err) {
@@ -50,17 +54,23 @@ dbConnect.connect((err) => {
   console.log("DB연결에 성공했습니다");
 });
 
-app.get('/news', async(req:express.Request, res:express.Response)=>{
-  const _newsData = await newsData();
-  res.json(_newsData.data);
-})
+app.get("/news", async (req: express.Request, res: express.Response) => {
+  const _newsData = (await newsData()).data.items;
+  const response = await Promise.all(
+    _newsData.map(async (element: any) => {
+      return await crawlingData(element.link);
+    })
+  );
+  console.log(response);
+  res.json(response); //클라이언트에 응답할 데이터
+});
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
 app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-app.get('*', (req : Request, res : Response) => {
-  res.sendFile(path.join(rootPublic,"index.html"));
-})
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile(path.join(rootPublic, "index.html"));
+});
 class User {
   // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
   private password: string;
@@ -68,9 +78,15 @@ class User {
   userId: string;
   phoneNum: number;
   userAccountNum: number;
-  
+
   // 출력 될 때 순서를 생각 해서 작서을 한다.
-  constructor(userId: string, password: string, userName: string, phoneNum: number, userAccountNum: number) {
+  constructor(
+    userId: string,
+    password: string,
+    userName: string,
+    phoneNum: number,
+    userAccountNum: number
+  ) {
     this.userId = userId; // userId 이다 헷갈려서 적어 놓기
     this.password = this.crypto(password); // 생성자에서 암호화 수행
     this.userName = userName;
@@ -90,76 +106,79 @@ class User {
   private crypto(pw: string) {
     return crypto.createHash("sha512").update(pw).digest("base64");
   }
-  
 }
 
-app.post('/creataccount', (req, res) => {
-
+app.post("/creataccount", (req, res) => {
   const { email, password, name, phoneNumber } = req.body; // 요청의 본문을 가져옵니다.
-  const test = new User(email,password,name,phoneNumber,123412314)
-  console.log('테스트 클래스',test);
+  const test = new User(email, password, name, phoneNumber, 123412314);
+  console.log("테스트 클래스", test);
   // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
-  console.log('테스트 클래스 비밀번호 암호화',test._password);
+  console.log("테스트 클래스 비밀번호 암호화", test._password);
   console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
 
-  const keys =Object.keys(test);
-  const values =Object.values(test);
+  const keys = Object.keys(test);
+  const values = Object.values(test);
 
-  console.log('키값',keys.join(','));
-  console.log('벨류',values.map(x => {
-    return "'" + x + "'";
-  }).join(','));
+  console.log("키값", keys.join(","));
+  console.log(
+    "벨류",
+    values
+      .map((x) => {
+        return "'" + x + "'";
+      })
+      .join(",")
+  );
 
-  dbConnect.query(`insert INTO user_infor(${keys.join(',')}) VALUES(?);`,[values], (err, result) => {
+  dbConnect.query(
+    `insert INTO user_infor(${keys.join(",")}) VALUES(?);`,
+    [values],
+    (err, result) => {
       if (err) {
-          console.log(err);
-        }
-        console.log(result);
-      
-      });
-      // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
-      res.send('true');
-    })
-
+        console.log(err);
+      }
+      console.log(result);
+    }
+  );
+  // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
+  res.send("true");
+});
 
 // 로그인 데이터 받기
-    app.post('/signIn', (req : Request, res : Response) => {
-      console.log('signIn',req.body);
+app.post("/signIn", (req: Request, res: Response) => {
+  console.log("signIn", req.body);
+});
+app.use((req, res) => {
+  res.status(404).send("not found");
+});
 
-    })
-    app.use((req, res) => {
-      res.status(404).send("not found");
-    });
-    
-    app.listen(8080, () => {
-      console.log("connected");
-    });
-    // let stockData = null;
-    // // 알파벤티지에 주식 데이터 요청하는 함수
-    //   async function stockDataRequest() {
-    //     try {
-    //       const symbol = "IBM";
-    //       const apiKey = process.env.alphaApiKey;
-    //       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
-    //       stockData = response.data;
-    //       console.log(stockData);
-    //       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
-    //       io.emit("stockDataUpdate", stockData);
-    //     } catch (error) {
-    //       console.error('주식 데이터를 받아오는데 실패했습니다', error);
-    //     }
-    //     // 3분에 한번씩 주식데이터 요청
-    //     setTimeout(stockDataRequest, 3 * 60 * 1000);
-    //   }
-    //   // 최초 주식 데이터 요청
-    //   stockDataRequest();
-    
-    // 회사 명으로 테이블을 생성을 하고 데이터를 날짜 별로 튜플을 생성을 하였다.
-    // addData();
+app.listen(8080, () => {
+  console.log("connected");
+});
+// let stockData = null;
+// // 알파벤티지에 주식 데이터 요청하는 함수
+//   async function stockDataRequest() {
+//     try {
+//       const symbol = "IBM";
+//       const apiKey = process.env.alphaApiKey;
+//       const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
+//       stockData = response.data;
+//       console.log(stockData);
+//       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+//       io.emit("stockDataUpdate", stockData);
+//     } catch (error) {
+//       console.error('주식 데이터를 받아오는데 실패했습니다', error);
+//     }
+//     // 3분에 한번씩 주식데이터 요청
+//     setTimeout(stockDataRequest, 3 * 60 * 1000);
+//   }
+//   // 최초 주식 데이터 요청
+//   stockDataRequest();
+
+// 회사 명으로 테이블을 생성을 하고 데이터를 날짜 별로 튜플을 생성을 하였다.
+// addData();
 // function addData(): void {
 
 // const apiKey = `${process.env.apiKey}`;
-
 
 // const headers = new Headers();
 // headers.append('x-api-key', apiKey);
@@ -171,7 +190,7 @@ app.post('/creataccount', (req, res) => {
 //   controller.abort();
 // }, 5000);
 
-// ! 애플 데이터를 가지고 와서 
+// ! 애플 데이터를 가지고 와서
 // fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=AAPL&apikey=${apiKey}`, {
 //   method: 'GET',
 //   headers: headers
@@ -234,19 +253,24 @@ app.post('/creataccount', (req, res) => {
 // }
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
 app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-app.post('/creataccount', (req, res) => {
-
+app.post("/creataccount", (req, res) => {
   const postData = req.body; // 요청의 본문을 가져옵니다.
-  console.log("데이터",postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-  dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
-    if (err) {
-      console.log(err);
+  console.log("데이터", postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+  dbConnect.query(
+    `insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${
+      postData.email
+    }','${postData.password}','${postData.name}','${
+      postData.phoneNumber
+    }',${123412314});`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(result);
     }
-    console.log(result);
-    
-  });
-  res.send('POST 요청이 성공적으로 처리되었습니다.');
-})
+  );
+  res.send("POST 요청이 성공적으로 처리되었습니다.");
+});
 
 app.use((req, res) => {
   res.status(404).send("not found");
@@ -255,6 +279,6 @@ app.use((req, res) => {
 // app.listen(8085, () => {
 //   console.log("connected");
 // });
-socketServer.listen(8085, ()=> {
-  console.log("소켓 서버 on")
-})
+socketServer.listen(8085, () => {
+  console.log("소켓 서버 on");
+});
