@@ -1,5 +1,6 @@
 import React from "react";
 import "../../src/views/css/style";
+import "../../src/views/css/newsData";
 import StockData from "./stockContentsBox";
 import DriverContentBox from "./driverContentsBox";
 import NewsContentBox from "./newsContentsBox";

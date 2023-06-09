@@ -6,23 +6,33 @@ const newsAPI = (): JSX.Element => {
   useEffect(() => {
     const requestNews = async () => {
       const request = await axios.get("/news");
-      const result = request.data.items;
+      const result = request.data;
       console.log(result);
       setNews(result);
     };
     requestNews();
   }, []);
+
+  // const decodeHtmlEntitles = (text: string) => {
+  //   const parse = new DOMParser();
+  //   const decodedString = parse.parseFromString(text, "text/html").body
+  //     .textContent;
+  //   return decodedString;
+  // };
+
   return (
     <>
       {news.length > 0 ? (
         news.map((element: { [key: string]: string }) => {
           return (
-            <>
-              <div className="newsContentsBox">
-                <div className="newsTitleText">{element.title}</div>
-                <div className="newsDate">{element.pubDate}</div>
+            <div className="newsContentsBox" font-size="11px">
+              <div className="newsThumbnail">
+                <img src={element.thumbnail} alt="기사의 썸네일 사진입니다" />
               </div>
-            </>
+              <div className="newsTitle">
+                <a href={element.link}>{element.title}</a>
+              </div>
+            </div>
           );
         })
       ) : (
