@@ -37,10 +37,10 @@ const StockData = (): JSX.Element => {
         return { date, ...price };
       });
       console.log("컨텍스트의 주가 데이터 = 배열로 변환한 것 : ",priceArray);
-      price = priceArray[0][price];
+      price = priceArray[0]['1. open'];
         console.log("priceArray[0]['1. open'] : ",price);
     }
-  }, [setContextData])
+  }, [stocktest])
 
   return (
     <>
