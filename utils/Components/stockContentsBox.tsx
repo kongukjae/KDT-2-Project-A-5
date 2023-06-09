@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import stockContext, { stockContextType } from "../../src/views/js/stockContext";
+
 const StockData = (): JSX.Element => {
-  let stocktest = useContext<stockContextType | null>(stockContext);
-  console.log("useContext : ",stocktest);
-  // 최초에 값 받아올 때 에러를 피하기 위해 더미데이터
+  const stocktest = useContext<stockContextType | null>(stockContext);
   const [contextData, setContextData] = useState<any>({
     symbol: '잠시만 기다려주세요',
     price: {
@@ -13,58 +12,59 @@ const StockData = (): JSX.Element => {
       '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
     },
   });
-// 회사 데이터
+  const [test, setTest] = useState<any[]>([]);
+
   useEffect(() => {
     if (stocktest) {
       setContextData(stocktest);
     }
-    // 테스트 하기 위해 랜더링 될 때마다 재실행
   }, [stocktest]);
-  
-  let [test, setTest] = useState<string[]>([]);
-  //주가 데이터
-  useEffect(()=> {
-    if(stocktest) {
-      setContextData(stocktest);
-      // 주식 데이터(객체) -> 배열로 변환
-      const priceArray : any = Object.entries(stocktest?.price).map(([date, price]) => {
+
+  useEffect(() => {
+    if (stocktest) {
+      const priceArray: any[] = Object.entries(stocktest?.price).map(([date, price]) => {
         return { date, ...price };
       });
-      console.log("컨텍스트의 주가 데이터 = 배열로 변환한 것 : ",priceArray);
-      // 3초마다 test[]에 주식 데이터 push 하는 로직
+      console.log("컨텍스트의 주가 데이터 = 배열로 변환한 것 : ", priceArray);
+
       let intervalNumber = 0;
-      let interval = setInterval(()=> {
-        // n++번째 배열의 'open'데이터를 push 해줌
-        let lastPrcie = priceArray[intervalNumber]['1. open'];
-        test.push(lastPrcie);
-        console.log(test);
+      let interval = setInterval(() => {
+        let lastPrice = priceArray[intervalNumber];
+        setTest((prevTest) => [...prevTest, lastPrice]);
         intervalNumber++;
-        // 배열 길이보다 길어지면 interval 함수 중지
-        if(intervalNumber >= priceArray.length) {
+
+        if (intervalNumber >= priceArray.length) {
           clearInterval(interval);
           console.log("interval 함수를 종료합니다");
-        };
-      }, 3000);
+        }
+      }, 10000);
     }
   }, [stocktest]);
 
-  const chartData = {
-    labels: test.map((_, index) => `Data ${index + 1}`),
-    datasets: [
-      {
-        label: 'Stock Data',
-        data: test[0],
-      },
-    ],
+  const SimpleLineChart = () => {
+    return (
+      <LineChart width={500} height={300} data={test}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="1. open" stroke="#E63946" />
+      </LineChart>
+    );
   };
+  // const renderLineChart = ()=> {
+  //   return (
+  //   <LineChart width={400} height={400} data={test}>
+  //     <Line type="monotone" dataKey="1. open" stroke="#8884d8" />
+  //   </LineChart>
+  // )};
 
   return (
-    <>
-      <div>
-        {contextData?.symbol}
-        <Line data={chartData} />
-      </div>
-    </>
+    <div>
+      {contextData?.symbol}
+      <SimpleLineChart />
+    </div>
   );
 };
 
