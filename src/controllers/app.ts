@@ -146,7 +146,7 @@ app.post('/signIn', (req: Request, res: Response) => {
     // console.log(Object.values(result).length ===0)
     if (Object.values(result).length === 0) {
       boxTest = false;
-   res.send(boxTest);
+    res.send(boxTest);
     }
     // 로그인 실패
     else {
@@ -158,9 +158,9 @@ app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-app.listen(8080, () => {
-  console.log("connected");
-});
+// app.listen(8080, () => {
+//   console.log("connected");
+// });
 // let stockData = null;
 // // 알파벤티지에 주식 데이터 요청하는 함수
 //   async function stockDataRequest() {
@@ -282,6 +282,6 @@ app.listen(8080, () => {
 // app.listen(8085, () => {
 //   console.log("connected");
 // });
-socketServer.listen(8085, () => {
+socketServer.listen(8080, () => {
   console.log("소켓 서버 on")
 })
