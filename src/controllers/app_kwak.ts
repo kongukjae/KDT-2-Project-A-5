@@ -7,6 +7,8 @@ import { Server } from "socket.io";
 import crypto from "crypto";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsData from "../../utils/naverNewsApi/newsApi";
+import crawlingData from "../../utils/naverNewsApi/crawling";
+
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -53,8 +55,14 @@ dbConnect.connect((err) => {
 });
 
 app.get("/news", async (req: express.Request, res: express.Response) => {
-  const _newsData = await newsData();
-  res.json(_newsData.data);
+  const _newsData = (await newsData()).data.items;
+  const response = await Promise.all(
+    _newsData.map(async (element: any) => {
+      return await crawlingData(element.link);
+    })
+  );
+  console.log(response);
+  res.json(response); //클라이언트에 응답할 데이터
 });
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.

@@ -7,13 +7,15 @@ interface Pata {
   description: string | undefined;
   repoter: string | undefined;
   press: string | undefined;
+  link: string | undefined;
 }
 
 const crawlingData = async (url: string) => {
   const html = await axios.get(url);
 
   const $ = cheerio.load(html.data);
-  const parseData: Pata = {
+
+  const parseData: any = {
     title: $('meta[property="og:title"]').attr("content"),
     thumbnail: $('meta[property="og:image"]').attr("content"),
     description: $("._article_body")
@@ -22,6 +24,7 @@ const crawlingData = async (url: string) => {
       .trim(),
     repoter: $(".byline").text().trim(),
     press: $('meta[property="og:article:author"]').attr("content"),
+    link: url,
   };
   return parseData;
 };
