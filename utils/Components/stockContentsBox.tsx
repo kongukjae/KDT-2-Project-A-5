@@ -23,6 +23,7 @@ const StockData = (): JSX.Element => {
   //주가 데이터
   useEffect(()=> {
     if(stocktest) {
+      // 주식 데이터(객체) -> 배열로 변환
       const priceArray = Object.entries(stocktest?.price).map(([date, price]) => {
         return { date, ...price };
       });
