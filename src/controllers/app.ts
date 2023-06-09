@@ -5,6 +5,7 @@ import express, { Request, Response } from "express";
 import http from "http";
 import path from "path";
 import { Server } from "socket.io";
+import fs from "fs";
 import dbConnect from "../../utils/DB/dbConfigure";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
@@ -21,18 +22,19 @@ io.on("connect", (socket) => {
     try {
       const symbol = "IBM";
       const apiKey = process.env.alphaApiKey;
-      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
+      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`);
+      const datatest = fs.readFileSync('./test.json', 'utf8');
       stockData = response.data;
       // console.log(stockData);
       //api로 받아온 데이터 json으로 전송
-      let jsonData = JSON.stringify(stockData);
-      // console.log(jsonData);
+      let jsonData = JSON.stringify(JSON.parse(datatest));
+
       socket.emit("stockDataUpdate", jsonData);
     } catch (error) {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
     }
     // 3분에 한번씩 주식데이터 요청
-    setTimeout(stockDataRequest, 1 * 60 * 1000);
+    setTimeout(stockDataRequest, 3 * 60 * 1000);
   }
   // 최초 주식 데이터 요청
   stockDataRequest();
@@ -42,6 +44,7 @@ io.on("connect", (socket) => {
   })
 })
 // DB 연결
+
 dbConnect.connect((err) => {
   if (err) {
     console.error("DB연결에 실패했습니다", err);
@@ -145,7 +148,7 @@ app.post('/signIn', (req: Request, res: Response) => {
     // console.log(Object.values(result).length ===0)
     if (Object.values(result).length === 0) {
       boxTest = false;
-   res.send(boxTest);
+      res.send(boxTest);
     }
     // 로그인 실패
     else {
@@ -153,6 +156,14 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
   })
 })
+
+app.post('/data', (req: Request, res: Response) => {
+  let boxTest = req.body;
+  console.log('signIn',boxTest);
+
+})
+
+
 app.use((req, res) => {
   res.status(404).send("not found");
 });
@@ -269,7 +280,7 @@ app.use((req, res) => {
 //       console.log(err);
 //     }
 //     console.log(result);
-    
+
 //   });
 //   res.send('POST 요청이 성공적으로 처리되었습니다.');
 // })
