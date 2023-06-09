@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { southKoreaStock } from "../../src/models/stockdata";
+import priceArray from "../../src/models/virtualstockdata";
 interface ContentsBoxProps {
-  stockName: string;
-  stockPrice: string;
-  stockChangePercentage: string;
-  stockChartGraph: string;
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
 }
 
 const stockData = (): JSX.Element => {
   const [stock, setStocks] = useState<ContentsBoxProps[]>([]);
 
   useEffect(() => {
-    setStocks(southKoreaStock);
+    setStocks(priceArray);
     console.log("stockdata 컴포넌트 불러옴");
   }, []);
   //
@@ -21,12 +22,11 @@ const stockData = (): JSX.Element => {
       {stock.length > 0 ? (
         stock.map((element: ContentsBoxProps) => (
           <div className="stockContentsBox">
-            <div className="stockName">{element.stockName}</div>
-            <div className="stockPrice">{element.stockPrice}</div>
-            <div className="stockChangePercentage">
-              {element.stockChangePercentage}
-            </div>
-            <div className="stockChartGraph">{element.stockChartGraph}</div>
+            <div className="stockDate">{element.date}</div>
+            <div className="stockOpenPrice">{element.open}</div>
+            <div className="stockHighPrice">{element.high}</div>
+            <div className="stockLowPrice">{element.low}</div>
+            <div className="stockClosePrice">{element.close}</div>
           </div>
         ))
       ) : (

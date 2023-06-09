@@ -65,3 +65,5 @@ const priceArray: {
 });
 
 console.log(priceArray);
+
+export default priceArray;
