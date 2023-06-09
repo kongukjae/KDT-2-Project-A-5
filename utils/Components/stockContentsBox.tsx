@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 import stockContext, { stockContextType } from "../../src/views/js/stockContext";
-
 const StockData = (): JSX.Element => {
   let stocktest = useContext<stockContextType | null>(stockContext);
   console.log("useContext : ",stocktest);
@@ -13,7 +13,6 @@ const StockData = (): JSX.Element => {
       '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
     },
   });
-  let price : any;
 // 회사 데이터
   useEffect(() => {
     if (stocktest) {
@@ -21,13 +20,8 @@ const StockData = (): JSX.Element => {
     }
     // 테스트 하기 위해 랜더링 될 때마다 재실행
   }, [stocktest]);
-// let test = {
   
-// }
-
-
-
-let test : number[] = [];
+  let [test, setTest] = useState<string[]>([]);
   //주가 데이터
   useEffect(()=> {
     if(stocktest) {
@@ -48,16 +42,27 @@ let test : number[] = [];
         // 배열 길이보다 길어지면 interval 함수 중지
         if(intervalNumber >= priceArray.length) {
           clearInterval(interval);
+          console.log("interval 함수를 종료합니다");
         };
       }, 3000);
     }
-  }, [stocktest])
+  }, [stocktest]);
+
+  const chartData = {
+    labels: test.map((_, index) => `Data ${index + 1}`),
+    datasets: [
+      {
+        label: 'Stock Data',
+        data: test[0],
+      },
+    ],
+  };
 
   return (
     <>
       <div>
         {contextData?.symbol}
-        {price}
+        <Line data={chartData} />
       </div>
     </>
   );
