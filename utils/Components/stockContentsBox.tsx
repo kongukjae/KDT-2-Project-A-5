@@ -4,10 +4,17 @@ import stockContext, {
 } from "../../src/views/js/stockContext";
 import priceArray from "../../src/models/virtualstockdata";
 
+type StockData = {
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+};
+
 const StockData = (): JSX.Element => {
   let stocktest = useContext<stockContextType | null>(stockContext);
   // 최초에 값 받아올 때 에러를 피하기 위해 더미데이터
-  const [contextData, setContextData] = useState<any>({
+  const [contextData, setContextData] = useState<stockContextType>({
     symbol: "잠시만 기다려주세요",
     price: {
       "2023-06-07": { open: 0, high: 0, low: 0, close: 0 },
@@ -19,7 +26,7 @@ const StockData = (): JSX.Element => {
   // 회사 데이터
   useEffect(() => {
     if (stocktest) {
-      setContextData(stocktest.symbol);
+      setContextData(stocktest);
     }
     // 테스트 하기 위해 랜더링 될 때마다 재실행
   }, [stocktest]);
@@ -32,20 +39,20 @@ const StockData = (): JSX.Element => {
           return { date, ...price };
         }
       );
-      console.log("컨텍스트의 주가 데이터 = 배열", priceArray[0]);
+      console.log("컨텍스트의 주가 데이터 = 배열", priceArray);
     }
   }, [stocktest]);
 
   return (
     <>
-      {priceArray.length > 0 ? (
-        priceArray.map((element) => (
-          <div className="stockContentsBox">
-            <div className="stockDate">{element.date}</div>
-            <div className="stockOpenPrice">{element.open}</div>
-            <div className="stockHighPrice">{element.high}</div>
-            <div className="stockLowPrice">{element.low}</div>
-            <div className="stockClosePrice">{element.close}</div>
+      {contextData?.price ? (
+        Object.entries(contextData.price).map(([date, price]) => (
+          <div className="stockContentsBox" key={date}>
+            <div className="stockDate">{date}</div>
+            <div className="stockOpenPrice">{price.open}</div>
+            <div className="stockHighPrice">{price.high}</div>
+            <div className="stockLowPrice">{price.low}</div>
+            <div className="stockClosePrice">{price.close}</div>
           </div>
         ))
       ) : (
