@@ -27,7 +27,7 @@ const StockData = (): JSX.Element => {
 
 
 
-
+let test : number[] = [];
   //주가 데이터
   useEffect(()=> {
     if(stocktest) {
@@ -37,8 +37,19 @@ const StockData = (): JSX.Element => {
         return { date, ...price };
       });
       console.log("컨텍스트의 주가 데이터 = 배열로 변환한 것 : ",priceArray);
-      price = priceArray[0]['1. open'];
-        console.log("priceArray[0]['1. open'] : ",price);
+      // 3초마다 test[]에 주식 데이터 push 하는 로직
+      let intervalNumber = 0;
+      let interval = setInterval(()=> {
+        // n++번째 배열의 'open'데이터를 push 해줌
+        let lastPrcie = priceArray[intervalNumber]['1. open'];
+        test.push(lastPrcie);
+        console.log(test);
+        intervalNumber++;
+        // 배열 길이보다 길어지면 interval 함수 중지
+        if(intervalNumber >= priceArray.length) {
+          clearInterval(interval);
+        };
+      }, 3000);
     }
   }, [stocktest])
 
