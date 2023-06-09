@@ -33,7 +33,7 @@ export default function App() {
         setStockContextData(priceArray);
       });
     });
-  }, []);
+  }, [setStockContextData]);
 
   useEffect(() => {
     switch (location.pathname) {
