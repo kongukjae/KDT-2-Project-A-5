@@ -37,7 +37,7 @@ const StockData = (): JSX.Element => {
           clearInterval(interval);
           console.log("interval 함수를 종료합니다");
         }
-      }, 10000);
+      }, 5000);
     }
   }, [stocktest]);
 
@@ -63,7 +63,8 @@ const StockData = (): JSX.Element => {
   return (
     <div>
       {contextData?.symbol}
-      <SimpleLineChart />
+      {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
+      {test.length > 0 && <SimpleLineChart />}
     </div>
   );
 };
