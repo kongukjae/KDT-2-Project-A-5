@@ -157,9 +157,9 @@ app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-app.listen(8080, () => {
-  console.log("connected");
-});
+// app.listen(8080, () => {
+//   console.log("connected");
+// });
 // let stockData = null;
 // // 알파벤티지에 주식 데이터 요청하는 함수
 //   async function stockDataRequest() {
