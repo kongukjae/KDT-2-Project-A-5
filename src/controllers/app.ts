@@ -1,10 +1,12 @@
 import express, { Request, Response } from "express";
 import path from "path";
 import axios from "axios";
+import crypto from 'crypto';
 import dotenv from "dotenv";
+import express, { Request, Response } from "express";
 import http from "http";
+import path from "path";
 import { Server } from "socket.io";
-import crypto from "crypto";
 import dbConnect from "../../utils/DB/dbConfigure";
 import news from "../../utils/naverNewsApi/newsApi";
 
@@ -29,10 +31,11 @@ io.on("connect", (socket) => {
         `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`
       );
       stockData = response.data;
-      console.log(stockData);
-      //소켓으로 주식 데이터 전송
-      socket.emit("stockDataUpdate", stockData);
-      // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
+      // console.log(stockData);
+      //api로 받아온 데이터 json으로 전송
+      let jsonData = JSON.stringify(stockData);
+      // console.log(jsonData);
+      socket.emit("stockDataUpdate", jsonData);
     } catch (error) {
       console.error("주식 데이터를 받아오는데 실패했습니다", error);
     }
@@ -73,6 +76,7 @@ class User {
   phoneNum: number;
   userAccountNum: number;
 
+
   // 출력 될 때 순서를 생각 해서 작서을 한다.
   constructor(
     userId: string,
@@ -100,47 +104,73 @@ class User {
   private crypto(pw: string) {
     return crypto.createHash("sha512").update(pw).digest("base64");
   }
+
 }
 
 app.post("/creataccount", (req, res) => {
   const { email, password, name, phoneNumber } = req.body; // 요청의 본문을 가져옵니다.
-  const test = new User(email, password, name, phoneNumber, 123412314);
-  console.log("테스트 클래스", test);
+  const userInstance = new User(email, password, name, phoneNumber, 123412314)
+  console.log('테스트 클래스', userInstance);
   // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
-  console.log("테스트 클래스 비밀번호 암호화", test._password);
+  console.log('테스트 클래스 비밀번호 암호화', userInstance._password);
   console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
 
-  const keys = Object.keys(test);
-  const values = Object.values(test);
+  const keys = Object.keys(userInstance);
+  const values = Object.values(userInstance);
 
-  console.log("키값", keys.join(","));
-  console.log(
-    "벨류",
-    values
-      .map((x) => {
-        return "'" + x + "'";
-      })
-      .join(",")
-  );
+  console.log('키값', keys.join(','));
+  console.log('벨류', values.map(x => {
+    return "'" + x + "'";
+  }).join(','));
 
-  dbConnect.query(
-    `insert INTO user_infor(${keys.join(",")}) VALUES(?);`,
-    [values],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(result);
+  dbConnect.query(`insert INTO user_infor(${keys.join(',')}) VALUES(?);`, [values], (err, result) => {
+    if (err) {
+      console.log(err);
     }
-  );
-  // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
-  res.send("true");
-});
+    console.log(result);
 
+  });
+  // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
+  res.send('true');
+})
+
+class Login {
+  password: string;
+  userId: string;
+  constructor(userId: string, password: string) {
+    // 출력 될 때 순서를 생각 해서 작서을 한다.
+    this.userId = userId;
+    this.password = this.crypto(password);
+  }
+
+  crypto(pw: string) {
+    return crypto.createHash("sha512").update(pw).digest("base64");
+  }
+
+
+}
 // 로그인 데이터 받기
-app.post("/signIn", (req: Request, res: Response) => {
-  console.log("signIn", req.body);
-});
+app.post('/signIn', (req: Request, res: Response) => {
+  let boxTest: boolean = true;
+  console.log('signIn');
+  const test = new Login(req.body.userId, req.body.password);
+  // 로그인 키값 확인
+  console.log('test', Object.keys(test)[0]);
+  dbConnect.query(`select ${Object.keys(test).join(', ')} from user_infor where ${Object.keys(test)[0]}= '${test.userId}' and ${Object.keys(test)[1]}= '${test.password}';`, (err, result) => {
+    if (err) {
+      console.log('err', err)
+    }
+    // console.log(Object.values(result).length ===0)
+    if (Object.values(result).length === 0) {
+      boxTest = false;
+   res.send(boxTest);
+    }
+    // 로그인 실패
+    else {
+      res.send(boxTest);
+    }
+  })
+})
 app.use((req, res) => {
   res.status(404).send("not found");
 });
@@ -245,34 +275,29 @@ app.listen(8080, () => {
 //     }
 //   })
 // }
-app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-app.post("/creataccount", (req, res) => {
-  const postData = req.body; // 요청의 본문을 가져옵니다.
-  console.log("데이터", postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-  dbConnect.query(
-    `insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${
-      postData.email
-    }','${postData.password}','${postData.name}','${
-      postData.phoneNumber
-    }',${123412314});`,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(result);
-    }
-  );
-  res.send("POST 요청이 성공적으로 처리되었습니다.");
-});
+// app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
+// app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+// app.post('/creataccount', (req, res) => {
 
-app.use((req, res) => {
-  res.status(404).send("not found");
-});
+//   const postData = req.body; // 요청의 본문을 가져옵니다.
+//   console.log("데이터",postData.name); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
+//   dbConnect.query(`insert INTO user_infor(userId, password, userName, phoneNum,userAccountNum) VALUES('${postData.email}','${postData.password}','${postData.name}','${postData.phoneNumber}',${123412314});`, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log(result);
+    
+//   });
+//   res.send('POST 요청이 성공적으로 처리되었습니다.');
+// })
+
+// app.use((req, res) => {
+//   res.status(404).send("not found");
+// });
 
 // app.listen(8085, () => {
 //   console.log("connected");
 // });
-socketServer.listen(8085, () => {
+socketServer.listen(8085, ()  => {
   console.log("소켓 서버 on");
 });
