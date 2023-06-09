@@ -4,37 +4,33 @@ import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
 import StockContentsBox from "../../../utils/Components/stockContentsBox";
-import IntroPage from "./IntroPage/IntroPageScreen";
 import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
+import IntroPage from "./IntroPage/IntroPageScreen";
 import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-import stockContext from "./stockContext";
-//기존 테스트 타입
+import stockContext, { stockContextType } from "./stockContext";
+
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState<any | null>(null);
+  const [stockContextData, setStockContextData] = useState<stockContextType | null>(null);
 
   useEffect(() => {
     socket.on("connect", () => {
       console.log("소켓 정상 연결 - 클라이언트");
       socket.on("stockDataUpdate", (updatedData) => {
         const parsedData = JSON.parse(updatedData);
-        // console.log(parsedData);
-        // 회사 정보
         let symbol = parsedData['Meta Data']['2. Symbol'];
         let openPrice = parsedData['Time Series (Daily)'];
-        // console.log("회사 정보",symbol);
-        // 필요한 데이터 객체에 저장 -> 데이터 전송받을 때 마다 갱신
-        let priceArray = {
-          symbol : parsedData['Meta Data']['2. Symbol'],
-          price : parsedData['Time Series (Daily)']
+        const priceArray: stockContextType = {
+          symbol: symbol,
+          price: openPrice
         };
-        console.log('App.tsx의 객체',priceArray);
+        setStockContextData(priceArray);
       });
     });
   }, []);
@@ -72,14 +68,11 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        {/* context를 활용하여 주식데이터 사용 가능 -> 사용할 땐 useContext */}
         <stockContext.Provider value={stockContextData}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
-            {/* 소켓이 필요한 아이들 */}
             <Route path="/station" element={<StationScreen />} />
             <Route path="/home" element={<MainScreen />} />
-            {/* 소켓이 필요 없는 아이들 */}
             <Route path="/first" element={<FirstPage />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
