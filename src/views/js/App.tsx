@@ -13,6 +13,7 @@ import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
+import Recruitment from "./station/recruitment";
 
 export default () => {
   const location = useLocation();
@@ -42,6 +43,9 @@ export default () => {
       case "/signup":
         setPageTitle("회원가입");
         break;
+      case "/Recruitment":
+        setPageTitle("모집창");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -60,6 +64,7 @@ export default () => {
           <Route path="/home" element={<MainScreen />} />
           <Route path="/station" element={<StationScreen />} />
           <Route path="/account" element={<AccountScreen />} />
+          <Route path="/Recruitment" element={<Recruitment />} />
         </Routes>
         {[
           "/",
