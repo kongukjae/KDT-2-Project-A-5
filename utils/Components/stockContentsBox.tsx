@@ -23,6 +23,18 @@ const StockData = (): JSX.Element => {
   // }, []);
 // 컨텍스트 데이터 가져오기 테스트
 console.log(stocktest?.price)
+const priceData = {
+  '2023-06-07': { open: 0, high: 0, low: 0, close: 0 },
+  '2023-06-06': { open: 0, high: 0, low: 0, close: 0 },
+  '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
+};
+
+const priceArray = Object.entries(priceData).map(([date, price]) => {
+  return { date, ...price };
+});
+// 객체 데이터 배열로 담아오기 테스트
+console.log(priceArray[0]);
+
 // 주식 회사 이름
 useEffect(() => {
   if(stocktest) {
@@ -30,11 +42,11 @@ useEffect(() => {
   }
 }, []);
 // 주가 데이터
-useEffect(() => {
-  if(stocktest) {
-    setContextData(stocktest.price);
-  }
-}, [stocktest]);
+// useEffect(() => {
+//   if(stocktest) {
+//     setContextData(stocktest.price);
+//   }
+// }, [stocktest]);
   return (
     <>
       <div>
