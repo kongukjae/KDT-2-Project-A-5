@@ -6,35 +6,25 @@ const newsAPI = (): JSX.Element => {
   useEffect(() => {
     const requestNews = async () => {
       const request = await axios.get("/news");
-      const result = request.data;
+      const result = request.data.items;
       console.log(result);
       setNews(result);
     };
     requestNews();
   }, []);
 
-  // const decodeHtmlEntitles = (text: string) => {
-  //   const parse = new DOMParser();
-  //   const decodedString = parse.parseFromString(text, "text/html").body
-  //     .textContent;
-  //   return decodedString;
-  // };
+  const decodeHtmlEntitles = (text: string) => {
+    const parse = new DOMParser();
+    const decodedString = parse.parseFromString(text, "text/html").body
+      .textContent;
+    return decodedString;
+  };
 
   return (
     <div>
       {news.length > 0 ? (
         news.map((element: { [key: string]: string }) => {
-          return (
-            <div font-size="11px">
-              <a href={element.link}>{element.title}</a>
-              <img
-                src={element.thumbnail}
-                alt="기사의 썸네일 사진입니다"
-                width="100px"
-                height="100px"
-              />
-            </div>
-          );
+          return <div>{decodeHtmlEntitles(element.title)}</div>;
         })
       ) : (
         <div>데이터 준비중 'ㅡ' /</div>
