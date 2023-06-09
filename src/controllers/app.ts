@@ -32,7 +32,7 @@ io.on("connect", (socket) => {
       console.error('주식 데이터를 받아오는데 실패했습니다', error);
     }
     // 3분에 한번씩 주식데이터 요청
-    setTimeout(stockDataRequest, 3 * 60 * 1000);
+    setTimeout(stockDataRequest, 1 * 60 * 1000);
   }
   // 최초 주식 데이터 요청
   stockDataRequest();
