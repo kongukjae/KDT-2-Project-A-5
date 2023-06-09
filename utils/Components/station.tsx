@@ -1,13 +1,13 @@
 import React from "react";
-import "../../src/views/css/style";
+import NewsAPI from "./newsApiParse";
+// import "../../src/views/css/style";
 // import ContentsBox from "./contentsBoxArea";
-export default function Main() {
+// import SimpleLineChart from "./chart";
 
-  
+export default function Main() {
   return (
     <>
-      <div className="main">
-      </div>
+      <div className="main">{/* <SimpleLineChart /> */}</div>
     </>
   );
 }

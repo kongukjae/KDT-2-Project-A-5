@@ -13,6 +13,7 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 
 
+import Deposit from "../../../utils/Components/deposit";
 
 export default function App() {
   const location = useLocation();
@@ -40,7 +41,7 @@ export default function App() {
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("계좌");
+        setPageTitle("내 정보");
         break;
       case "/station":
         setPageTitle("정류장");
@@ -49,7 +50,10 @@ export default function App() {
         setPageTitle("함께 투자하는 즐거움 Stock Together");
         break;
       case "/login":
-        setPageTitle("함께 투자하는 즐거움 Stock Together");
+        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
+        break;
+      case "/deposit":
+        setPageTitle("계좌");
         break;
       case "/signup":
         setPageTitle("회원가입");
