@@ -16,19 +16,21 @@ import stockContext, { stockContextType } from "./stockContext";
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState<stockContextType | null>(null);
+  const socket = io("localhost:8085");
+  const [stockContextData, setStockContextData] =
+    useState<stockContextType | null>(null);
 
   useEffect(() => {
     socket.on("connect", () => {
       console.log("소켓 정상 연결 - 클라이언트");
       socket.on("stockDataUpdate", (updatedData) => {
         const parsedData = JSON.parse(updatedData);
-        let symbol = parsedData['Meta Data']['2. Symbol'];
-        let openPrice = parsedData['Time Series (Daily)'];
+        // console.log(parsedData);
+        let symbol = parsedData["Meta Data"]["2. Symbol"];
+        let openPrice = parsedData["Time Series (Daily)"];
         const priceArray: stockContextType = {
           symbol: symbol,
-          price: openPrice
+          price: openPrice,
         };
         setStockContextData(priceArray);
       });
@@ -80,12 +82,9 @@ export default function App() {
             <Route path="/stock" element={<StockContentsBox />} />
           </Routes>
         </stockContext.Provider>
-        {[
-          "/",
-          "/first",
-          "/signup",
-          "/login",
-        ].includes(location.pathname) ? null : (
+        {["/", "/first", "/signup", "/login"].includes(
+          location.pathname
+        ) ? null : (
           <Nav />
         )}
       </div>
