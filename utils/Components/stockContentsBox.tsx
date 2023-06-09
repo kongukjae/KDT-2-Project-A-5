@@ -1,26 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import stockContext, {
+  stockContextType,
+} from "../../src/views/js/stockContext";
 import priceArray from "../../src/models/virtualstockdata";
-interface ContentsBoxProps {
-  date: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-}
 
-const stockData = (): JSX.Element => {
-  const [stock, setStocks] = useState<ContentsBoxProps[]>([]);
+const StockData = (): JSX.Element => {
+  let stocktest = useContext<stockContextType | null>(stockContext);
+  // 최초에 값 받아올 때 에러를 피하기 위해 더미데이터
+  const [contextData, setContextData] = useState<any>({
+    symbol: "잠시만 기다려주세요",
+    price: {
+      "2023-06-07": { open: 0, high: 0, low: 0, close: 0 },
+      "2023-06-06": { open: 0, high: 0, low: 0, close: 0 },
+      "2023-06-05": { open: 0, high: 0, low: 0, close: 0 },
+    },
+  });
 
+  // 회사 데이터
   useEffect(() => {
-    setStocks(priceArray);
-    console.log("stockdata 컴포넌트 불러옴");
-  }, []);
-  //
+    if (stocktest) {
+      setContextData(stocktest.symbol);
+    }
+    // 테스트 하기 위해 랜더링 될 때마다 재실행
+  }, [stocktest]);
+  //주가 데이터
+  useEffect(() => {
+    if (stocktest) {
+      // 주식 데이터(객체) -> 배열로 변환
+      const priceArray = Object.entries(stocktest?.price).map(
+        ([date, price]) => {
+          return { date, ...price };
+        }
+      );
+      console.log("컨텍스트의 주가 데이터 = 배열", priceArray[0]);
+    }
+  }, [stocktest]);
 
   return (
     <>
-      {stock.length > 0 ? (
-        stock.map((element: ContentsBoxProps) => (
+      {priceArray.length > 0 ? (
+        priceArray.map((element) => (
           <div className="stockContentsBox">
             <div className="stockDate">{element.date}</div>
             <div className="stockOpenPrice">{element.open}</div>
@@ -36,18 +55,4 @@ const stockData = (): JSX.Element => {
   );
 };
 
-export default stockData;
-
-// export default function ContentBox(props: ContentsBoxProps) {
-//   const { stockName, stockPrice, stockChangePercentage, stockChartGraph } =
-//     props;
-
-//   return (
-//     <div className="stockContentsBox">
-//       <div className="stockName">{stockName}</div>
-//       <div className="stockPrice">{stockPrice}</div>
-//       <div className="stockChangePercentage">{stockChangePercentage}</div>
-//       <div className="stockChartGraph">{stockChartGraph}</div>
-//     </div>
-//   );
-// }
+export default StockData;
