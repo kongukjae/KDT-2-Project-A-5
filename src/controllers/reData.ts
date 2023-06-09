@@ -77,11 +77,17 @@ console.log('dadat', Object.values(testdata['Time Series (5min)'][dayList[dayTim
 
 
 // 초기 값
-const initialValue: number = 134.2700;
+// parseInt() 함수를 사용하여 문자열을 정수로 변환
+const initialValue: number = parseInt('134.2700');
 // 최종 값
-const finalValue: number = 134.3800;
+// parseFloat() 함수를 사용하여 문자열을 부동 소수점 숫자로 변환
+const finalValue: number = parseInt('131.3800');
+
 
 // 증가율 계산
 const increasePercent: number = ((finalValue - initialValue) / initialValue) * 100;
 
-console.log(`증가율: ${increasePercent}%`);
+// 소수 둘째 자리까지 반올림
+const roundedIncreasePercent: number = Math.round(increasePercent * 100) / 100;
+
+console.log(`증가율: ${roundedIncreasePercent.toFixed(2)}%`);
