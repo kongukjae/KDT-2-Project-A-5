@@ -18,33 +18,23 @@ const StockData = (): JSX.Element => {
     if (stocktest) {
       setContextData(stocktest.symbol);
     }
-  }, []);
+    // 테스트 하기 위해 랜더링 될 때마다 재실행
+  }, [stocktest]);
   //주가 데이터
   useEffect(()=> {
-    if(stocktest?.price) {
-      const stockData = {
-        price: {
-          '2023-06-07': { open: 0, high: 0, low: 0, close: 0 },
-          '2023-06-06': { open: 0, high: 0, low: 0, close: 0 },
-          '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
-        },
-      };
-      
-      const priceArray = Object.entries(stockData.price).map(([date, price]) => {
+    if(stocktest) {
+      const priceArray = Object.entries(stocktest?.price).map(([date, price]) => {
         return { date, ...price };
       });
-      console.log(priceArray[0]);
+      console.log("컨텍스트의 주가 데이터 = 배열",priceArray[0]);
     }
-  })
+  }, [stocktest])
 
   return (
     <>
       <div>
-        {contextData.symbol}
+        {stocktest?.symbol}
       </div>
-      : (
-        <div>loading</div>
-      )
     </>
   );
 };
