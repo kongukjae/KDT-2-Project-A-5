@@ -1,77 +1,53 @@
 import React, { useContext, useEffect, useState } from "react";
-//가상의 주식 데이터
 import stockContext, { stockContextType } from "../../src/views/js/stockContext";
+
 const StockData = (): JSX.Element => {
-  // context 가져오기
   let stocktest = useContext<stockContextType | null>(stockContext);
-  console.log('stocktest의 데이터',stocktest);
+  // 최초에 값 받아올 때 에러를 피하기 위해 더미 데이터 넣음
   const [contextData, setContextData] = useState<any>({
-    // 더미 데이터
-      symbol: '잠시만 기다려주세요',
-      price: {
-        // 더미 데이터
-        '2023-06-07': { open: 0, high: 0, low: 0, close: 0 },
-        '2023-06-06': { open: 0, high: 0, low: 0, close: 0 },
-        '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
-      },
-    });
-  // setContextData(stocktest)
-// console.log("심볼 데이터 ", stocktest);
-  // useEffect(() => {
-  //   setStocks(southKoreaStock);
-  //   console.log("stockdata 컴포넌트 불러옴");
-  // }, []);
-// 컨텍스트 데이터 가져오기 테스트
-console.log(stocktest?.price)
-const priceData = {
-  '2023-06-07': { open: 0, high: 0, low: 0, close: 0 },
-  '2023-06-06': { open: 0, high: 0, low: 0, close: 0 },
-  '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
-};
-
-const priceArray = Object.entries(priceData).map(([date, price]) => {
-  return { date, ...price };
-});
-// 객체 데이터 배열로 담아오기 테스트
-console.log(priceArray[0]);
-
-// 주식 회사 이름
-useEffect(() => {
-  if(stocktest) {
-    setContextData(stocktest.symbol);
+    symbol: '잠시만 기다려주세요',
+    price: {
+      '2023-06-07': { open: 0, high: 0, low: 0, close: 0 },
+      '2023-06-06': { open: 0, high: 0, low: 0, close: 0 },
+      '2023-06-05': { open: 0, high: 0, low: 0, close: 0 },
+    },
+  });
+  interface PriceData {
+    open: string;
+    high: string;
+    low: string;
+    close: string;
   }
-}, []);
-// 주가 데이터
-// useEffect(() => {
-//   if(stocktest) {
-//     setContextData(stocktest.price);
-//   }
-// }, [stocktest]);
+  
+  let stockPrice: { [date: string]: PriceData } | undefined = stocktest?.price;
+
+  useEffect(() => {
+    if (stocktest) {
+      setContextData(stocktest.symbol);
+    }
+  }, [stocktest]);
+
+  let priceArray: { date: string, price: PriceData }[] = [];
+  if (stockPrice) {
+    priceArray = Object.entries(stockPrice).map(([date, price]) => {
+      return { date, price };
+    });
+  }
+
+  console.log("컨텍스트의 주식 가격입니다", priceArray[0]);
+
   return (
     <>
       <div>
-      {contextData.symbol}
-      {/* {contextData.price} */}
+        {contextData.symbol}
       </div>
-      : (
+      {priceArray.length > 0 ? (
+        <div>{priceArray[0].date} - {priceArray[0].price.open}</div>
+      ) : (
         <div>loading</div>
-      )
+      )}
     </>
   );
 };
 
 export default StockData;
-
-// export default function ContentBox(props: ContentsBoxProps) {
-//   const { stockName, stockPrice, stockChangePercentage, stockChartGraph } =
-//     props;
-
-//   return (
-//     <div className="stockContentsBox">
-//       <div className="stockName">{stockName}</div>
-//       <div className="stockPrice">{stockPrice}</div>
-//       <div className="stockChangePercentage">{stockChangePercentage}</div>
-//       <div className="stockChartGraph">{stockChartGraph}</div>
-//     </div>
-//   );
-// }
