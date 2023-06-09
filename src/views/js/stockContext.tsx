@@ -4,7 +4,7 @@ import { createContext } from 'react';
 //   MetaData: string,
 // }
 interface PriceData {
-  [date: string]: PriceEntry;
+  [date: string | number]: PriceEntry;
 }
 
 interface PriceEntry {

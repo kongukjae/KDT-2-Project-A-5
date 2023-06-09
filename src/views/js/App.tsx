@@ -29,7 +29,7 @@ export default function App() {
         // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음 
         // 데이터를 찾지 못함
         let symbol = parsedData['Meta Data']['2. Symbol'];
-        let openPrice = parsedData['Time Series (Daily)'];
+        let openPrice = parsedData['Time Series (5min)'];
         const priceArray: stockContextType = {
           symbol: symbol,
           price: openPrice

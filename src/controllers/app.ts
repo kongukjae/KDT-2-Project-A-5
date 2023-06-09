@@ -21,7 +21,7 @@ io.on("connect", (socket) => {
     try {
       const symbol = "IBM";
       const apiKey = process.env.alphaApiKey;
-      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`)
+      const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
       stockData = response.data;
       // console.log(stockData);
       //api로 받아온 데이터 json으로 전송
