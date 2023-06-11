@@ -217,11 +217,10 @@ __*4. React - Single Page Application*__
 - '/signin' url => POST
 2. Web Socket으로 전송받는 데이터 Hook을 사용하여 하위 컴포넌트에게 전달
 - 데이터를 전달까지는 하였으나 Typescript에서 Type에러 발생
-> 2023.06.08
-1. News 데이터 가공
+3. News 데이터 가공
 - 제공받은 뉴스 데이터 중 원문 링크에서 썸네일, 타이틀을 크롤링하는 모듈 생성
 - 크롤링 모듈에서 문제점 : 비 정형화, 비 구조화 된 데이터를 가져오기 위해 알고리즘을 작성해야 함
-2. ```stockContentsBox.tsx```수정
+4. ```stockContentsBox.tsx```수정
 - 소켓연결, 주식데이터 받기, 주식 데이터 태그 생성 역할을 한 컴포넌트에서 수행했었음
 - ```App.tsx```에 socket을, 주식 데이터는 Context를 활용하여 넘김
 > 2023.06.09
