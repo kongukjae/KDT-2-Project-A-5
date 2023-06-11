@@ -10,6 +10,11 @@
 ||박준형|
 ||임지성|
 
+## 목차
+1. [프로젝트 소개](#프로젝트-소개)
+2. [애플리케이션 동작 방식](#stocktogether-동작-방식)
+3. [진행 상황](#진행-상황)
+
 ## 프로젝트 소개
 ### 1. 서비스 개요
 -  stock(주식) + together(함께) 라는 뜻으로
@@ -36,6 +41,7 @@ __*3. DB 구축*__
 __*4. React - Single Page Application*__
 - 서버 부하 감소 및 사용자 경험을 위한 SPA형식의 애플리케이션을 생성을 목표로 하였음
 - 생산성이 높은 javascript와 javascript의 단점을 보완할 typescript도입 및 javascript기반 SPA생성 라이브러리로 React를 사용
+
 ## StockTogether 동작 방식
 ### _1. 주식 데이터 제공_
 1. AppServer에서 Alpha Vantage API를 활용하여 주식 데이터 요청
