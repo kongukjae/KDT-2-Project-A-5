@@ -6,8 +6,7 @@
   width: 131px;
   height: 131px;
   border-radius: 7px;
-  border: 1px solid black;
-  box-shadow: 1px 1px 1px black;
+  box-shadow: 1px 1px 1px grey;
   overflow: hidden;
   font-size: 15px;
   display: -webkit-box;

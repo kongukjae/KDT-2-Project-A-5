@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -58,9 +58,15 @@ export default function Main() {
     setAdvertisementCheck(e.target.checked);
   };
 
-  const handleAllCheckChange = (e: any) => {
-    setAllCheck(e.target.checked);
-    // 다른 체크박스들의 상태도 변경할 수 있도록 로직 추가
+  const handleAllCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    setAllCheck(isChecked);
+    setAgeCheck(isChecked);
+    setTermOfUseCheck(isChecked);
+    setEftUseCheck(isChecked);
+    setPiaUseCheck(isChecked);
+    setMarketingUseCheck(isChecked);
+    setAdvertisementCheck(isChecked);
   };
   // ! 이 영역까지 약관 동의에 관한 내용
 
@@ -90,9 +96,9 @@ export default function Main() {
         }
       })
       .then((data) => {
-        if(data === true){
-          console.log('data =', data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
-          navigate('/first');
+        if (data === true) {
+          console.log("data =", data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
+          navigate("/first");
         }
       })
       .catch((error) => {
