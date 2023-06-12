@@ -7,7 +7,6 @@ const newsAPI = (): JSX.Element => {
     const requestNews = async () => {
       const request = await axios.get("/news");
       const result = request.data;
-      console.log(result);
       setNews(result);
     };
     requestNews();

@@ -21,7 +21,6 @@ export default function App() {
   socket.on("stockDataUpdate", (updatedData) => {
     try {
       const parsedData = JSON.parse(updatedData);
-      console.log("App.tsx의", parsedData);
       // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음
       // 데이터를 찾지 못함
       let symbol = parsedData["Meta Data"]["2. Symbol"];
