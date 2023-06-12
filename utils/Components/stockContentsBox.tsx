@@ -1,16 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  CartesianGrid,
-  Legend,
   Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
+  LineChart, ResponsiveContainer, YAxis
 } from "recharts";
 import stockContext, {
-  stockContextType,
+  stockContextType
 } from "../../src/views/js/stockContext";
 
 const StockData = (): JSX.Element => {
@@ -65,6 +59,7 @@ const StockData = (): JSX.Element => {
       </div>
     );
   };
+
 
   return (
     <div>

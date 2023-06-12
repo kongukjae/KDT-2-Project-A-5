@@ -6,7 +6,6 @@ import http from "http";
 import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
-import { BiBox } from "react-icons/Bi";
 import newsApp from "./newsController";
 
 dotenv.config({ path: "../../.env" }); // env 경로 설정
@@ -29,13 +28,13 @@ async function stockDataRequest() {
     console.error('주식 데이터를 받아오는데 실패했습니다', error);
   }
   // 서버에서 3분에 한번씩 주식데이터 요청
-  setTimeout(stockDataRequest, 3 * 60 * 1000);
+  setInterval(stockDataRequest, 3 * 60 * 1000);
 }
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 const updateData = setInterval(()=> {
   io.emit("stockDataUpdate", jsonData)
-}, 3 * 60 * 1000);
+}, 3 * 1000);
 
 // 최초 주식 데이터 요청
 io.on("connect", (socket) => {
