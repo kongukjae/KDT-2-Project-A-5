@@ -13,19 +13,16 @@ const app = express();
 const socketServer = http.createServer(app);
 const io = new Server(socketServer);
 //! 최초 주식 데이터 요청 함수
-let stockData: any = null;
-let jsonData : string;
+// let stockData: any = null;
+let jsonData : any;
 async function stockDataRequest() {
   try {
     const symbol = "IBM";
     const apiKey = process.env.alphaApiKey;
     const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
-    stockData = response.data;
-    // console.log(stockData);
+    let stockData : any = response.data;
     //api로 받아온 데이터 json으로 전송
     jsonData = JSON.stringify(stockData);
-    // console.log(jsonData);
-    // io.emit("stockDataUpdate", jsonData);
   } catch (error) {
     console.error('주식 데이터를 받아오는데 실패했습니다', error);
   }
@@ -33,18 +30,21 @@ async function stockDataRequest() {
   setTimeout(stockDataRequest, 3 * 60 * 1000);
 }
 stockDataRequest();
-// 최초 주식 데이터 요청
+// 3분에 한번 데이터 쏴주기
+const updateData = setInterval(()=> {
+  io.emit("hello", "hello");
+  console.log("테스트");
+  io.emit("stockDataUpdate", jsonData)
+}, 3 * 60 * 1000);
 
+// 최초 주식 데이터 요청
 io.on("connect", (socket) => {
   console.log("소켓에 최초 연결 됐습니다 - 서버");
-  // 주식 데이터 클라이언트에 전송
-  socket.emit("stockDataUpdate", jsonData);
-  // 알파벤티지에 주식 데이터 요청하는 함수
   // 소켓 연결 해제
   socket.on("disconnect", () => {
     console.log("소켓에 연결 해제됐습니다 - 서버");
   })
-})
+});
 // DB 연결
 dbConnect.connect((err) => {
   if (err) {
