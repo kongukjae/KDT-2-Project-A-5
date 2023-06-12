@@ -25,12 +25,6 @@ const StockData = (): JSX.Element => {
   });
   const [test, setTest] = useState<any[]>([]);
 
-  // useEffect(() => {
-  //   if (stocktest) {
-
-  //   }
-  // }, [stocktest]);
-
   useEffect(() => {
     if (stocktest) {
       setContextData(stocktest);
@@ -58,35 +52,20 @@ const StockData = (): JSX.Element => {
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
-        {/* <ResponsiveContainer width={110} height={40}> */}
-        <LineChart width={110} height={40} data={test}>
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          {/* <XAxis dataKey="date" /> */}
-          <YAxis
-            hide={true}
-            // type="number"
-            domain={["auto", "auto"]}
-            // tickFormatter={(value) => `${value}USD`}
-          />
-          {/* <Tooltip /> */}
-          {/* <Legend /> */}
-          <Line
-            type="monotone"
-            dataKey="1. open"
-            stroke="#E63946"
-            dot={false}
-          />
-        </LineChart>
-        {/* </ResponsiveContainer> */}
+        <ResponsiveContainer width={110} height={80}>
+          <LineChart width={110} height={40} data={test}>
+            <YAxis hide={true} domain={["auto", "auto"]} />
+            <Line
+              type="monotone"
+              dataKey="1. open"
+              stroke="#E63946"
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     );
   };
-  // const renderLineChart = ()=> {
-  //   return (
-  //   <LineChart width={400} height={400} data={test}>
-  //     <Line type="monotone" dataKey="1. open" stroke="#8884d8" />
-  //   </LineChart>
-  // )};
 
   return (
     <div>
