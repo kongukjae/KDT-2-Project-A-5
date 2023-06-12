@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Line,
+  LineChart, ResponsiveContainer, YAxis
+} from 'recharts';
 import stockContext, { stockContextType } from "../../src/views/js/stockContext";
 
 const StockData = (): JSX.Element => {
@@ -35,16 +38,22 @@ const StockData = (): JSX.Element => {
 
   const SimpleLineChart = () => {
     return (
-      <LineChart width={500} height={300} data={test}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="1. open" />
-        <YAxis type="number" domain={[0, 150000]} tickFormatter={(value) => `${value}원`}/>
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="1. open" stroke="#E63946" />
-      </LineChart>
+      <div className="stockChart">
+        <ResponsiveContainer width={110} height={80}>
+          <LineChart width={110} height={40} data={test}>
+            <YAxis hide={true} domain={["auto", "auto"]} />
+            <Line
+              type="monotone"
+              dataKey="1. open"
+              stroke="#E63946"
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     );
   };
+
 
   return (
     <div>
