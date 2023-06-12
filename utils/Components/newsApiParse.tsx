@@ -30,7 +30,7 @@ const newsAPI = (): JSX.Element => {
                 <img src={element.thumbnail} alt="기사의 썸네일 사진입니다" />
               </div>
               <div className="newsTitle">
-                <a href={element.link}>{element.title}</a>
+                <a href={element.link} target="_blank">{element.title}</a>
               </div>
             </div>
           );

@@ -14,7 +14,9 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-
+a{
+  target : "_blank";  
+}
 a:link {
   color: black;
   text-decoration: none;
