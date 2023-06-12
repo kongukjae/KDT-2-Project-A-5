@@ -16,7 +16,6 @@ export default function Main() {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("제출 확인");
     e.preventDefault();
   
     const data = {
