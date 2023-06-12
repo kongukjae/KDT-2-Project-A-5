@@ -9,7 +9,7 @@ const newsApp = async (
   res: express.Response,
   next: express.NextFunction
 ) => {
-  console.log("뉴스 가져오기 성공");
+  // console.log("뉴스 가져오기 성공");
 
   const _newsData = (await newsData()).data.items;
   const response = await Promise.all(
@@ -17,7 +17,7 @@ const newsApp = async (
       return await crawlingData(element.link);
     })
   );
-  console.log(response);
+  // console.log(response);
   res.json(response); //클라이언트에 응답할 데이터
   next();
 };

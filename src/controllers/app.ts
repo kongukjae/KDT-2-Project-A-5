@@ -52,7 +52,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-app.use("/news",newsApp);
+app.use("/news",newsApp); // /news로 오는 요청에 대한 응답 처리.
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
