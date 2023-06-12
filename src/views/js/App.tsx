@@ -19,7 +19,7 @@ export default function App() {
   const [pageTitle, setPageTitle] = useState("");
   const socket = io("localhost:8080");
   const [stockContextData, setStockContextData] = useState<
-    stockContextType | undefined
+    stockContextType | undefined | any
   >(undefined);
 
   useEffect(() => {
