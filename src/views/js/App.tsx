@@ -12,20 +12,17 @@ import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 import stockContext, { stockContextType } from "./stockContext";
-
-
+const socket = io("localhost:8080");
+// socket.on("connect", () => {
+//   console.log("소켓 정상 연결 - 클라이언트");
+// });
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  const socket = io("localhost:8080");
-  const [stockContextData, setStockContextData] = useState<
-    stockContextType | undefined | any
-  >(undefined);
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("소켓 정상 연결 - 클라이언트");
-      socket.on("stockDataUpdate", (updatedData) => {
+    // ! 소켓 연결 및 주식 데이터 파싱 구간
+    const [stockContextData, setStockContextData] = useState<any>(null);
+    console.log("컴포넌트 생성 되냐?");
+    socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
         console.log("App.tsx의",parsedData);
@@ -42,9 +39,9 @@ export default function App() {
         console.error("주식 데이터 쿨타임 ㅠ");
       }
       });
-    });
-  }, [setStockContextData]);
-
+      socket.on("hello", (d)=> {
+        console.log(d)
+      })
   useEffect(() => {
     switch (location.pathname) {
       case "/":
