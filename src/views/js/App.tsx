@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import stockContext, { stockContextType } from './stockContext';
+import stockContext, { stockContextType } from "./stockContext";
 import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
@@ -12,15 +12,15 @@ import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 
-
 import Deposit from "../../../utils/Components/deposit";
 
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState<stockContextType | undefined>(undefined);
-
+  const socket = io("localhost:8080");
+  const [stockContextData, setStockContextData] = useState<
+    stockContextType | undefined
+  >(undefined);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -81,12 +81,9 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
           </Routes>
         </stockContext.Provider>
-        {[
-          "/",
-          "/first",
-          "/signup",
-          "/login",
-        ].includes(location.pathname) ? null : (
+        {["/", "/first", "/signup", "/login"].includes(
+          location.pathname
+        ) ? null : (
           <Nav />
         )}
       </div>

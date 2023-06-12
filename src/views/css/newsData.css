@@ -30,7 +30,7 @@ a:hover {
   text-decoration: none;
 }
 
-img {
+.newImg {
   width: 131px;
   height: 90px;
   object-fit: cover;
