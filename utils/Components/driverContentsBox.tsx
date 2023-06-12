@@ -14,7 +14,6 @@ const driverData = (): JSX.Element => {
 
   useEffect(() => {
     setDriver(DriverData.slice(0, 5)); // slice 메서드를 이용하여 처음 5개 데이터만 선택
-    console.log("driverData 불러옴");
   }, []);
 
   return (

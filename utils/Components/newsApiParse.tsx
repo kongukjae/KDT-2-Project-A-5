@@ -7,18 +7,10 @@ const newsAPI = (): JSX.Element => {
     const requestNews = async () => {
       const request = await axios.get("/news");
       const result = request.data;
-      console.log(result);
       setNews(result);
     };
     requestNews();
   }, []);
-
-  // const decodeHtmlEntitles = (text: string) => {
-  //   const parse = new DOMParser();
-  //   const decodedString = parse.parseFromString(text, "text/html").body
-  //     .textContent;
-  //   return decodedString;
-  // };
 
   return (
     <>

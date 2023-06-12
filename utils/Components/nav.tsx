@@ -4,23 +4,6 @@ import { BiCar } from "react-icons/Bi";
 import { SlWallet } from "react-icons/Sl/";
 import { Link } from "react-router-dom";
 
-// interface NavProps {
-//   changeTitle: (newTitle: string) => void;
-// }
-
-// const Nav: React.FC<NavProps> = ({ changeTitle }) => {
-//   const handleHomeClick = () => {
-//     changeTitle("홈");
-//   };
-
-//   const handleBusStopClick = () => {
-//     changeTitle("정류장");
-//   };
-
-//   const handleBackAccountClick = () => {
-//     changeTitle("계좌");
-//   };
-
 export default function navigation() {
   return (
     <div className="navigation">

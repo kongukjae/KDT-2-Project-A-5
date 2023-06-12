@@ -43,7 +43,6 @@ const StockData = (): JSX.Element => {
 
         if (intervalNumber >= priceArray.length) {
           clearInterval(interval);
-          console.log("interval 함수를 종료합니다");
         }
       }, 5000);
     }

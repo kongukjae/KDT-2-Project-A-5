@@ -12,23 +12,15 @@ import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 import stockContext, { stockContextType } from "./stockContext";
-
-
+const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  const socket = io("localhost:8080");
-  const [stockContextData, setStockContextData] = useState<
-    stockContextType | undefined | any
-  >(undefined);
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("소켓 정상 연결 - 클라이언트");
-      socket.on("stockDataUpdate", (updatedData) => {
+    // ! 소켓 연결 및 주식 데이터 파싱 구간
+    const [stockContextData, setStockContextData] = useState<any>(null);
+    socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
-        console.log("App.tsx의",parsedData);
         // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음
         // 데이터를 찾지 못함
         let symbol = parsedData['Meta Data']['2. Symbol'];
@@ -39,12 +31,9 @@ export default function App() {
         };
         setStockContextData(priceArray);
       } catch (error){
-        console.error("주식 데이터 쿨타임 ㅠ");
+        console.error("주식 데이터 쿨타임");
       }
       });
-    });
-  }, [setStockContextData]);
-
   useEffect(() => {
     switch (location.pathname) {
       case "/":
