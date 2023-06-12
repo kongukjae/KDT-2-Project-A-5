@@ -75,7 +75,7 @@ export default function Main() {
       phoneNumber: phoneNumber,
     };
 
-    fetch("/creataccount", {
+    fetch("/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
