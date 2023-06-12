@@ -13,13 +13,6 @@ const newsAPI = (): JSX.Element => {
     requestNews();
   }, []);
 
-  // const decodeHtmlEntitles = (text: string) => {
-  //   const parse = new DOMParser();
-  //   const decodedString = parse.parseFromString(text, "text/html").body
-  //     .textContent;
-  //   return decodedString;
-  // };
-
   return (
     <>
       {news.length > 0 ? (
@@ -27,7 +20,11 @@ const newsAPI = (): JSX.Element => {
           return (
             <div className="newsContentsBox" font-size="11px">
               <div className="newsThumbnail">
-                <img src={element.thumbnail} alt="기사의 썸네일 사진입니다" />
+                <img
+                  className="newsImg"
+                  src={element.thumbnail}
+                  alt="기사의 썸네일 사진입니다"
+                />
               </div>
               <div className="newsTitle">
                 <a href={element.link}>{element.title}</a>

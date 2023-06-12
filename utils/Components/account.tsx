@@ -2,8 +2,6 @@ import React from "react";
 import "../../src/views/css/style";
 import BankAccount from './bankAccount'
 
-// import ContentsBox from "./contentsBoxArea";
-
 export default function Main() {
   return (
     <>

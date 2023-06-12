@@ -100,9 +100,6 @@ export default function Main() {
       });
   };
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  // };
   return (
     <>
       <div className="main">
