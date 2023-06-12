@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import loginStyle from "../../src/views/css/login.module.css";
 import stockContext from "../../src/views/js/stockContext";
 export default function Login() {
-  const test = useContext(stockContext);
-  console.log("이거 test", test);
-
   return (
     <>
       <div className={loginStyle.main}>
