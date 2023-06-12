@@ -140,10 +140,8 @@ class Login {
 // 로그인 데이터 받기
 app.post('/signIn', (req: Request, res: Response) => {
   let boxTest: boolean = true;
-  console.log('signIn');
   const test = new Login(req.body.userId, req.body.password);
   // 로그인 키값 확인
-  console.log('test', Object.keys(test)[0]);
   dbConnect.query(`select ${Object.keys(test).join(', ')} from user_infor where ${Object.keys(test)[0]}= '${test.userId}' and ${Object.keys(test)[1]}= '${test.password}';`, (err, result) => {
     if (err) {
       console.log('err', err)
