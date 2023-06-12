@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/views/html/testIndex.html",
+      template: "./src/views/html/index.html",
     }),
   ],
 };

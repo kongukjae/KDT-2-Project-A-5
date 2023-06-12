@@ -14,12 +14,6 @@ const StockData = (): JSX.Element => {
   });
   const [test, setTest] = useState<any[]>([]);
 
-  // useEffect(() => {
-  //   if (stocktest) {
-      
-  //   }
-  // }, [stocktest]);
-
   useEffect(() => {
     if (stocktest) {
       setContextData(stocktest);
@@ -54,12 +48,6 @@ const StockData = (): JSX.Element => {
       </LineChart>
     );
   };
-  // const renderLineChart = ()=> {
-  //   return (
-  //   <LineChart width={400} height={400} data={test}>
-  //     <Line type="monotone" dataKey="1. open" stroke="#8884d8" />
-  //   </LineChart>
-  // )};
 
   return (
     <div>

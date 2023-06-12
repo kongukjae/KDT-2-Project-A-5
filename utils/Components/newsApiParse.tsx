@@ -13,13 +13,6 @@ const newsAPI = (): JSX.Element => {
     requestNews();
   }, []);
 
-  // const decodeHtmlEntitles = (text: string) => {
-  //   const parse = new DOMParser();
-  //   const decodedString = parse.parseFromString(text, "text/html").body
-  //     .textContent;
-  //   return decodedString;
-  // };
-
   return (
     <>
       {news.length > 0 ? (
