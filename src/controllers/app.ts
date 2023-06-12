@@ -95,7 +95,7 @@ class User {
 
 }
 
-app.post('/creataccount', (req, res) => {
+app.post('/user', (req, res) => {
 
   const { email, password, name, phoneNumber } = req.body; // 요청의 본문을 가져옵니다.
   const userInstance = new User(email, password, name, phoneNumber, 123412314)
