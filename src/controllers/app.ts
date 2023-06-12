@@ -6,12 +6,16 @@ import http from "http";
 import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
+import { BiBox } from "react-icons/Bi";
+import newsApp from "./newsController";
+
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
 const app = express();
 const socketServer = http.createServer(app);
 const io = new Server(socketServer);
+<<<<<<< HEAD
 //최초 주식 데이터
 let stockData: any = null;
 io.on("connect", (socket) => {
@@ -33,14 +37,38 @@ io.on("connect", (socket) => {
     }
     // 3분에 한번씩 주식데이터 요청
     setTimeout(stockDataRequest, 3 * 60 * 1000);
+=======
+//! 최초 주식 데이터 요청 함수
+let jsonData : any;
+async function stockDataRequest() {
+  try {
+    const symbol = "IBM";
+    const apiKey = process.env.alphaApiKey;
+    const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
+    let stockData : any = response.data;
+    //api로 받아온 데이터 json으로 전송
+    jsonData = JSON.stringify(stockData);
+  } catch (error) {
+    console.error('주식 데이터를 받아오는데 실패했습니다', error);
+>>>>>>> 8d8c5eba5f285b6b0140e94510757885bc11ffa6
   }
-  // 최초 주식 데이터 요청
-  stockDataRequest();
+  // 서버에서 3분에 한번씩 주식데이터 요청
+  setTimeout(stockDataRequest, 3 * 60 * 1000);
+}
+stockDataRequest();
+// 3분에 한번 데이터 쏴주기
+const updateData = setInterval(()=> {
+  io.emit("stockDataUpdate", jsonData)
+}, 3 * 60 * 1000);
+
+// 최초 주식 데이터 요청
+io.on("connect", (socket) => {
+  console.log("소켓에 최초 연결 됐습니다 - 서버");
   // 소켓 연결 해제
   socket.on("disconnect", () => {
     console.log("소켓에 연결 해제됐습니다 - 서버");
   })
-})
+});
 // DB 연결
 dbConnect.connect((err) => {
   if (err) {
@@ -49,6 +77,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
+app.use("/news",newsApp);
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
@@ -56,6 +85,8 @@ app.get('*', (req: Request, res: Response) => {
 })
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
 app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+
+
 class User {
   // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
   private password: string;
@@ -112,6 +143,7 @@ app.post('/creataccount', (req, res) => {
     console.log(result);
 
   });
+<<<<<<< HEAD
   // VALUES('${email}','${password}','${name}','${phoneNumber}',${123412314});
   res.send('true');
 })
@@ -282,5 +314,52 @@ app.listen(8080, () => {
 //   console.log("connected");
 // });
 socketServer.listen(8085, () => {
+=======
+  res.send('true');
+})
+
+class Login {
+  password: string;
+  userId: string;
+  constructor(userId: string, password: string) {
+    // 출력 될 때 순서를 생각 해서 작서을 한다.
+    this.userId = userId;
+    this.password = this.crypto(password);
+  }
+
+  crypto(pw: string) {
+    return crypto.createHash("sha512").update(pw).digest("base64");
+  }
+
+
+}
+// 로그인 데이터 받기
+app.post('/signIn', (req: Request, res: Response) => {
+  let boxTest: boolean = true;
+  console.log('signIn');
+  const test = new Login(req.body.userId, req.body.password);
+  // 로그인 키값 확인
+  console.log('test', Object.keys(test)[0]);
+  dbConnect.query(`select ${Object.keys(test).join(', ')} from user_infor where ${Object.keys(test)[0]}= '${test.userId}' and ${Object.keys(test)[1]}= '${test.password}';`, (err, result) => {
+    if (err) {
+      console.log('err', err)
+    }
+    if (Object.values(result).length === 0) {
+      boxTest = false;
+    res.send(boxTest);
+    }
+    // 로그인 실패
+    else {
+      res.send(boxTest);
+    }
+  })
+})
+app.use((req, res) => {
+  res.status(404).send("not found");
+});
+
+
+socketServer.listen(8080, () => {
+>>>>>>> 8d8c5eba5f285b6b0140e94510757885bc11ffa6
   console.log("소켓 서버 on")
 })

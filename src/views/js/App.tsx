@@ -1,29 +1,50 @@
-// * 리액트 주요 라이브러리
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-// import Screen from "./screen";
-
-// ? 리액트 컴포넌트
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
-import MainScreen from "./mainPage/mainScreen";
-import StationScreen from "./station/station";
-import AccountScreen from "./account/accountScreen";
-import LoginScreen from "./loginPage/loginScreen";
-import SignUpScreen from "./signUp/signUpScreen";
 import Nav from "../../../utils/Components/nav";
+import StockContentsBox from "../../../utils/Components/stockContentsBox";
+import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
+<<<<<<< HEAD
 import Recruitment from "./station/recruitment";
 
 export default () => {
+=======
+import LoginScreen from "./loginPage/loginScreen";
+import MainScreen from "./mainPage/mainScreen";
+import SignUpScreen from "./signUp/signUpScreen";
+import StationScreen from "./station/station";
+import stockContext, { stockContextType } from "./stockContext";
+const socket = io("localhost:8080");
+export default function App() {
+>>>>>>> 8d8c5eba5f285b6b0140e94510757885bc11ffa6
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-
+    // ! 소켓 연결 및 주식 데이터 파싱 구간
+    const [stockContextData, setStockContextData] = useState<any>(null);
+    socket.on("stockDataUpdate", (updatedData) => {
+      try {
+        const parsedData = JSON.parse(updatedData);
+        console.log("App.tsx의",parsedData);
+        // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음
+        // 데이터를 찾지 못함
+        let symbol = parsedData['Meta Data']['2. Symbol'];
+        let openPrice = parsedData['Time Series (5min)'];
+        const priceArray: stockContextType = {
+          symbol: symbol,
+          price: openPrice
+        };
+        setStockContextData(priceArray);
+      } catch (error){
+        console.error("주식 데이터 쿨타임");
+      }
+      });
   useEffect(() => {
-    // URL 변화에 따라 pageTitle 상태를 업데이트함.
     switch (location.pathname) {
       case "/":
-        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
+        setPageTitle("함께 투자하는 즐거움 Stock Together");
         break;
       case "/home":
         setPageTitle("홈");
@@ -35,10 +56,13 @@ export default () => {
         setPageTitle("정류장");
         break;
       case "/first":
-        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
+        setPageTitle("함께 투자하는 즐거움 Stock Together");
         break;
       case "/login":
-        setPageTitle("함께 투자하는 즐거움" + "Stock Together");
+        setPageTitle("함께 투자하는 즐거움 Stock Together");
+        break;
+      case "/deposit":
+        setPageTitle("계좌");
         break;
       case "/signup":
         setPageTitle("회원가입");
@@ -50,12 +74,13 @@ export default () => {
         setPageTitle("홈");
         break;
     }
-  }, [location.pathname]); // location.pathname이 바뀔 때마다 실행된다.
+  }, [location.pathname]);
 
   return (
     <>
       <div className="container">
         <Header title={pageTitle} />
+<<<<<<< HEAD
         <Routes>
           <Route path="/" element={<IntroPage />} />
           <Route path="/first" element={<FirstPage />} />
@@ -66,20 +91,29 @@ export default () => {
           <Route path="/account" element={<AccountScreen />} />
           <Route path="/Recruitment" element={<Recruitment />} />
         </Routes>
+=======
+        <stockContext.Provider value={stockContextData}>
+          <Routes>
+            <Route path="/" element={<IntroPage />} />
+            <Route path="/station" element={<StationScreen />} />
+            <Route path="/home" element={<MainScreen />} />
+            <Route path="/first" element={<FirstPage />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/signup" element={<SignUpScreen />} />
+            <Route path="/account" element={<AccountScreen />} />
+            <Route path="/stock" element={<StockContentsBox />} />
+          </Routes>
+        </stockContext.Provider>
+>>>>>>> 8d8c5eba5f285b6b0140e94510757885bc11ffa6
         {[
           "/",
           "/first",
           "/signup",
           "/login",
-          // 애플리케이션의 현재 주소가 해당 객체 안에 있을 경우
-          // Nav 컴포넌트를 null 처리한다. (숨긴다)
-          // 추가적으로 Nav 컴포넌트가 필요하지 않은 페이지를 제작할 경우
-          // 이 영역에서 주소를 처리하는 식으로 Nav 컴포넌트를 숨길 수 있다.
         ].includes(location.pathname) ? null : (
           <Nav />
         )}
-        {/* <Nav /> */}
       </div>
     </>
   );
-};
+}

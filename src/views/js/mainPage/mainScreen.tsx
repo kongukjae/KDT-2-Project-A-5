@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Main from "../../../../utils/Components/main";
 
 const Screen: React.FC = () => {
