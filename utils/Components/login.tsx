@@ -38,9 +38,7 @@ export default function Main() {
         }
       })
       .then((data) => {
-        console.log(data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
         if(data === true){
-          console.log('data =', data); // 서버의 응답을 출력하거나 원하는 작업을 수행합니다.
           navigate('/home');
         }
         else{

@@ -20,8 +20,6 @@ const StockData = (): JSX.Element => {
       const priceArray: any[] = Object.entries(stocktest?.price).map(([date, price]) => {
         return { date, ...price };
       });
-      console.log("컨텍스트의 주가 데이터 = 배열로 변환한 것 : ", priceArray);
-
       let intervalNumber = 0;
       let interval = setInterval(() => {
         let lastPrice = priceArray[intervalNumber];
@@ -30,7 +28,6 @@ const StockData = (): JSX.Element => {
 
         if (intervalNumber >= priceArray.length) {
           clearInterval(interval);
-          console.log("interval 함수를 종료합니다");
         }
       }, 5000);
     }
