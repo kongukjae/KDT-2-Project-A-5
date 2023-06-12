@@ -6,8 +6,7 @@ import http from "http";
 import { Server } from "socket.io";
 import crypto from "crypto";
 import dbConnect from "../../utils/DB/dbConfigure";
-import newsData from "../../utils/naverNewsApi/newsApi";
-import crawlingData from "../../utils/naverNewsApi/crawling";
+import newsApp from "./appNewsModule"
 
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
@@ -28,7 +27,7 @@ io.on("connect", (socket) => {
         `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`
       );
       stockData = response.data;
-      console.log(stockData);
+      // console.log(stockData);
       //소켓으로 주식 데이터 전송
       socket.emit("stockDataUpdate", stockData);
       // 주식 데이터 업데이트 될 때마다 클라이언트에게 전송
@@ -53,17 +52,19 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
+app.use("/news",newsApp);
 
-app.get("/news", async (req: express.Request, res: express.Response) => {
-  const _newsData = (await newsData()).data.items;
-  const response = await Promise.all(
-    _newsData.map(async (element: any) => {
-      return await crawlingData(element.link);
-    })
-  );
-  console.log(response);
-  res.json(response); //클라이언트에 응답할 데이터
-});
+// app.get("/news", async (req: express.Request, res: express.Response) => {
+//   const _newsData = (await newsData()).data.items;
+//   const response = await Promise.all(
+//     _newsData.map(async (element: any) => {
+//       return await crawlingData(element.link);
+//     })
+//   );
+//   console.log(response);
+//   res.json(response); //클라이언트에 응답할 데이터
+// });
+
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
