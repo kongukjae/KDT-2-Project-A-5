@@ -58,7 +58,6 @@ const StockData = (): JSX.Element => {
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
-        <h4></h4>
         {/* <ResponsiveContainer width={110} height={40}> */}
         <LineChart width={110} height={40} data={test}>
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
