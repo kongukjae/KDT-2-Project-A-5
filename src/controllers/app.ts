@@ -7,6 +7,8 @@ import http from "http";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import { BiBox } from "react-icons/Bi";
+import newsApp from "./appNewsModule";
+
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -50,6 +52,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
+app.use("/news",newsApp);
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
@@ -57,6 +60,8 @@ app.get('*', (req: Request, res: Response) => {
 })
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
 app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+
+
 class User {
   // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
   private password: string;
