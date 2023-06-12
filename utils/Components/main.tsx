@@ -1,18 +1,16 @@
 import React from "react";
+import "../../src/views/css/newsData";
 import "../../src/views/css/style";
+import DriverContentBox from "./driverContentsBox";
 
 // ? CSS
 import "../../src/views/css/Area";
 
 // ? 샘플 데이터
-// ? 가상으로 만들어진 주식 데이터를 불러옵니다.
-
-import { DriverData } from "../../src/models/driver";
 
 // ! 컨텐츠 박스
-import StockContentsBox from "./stockContentsBox";
-import DriverContentBox from "./driverContentsBox";
 import NewsContentsBox from "./newsApiParse";
+import StockContentsBox from "./stockContentsBox";
 
 export default function Main() {
   return (

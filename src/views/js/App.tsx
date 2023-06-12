@@ -13,11 +13,14 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
 import stockContext, { stockContextType } from "./stockContext";
 
+
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  const socket = io('localhost:8085');
-  const [stockContextData, setStockContextData] = useState<stockContextType | null>(null);
+  const socket = io("localhost:8080");
+  const [stockContextData, setStockContextData] = useState<
+    stockContextType | undefined
+  >(undefined);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -26,7 +29,7 @@ export default function App() {
       try {
         const parsedData = JSON.parse(updatedData);
         console.log("App.tsx의",parsedData);
-        // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음 
+        // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음
         // 데이터를 찾지 못함
         let symbol = parsedData['Meta Data']['2. Symbol'];
         let openPrice = parsedData['Time Series (5min)'];
@@ -61,6 +64,9 @@ export default function App() {
         break;
       case "/login":
         setPageTitle("함께 투자하는 즐거움 Stock Together");
+        break;
+      case "/deposit":
+        setPageTitle("계좌");
         break;
       case "/signup":
         setPageTitle("회원가입");

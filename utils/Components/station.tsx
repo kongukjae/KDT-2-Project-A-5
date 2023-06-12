@@ -4,8 +4,6 @@ import React from "react";
 import SimpleLineChart from "./chart";
 
 export default function Main() {
-
-  
   return (
     <>
       <div className="main">
