@@ -14,14 +14,15 @@ const StockData = (): JSX.Element => {
   });
   const [test, setTest] = useState<any[]>([]);
 
-  useEffect(() => {
-    if (stocktest) {
-      setContextData(stocktest);
-    }
-  }, [stocktest]);
+  // useEffect(() => {
+  //   if (stocktest) {
+      
+  //   }
+  // }, [stocktest]);
 
   useEffect(() => {
     if (stocktest) {
+      setContextData(stocktest);
       const priceArray: any[] = Object.entries(stocktest?.price).map(([date, price]) => {
         return { date, ...price };
       });
@@ -45,8 +46,8 @@ const StockData = (): JSX.Element => {
     return (
       <LineChart width={500} height={300} data={test}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis />
+        <XAxis dataKey="1. open" />
+        <YAxis type="number" domain={[0, 150000]} tickFormatter={(value) => `${value}원`}/>
         <Tooltip />
         <Legend />
         <Line type="monotone" dataKey="1. open" stroke="#E63946" />
