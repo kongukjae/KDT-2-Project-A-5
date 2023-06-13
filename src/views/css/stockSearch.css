@@ -1,0 +1,6 @@
+.stockList{
+  display: none;
+}
+.mainInner{
+  overflow: auto;
+}

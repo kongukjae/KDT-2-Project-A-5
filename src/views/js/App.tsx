@@ -10,7 +10,9 @@ import IntroPage from "./IntroPage/IntroPageScreen";
 import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
-import StationScreen from "./station/station";
+import StationScreen from "./station/stationScreen";
+import TaxiScreen from "./taxiPage/taxiScreen";
+import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
 import stockContext, { stockContextType } from "./stockContext";
 const socket = io("localhost:8080");
 export default function App() {
@@ -60,6 +62,9 @@ export default function App() {
       case "/signup":
         setPageTitle("회원가입");
         break;
+      case "/taxi":
+        setPageTitle("조회");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -80,6 +85,8 @@ export default function App() {
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/stock" element={<StockContentsBox />} />
+            <Route path="/taxi" element={<TaxiScreen />} />
+            <Route path="/CompanyList" element={<CorpAutoComp />} />
           </Routes>
         </stockContext.Provider>
         {[

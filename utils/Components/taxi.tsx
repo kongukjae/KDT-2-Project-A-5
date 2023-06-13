@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import CompanyList from "./corpAutoComplete";
+import { Link } from "react-router-dom";
 
-const CompanyList = () => {
-  const [companies, setCompanies] = useState([]);
+const corpAutoComp = () => {
+  const [autoComp, setAuto] = useState([]);
 
-  useEffect(() => {
-    fetch('../../src/models/stock.data.json') // JSON 파일의 경로
-      .then((response) => response.json())
-      .then((data) => setCompanies(data));
+  // useEffect(() => {
+  //   CompanyList
 
-  }, []);
+  // }, []);
 
   return (
-    <div className='main'>
-    <ul>
-      {companies.map((company) => (
-        <li key={company[0]}>{company[0]} : {company[1]}</li>
-      ))}
-    </ul>
-  </div>
+    <div className="main">
+      <input type="text" placeholder="회사명"></input>
+      <Link to={"/CompanyList"}>
+        <input type="submit" value={"검색"}></input>
+      </Link>
+    </div>
   );
 };
 
-export default CompanyList;
+export default corpAutoComp;
