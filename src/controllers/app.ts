@@ -34,14 +34,18 @@ async function stockDataRequest() {
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 let increaseNum = 0;
-const stockDataLivetransmission = setInterval(async ()=> {
-  let symbol = await stockData["Meta Data"]["2. Symbol"];
-  let stockObjectData : any = await Object.entries(stockData['Time Series (5min)'])
+const stockDataLivetransmission = setInterval(()=> {
+  let symbol = stockData["Meta Data"]["2. Symbol"];
+  let stockObjectData : any = Object.entries(stockData['Time Series (5min)'])
   // console.log(test[increaseNum][0])
-  console.log(stockObjectData[increaseNum]);
-  let jsonData = JSON.stringify(stockData)
-  io.emit("stockDataUpdate", [symbol, jsonData]);
+  // console.log(stockObjectData[increaseNum]);
+  let jsonData = JSON.stringify([symbol, stockObjectData[increaseNum]]);
+  console.log(jsonData);
+  io.emit("stockDataUpdate", jsonData);
   increaseNum++
+  if(increaseNum >= stockObjectData.length ) {
+    clearInterval(stockDataLivetransmission);
+  }
 }, 5 * 1000);
 
 // 최초 주식 데이터 요청
