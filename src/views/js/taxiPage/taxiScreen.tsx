@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Station from "../../../../utils/Components/station";
+import Taxi from "../../../../utils/Components/taxi";
 
 const Screen: React.FC = () => {
   return (
     <>
-      <Station />
+      <Taxi />
     </>
   );
 };
