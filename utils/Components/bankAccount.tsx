@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Deposit from './deposit'
+import Deposit from "./deposit";
 
 import "../../src/views/css/style";
 
 function addCommasToNumber(number: number): string {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 export default function Account() {
@@ -20,13 +20,12 @@ export default function Account() {
 
   return (
     <div>
-        <p className='myAccount'>계좌 잔액: {addCommasToNumber(balance)}</p>
-        
-        <Link to="/deposit">
+      <p className="myAccount">계좌 잔액: {addCommasToNumber(balance)}</p>
+      <Link to="/deposit">
+        <button>충전</button>
         <button>입금</button>
       </Link>
-        {/* 추가적인 버튼 또는 로직을 여기에 추가할 수 있습니다 */}
+      {/* 추가적인 버튼 또는 로직을 여기에 추가할 수 있습니다 */}
     </div>
-
   );
 }

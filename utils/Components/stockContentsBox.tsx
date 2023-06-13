@@ -3,8 +3,7 @@ import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 import stockContext, {
   stockContextType,
 } from "../../src/views/js/stockContext";
-import "../../src/views/css/stockChart.css"
-
+import "../../src/views/css/stockChart.css";
 
 const StockData = (): JSX.Element => {
   const stockData = useContext<stockContextType | null>(stockContext);
