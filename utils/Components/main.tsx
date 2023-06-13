@@ -10,7 +10,6 @@ import "../../src/views/css/Area";
 
 // ! 컨텐츠 박스
 import NewsContentsBox from "./newsApiParse";
-import StockContentsBox from "./stockContentsBox";
 
 export default function Main() {
   return (
@@ -18,11 +17,11 @@ export default function Main() {
       <div className="main">
         <h3>국내 증시</h3>
         <div className="stockArea">
-          <StockContentsBox />
+          {/* <StockContentsBox /> */}
         </div>
         <h3>내가 자주 본 종목</h3>
         <div className="myStockArea">
-          <StockContentsBox />
+          {/* <StockContentsBox /> */}
         </div>
         <h3>모범 운전수</h3>
         <div className="driverArea">
