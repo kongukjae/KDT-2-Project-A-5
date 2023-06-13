@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import DayRange from "../../../utils/Components/dayRange";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
-import StockContentsBox from "../../../utils/Components/stockContentsBox";
 import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -79,7 +79,7 @@ export default function App() {
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
-            <Route path="/stock" element={<StockContentsBox />} />
+            <Route path="/stock" element={<DayRange />} />
           </Routes>
         </stockContext.Provider>
         {[
