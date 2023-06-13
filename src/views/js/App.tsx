@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
 import StockContentsBox from "../../../utils/Components/stockContentsBox";
-import AccountScreen from "./account/accountScreen";
+import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
 import LoginScreen from "./loginPage/loginScreen";
