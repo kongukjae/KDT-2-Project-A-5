@@ -15,13 +15,13 @@ const app = express();
 const socketServer = http.createServer(app);
 const io = new Server(socketServer);
 //! 최초 주식 데이터 요청 함수
-let jsonData : any;
+let jsonData: any;
 async function stockDataRequest() {
   try {
     const symbol = "IBM";
     const apiKey = process.env.alphaApiKey;
     const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
-    let stockData : any = response.data;
+    let stockData: any = response.data;
     //api로 받아온 데이터 json으로 전송
     jsonData = JSON.stringify(stockData);
   } catch (error) {
@@ -32,7 +32,7 @@ async function stockDataRequest() {
 }
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
-const updateData = setInterval(()=> {
+const updateData = setInterval(() => {
   io.emit("stockDataUpdate", jsonData)
 }, 3 * 1000);
 
@@ -52,7 +52,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-app.use("/news",newsApp);
+app.use("/news", newsApp);
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
@@ -147,7 +147,7 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
     if (Object.values(result).length === 0) {
       boxTest = false;
-    res.send(boxTest);
+      res.send(boxTest);
     }
     // 로그인 실패
     else {
@@ -155,6 +155,16 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
   })
 })
+app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
+app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+// 증가률 구하기 위한 전날 날짜
+app.post('/data', (req: Request, res: Response) => {
+
+ console.log('이것은 data',req.body);
+ 
+
+})
+
 app.use((req, res) => {
   res.status(404).send("not found");
 });
