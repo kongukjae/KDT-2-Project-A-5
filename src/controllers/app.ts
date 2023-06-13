@@ -16,7 +16,7 @@ const socketServer = http.createServer(app);
 const io = new Server(socketServer);
 //! 최초 주식 데이터 요청 함수
 // let jsonData : any;
-let stockData : any
+let stockData: any
 async function stockDataRequest() {
   try {
     const symbol = "IBM";
@@ -24,7 +24,7 @@ async function stockDataRequest() {
     const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
     stockData = response.data;
     //api로 받아온 데이터 json으로 전송
-    
+
   } catch (error) {
     console.error('주식 데이터를 받아오는데 실패했습니다', error);
   }
@@ -34,23 +34,32 @@ async function stockDataRequest() {
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 let increaseNum = 0;
-const stockDataLivetransmission = setInterval(async ()=> {
-  let stockObjectData : any = await Object.entries(stockData['Time Series (5min)'])
-  // console.log(test[increaseNum][0])
-  console.log(stockObjectData[increaseNum]);
-  let jsonData = JSON.stringify(stockData)
-  io.emit("stockDataUpdate", jsonData);
-  increaseNum++
+const stockDataLivetransmission = setInterval(() => {
+  try {
+    let symbol = stockData["Meta Data"]["2. Symbol"];
+    let stockObjectData: any = Object.entries(stockData['Time Series (5min)'])
+    // console.log(test[increaseNum][0])
+    // console.log(stockObjectData[increaseNum]);
+    let jsonData = JSON.stringify([symbol, stockObjectData[increaseNum]]);
+    console.log(jsonData);
+    io.emit("stockDataUpdate", jsonData);
+    increaseNum++
+    if (increaseNum >= stockObjectData.length) {
+      clearInterval(stockDataLivetransmission);
+    }
+  } catch (error) {
+    console.error('stockDataLivetransmission 에러', error);
+  }
 }, 5 * 1000);
 
 // 최초 주식 데이터 요청
-io.on("connect", (socket) => {
-  console.log("소켓에 최초 연결 됐습니다 - 서버");
-  // 소켓 연결 해제
-  socket.on("disconnect", () => {
-    console.log("소켓에 연결 해제됐습니다 - 서버");
-  })
-});
+// io.on("connect", (socket) => {
+//   console.log("소켓에 최초 연결 됐습니다 - 서버");
+//   // 소켓 연결 해제
+//   socket.on("disconnect", () => {
+//     console.log("소켓에 연결 해제됐습니다 - 서버");
+//   })
+// });
 // DB 연결
 dbConnect.connect((err) => {
   if (err) {
@@ -59,7 +68,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-app.use("/news",newsApp);
+app.use("/news", newsApp);
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
@@ -154,7 +163,7 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
     if (Object.values(result).length === 0) {
       boxTest = false;
-    res.send(boxTest);
+      res.send(boxTest);
     }
     // 로그인 실패
     else {
@@ -162,6 +171,16 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
   })
 })
+app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
+app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
+// 증가률 구하기 위한 전날 날짜
+app.post('/data', (req: Request, res: Response) => {
+
+  console.log('이것은 data', req.body);
+
+
+})
+
 app.use((req, res) => {
   res.status(404).send("not found");
 });

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import DayRange from "../../../utils/Components/dayRange";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
-import StockContentsBox from "../../../utils/Components/stockContentsBox";
 import AccountScreen from "./account/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -11,29 +11,26 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/station";
-import stockContext, { stockContextType } from "./stockContext";
+import stockContext from "./stockContext";
 const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
+  let socketStockData : any = [];
     // ! 소켓 연결 및 주식 데이터 파싱 구간
-    const [stockContextData, setStockContextData] = useState<any>(null);
+  // const [stockContextData, setStockContextData] = useState<any>(null);
+  useEffect(()=> {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
-        // 알파벤티지에서 제공하는 데이터가 쿨타임이 있어서 에러가 생길 때가 있음
-        // 데이터를 찾지 못함
-        let symbol = parsedData['Meta Data']['2. Symbol'];
-        let openPrice = parsedData['Time Series (5min)'];
-        const priceArray: stockContextType = {
-          symbol: symbol,
-          price: openPrice
-        };
-        setStockContextData(priceArray);
+        // console.log(parsedData);
+        socketStockData.push(parsedData);
+        console.log(socketStockData)
       } catch (error){
         console.error("주식 데이터 쿨타임");
       }
       });
+  }, []);
   useEffect(() => {
     switch (location.pathname) {
       case "/":
@@ -70,7 +67,7 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        <stockContext.Provider value={stockContextData}>
+        <stockContext.Provider value={socketStockData}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
             <Route path="/station" element={<StationScreen />} />
@@ -79,7 +76,7 @@ export default function App() {
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
-            <Route path="/stock" element={<StockContentsBox />} />
+            <Route path="/stock" element={<DayRange />} />
           </Routes>
         </stockContext.Provider>
         {[
