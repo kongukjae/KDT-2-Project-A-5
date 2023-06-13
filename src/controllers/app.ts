@@ -35,11 +35,12 @@ stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 let increaseNum = 0;
 const stockDataLivetransmission = setInterval(async ()=> {
+  let symbol = await stockData["Meta Data"]["2. Symbol"];
   let stockObjectData : any = await Object.entries(stockData['Time Series (5min)'])
   // console.log(test[increaseNum][0])
   console.log(stockObjectData[increaseNum]);
   let jsonData = JSON.stringify(stockData)
-  io.emit("stockDataUpdate", jsonData);
+  io.emit("stockDataUpdate", [symbol, jsonData]);
   increaseNum++
 }, 5 * 1000);
 
