@@ -15,15 +15,16 @@ const app = express();
 const socketServer = http.createServer(app);
 const io = new Server(socketServer);
 //! 최초 주식 데이터 요청 함수
-let jsonData : any;
+// let jsonData : any;
+let stockData : any
 async function stockDataRequest() {
   try {
     const symbol = "IBM";
     const apiKey = process.env.alphaApiKey;
     const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
-    let stockData : any = response.data;
+    stockData = response.data;
     //api로 받아온 데이터 json으로 전송
-    jsonData = JSON.stringify(stockData);
+    
   } catch (error) {
     console.error('주식 데이터를 받아오는데 실패했습니다', error);
   }
@@ -32,9 +33,14 @@ async function stockDataRequest() {
 }
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
-const updateData = setInterval(()=> {
-  io.emit("stockDataUpdate", jsonData)
-}, 3 * 1000);
+let increaseNum = 0;
+const updateData = setInterval(async ()=> {
+  let test : any = await Object.entries(stockData['Time Series (5min)'])
+  // console.log(test[increaseNum][0])
+  console.log(test[increaseNum]);
+  io.emit("stockDataUpdate", stockData);
+  increaseNum++
+}, 5 * 1000);
 
 // 최초 주식 데이터 요청
 io.on("connect", (socket) => {
