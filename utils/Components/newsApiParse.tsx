@@ -18,16 +18,16 @@ const newsAPI = (): JSX.Element => {
         news.map((element: { [key: string]: string }) => {
           return (
             <div className="newsContentsBox" font-size="11px">
-              <div className="newsThumbnail">
-                <img
-                  className="newsImg"
-                  src={element.thumbnail}
-                  alt="기사의 썸네일 사진입니다"
-                />
-              </div>
-              <div className="newsTitle">
-                <a href={element.link}>{element.title}</a>
-              </div>
+              <a href={element.link} target="_blank">
+                <div className="newsThumbnail">
+                  <img
+                    className="newsImg"
+                    src={element.thumbnail}
+                    alt="기사의 썸네일 사진입니다"
+                  />
+                </div>
+                <div className="newsTitle">{element.title}</div>
+              </a>
             </div>
           );
         })
