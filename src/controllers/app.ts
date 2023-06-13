@@ -34,11 +34,12 @@ async function stockDataRequest() {
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 let increaseNum = 0;
-const updateData = setInterval(async ()=> {
-  let test : any = await Object.entries(stockData['Time Series (5min)'])
+const stockDataLivetransmission = setInterval(async ()=> {
+  let stockObjectData : any = await Object.entries(stockData['Time Series (5min)'])
   // console.log(test[increaseNum][0])
-  console.log(test[increaseNum]);
-  io.emit("stockDataUpdate", stockData);
+  console.log(stockObjectData[increaseNum]);
+  let jsonData = JSON.stringify(stockData)
+  io.emit("stockDataUpdate", jsonData);
   increaseNum++
 }, 5 * 1000);
 
