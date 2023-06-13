@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Line,
-  LineChart, ResponsiveContainer, YAxis
-} from "recharts";
+import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 import stockContext, {
-  stockContextType
+  stockContextType,
 } from "../../src/views/js/stockContext";
 
 const StockData = (): JSX.Element => {
-  const stocktest = useContext<stockContextType | null>(stockContext);
+  const stockData = useContext<stockContextType | null>(stockContext);
   const [contextData, setContextData] = useState<any>({
     symbol: "잠시만 기다려주세요",
     price: {
@@ -17,12 +14,12 @@ const StockData = (): JSX.Element => {
       "2023-06-05": { open: 0, high: 0, low: 0, close: 0 },
     },
   });
-  const [test, setTest] = useState<any[]>([]);
+  const [stockPrice, setStockPrice] = useState<any[]>([]);
 
   useEffect(() => {
-    if (stocktest) {
-      setContextData(stocktest);
-      const priceArray: any[] = Object.entries(stocktest?.price).map(
+    if (stockData) {
+      setContextData(stockData);
+      const priceArray: any[] = Object.entries(stockData?.price).map(
         ([date, price]) => {
           return { date, ...price };
         }
@@ -30,7 +27,7 @@ const StockData = (): JSX.Element => {
       let intervalNumber = 0;
       let interval = setInterval(() => {
         let lastPrice = priceArray[intervalNumber];
-        setTest((prevTest) => [...prevTest, lastPrice]);
+        setStockPrice((prevTest) => [...prevTest, lastPrice]);
         intervalNumber++;
 
         if (intervalNumber >= priceArray.length) {
@@ -38,13 +35,13 @@ const StockData = (): JSX.Element => {
         }
       }, 5000);
     }
-  }, [stocktest]);
+  }, [stockData]);
 
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
         <ResponsiveContainer width={110} height={80}>
-          <LineChart width={110} height={40} data={test}>
+          <LineChart width={110} height={40} data={stockPrice}>
             <YAxis hide={true} domain={["auto", "auto"]} />
             <Line
               type="monotone"
@@ -58,12 +55,11 @@ const StockData = (): JSX.Element => {
     );
   };
 
-
   return (
     <div>
       {contextData?.symbol}
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
-      {test.length > 0 && <SimpleLineChart />}
+      {stockPrice.length > 0 && <SimpleLineChart />}
     </div>
   );
 };

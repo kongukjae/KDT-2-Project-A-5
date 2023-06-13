@@ -2,3 +2,4 @@
 .env
 stockData.json
 **/.DS_Store
+public
