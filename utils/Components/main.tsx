@@ -2,7 +2,7 @@ import React from "react";
 import "../../src/views/css/newsData";
 import "../../src/views/css/style";
 import DriverContentBox from "./driverContentsBox";
-
+import StockContentsBox from "./stockContentsBox";
 // ? CSS
 import "../../src/views/css/Area";
 
@@ -17,11 +17,11 @@ export default function Main() {
       <div className="main">
         <h3>국내 증시</h3>
         <div className="stockArea">
-          {/* <StockContentsBox /> */}
+          <StockContentsBox />
         </div>
         <h3>내가 자주 본 종목</h3>
         <div className="myStockArea">
-          {/* <StockContentsBox /> */}
+          <StockContentsBox />
         </div>
         <h3>모범 운전수</h3>
         <div className="driverArea">
