@@ -36,7 +36,7 @@ stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 const updateData = setInterval(() => {
   io.emit("stockDataUpdate", jsonData);
-}, 10 * 1000);
+}, 5 * 1000);
 
 // 최초 주식 데이터 요청
 io.on("connect", (socket) => {

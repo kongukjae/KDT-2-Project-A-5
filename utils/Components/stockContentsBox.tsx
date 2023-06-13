@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 import stockContext, {
   stockContextType,
@@ -15,6 +15,7 @@ const StockData = (): JSX.Element => {
     },
   });
   const [stockPrice, setStockPrice] = useState<any[]>([]);
+  const lineChartRef = useRef<any>(null);
 
   useEffect(() => {
     if (stockData) {
@@ -37,6 +38,16 @@ const StockData = (): JSX.Element => {
     }
   }, [stockData]);
 
+  useEffect(() => {
+    if (lineChartRef.current) {
+      lineChartRef.current.update();
+    }
+  }, [stockPrice]);
+
+  const addNewPriceToChart = (newPrice: any) => {
+    setStockPrice((prevPrices) => [...prevPrices, newPrice]);
+  };
+
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
@@ -44,6 +55,7 @@ const StockData = (): JSX.Element => {
           <LineChart width={110} height={40} data={stockPrice}>
             <YAxis hide={true} domain={["auto", "auto"]} />
             <Line
+              ref={lineChartRef}
               type="monotone"
               dataKey="1. open"
               stroke="#E63946"
