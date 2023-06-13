@@ -4,32 +4,32 @@ import io from "socket.io-client";
 import DayRange from "../../../utils/Components/dayRange";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
-import AccountScreen from "./account/accountScreen";
+import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
 import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
-import StationScreen from "./station/station";
+import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  let socketStockData : any = [];
-    // ! 소켓 연결 및 주식 데이터 파싱 구간
+  let socketStockData: any = [];
+  // ! 소켓 연결 및 주식 데이터 파싱 구간
   // const [stockContextData, setStockContextData] = useState<any>(null);
-  useEffect(()=> {
+  useEffect(() => {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
         // console.log(parsedData);
         socketStockData.push(parsedData);
         console.log(socketStockData)
-      } catch (error){
+      } catch (error) {
         console.error("주식 데이터 쿨타임");
       }
-      });
+    });
   }, []);
   useEffect(() => {
     switch (location.pathname) {
