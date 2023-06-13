@@ -3,6 +3,8 @@ import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 import stockContext, {
   stockContextType,
 } from "../../src/views/js/stockContext";
+import "../../src/views/css/stockChart.css"
+
 
 const StockData = (): JSX.Element => {
   const stockData = useContext<stockContextType | null>(stockContext);
@@ -15,7 +17,6 @@ const StockData = (): JSX.Element => {
     },
   });
   const [stockPrice, setStockPrice] = useState<any[]>([]);
-  const lineChartRef = useRef<any>(null);
 
   useEffect(() => {
     if (stockData) {
@@ -38,28 +39,22 @@ const StockData = (): JSX.Element => {
     }
   }, [stockData]);
 
-  useEffect(() => {
-    if (lineChartRef.current) {
-      lineChartRef.current.update();
-    }
-  }, [stockPrice]);
-
-  const addNewPriceToChart = (newPrice: any) => {
-    setStockPrice((prevPrices) => [...prevPrices, newPrice]);
-  };
-
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
-        <ResponsiveContainer width={110} height={80}>
+        <ResponsiveContainer
+          width="100%"
+          height={80}
+          className="chartContainer"
+        >
           <LineChart width={110} height={40} data={stockPrice}>
             <YAxis hide={true} domain={["auto", "auto"]} />
             <Line
-              ref={lineChartRef}
               type="monotone"
               dataKey="1. open"
               stroke="#E63946"
               dot={false}
+              isAnimationActive={false}
             />
           </LineChart>
         </ResponsiveContainer>
@@ -68,7 +63,7 @@ const StockData = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className="chartBox">
       {contextData?.symbol}
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
       {stockPrice.length > 0 && <SimpleLineChart />}
