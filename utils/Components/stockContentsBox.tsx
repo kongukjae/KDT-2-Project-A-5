@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import stockContext, {
-  stockContextType
-} from "../../src/views/js/stockContext";
+import stockContext from "../../src/views/js/stockContext";
 
 const StockData = (): JSX.Element => {
-  const stocktest = useContext<stockContextType | null>(stockContext);
-  console.log(stocktest)
+  const socketStockData = useContext<any>(stockContext);
+  console.log("")
+  // const stocktest = useContext<stockContextType | null>(stockContext);
   // const [contextData, setContextData] = useState<any>({
   //   symbol: "잠시만 기다려주세요",
   //   price: {
