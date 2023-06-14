@@ -70,7 +70,7 @@ app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설
 app.use(express.urlencoded({ extended: true })); // URL-encoded 
 app.use('/user', userCreate); // 회원가입 요청 미들워에
 app.use('/signIn', signIn); // 로그인 요청 미들웨어
-app.use('/yesterDayDataRequest',yesterDayStockData);
+app.use('/yesterDayDataRequest',yesterDayStockData); //전날 데이터 요청 하는 미들웨어
 
 app.use((req, res) => {
   res.status(404).send("not found");

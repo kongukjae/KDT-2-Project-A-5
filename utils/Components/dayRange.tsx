@@ -20,7 +20,7 @@ const DayRange = (): JSX.Element => {
     },
     // fetch 요청에 23230612과 같은식으로 보내야 함
     // split('-')
-    body: JSON.stringify({formattedDate}),
+    body: JSON.stringify({stockName : dayRangeContext[0],day : formattedDate}),
   })
     .then((response) => {
       if (response.ok) {
