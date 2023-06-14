@@ -2,5 +2,9 @@
 .env
 stockData.json
 **/.DS_Store
-public
 myenv
+
+# public 폴더의 모든 파일을 ignore처리
+public/*
+# public 폴더의 img 폴더는 git에서 추적하도록 처리
+!public/img
