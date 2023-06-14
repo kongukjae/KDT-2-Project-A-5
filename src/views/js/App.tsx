@@ -16,20 +16,19 @@ import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
-import stockContext from "./stockContext";
 const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];
-    // ! 소켓 연결 및 주식 데이터 파싱 구간
+  // ! 소켓 연결 및 주식 데이터 파싱 구간
   const [stockContextData, setStockContextData] = useState<any>(null);
-  useEffect(()=> {
+  useEffect(() => {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
         setStockContextData(parsedData);
-      } catch (error){
+      } catch (error) {
         console.error("주식 데이터 쿨타임");
       }
     });
