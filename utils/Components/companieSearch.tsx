@@ -1,3 +1,4 @@
+import { filter } from "cheerio/lib/api/traversing";
 import React, { useState, useEffect } from "react";
 import { ChangeEvent } from "react";
 
@@ -17,10 +18,21 @@ export default function companySearch() {
     console.log(e.target.value);
   };
 
+  const resultCompanie = () => {
+    const filteredCompanies = companies.filter((company) => {
+      return company[0].includes(input) || company[1].includes(input);
+    });
+    return filteredCompanies.map((company) => (
+      <div key={company[1]}>
+        {company[0]} : {company[1]}
+      </div>
+    ));
+  };
+
   return (
     <div className="main">
       <input onInput={getValue} />
-      <div className="stockData">{companies}</div>
+      <div className="stockData">{resultCompanie()}</div>
     </div>
   );
 }
