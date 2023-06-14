@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
-import TestCookie from "../../../utils/Components/cookie";
+import { getCookie } from "../../../utils/Components/cookie";
 import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
@@ -16,6 +16,8 @@ import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 const socket = io("localhost:8080");
 export default function App() {
+  const userData = getCookie('userData')
+  console.log(userData);
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];
@@ -81,7 +83,7 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/CompanyList" element={<CorpAutoComp />} />
-            <Route path="/chart" element={<TestCookie />} />
+            {/* <Route path="/chart" element={<TestCookie />} /> */}
           </Routes>
         </stockContext.Provider>
         {[
