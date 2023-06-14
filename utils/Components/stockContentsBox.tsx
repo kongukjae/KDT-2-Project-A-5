@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
+import '../../src/views/css/stockChart';
 import stockContext from "../../src/views/js/stockContext";
 let priceArray : any[] = [];
 const StockData = (): JSX.Element => {
@@ -31,10 +32,10 @@ const StockData = (): JSX.Element => {
     );
   };
   return (
-    <div>
+    <>
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
-      {<SimpleLineChart />}
-    </div>
+      <SimpleLineChart />
+    </>
   );
 };
 export default StockData

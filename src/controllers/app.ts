@@ -50,7 +50,7 @@ const stockDataLivetransmission = setInterval(() => {
   } catch (error) {
     console.error('stockDataLivetransmission 에러', error);
   }
-}, 1 * 1000);
+}, 1 * 2000);
 
 // 최초 주식 데이터 요청
 // io.on("connect", (socket) => {
