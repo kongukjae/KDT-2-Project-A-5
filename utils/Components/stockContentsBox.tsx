@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-// import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
+import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
 import stockContext from "../../src/views/js/stockContext";
 let priceArray : any[] = [];
 const StockData = (): JSX.Element => {
@@ -10,7 +10,7 @@ const StockData = (): JSX.Element => {
   if (socketStockData === null) {
     return <div>Loading...</div>;
   }
-    let openPrice = socketStockData[1][1]['1. open'];
+    let openPrice = socketStockData[1][1];
     priceArray.push(openPrice)
     console.log(priceArray)
 
@@ -52,30 +52,30 @@ const StockData = (): JSX.Element => {
   //   }
   // }, [stocktest]);
 
-  // const SimpleLineChart = () => {
-  //   return (
-  //     <div className="stockChart">
-  //       <ResponsiveContainer width={110} height={80}>
-  //         <LineChart width={110} height={40} data={chartArray}>
-  //           <YAxis hide={true} domain={["auto", "auto"]} />
-  //           <Line
-  //             type="monotone"
-  //             dataKey="1. open"
-  //             stroke="#E63946"
-  //             dot={false}
-  //           />
-  //         </LineChart>
-  //       </ResponsiveContainer>
-  //     </div>
-  //   );
-  // };
+  const SimpleLineChart = () => {
+    return (
+      <div className="stockChart">
+        <ResponsiveContainer width={110} height={80}>
+          <LineChart width={110} height={40} data={priceArray}>
+            <YAxis hide={true} domain={["auto", "auto"]} />
+            <Line
+              type="monotone"
+              dataKey="1. open"
+              stroke="#E63946"
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  };
 
 
   return (
     <div>
       {/* {contextData?.symbol} */}
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
-      {/* {<SimpleLineChart />} */}
+      {<SimpleLineChart />}
     </div>
   );
 };
