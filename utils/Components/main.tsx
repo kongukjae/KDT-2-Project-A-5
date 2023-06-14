@@ -17,10 +17,6 @@ import NewsContentsBox from "./newsApiParse";
 export default function Main() {
   const navigate = useNavigate();
   const cookieValue: string | undefined = Cookies.get('cookieName');
-  if (cookieValue !== undefined) {
-    const decodedValue = decodeURIComponent(cookieValue);
-    console.log(decodedValue); // 디코딩된 값 출력
-  }// "권예준" 출력
   const backToTheLogin = () => {
     navigate('/login');
   }
