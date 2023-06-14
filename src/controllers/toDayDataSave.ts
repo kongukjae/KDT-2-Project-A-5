@@ -38,12 +38,14 @@ fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IB
         console.log(err)
       }
       else {
-        dbConnect.query(`insert  INTO IBM_${day.split('-').join('')}( open, high, low,close, volume) VALUES("${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[0]}",${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[1]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[2]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[3]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[4]});`, (err, result) => {
+        dbConnect.query(`INSERT INTO IBM_${day.split('-').join('')}(open, high, low, close, volume) VALUES (${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[0]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[1]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[2]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[3]}, ${Object.values(testdata['Time Series (5min)'][dayList[dayTime]])[4]});`, (err, result) => {
           if (err) {
             console.log(err)
+          } else {
+            console.log("성공")
           }
-          console.log("성공")
-        })
+        });
+        
       }
 
     })
