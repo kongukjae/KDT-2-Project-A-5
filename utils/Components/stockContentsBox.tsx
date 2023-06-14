@@ -55,10 +55,11 @@ const StockData = (): JSX.Element => {
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
-        <ResponsiveContainer width={110} height={80}>
+        <ResponsiveContainer width="100%" height={80}>
           <LineChart width={110} height={40} data={priceArray}>
             <YAxis hide={true} domain={["auto", "auto"]} />
             <Line
+              isAnimationActive={false}
               type="monotone"
               dataKey="1. open"
               stroke="#E63946"

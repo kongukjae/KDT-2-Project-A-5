@@ -7,7 +7,7 @@ import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
-import yesterDayStockData from './yesterDayStockData'
+import yesterDayStockData from './yesterDayStockData';
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -50,7 +50,7 @@ const stockDataLivetransmission = setInterval(() => {
   } catch (error) {
     console.error('stockDataLivetransmission 에러', error);
   }
-}, 5 * 1000);
+}, 1 * 1000);
 
 // 최초 주식 데이터 요청
 // io.on("connect", (socket) => {
