@@ -66,6 +66,31 @@ const corpAutoComp = () => {
       stopLossPrice: stopLossPrice,
       maxPerson: maxPerson,
     };
+
+    fetch("/taxiCreate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("POST 요청이 실패했습니다.");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+
+
+
   };
 
   return (
