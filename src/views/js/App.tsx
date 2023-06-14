@@ -12,7 +12,7 @@ import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import TaxiScreen from "./taxiPage/taxiScreen";
-import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
+import StockSearch from "../../../utils/Components/stockSearch";
 import stockContext from "./stockContext";
 const socket = io("localhost:8080");
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
         const parsedData = JSON.parse(updatedData);
         // console.log(parsedData);
         socketStockData.push(parsedData);
-        console.log(socketStockData)
+        console.log(socketStockData);
       } catch (error) {
         console.error("주식 데이터 쿨타임");
       }
@@ -62,6 +62,9 @@ export default function App() {
       case "/taxi":
         setPageTitle("조회");
         break;
+      case "/stockSearch":
+        setPageTitle("종목 검색");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -83,15 +86,12 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/stock" element={<DayRange />} />
             <Route path="/taxi" element={<TaxiScreen />} />
-            <Route path="/CompanyList" element={<CorpAutoComp />} />
+            <Route path="/stockSearch" element={<StockSearch />} />
           </Routes>
         </stockContext.Provider>
-        {[
-          "/",
-          "/first",
-          "/signup",
-          "/login",
-        ].includes(location.pathname) ? null : (
+        {["/", "/first", "/signup", "/login"].includes(
+          location.pathname
+        ) ? null : (
           <Nav />
         )}
       </div>
