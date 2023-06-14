@@ -166,6 +166,7 @@ const corpAutoComp = () => {
           value={maxPerson}
           onChange={handleChangeMaxPerson}
         ></input>
+        <button type="submit">택시 생성</button>
       </form>
     </div>
   );
