@@ -1,13 +1,24 @@
 import express from "express";
+import dbConnect from "../../utils/DB/dbConfigure";
 
-const app = express();
+class yesterStockData {
+  stockNaem: string;
+  day: string;
+  constructor(stockNaem: string, day: string) {
+    this.stockNaem = stockNaem;
+    this.day = day;
+  }
+}
 
 
-app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-// 증가률 구하기 위한 전날 날짜
-export default function(req: express.Request, res: express.Response, next: express.NextFunction){
-  
-    console.log('이것은 data', req.body);
+export default function (req: express.Request, res: express.Response) {
+  const data = new yesterStockData(req.body.stockName, req.body.day);
+  console.log('이것은 data', data.stockNaem);
+  dbConnect.query(`select open from ${data.stockNaem}_${data.day}`, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(result);
+  })
 
 }
