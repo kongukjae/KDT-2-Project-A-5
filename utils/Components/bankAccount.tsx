@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Router, Routes, Route, Link, useNavigate } from "react-router-dom";
-import Deposit from "./deposit";
-
+import { Link, useNavigate } from "react-router-dom";
+import "../../src/views/css/bankAccount";
 import "../../src/views/css/style";
 
 export default function Account() {
-  const [balance, setBalance] = useState(999999999);
+  const [balance, setBalance] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
