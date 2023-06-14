@@ -8,7 +8,7 @@ import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
 import yesterDayStockData from './yesterDayStockData'
-import {userCreate, signIn} from './userController'
+import { userCreate, signIn } from './userController'
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -70,18 +70,22 @@ dbConnect.connect((err) => {
   console.log("DB연결에 성공했습니다");
 });
 app.use("/news", newsApp);
+
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(rootPublic, "index.html"));
 })
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-
-app.use('/user',userCreate);
-app.use('/singIn',signIn);
-
+app.use(express.urlencoded({ extended: true })); // URL-encoded 
+app.use('/user', userCreate); // 회원가입 요청 미들워에
+app.use('/signIn', signIn); // 로그인 요청 미들웨어
 app.use('/yesterDayDataRequest',yesterDayStockData);
+
+// app.post('/yesterDayDataRequest', (req: Request, res: Response) => {
+//   console.log('이것은 data', req.body);
+
+// })
 
 app.use((req, res) => {
   res.status(404).send("not found");
