@@ -81,7 +81,7 @@ app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문
 app.use('/user',userCreate);
 app.use('/singIn',signIn);
 
-app.use('/yesterData',yesterDayStockData);
+app.use('/yesterDayDataRequest',yesterDayStockData);
 
 app.use((req, res) => {
   res.status(404).send("not found");

@@ -10,4 +10,5 @@ export default function(req: express.Request, res: express.Response, next: expre
   
     console.log('이것은 data', req.body);
 
+    next();
 }
