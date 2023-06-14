@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
 import '../../src/views/css/stockChart';
 import stockContext from "../../src/views/js/stockContext";
+import DayRange from "./dayRange";
 let priceArray : any[] = [];
 const StockData = (): JSX.Element => {
   const socketStockData = useContext<any>(stockContext);
@@ -35,6 +36,7 @@ const StockData = (): JSX.Element => {
     <>
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
       <SimpleLineChart />
+      <DayRange />
     </>
   );
 };

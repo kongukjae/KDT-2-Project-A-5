@@ -39,7 +39,7 @@ const stockDataLivetransmission = setInterval(() => {
     let symbol = stockData["Meta Data"]["2. Symbol"];
     let stockObjectData: any = Object.entries(stockData['Time Series (5min)'])
     let jsonData = JSON.stringify([symbol, stockObjectData[increaseNum]]);
-    console.log(jsonData);
+    // console.log(jsonData);
     io.emit("stockDataUpdate", jsonData);
     increaseNum++
     if (increaseNum >= stockObjectData.length) {

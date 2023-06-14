@@ -5,7 +5,6 @@ const DayRange = (): JSX.Element => {
   // const dumyData =
   const [lastdata, setLastdata] = useState('');
   const dayRangeContext = useContext<any>(stockContext);
-  console.log("dayRangeContext : ", dayRangeContext);
   if (dayRangeContext === null) {
     return <div>Loading...</div>; // 데이터가 null인 동안 로딩 상태를 표시
   }
@@ -53,7 +52,7 @@ const DayRange = (): JSX.Element => {
   return (
     <div>
       {dayRangeContext[0]}
-      <div> 현재 즐감률 {roundedIncreasePercent.toFixed(2)}</div>
+      <div> 현재 증감률 {roundedIncreasePercent.toFixed(2)} %</div>
     </div>
 
   );
