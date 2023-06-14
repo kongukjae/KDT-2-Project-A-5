@@ -14,6 +14,7 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
+import StockSearch from "../../../utils/Components/stockSearch";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie('userData')
@@ -21,14 +22,14 @@ export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];
-    // ! 소켓 연결 및 주식 데이터 파싱 구간
+  // ! 소켓 연결 및 주식 데이터 파싱 구간
   const [stockContextData, setStockContextData] = useState<any>(null);
-  useEffect(()=> {
+  useEffect(() => {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
         setStockContextData(parsedData);
-      } catch (error){
+      } catch (error) {
         console.error("주식 데이터 쿨타임");
       }
     });
@@ -62,6 +63,9 @@ export default function App() {
       case "/taxi":
         setPageTitle("조회");
         break;
+      case "/stockSearch":
+        setPageTitle("종목 검색");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -82,16 +86,13 @@ export default function App() {
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
-            <Route path="/CompanyList" element={<CorpAutoComp />} />
-            {/* <Route path="/chart" element={<TestCookie />} /> */}
+            <Route path="/stockSearch" element={<StockSearch />} />
+            <Route path="/chart" element={<StockData />} />
           </Routes>
         </stockContext.Provider>
-        {[
-          "/",
-          "/first",
-          "/signup",
-          "/login",
-        ].includes(location.pathname) ? null : (
+        {["/", "/first", "/signup", "/login"].includes(
+          location.pathname
+        ) ? null : (
           <Nav />
         )}
       </div>
