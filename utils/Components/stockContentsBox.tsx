@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useContext, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
 import stockContext from "../../src/views/js/stockContext";
@@ -39,3 +38,4 @@ const StockData = (): JSX.Element => {
     </div>
   );
 };
+export default StockData
