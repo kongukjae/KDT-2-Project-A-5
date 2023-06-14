@@ -7,7 +7,7 @@ import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
-
+import yesterDayStockData from './yesterDayStockData'
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -171,15 +171,8 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
   })
 })
-app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-// 증가률 구하기 위한 전날 날짜
-app.post('/data', (req: Request, res: Response) => {
 
-  console.log('이것은 data', req.body);
-
-
-})
+app.use('/data',yesterDayStockData);
 
 app.use((req, res) => {
   res.status(404).send("not found");
