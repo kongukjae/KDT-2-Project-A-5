@@ -18,7 +18,7 @@ export default function (req: express.Request, res: express.Response) {
     if (err) {
       console.log(err);
     }
-    console.log(result);
+    res.send(result);
   })
 
 }
