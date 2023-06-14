@@ -51,9 +51,26 @@ const corpAutoComp = () => {
   const handleChangeMaxPerson = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMaxPerson(e.target.value);
   };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("제출 확인");
+    const data = {
+      userName: userName,
+      stocks: stocks,
+      recruitmentPeriod: recruitmentPeriod,
+      maximumDrivePeriod: maximumDrivePeriod,
+      purchasePrice: purchasePrice,
+      stockAmount: stockAmount,
+      targetPrice: targetPrice,
+      stopLossPrice: stopLossPrice,
+      maxPerson: maxPerson,
+    };
+  };
+
   return (
     <div className="main">
-      <form action="" method="">
+      <form action="" method="" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="기사이름"
