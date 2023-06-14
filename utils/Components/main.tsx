@@ -16,7 +16,7 @@ import NewsContentsBox from "./newsApiParse";
 
 export default function Main() {
   const navigate = useNavigate();
-  const cookieValue = getCookie('cookieName');
+  const cookieValue = getCookie('userName');
   const backToTheLogin = () => {
     navigate('/login');
   }

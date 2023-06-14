@@ -17,7 +17,7 @@ import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
 const socket = io("localhost:8080");
 export default function App() {
-  const userData = getCookie('userData')
+  const userData = getCookie('userName')
   console.log(userData);
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
@@ -87,7 +87,6 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
-            <Route path="/chart" element={<StockData />} />
           </Routes>
         </stockContext.Provider>
         {["/", "/first", "/signup", "/login"].includes(
