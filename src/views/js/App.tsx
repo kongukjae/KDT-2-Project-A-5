@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
 import DayRange from "../../../utils/Components/dayRange";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
-import AccountScreen from "./account/accountScreen";
+import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
 import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
-import StationScreen from "./station/station";
+import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
+import TaxiScreen from "./taxiPage/taxiScreen";
 const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
@@ -55,6 +57,9 @@ export default function App() {
       case "/signup":
         setPageTitle("회원가입");
         break;
+      case "/taxi":
+        setPageTitle("조회");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -75,6 +80,8 @@ export default function App() {
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/stock" element={<DayRange />} />
+            <Route path="/taxi" element={<TaxiScreen />} />
+            <Route path="/CompanyList" element={<CorpAutoComp />} />
           </Routes>
         </stockContext.Provider>
         {[

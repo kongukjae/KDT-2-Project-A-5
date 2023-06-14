@@ -7,7 +7,7 @@ import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
-
+import yesterDayStockData from './yesterDayStockData'
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -16,7 +16,7 @@ const socketServer = http.createServer(app);
 const io = new Server(socketServer);
 //! 최초 주식 데이터 요청 함수
 // let jsonData : any;
-let stockData : any
+let stockData: any
 async function stockDataRequest() {
   try {
     const symbol = "IBM";
@@ -24,7 +24,7 @@ async function stockDataRequest() {
     const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
     stockData = response.data;
     //api로 받아온 데이터 json으로 전송
-    
+
   } catch (error) {
     console.error('주식 데이터를 받아오는데 실패했습니다', error);
   }
@@ -34,17 +34,17 @@ async function stockDataRequest() {
 stockDataRequest();
 // 3분에 한번 데이터 쏴주기
 let increaseNum = 0;
-const stockDataLivetransmission = setInterval(()=> {
+const stockDataLivetransmission = setInterval(() => {
   try {
     let symbol = stockData["Meta Data"]["2. Symbol"];
-    let stockObjectData : any = Object.entries(stockData['Time Series (5min)'])
+    let stockObjectData: any = Object.entries(stockData['Time Series (5min)'])
     // console.log(test[increaseNum][0])
     // console.log(stockObjectData[increaseNum]);
     let jsonData = JSON.stringify([symbol, stockObjectData[increaseNum]]);
     console.log(jsonData);
     io.emit("stockDataUpdate", jsonData);
     increaseNum++
-    if(increaseNum >= stockObjectData.length ) {
+    if (increaseNum >= stockObjectData.length) {
       clearInterval(stockDataLivetransmission);
     }
   } catch (error) {
@@ -68,7 +68,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-app.use("/news",newsApp);
+app.use("/news", newsApp);
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.get('*', (req: Request, res: Response) => {
@@ -163,7 +163,7 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
     if (Object.values(result).length === 0) {
       boxTest = false;
-    res.send(boxTest);
+      res.send(boxTest);
     }
     // 로그인 실패
     else {
@@ -171,6 +171,9 @@ app.post('/signIn', (req: Request, res: Response) => {
     }
   })
 })
+
+app.use('/data',yesterDayStockData);
+
 app.use((req, res) => {
   res.status(404).send("not found");
 });
