@@ -82,11 +82,6 @@ app.use('/user', userCreate); // 회원가입 요청 미들워에
 app.use('/signIn', signIn); // 로그인 요청 미들웨어
 app.use('/yesterDayDataRequest',yesterDayStockData);
 
-// app.post('/yesterDayDataRequest', (req: Request, res: Response) => {
-//   console.log('이것은 data', req.body);
-
-// })
-
 app.use((req, res) => {
   res.status(404).send("not found");
 });
