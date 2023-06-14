@@ -16,20 +16,18 @@ const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  let socketStockData : any = [];
+  // let socketStockData : any = [];
     // ! 소켓 연결 및 주식 데이터 파싱 구간
-  // const [stockContextData, setStockContextData] = useState<any>(null);
+  const [stockContextData, setStockContextData] = useState<any>(null);
   useEffect(()=> {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
-        // console.log(parsedData);
-        socketStockData.push(parsedData);
-        console.log(socketStockData)
+        setStockContextData(parsedData);
       } catch (error){
         console.error("주식 데이터 쿨타임");
       }
-      });
+    });
   }, []);
   useEffect(() => {
     switch (location.pathname) {
@@ -67,7 +65,7 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        <stockContext.Provider value={socketStockData}>
+        <stockContext.Provider value={stockContextData}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
             <Route path="/station" element={<StationScreen />} />
