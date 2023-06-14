@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import "../../src/views/css/newsData";
 import "../../src/views/css/style";
 import DriverContentBox from "./driverContentsBox";
@@ -14,12 +15,15 @@ import "../../src/views/css/Area";
 import NewsContentsBox from "./newsApiParse";
 
 export default function Main() {
+  const navigate = useNavigate();
   const cookieValue: string | undefined = Cookies.get('cookieName');
-  // if (cookieValue !== undefined) {
-  //   const decodedValue = decodeURIComponent(cookieValue);
-  //   console.log(decodedValue); // 디코딩된 값 출력
-  // }// "권예준" 출력
-
+  if (cookieValue !== undefined) {
+    const decodedValue = decodeURIComponent(cookieValue);
+    console.log(decodedValue); // 디코딩된 값 출력
+  }// "권예준" 출력
+  const backToTheLogin = () => {
+    navigate('/login');
+  }
   if (cookieValue) {
     return (
       <>
@@ -50,6 +54,7 @@ export default function Main() {
       <>
         <div className="main">
           <h3>권한이 없습니다. 로그인이 필요합니다.</h3>
+          <button onClick={backToTheLogin}>로그인 하러 가기</button>
         </div>
       </>
     );
