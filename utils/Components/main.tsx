@@ -1,9 +1,9 @@
 import React from "react";
 import "../../src/views/css/newsData";
 import "../../src/views/css/style";
+import { getCookie } from './cookie';
 import DriverContentBox from "./driverContentsBox";
 import StockContentsBox from "./stockContentsBox";
-import Cookies from 'js-cookie';
 
 // ? CSS
 import "../../src/views/css/Area";
@@ -14,11 +14,7 @@ import "../../src/views/css/Area";
 import NewsContentsBox from "./newsApiParse";
 
 export default function Main() {
-  const cookieValue: string | undefined = Cookies.get('cookieName');
-  // if (cookieValue !== undefined) {
-  //   const decodedValue = decodeURIComponent(cookieValue);
-  //   console.log(decodedValue); // 디코딩된 값 출력
-  // }// "권예준" 출력
+  const cookieValue = getCookie('cookieName');
 
   if (cookieValue) {
     return (

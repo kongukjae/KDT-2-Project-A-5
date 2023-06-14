@@ -37,9 +37,11 @@ export default function Main() {
         }
       })
       .then((data) => {
-        if(data === true){
+        if(data.boolean === true){
+          console.log("테스트",data.result[0].userName)
+          let test = decodeURIComponent(data.result[0].userName)
+          setCookie('userData', test,)
           navigate('/home');
-          setCookie('userData', email)
           // 로그인 성공했을 때 쿠키 생성
         }
         else{
