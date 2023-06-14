@@ -1,9 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+// import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
 import stockContext from "../../src/views/js/stockContext";
-
+let priceArray : any[] = [];
 const StockData = (): JSX.Element => {
   const socketStockData = useContext<any>(stockContext);
-  console.log("")
+  const [priceState, setPriceState] = useState<any[]>([])
+  // 주식 데이터를 담을 배열
+  // 데이터가 null인 동안 로딩 상태를 표시
+  if (socketStockData === null) {
+    return <div>Loading...</div>;
+  }
+    let openPrice = socketStockData[1][1]['1. open'];
+    priceArray.push(openPrice)
+    console.log(priceArray)
+
+
+
+    // chartArray.push(socketStockData[1][1]['1. open'])
+  
+
+  // console.log(chartArray)
   // const stocktest = useContext<stockContextType | null>(stockContext);
   // const [contextData, setContextData] = useState<any>({
   //   symbol: "잠시만 기다려주세요",
@@ -40,7 +56,7 @@ const StockData = (): JSX.Element => {
   //   return (
   //     <div className="stockChart">
   //       <ResponsiveContainer width={110} height={80}>
-  //         <LineChart width={110} height={40} data={test}>
+  //         <LineChart width={110} height={40} data={chartArray}>
   //           <YAxis hide={true} domain={["auto", "auto"]} />
   //           <Line
   //             type="monotone"
@@ -59,7 +75,7 @@ const StockData = (): JSX.Element => {
     <div>
       {/* {contextData?.symbol} */}
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
-      {/* {test.length > 0 && <SimpleLineChart />} */}
+      {/* {<SimpleLineChart />} */}
     </div>
   );
 };
