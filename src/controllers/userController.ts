@@ -1,11 +1,6 @@
-import express ,{Request, Response , NextFunction}from 'express';
+import {Request, Response}from 'express';
 import crypto from 'crypto';
 import dbConnect from "../../utils/DB/dbConfigure";
-const app = express();
-
-
-app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
 
 class User {
   // 타입스크립트에서 클래스의 속성을 초기화하기 위해서는 다음과 같이 클래스 내에 해당 속성을 선언하고, 생성자(Constructor)에서 초기값을 할당해야 합니다.
@@ -39,32 +34,21 @@ class User {
 
 }
 
-export function userCreate(req : Request, res : Response ,next : NextFunction){
+export function userCreate(req : Request, res : Response ){
 
   const { email, password, name, phoneNumber } = req.body; // 요청의 본문을 가져옵니다.
   const userInstance = new User(email, password, name, phoneNumber, 123412314)
-  console.log('테스트 클래스', userInstance);
-  // 비밀번호 암호화를 할 수 있도록 클래스 안에 암호화 해주는 함수를 추가 해주었다.
-  console.log('테스트 클래스 비밀번호 암호화', userInstance._password);
-  console.log("데이터", req.body); // 본문의 내용을 출력하거나 원하는 작업을 수행합니다.
-
   const keys = Object.keys(userInstance);
   const values = Object.values(userInstance);
-
-  console.log('키값', keys.join(','));
-  console.log('벨류', values.map(x => {
-    return "'" + x + "'";
-  }).join(','));
-
   dbConnect.query(`insert INTO user_infor(${keys.join(',')}) VALUES(?);`, [values], (err, result) => {
     if (err) {
       console.log(err);
     }
-    console.log(result);
+
 
   });
   res.send('true');
-  next();
+
 }
 
 class Login {
@@ -80,7 +64,7 @@ class Login {
   }
 }
 
-export function signIn(req: Request, res: Response , next : NextFunction){
+export function signIn(req: Request, res: Response ){
   let boxTest: boolean = true;
   const test = new Login(req.body.userId, req.body.password);
   // 로그인 키값 확인
@@ -95,7 +79,7 @@ export function signIn(req: Request, res: Response , next : NextFunction){
     // 로그인 실패
     else {
       res.send(boxTest);
-      next();
+  
     }
   })
 
