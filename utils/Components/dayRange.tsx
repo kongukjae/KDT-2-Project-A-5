@@ -5,7 +5,10 @@ const DayRange = (): JSX.Element => {
   // const dumyData =
   const dayRangeContext = useContext<any>(stockContext);
   console.log("dayRangeContext : ", dayRangeContext);
-  
+  if (dayRangeContext === null) {
+    return <div>Loading...</div>; // 데이터가 null인 동안 로딩 상태를 표시
+  }
+
   // const [dayRangeState, setDayRangeState] = useState<any>({
   //   symbol: "잠시만 기다려주세요",
   //   price: {
