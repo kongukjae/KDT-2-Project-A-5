@@ -1,7 +1,7 @@
 import React from 'react';
 // import {useCookies} from 'react-cookie'
 
-const testCookie =  ():JSX.Element => {
+const TestCookie =  ():JSX.Element => {
   return <></>
 }
-export default testCookie;
+export default TestCookie;

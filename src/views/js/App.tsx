@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import TestCookie from "../../../utils/Components/cookie";
 import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
-import DayRange from "../../../utils/Components/dayRange";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
-import StockData from "../../../utils/Components/stockContentsBox";
 import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -80,10 +79,9 @@ export default function App() {
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/account" element={<AccountScreen />} />
-            <Route path="/stock" element={<DayRange />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/CompanyList" element={<CorpAutoComp />} />
-            <Route path="/chart" element={<StockData />} />
+            <Route path="/chart" element={<TestCookie />} />
           </Routes>
         </stockContext.Provider>
         {[
