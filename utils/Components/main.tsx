@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "../../src/views/css/newsData";
 import "../../src/views/css/style";
+import { getCookie } from './cookie';
 import DriverContentBox from "./driverContentsBox";
 import StockContentsBox from "./stockContentsBox";
-import Cookies from 'js-cookie';
 
 // ? CSS
 import "../../src/views/css/Area";

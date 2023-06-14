@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../src/views/css/style";
 import { useNavigate } from 'react-router-dom';
-
+import "../../src/views/css/style";
+import { setCookie } from "./cookie";
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +17,6 @@ export default function Main() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
     const data = {
       userId: email,
       password: password,
@@ -38,8 +37,12 @@ export default function Main() {
         }
       })
       .then((data) => {
-        if(data === true){
+        if(data.boolean === true){
+          console.log("테스트",data.result[0].userName)
+          let test = decodeURIComponent(data.result[0].userName)
+          setCookie('userData', test,)
           navigate('/home');
+          // 로그인 성공했을 때 쿠키 생성
         }
         else{
           alert('로그인 실패')
