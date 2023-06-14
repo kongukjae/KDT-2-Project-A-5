@@ -18,6 +18,8 @@ export default function companySearch() {
     setInput(e.target.value);
   };
 
+
+  
   const handleMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.classList.add("hovered");
   };
