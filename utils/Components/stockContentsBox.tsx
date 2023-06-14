@@ -12,7 +12,6 @@ const StockData = (): JSX.Element => {
   }
     let openPrice = socketStockData[1][1];
     priceArray.push(openPrice)
-    console.log(priceArray)
   const SimpleLineChart = () => {
     return (
       <div className="stockChart">
