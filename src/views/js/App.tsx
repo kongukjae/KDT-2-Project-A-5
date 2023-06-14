@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
 import DayRange from "../../../utils/Components/dayRange";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+import StockData from "../../../utils/Components/stockContentsBox";
 import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -11,6 +13,7 @@ import LoginScreen from "./loginPage/loginScreen";
 import MainScreen from "./mainPage/mainScreen";
 import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
+import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
 import stockContext from "./stockContext";
@@ -18,17 +21,15 @@ const socket = io("localhost:8080");
 export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
-  let socketStockData: any = [];
-  // ! 소켓 연결 및 주식 데이터 파싱 구간
-  // const [stockContextData, setStockContextData] = useState<any>(null);
-  useEffect(() => {
+  // let socketStockData : any = [];
+    // ! 소켓 연결 및 주식 데이터 파싱 구간
+  const [stockContextData, setStockContextData] = useState<any>(null);
+  useEffect(()=> {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
-        // console.log(parsedData);
-        socketStockData.push(parsedData);
-        console.log(socketStockData);
-      } catch (error) {
+        setStockContextData(parsedData);
+      } catch (error){
         console.error("주식 데이터 쿨타임");
       }
     });
@@ -75,7 +76,7 @@ export default function App() {
     <>
       <div className="container">
         <Header title={pageTitle} />
-        <stockContext.Provider value={socketStockData}>
+        <stockContext.Provider value={stockContextData}>
           <Routes>
             <Route path="/" element={<IntroPage />} />
             <Route path="/station" element={<StationScreen />} />
@@ -87,6 +88,7 @@ export default function App() {
             <Route path="/stock" element={<DayRange />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
+            <Route path="/chart" element={<StockData />} />
           </Routes>
         </stockContext.Provider>
         {["/", "/first", "/signup", "/login"].includes(
