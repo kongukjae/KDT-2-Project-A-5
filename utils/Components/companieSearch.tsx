@@ -14,7 +14,6 @@ export default function companySearch() {
 
   const getValue = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
-    console.log(e.target.value);
   };
 
   const resultCompanie = () => {
@@ -30,8 +29,13 @@ export default function companySearch() {
 
   return (
     <div className="main">
-      <input onInput={getValue} />
-      <div className="stockData">{resultCompanie()}</div>
+      <input
+        onInput={getValue}
+        placeholder="종목명 혹은 종목번호를 입력해주세요."
+      />
+      {input && resultCompanie().length > 0 && (
+        <div className="stockData">{resultCompanie()}</div>
+      )}
     </div>
   );
 }
