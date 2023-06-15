@@ -1,10 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import StockSearch from "./stockSearch";
-import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { getCookie } from "./cookie";
 
-Modal.setAppElement("#root");
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 const corpAutoComp = () => {
   const [userName, setUserName] = useState("");
@@ -142,10 +150,13 @@ const corpAutoComp = () => {
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={handleCloseModal}
+          style={customStyles}
         >
           {/* 모달창 띄우기 */}
-          <h2>원하는 종목 혹은 코드를 입력해주세요</h2>
-          <button onClick={handleCloseModal}>돌아가기</button>
+          <div className="serachInterface">
+            <h2>원하는 종목 혹은 코드를 입력해주세요</h2>
+            <button onClick={handleCloseModal}>돌아가기</button>
+          </div>
           <StockSearch setStocks={setStocks} closeModal={handleCloseModal} />
           {/* 기존에 생성했던 컴포넌트*/}
         </Modal>

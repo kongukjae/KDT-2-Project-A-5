@@ -1,7 +1,4 @@
-/* .stockList{
-  display: none;
-} */
-.mainInner{
+.mainInner {
   overflow: auto;
 }
 .companyItem {
@@ -12,9 +9,11 @@
   background-color: lightblue;
 }
 
-
-
-.flexBetween{
+.flexBetween {
   display: flex;
   justify-content: space-between;
+}
+
+.stockSearch {
+  height: 500px;
 }
