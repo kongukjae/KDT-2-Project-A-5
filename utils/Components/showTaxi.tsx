@@ -17,7 +17,7 @@ useEffect(()=> {
   
 },[])
   return (
-    <div>
+    <div id="showTaxiContainer">
       {taxiData ? (
         // 데이터가 존재하는 경우에만 접근
         taxiData.map((data: any, index: number) => (
