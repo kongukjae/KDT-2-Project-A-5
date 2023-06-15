@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import StockSearch from "./stockSearch";
 import { Link } from "react-router-dom";
-import Modal from "react-modal"
-import CompanySearch from "./stockSearch";
+import Modal from "react-modal";
 
 const corpAutoComp = () => {
   const [userName, setUserName] = useState("");
@@ -14,7 +13,9 @@ const corpAutoComp = () => {
   const [targetPrice, setTargetPrice] = useState("");
   const [stopLossPrice, setStopLossPrice] = useState("");
   const [maxPerson, setMaxPerson] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const inputStock = useRef<any>("");
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -79,24 +80,29 @@ const corpAutoComp = () => {
           name="stocks"
           value={stocks}
           onChange={handleChangeStocks}
+          ref={inputStock}
         ></input>
         {/* <Link to={"/stockSearch"}>    //기존 링크 이동방식, 추후 삭제요망
           <button type="button" value="클릭">
             검색
           </button>
         </Link> */}
-        
-        <a href="#" onClick={handleOpenModal}> {/* 모달방식 */}
+
+        <a href="#" onClick={handleOpenModal}>
+          {" "}
+          {/* 모달방식 */}
           <button type="button" value="클릭">
             검색
           </button>
         </a>
 
-        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}> {/* 모달창 띄우기 */}
+        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+          {" "}
+          {/* 모달창 띄우기 */}
           <h2>모달 제목</h2>
           <p>모달 내용</p>
-          
-          <StockSearch /> {/* 기존에 생성했던 컴포넌트*/}
+          <button onClick={handleCloseModal}>돌아가기</button>
+          <StockSearch setStocks={setStocks} /> {/* 기존에 생성했던 컴포넌트*/}
         </Modal>
         <input
           type="date"

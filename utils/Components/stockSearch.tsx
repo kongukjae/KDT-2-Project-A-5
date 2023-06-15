@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ChangeEvent } from "react";
-import "../../src/views/css/stockSearch.css"
+import "../../src/views/css/stockSearch.css";
 
-export default function companySearch() {
+export default function companySearch({ setStocks }: any) {
   const [input, setInput] = useState("");
   const [companies, setCompanies] = useState<[string, string][]>([]);
+
+  const handleSetStock = (stockName: string) => {
+    setStocks(stockName);
+  };
 
   useEffect(() => {
     fetch("../../src/models/stock.data.json")
@@ -18,8 +22,6 @@ export default function companySearch() {
     setInput(e.target.value);
   };
 
-
-  
   const handleMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.classList.add("hovered");
   };
@@ -29,8 +31,7 @@ export default function companySearch() {
   };
 
   const filteredCompanies = companies.filter(
-    (company) =>
-      company[0].includes(input) || company[1].includes(input)
+    (company) => company[0].includes(input) || company[1].includes(input)
   );
 
   return (
@@ -48,6 +49,7 @@ export default function companySearch() {
                 className="companyItem"
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
+                onClick={() => handleSetStock(company[1])}
               >
                 {company[0]} : {company[1]}
               </div>
