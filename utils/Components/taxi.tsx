@@ -80,22 +80,23 @@ const corpAutoComp = () => {
           value={stocks}
           onChange={handleChangeStocks}
         ></input>
-        {/* <Link to={"/stockSearch"}>
+        {/* <Link to={"/stockSearch"}>    //기존 링크 이동방식, 추후 삭제요망
           <button type="button" value="클릭">
             검색
           </button>
         </Link> */}
-        <a href="#" onClick={handleOpenModal}>
+        
+        <a href="#" onClick={handleOpenModal}> {/* 모달방식 */}
           <button type="button" value="클릭">
             검색
           </button>
         </a>
 
-        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}> {/* 모달창 띄우기 */}
           <h2>모달 제목</h2>
           <p>모달 내용</p>
-          {/* 모달 내용을 추가합니다. */}
-          <StockSearch />
+          
+          <StockSearch /> {/* 기존에 생성했던 컴포넌트*/}
         </Modal>
         <input
           type="date"
