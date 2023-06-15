@@ -62,7 +62,8 @@ body {
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -73,26 +74,55 @@ body {
 
 /* 내정보 계좌 스타일링  */
 .myAccount{
-  width: 347px;
-  height: 81px;
-}
+border: 1px #C4C4C4 solid;
+display: flex;
+justify-content: center;
 
+}
 /* 입출금 창 버튼 스타일링 */
 .number-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .button {
   padding: 10px;
   width: 100px;
 }
-
 /* 상자 스타일링 */
 
 .grayColorBox {
   border: 1px #C4C4C4 solid;
   box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+  border-radius: 10px;
 }
+/* 회원가입 페이지 스타일링 */
+.BackgroundColorGray{ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #D9D9D9;
+  Width: 360px;
+  height: 649px;
+  justify-content: space-around;
+  }
+  
+/* 입력창 스타일링 */
+.inputText{
+  width: 340px;
+  height: 60px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  }
+
+/* 회원가입 내부 스타일링 */
+.inputWhiteBox{
+  box-sizing: border-box;
+  
+    width: 340px;
+    height: 160px;
+  
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
