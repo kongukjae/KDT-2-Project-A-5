@@ -124,6 +124,7 @@ const corpAutoComp = () => {
             name="userName"
             value={userName}
             readOnly
+            required
           />
         </div>
         <div className="flexBetween">
@@ -138,6 +139,7 @@ const corpAutoComp = () => {
               onClick={handleOpenModal}
               ref={inputStock}
               readOnly
+              required
             ></input>
             <a href="#" onClick={handleOpenModal}>
               <button type="button" value="클릭">
@@ -168,6 +170,7 @@ const corpAutoComp = () => {
             name="recruitmentPeriod"
             value={recruitmentPeriod}
             onChange={handleChangeRecruitmentPeriod}
+            required
           ></input>
         </div>
         <div className="flexBetween">
@@ -178,6 +181,7 @@ const corpAutoComp = () => {
             name="maximumDrivePeriod"
             value={maximumDrivePeriod}
             onChange={handleChangeMaximumDrivePeriod}
+            required
           ></input>
         </div>
         <div className="flexBetween">
@@ -188,6 +192,7 @@ const corpAutoComp = () => {
             name="purchasePrice"
             value={purchasePrice}
             onChange={handleChangePurchasePrice}
+            required
           ></input>
         </div>
         <div className="flexBetween">
@@ -198,6 +203,7 @@ const corpAutoComp = () => {
             name="stockAmount"
             value={stockAmount}
             onChange={handleChangeStockAmount}
+            required
           ></input>
         </div>
         <div className="flexBetween">
@@ -208,6 +214,7 @@ const corpAutoComp = () => {
             name="targetPrice"
             value={targetPrice}
             onChange={handleChangeTargetPrice}
+            required
           ></input>
         </div>
         <div className="flexBetween">
@@ -218,6 +225,7 @@ const corpAutoComp = () => {
             name="stopLossPrice"
             value={stopLossPrice}
             onChange={handleChangeStopLossPrice}
+            required
           ></input>
         </div>
         <div className="flexBetween">
@@ -230,6 +238,7 @@ const corpAutoComp = () => {
             max="10"
             value={maxPerson}
             onChange={handleChangeMaxPerson}
+            required
           ></input>
         </div>
         <button type="submit">택시 생성</button>
