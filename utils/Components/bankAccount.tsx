@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../src/views/css/style";
 import Modal from "react-modal";
 
@@ -24,12 +24,21 @@ export default function Account() {
   };
 
   const handleWithdraw = () => {
-    const newBalance = balance - amount;
-    setBalance(newBalance);
+    if (balance >= amount) {
+      setBalance(balance - amount);
+      setAmount(0);
+    } else {
+      alert("잔액이 부족합니다.");
+    }
     setModalIsOpen(false); // 모달 닫기
     setAmount(0); // 입력 필드 초기화
   };
 
+  const handleDelete = () => {
+    setAmount((prevAmount) => Math.floor(prevAmount / 10));
+  };
+
+  /* 모달창 */
   const handleModalOpen = () => {
     setModalIsOpen(true);
   };
@@ -53,23 +62,35 @@ export default function Account() {
         contentLabel="Example Modal"
         style={modalStyles}
       >
-        <button onClick={handleModalClose}>X</button>
-        <div>입출금창</div>
+        <div>
+          <button onClick={handleModalClose}>X</button>
+          <div>입출금창</div>
+        </div>
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
         />
-        <div>
+        <div className="number-buttons">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
-            <button key={num} onClick={() => handleNumberButtonClick(num)}>
+            <button
+              className="button"
+              key={num}
+              onClick={() => handleNumberButtonClick(num)}
+            >
               {num}
             </button>
           ))}
-          {/* 추가적인 숫자 버튼을 여기에 추가할 수 있습니다 */}
+          <button key="del" onClick={handleDelete}>
+            backspace
+          </button>
         </div>
-        <button onClick={handleDeposit}>입금</button>
-        <button onClick={handleWithdraw}>출금</button>
+        <button className="button" onClick={handleDeposit}>
+          입금
+        </button>
+        <button className="button" onClick={handleWithdraw}>
+          출금
+        </button>
       </Modal>
     </div>
   );

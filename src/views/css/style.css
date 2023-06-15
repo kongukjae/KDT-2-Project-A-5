@@ -75,3 +75,15 @@ body {
 .myAccount{
 border: 1px #C4C4C4 solid;
 }
+
+/* 입출금 창 버튼 스타일 */
+.number-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button {
+  padding: 10px;
+  width: 100px;
+}
