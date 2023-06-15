@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AiFillRobot } from "react-icons/ai";
 import "../../src/views/css/showTaxi";
 const ShowTaxi = () : JSX.Element => {
 const [taxiData, setTaxiData] = useState<any>();
@@ -36,7 +37,13 @@ useEffect(()=> {
             {/* 동승자 모집 기간 */}
             <div className="commonFontSize">{data['recruitmentPeriod']}</div>
             {/* 최대 인원 */}
-            <div>{data['maxPerson']}</div>
+            <div>{data['maxPerson']}
+            <AiFillRobot size={24} color='gray'/>
+            <AiFillRobot size={24} color='gray'/>
+            <AiFillRobot size={24} color='gray'/>
+            <AiFillRobot size={24} color='gray'/>
+            <AiFillRobot size={24} color='gray'/>
+            </div>
           </div>
         ))
       ) : (
