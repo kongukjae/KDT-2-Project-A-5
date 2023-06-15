@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 const ShowTaxi = () : JSX.Element => {
 useEffect(()=> {
-  fetch('/showTaxiData',{
-    method : 'GET',
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch('/showTaxiData')
   .then(response => response.json())
   .then(data => {
     console.log(data)
