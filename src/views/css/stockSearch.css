@@ -1,6 +1,13 @@
-.stockList{
+/* .stockList{
   display: none;
-}
+} */
 .mainInner{
   overflow: auto;
+}
+.companyItem {
+  transition: background-color 0.3s;
+}
+
+.hovered {
+  background-color: lightblue;
 }

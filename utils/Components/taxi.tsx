@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import StockSearch from "./stockSearch";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 
 const corpAutoComp = () => {
   const [userName, setUserName] = useState("");
@@ -12,6 +13,18 @@ const corpAutoComp = () => {
   const [targetPrice, setTargetPrice] = useState("");
   const [stopLossPrice, setStopLossPrice] = useState("");
   const [maxPerson, setMaxPerson] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const inputStock = useRef<any>("");
+
+  const handleOpenModal = () => {
+    setModalIsOpen(true);
+  };
+
+  // 모달을 닫기 위한 함수입니다.
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -105,16 +118,39 @@ const corpAutoComp = () => {
         />
         <input
           type="text"
-          placeholder="회사명"
+          placeholder="종목을 검색해주세요"
           name="stocks"
           value={stocks}
           onChange={handleChangeStocks}
+          ref={inputStock}
+          readOnly
         ></input>
-        <Link to={"/stockSearch"}>
+        {/* <Link to={"/stockSearch"}>    //기존 링크 이동방식, 추후 삭제요망
           <button type="button" value="클릭">
             검색
           </button>
-        </Link>
+        </Link> */}
+
+        <a href="#" onClick={handleOpenModal}>
+          {" "}
+          {/* 모달방식 */}
+          <button type="button" value="클릭">
+            검색
+          </button>
+        </a>
+
+        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+          {" "}
+          {/* 모달창 띄우기 */}
+          <h2>모달 제목</h2>
+          <p>모달 내용</p>
+          <button onClick={handleCloseModal}>돌아가기</button>
+          <StockSearch
+            setStocks={setStocks}
+            closeModal={handleCloseModal}
+          />{" "}
+          {/* 기존에 생성했던 컴포넌트*/}
+        </Modal>
         <input
           type="date"
           placeholder="모집 마감 기간"
