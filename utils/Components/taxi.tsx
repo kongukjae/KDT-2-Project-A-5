@@ -32,10 +32,6 @@ const corpAutoComp = () => {
     setModalIsOpen(false);
   };
 
-  // const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setUserName(cookieValue);
-  // };
-
   const handleChangeStocks = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStocks(e.target.value);
   };
@@ -115,10 +111,8 @@ const corpAutoComp = () => {
           type="text"
           placeholder="기사이름"
           name="userName"
-          // defaultValue={cookieValue}
           value={userName}
           readOnly
-          // onChange={handleChangeUserName}
         />
         <input
           type="text"
@@ -131,23 +125,17 @@ const corpAutoComp = () => {
         ></input>
 
         <a href="#" onClick={handleOpenModal}>
-          {" "}
-          {/* 모달방식 */}
           <button type="button" value="클릭">
             검색
           </button>
         </a>
 
         <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
-          {" "}
           {/* 모달창 띄우기 */}
           <h2>모달 제목</h2>
           <p>모달 내용</p>
           <button onClick={handleCloseModal}>돌아가기</button>
-          <StockSearch
-            setStocks={setStocks}
-            closeModal={handleCloseModal}
-          />{" "}
+          <StockSearch setStocks={setStocks} closeModal={handleCloseModal} />
           {/* 기존에 생성했던 컴포넌트*/}
         </Modal>
         <input
