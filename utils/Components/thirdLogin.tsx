@@ -3,19 +3,19 @@ import "@dotlottie/player-component";
 import styles from "../../src/views/css/welcome.module.css";
 import { Link } from "react-router-dom";
 
-export default function SecondAnimation() {
+export default function ThirdAnimation() {
   return (
     <div className={styles.main}>
       <h1>스톡 투게더는...</h1>
       <dotlottie-player
-        src="../../src/models/secondAnimation.lottie"
+        src="../../src/models/thirdAnimation.lottie"
         autoplay
         style={{ width: "347px", height: "99px" }}
       />
-      <p>마음에 드는 택시를 찾아 탑승하면</p>
-      <p>희망 매수가에 도달했을 시 자동으로 매수합니다.</p>
-      <Link to="/welcome_3">
-        <button>다음</button>
+      <p>목표 금액에 도달했다면</p>
+      <p>자동으로 매도되어 거래가 종료됩니다.</p>
+      <Link to="/home">
+        <button>확인했어요</button>
       </Link>
     </div>
   );
