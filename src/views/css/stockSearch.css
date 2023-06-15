@@ -1,7 +1,4 @@
-/* .stockList{
-  display: none;
-} */
-.mainInner{
+.stockSearch {
   overflow: auto;
 }
 .companyItem {
@@ -10,4 +7,13 @@
 
 .hovered {
   background-color: lightblue;
+}
+
+.flexBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stockSearch {
+  height: 500px;
 }
