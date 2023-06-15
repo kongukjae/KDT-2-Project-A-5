@@ -54,7 +54,9 @@ export default function Account() {
 
   return (
     <div>
-      <p className="myAccount">계좌 잔액: {balance.toLocaleString()}</p>
+      <p className="myAccount grayColorBox">
+        계좌 잔액: {balance.toLocaleString()}
+      </p>
       <input type="button" value="입출금" onClick={handleModalOpen} />
       <Modal
         isOpen={modalIsOpen}
