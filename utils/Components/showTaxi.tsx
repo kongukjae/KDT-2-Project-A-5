@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "../../src/views/css/showTaxi";
 const ShowTaxi = () : JSX.Element => {
 const [taxiData, setTaxiData] = useState<any>();
-
 useEffect(()=> {
   fetch('/showTaxiData')
   .then(response => response.json())
@@ -22,19 +22,19 @@ useEffect(()=> {
         taxiData.map((data: any, index: number) => (
           <div key={index}>
             {/* 데이터 활용 */}
-            <div>{data['stocks']}</div>
+            <div id="stocks">{data['stocks']}</div>
             {/* 택시 고유 번호 */}
             <div>{data['taxiId']}</div>
             {/* 출발 희망가 */}
-            <div>{data['purchasePrice']}</div>
+            <div id="purchasePrice">{data['purchasePrice']}</div>
             {/* 목표가 */}
-            <div>{data['targetPrice']}</div>
+            <div className="commonFontSize">{data['targetPrice']}</div>
             {/* 구매량 */}
-            <div>{data['stockAmount']}</div>
+            <div className="commonFontSize">{data['stockAmount']}</div>
             {/* 폭파 희망가 */}
-            <div>{data['stopLossPrice']}</div>
+            <div className="commonFontSize">{data['stopLossPrice']}</div>
             {/* 동승자 모집 기간 */}
-            <div>{data['recruitmentPeriod']}</div>
+            <div className="commonFontSize">{data['recruitmentPeriod']}</div>
             {/* 최대 인원 */}
             <div>{data['maxPerson']}</div>
           </div>
