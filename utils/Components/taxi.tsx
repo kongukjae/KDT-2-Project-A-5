@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import StockSearch from "./stockSearch";
 import { Link } from "react-router-dom";
+import Modal from "react-modal"
+import CompanySearch from "./stockSearch";
 
 const corpAutoComp = () => {
   const [userName, setUserName] = useState("");
@@ -12,6 +14,16 @@ const corpAutoComp = () => {
   const [targetPrice, setTargetPrice] = useState("");
   const [stopLossPrice, setStopLossPrice] = useState("");
   const [maxPerson, setMaxPerson] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const handleOpenModal = () => {
+    setModalIsOpen(true);
+  };
+
+  // 모달을 닫기 위한 함수입니다.
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -68,11 +80,23 @@ const corpAutoComp = () => {
           value={stocks}
           onChange={handleChangeStocks}
         ></input>
-        <Link to={"/stockSearch"}>
+        {/* <Link to={"/stockSearch"}>
           <button type="button" value="클릭">
             검색
           </button>
-        </Link>
+        </Link> */}
+        <a href="#" onClick={handleOpenModal}>
+          <button type="button" value="클릭">
+            검색
+          </button>
+        </a>
+
+        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+          <h2>모달 제목</h2>
+          <p>모달 내용</p>
+          {/* 모달 내용을 추가합니다. */}
+          <StockSearch />
+        </Modal>
         <input
           type="date"
           placeholder="모집 마감 기간"
