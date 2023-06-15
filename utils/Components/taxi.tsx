@@ -76,11 +76,12 @@ const corpAutoComp = () => {
         />
         <input
           type="text"
-          placeholder="회사명"
+          placeholder="종목을 검색해주세요"
           name="stocks"
           value={stocks}
           onChange={handleChangeStocks}
           ref={inputStock}
+          readOnly
         ></input>
         {/* <Link to={"/stockSearch"}>    //기존 링크 이동방식, 추후 삭제요망
           <button type="button" value="클릭">
@@ -102,7 +103,11 @@ const corpAutoComp = () => {
           <h2>모달 제목</h2>
           <p>모달 내용</p>
           <button onClick={handleCloseModal}>돌아가기</button>
-          <StockSearch setStocks={setStocks} closeModal={handleCloseModal}/> {/* 기존에 생성했던 컴포넌트*/}
+          <StockSearch
+            setStocks={setStocks}
+            closeModal={handleCloseModal}
+          />{" "}
+          {/* 기존에 생성했던 컴포넌트*/}
         </Modal>
         <input
           type="date"
