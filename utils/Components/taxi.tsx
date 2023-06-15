@@ -80,7 +80,7 @@ const corpAutoComp = () => {
       maxPerson: maxPerson,
     };
 
-    fetch("/taxiCreate", {
+    fetch("/taxi", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
