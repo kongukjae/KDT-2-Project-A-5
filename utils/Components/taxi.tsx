@@ -102,7 +102,7 @@ const corpAutoComp = () => {
           <h2>모달 제목</h2>
           <p>모달 내용</p>
           <button onClick={handleCloseModal}>돌아가기</button>
-          <StockSearch setStocks={setStocks} /> {/* 기존에 생성했던 컴포넌트*/}
+          <StockSearch setStocks={setStocks} closeModal={handleCloseModal}/> {/* 기존에 생성했던 컴포넌트*/}
         </Modal>
         <input
           type="date"

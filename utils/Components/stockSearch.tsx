@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ChangeEvent } from "react";
 import "../../src/views/css/stockSearch.css";
 
-export default function companySearch({ setStocks }: any) {
+export default function companySearch({ setStocks, closeModal }: any) {
   const [input, setInput] = useState("");
   const [companies, setCompanies] = useState<[string, string][]>([]);
 
@@ -49,7 +49,10 @@ export default function companySearch({ setStocks }: any) {
                 className="companyItem"
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
-                onClick={() => handleSetStock(company[1])}
+                onClick={() => {
+                  handleSetStock(company[1]);
+                  closeModal();
+                }}
               >
                 {company[0]} : {company[1]}
               </div>
