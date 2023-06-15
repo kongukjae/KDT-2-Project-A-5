@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import StockSearch from "./stockSearch";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
+import { getCookie } from "./cookie";
 
 const corpAutoComp = () => {
   const [userName, setUserName] = useState("");
@@ -14,21 +15,26 @@ const corpAutoComp = () => {
   const [stopLossPrice, setStopLossPrice] = useState("");
   const [maxPerson, setMaxPerson] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const inputStock = useRef<any>("");
 
+  // 모달을 열기 위한 함수.
   const handleOpenModal = () => {
     setModalIsOpen(true);
   };
+
+  useEffect(() => {
+    const cookieValue = getCookie("userName");
+    setUserName(cookieValue);
+  }, []);
 
   // 모달을 닫기 위한 함수입니다.
   const handleCloseModal = () => {
     setModalIsOpen(false);
   };
 
-  const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
-  };
+  // const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setUserName(cookieValue);
+  // };
 
   const handleChangeStocks = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStocks(e.target.value);
@@ -100,10 +106,6 @@ const corpAutoComp = () => {
       .catch((error) => {
         console.error(error);
       });
-
-
-
-
   };
 
   return (
@@ -113,8 +115,10 @@ const corpAutoComp = () => {
           type="text"
           placeholder="기사이름"
           name="userName"
+          // defaultValue={cookieValue}
           value={userName}
-          onChange={handleChangeUserName}
+          readOnly
+          // onChange={handleChangeUserName}
         />
         <input
           type="text"
@@ -125,11 +129,6 @@ const corpAutoComp = () => {
           ref={inputStock}
           readOnly
         ></input>
-        {/* <Link to={"/stockSearch"}>    //기존 링크 이동방식, 추후 삭제요망
-          <button type="button" value="클릭">
-            검색
-          </button>
-        </Link> */}
 
         <a href="#" onClick={handleOpenModal}>
           {" "}
