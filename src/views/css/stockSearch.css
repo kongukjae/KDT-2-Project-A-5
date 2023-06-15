@@ -11,3 +11,10 @@
 .hovered {
   background-color: lightblue;
 }
+
+
+
+.flexBetween{
+  display: flex;
+  justify-content: space-between;
+}
