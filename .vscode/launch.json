@@ -2,14 +2,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "클라이언트파일 디버깅",
       "request": "launch",
-      "name": "Debug TypeScript",
-      "program": "${workspaceFolder}/utils/Components/dayRange.tsx",
-      "outFiles": [
-        "${workspaceFolder}/dist/**/*.js"
-      ],
-      "sourceMaps": true
+      "type": "chrome",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "app.ts 컨트롤러 디버깅",
+      "request": "launch",
+      "type": "node",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/src/controllers/app.ts"],
+      "cwd": "${workspaceFolder}",
     }
   ]
 }
