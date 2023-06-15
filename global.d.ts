@@ -3,4 +3,8 @@ declare module "*.css" {
   export = content;
 }
 
-declare module "*."
+declare namespace JSX {
+  interface IntrinsicElements {
+    "dotlottie-player": any;
+  }
+}

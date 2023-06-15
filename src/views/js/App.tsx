@@ -16,6 +16,7 @@ import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
 import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
+import SecondLoginPage from "../../../utils/Components/secondLogin";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie("userName");
@@ -64,8 +65,9 @@ export default function App() {
       case "/stockSearch":
         setPageTitle("종목 검색");
         break;
-      case "/welcome":
+      case "/welcome_1":
         setPageTitle("");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -87,12 +89,18 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
-            <Route path="/welcome" element={<FirstLoginPage />} />
+            <Route path="/welcome_1" element={<FirstLoginPage />} />
+            <Route path="/welcome_2" element={<SecondLoginPage />} />
           </Routes>
         </stockContext.Provider>
-        {["/", "/first", "/signup", "/login"].includes(
-          location.pathname
-        ) ? null : (
+        {[
+          "/",
+          "/first",
+          "/signup",
+          "/login",
+          "/welcome_1",
+          "/welcome_2",
+        ].includes(location.pathname) ? null : (
           <Nav />
         )}
       </div>

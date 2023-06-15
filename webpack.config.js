@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         test: [/\.json$/],
-        use: ["json-loader"],
+        use: ["file-loader"],
       },
       {
         test: [/\.ts$/, /\.tsx$/],
@@ -39,7 +39,7 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".css", ".png", ".json"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".css", ".png"],
   },
   plugins: [
     new HtmlWebpackPlugin({

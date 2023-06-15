@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}
