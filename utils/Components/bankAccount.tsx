@@ -17,62 +17,59 @@ export default function Account() {
 
   /*  계좌에 숫자가 올라갈 때마다 호출되는 함수 */
   const handleDeposit = () => {
-    setBalance(balance + amount);
-    setAmount(0);
+    const newBalance = balance + amount;
+    setBalance(newBalance);
+    setModalIsOpen(false); // 모달 닫기
+    setAmount(0); // 입력 필드 초기화
   };
 
   const handleWithdraw = () => {
-    if (balance >= amount) {
-      setBalance(balance - amount);
-      setAmount(0);
-    } else {
-      alert("잔액이 부족합니다.");
-    }
+    const newBalance = balance - amount;
+    setBalance(newBalance);
+    setModalIsOpen(false); // 모달 닫기
+    setAmount(0); // 입력 필드 초기화
   };
 
-  useEffect(() => {
-    const savedBalance = localStorage.getItem("balance");
-    if (savedBalance) {
-      setBalance(parseFloat(savedBalance));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("balance", balance.toString());
-  }, [balance]);
-
-  /* 모달  */
-  function openModal() {
+  const handleModalOpen = () => {
     setModalIsOpen(true);
-  }
+  };
 
-  function closeModal() {
+  const handleModalClose = () => {
     setModalIsOpen(false);
-  }
+    setAmount(0); // 입력 필드 초기화
+  };
+
+  const handleNumberButtonClick = (num: number) => {
+    setAmount((prevAmount) => prevAmount * 10 + num);
+  };
 
   return (
     <div>
       <p className="myAccount">계좌 잔액: {balance.toLocaleString()}</p>
-      <p className="myAccount" onClick={openModal}>
-        입출금
-      </p>
+      <input type="button" value="입출금" onClick={handleModalOpen} />
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={handleModalClose}
         contentLabel="Example Modal"
         style={modalStyles}
       >
-        <button onClick={closeModal}>X</button>
+        <button onClick={handleModalClose}>X</button>
         <div>입출금창</div>
-        <form>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-          />
-          <button onClick={handleDeposit}>입금</button>
-          <button onClick={handleWithdraw}>출금</button>
-        </form>
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+        />
+        <div>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
+            <button key={num} onClick={() => handleNumberButtonClick(num)}>
+              {num}
+            </button>
+          ))}
+          {/* 추가적인 숫자 버튼을 여기에 추가할 수 있습니다 */}
+        </div>
+        <button onClick={handleDeposit}>입금</button>
+        <button onClick={handleWithdraw}>출금</button>
       </Modal>
     </div>
   );
