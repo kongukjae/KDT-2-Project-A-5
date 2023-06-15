@@ -15,9 +15,10 @@ import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
+import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
 const socket = io("localhost:8080");
 export default function App() {
-  const userData = getCookie('userName')
+  const userData = getCookie("userName");
   console.log(userData);
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
@@ -63,6 +64,8 @@ export default function App() {
       case "/stockSearch":
         setPageTitle("종목 검색");
         break;
+      case "/welcome":
+        setPageTitle("");
       default:
         setPageTitle("홈");
         break;
@@ -84,6 +87,7 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
+            <Route path="/welcome" element={<FirstLoginPage />} />
           </Routes>
         </stockContext.Provider>
         {["/", "/first", "/signup", "/login"].includes(

@@ -16,6 +16,10 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
+        test: [/\.json$/],
+        use: ["json-loader"],
+      },
+      {
         test: [/\.ts$/, /\.tsx$/],
         use: ["ts-loader"],
       },
@@ -35,12 +39,12 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".css",".png"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".css", ".png", ".json"],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/views/html/index.html",
     }),
   ],
-  devtool: "source-map"
+  devtool: "source-map",
 };
