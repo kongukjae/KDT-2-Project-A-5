@@ -28,7 +28,7 @@ const DrivingCar: React.FC = () => {
       console.error(error);
     });
 
-  return <></>;
+  return <div className="grayColorBox"></div>;
 };
 
 export default DrivingCar;
