@@ -16,8 +16,9 @@ import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
 import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
-import SecondLoginPage from "../../../utils/Components/secondLogin";
-import ThirdLoginPage from "../../../utils/Components/thirdLogin";
+import WelcomeFirst from "../../../src/views/js/firstLoginPage/welcomeFirst";
+import WelcomeSecond from "../../../src/views/js/firstLoginPage/welcomeSecond";
+import WelcomeThird from "../../../src/views/js/firstLoginPage/welcomeThird";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie("userName");
@@ -97,8 +98,8 @@ export default function App() {
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
             <Route path="/welcome_1" element={<FirstLoginPage />} />
-            <Route path="/welcome_2" element={<SecondLoginPage />} />
-            <Route path="/welcome_3" element={<ThirdLoginPage />} />
+            <Route path="/welcome_2" element={<WelcomeSecond />} />
+            <Route path="/welcome_3" element={<WelcomeThird />} />
           </Routes>
         </stockContext.Provider>
         {[

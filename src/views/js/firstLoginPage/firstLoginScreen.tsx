@@ -1,5 +1,5 @@
 import React from "react";
-import FirstLogin from "../../../../utils/Components/firstLogin";
+import FirstLogin from "./welcomeFirst";
 
 const Screen: React.FC = () => {
   return (

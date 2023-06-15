@@ -1,6 +1,6 @@
 import React from "react";
 import "@dotlottie/player-component";
-import styles from "../../src/views/css/welcome.module.css";
+import styles from "../../css/welcome.module.css";
 import { Link } from "react-router-dom";
 
 export default function FirstAnimation() {
