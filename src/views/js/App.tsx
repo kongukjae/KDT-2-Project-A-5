@@ -20,14 +20,14 @@ export default function App() {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];
-    // ! 소켓 연결 및 주식 데이터 파싱 구간
+  // ! 소켓 연결 및 주식 데이터 파싱 구간
   const [stockContextData, setStockContextData] = useState<any>(null);
-  useEffect(()=> {
+  useEffect(() => {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
         setStockContextData(parsedData);
-      } catch (error){
+      } catch (error) {
         console.error("주식 데이터 쿨타임");
       }
     });
@@ -41,7 +41,7 @@ export default function App() {
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("계좌");
+        setPageTitle("내정보");
         break;
       case "/station":
         setPageTitle("정류장");
@@ -51,9 +51,6 @@ export default function App() {
         break;
       case "/login":
         setPageTitle("함께 투자하는 즐거움 Stock Together");
-        break;
-      case "/deposit":
-        setPageTitle("계좌");
         break;
       case "/signup":
         setPageTitle("회원가입");
@@ -86,12 +83,9 @@ export default function App() {
             <Route path="/chart" element={<StockData />} />
           </Routes>
         </stockContext.Provider>
-        {[
-          "/",
-          "/first",
-          "/signup",
-          "/login",
-        ].includes(location.pathname) ? null : (
+        {["/", "/first", "/signup", "/login"].includes(
+          location.pathname
+        ) ? null : (
           <Nav />
         )}
       </div>
