@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import stockContext from "../../src/views/js/stockContext";
-// const [priceState, setPriceState] = useState<any[]>([])
 import { AiFillRobot } from "react-icons/ai";
 import "../../src/views/css/showTaxi";
+import "@dotlottie/player-component";
+import styles from "../../src/views/css/loading.module.css";
+
 const ShowTaxi = (): JSX.Element => {
   const [taxiData, setTaxiData] = useState<any>();
   const [defaultContainer, setDefaultContainer] = useState(false);
@@ -62,7 +63,14 @@ const ShowTaxi = (): JSX.Element => {
         ))
       ) : (
         // 데이터가 없는 경우에 대한 처리
-        <p>Loading...</p>
+        <div className={styles.loading}>
+          <dotlottie-player
+            src="../../src/models/loading.lottie"
+            autoplay
+            loop
+            style={{ width: "50%", height: "100%" }}
+          />
+        </div>
       )}
     </div>
   );

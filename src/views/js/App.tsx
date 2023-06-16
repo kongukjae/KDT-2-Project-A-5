@@ -62,7 +62,7 @@ export default function App() {
         setPageTitle("회원가입");
         break;
       case "/taxi":
-        setPageTitle("조회");
+        setPageTitle("택시 생성");
         break;
       case "/stockSearch":
         setPageTitle("종목 검색");
