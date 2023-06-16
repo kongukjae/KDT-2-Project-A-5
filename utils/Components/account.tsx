@@ -6,8 +6,8 @@ import DriverLicense from "../../src/views/js/accountPage/driverLicense";
 
 export default function Main() {
   return (
-    <>
-      <div className="main">
+    <div className="main">
+      <div className="mainInBox">
         <div>
           <h2>계좌</h2>
           <BankAccount />
@@ -21,6 +21,6 @@ export default function Main() {
           <DrivingCar />
         </div>
       </div>
-    </>
+    </div>
   );
 }

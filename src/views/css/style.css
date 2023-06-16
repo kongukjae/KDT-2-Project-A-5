@@ -63,8 +63,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+/* main 내부 박스 스타일링 */
+.mainInBox {
+  width: 360px;
 }
 
 .main::-webkit-scrollbar {

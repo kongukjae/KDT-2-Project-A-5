@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "../../src/views/css/newsData";
 import "../../src/views/css/style";
-import { getCookie } from './cookie';
+import { getCookie } from "./cookie";
 import DriverContentBox from "./driverContentsBox";
 import StockContentsBox from "./stockContentsBox";
 
@@ -16,14 +16,14 @@ import NewsContentsBox from "./newsApiParse";
 
 export default function Main() {
   const navigate = useNavigate();
-  const cookieValue = getCookie('userName');
+  const cookieValue = getCookie("userName");
   const backToTheLogin = () => {
-    navigate('/login');
-  }
+    navigate("/login");
+  };
   if (cookieValue) {
     return (
-      <>
-        <div className="main">
+      <div className="main">
+        <div className="mainInBox">
           <h3>국내 증시</h3>
           <div className="stockArea">
             <StockContentsBox />
@@ -41,10 +41,9 @@ export default function Main() {
             <NewsContentsBox />
           </div>
         </div>
-      </>
+      </div>
     );
-  }
-  else {
+  } else {
     // 쿠키가 없을 경우
     return (
       <>

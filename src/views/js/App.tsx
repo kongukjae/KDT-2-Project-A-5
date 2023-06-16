@@ -17,7 +17,7 @@ import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
 const socket = io("localhost:8080");
 export default function App() {
-  const userData = getCookie('userName')
+  const userData = getCookie("userName");
   console.log(userData);
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");

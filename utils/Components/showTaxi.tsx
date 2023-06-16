@@ -44,7 +44,7 @@ const ShowTaxi = (): JSX.Element => {
               {data["targetPrice"]}
             </div>
             {/* 폭파 희망가 */}
-            <div className="commonFontSize" style={{ color: "#C1121F" }}>
+            <div className="commonFontSize" style={{ color: "#C1f1F" }}>
               {data["stopLossPrice"]}
             </div>
             {/* 동승자 모집 기간 */}
