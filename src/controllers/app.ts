@@ -83,10 +83,7 @@ app.post('drivingCar',drivingCar) // 내가 참여 하거나 운행중인 차량
 
 
 
-<<<<<<< HEAD
-=======
 app.post('/taxi',taxiCreate) // 택시방 만들기 요청 하는 미들웨어
->>>>>>> ec4bd2c3100c016c03f31c304ed5358a61829802
 
 app.use((req, res) => {
   res.status(404).send("not found");
