@@ -168,3 +168,12 @@ body {
 .allCheck {
   margin-bottom: 5px;
 }
+
+.createTaxiButton{
+  position: sticky;
+  bottom: 30px;
+  font-size: 42px;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 345px;
+  }
