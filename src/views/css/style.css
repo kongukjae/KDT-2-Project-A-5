@@ -111,6 +111,12 @@ justify-content: center;
   width: 360px;
   height: 400px;
 }
+
+.showTaxiStation::-webkit-scrollbar {
+  display: none;
+  overflow-y: scroll;
+}
+
 .showTaxiAccount::-webkit-scrollbar {
   display: none;  
   overflow-y: scroll;
