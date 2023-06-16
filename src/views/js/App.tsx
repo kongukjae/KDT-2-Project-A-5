@@ -47,7 +47,7 @@ export default function App() {
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("내정보");
+        setPageTitle("내 정보");
         break;
       case "/station":
         setPageTitle("정류장");
