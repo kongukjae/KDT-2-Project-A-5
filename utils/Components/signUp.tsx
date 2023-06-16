@@ -85,7 +85,7 @@ export default function Main() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("제출 확인");
+    alert("회원가입이 완료되었습니다");
 
     const data = {
       email: email,
@@ -251,8 +251,7 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <button type="submit">회원가입</button>{" "}
-          <div className="alert">회원가입이 완료되었습니다.</div>
+          <button type="submit">회원가입</button>
         </form>
       </div>
     </>
