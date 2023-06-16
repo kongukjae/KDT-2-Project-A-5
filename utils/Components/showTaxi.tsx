@@ -22,6 +22,14 @@ useEffect(()=> {
   const seeMore = ()=> {
     setDefaultContainer(true);
   }
+  const refreshData = ()=> {
+    fetch('/showTaxiData')
+    .then(response => response.json())
+    .then((data)=> {
+      setTaxiData(data)
+      console.log(data);
+    })
+  }
   return (
     <div id="showTaxiContainer" onClick={seeMore}>
       {taxiData ? (
@@ -51,11 +59,15 @@ useEffect(()=> {
             <AiFillRobot size={24} color='gray'/>
             </div>
           </div>
+          
         ))
       ) : (
         // 데이터가 없는 경우에 대한 처리
         <p>Loading...</p>
       )}
+          <div>
+            <button onClick={refreshData}>새로고침</button>
+          </div>
     </div>
   );
 };
