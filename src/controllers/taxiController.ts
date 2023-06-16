@@ -16,14 +16,14 @@ export default function taxiCreate(req: Request, res: Response) {
     if (err) {
       console.log(err);
     }
-    dbConnect.query(`insert into passengers(${taxiData.taxiKeyData.join(', ')}) VALUES(?);`, [taxiData.taxiValueData], (err, result) => {
-      if (err) {
-        console.log(err);
-      }
+    // dbConnect.query(`insert into passengers(${taxiData.taxiKeyData.join(', ')}) VALUES(?);`, [taxiData.taxiValueData], (err, result) => {
+    //   if (err) {
+    //     console.log(err);
+    //   }
 
-      console.log(result);
-    });
-    console.log(result);
+    //   console.log(result);
+    // });
+    // console.log(result);
   });
 }
 

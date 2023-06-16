@@ -1,17 +1,25 @@
-import express ,{ Request, Response } from 'express';
+import { Request, Response } from 'express';
 import dbConnect from "../../utils/DB/dbConfigure";
 
+class myDrivingCar {
+  userName: string[]
+  userValues : string[]
+  constructor(userName : string[],userValues: string[]) {
+    this.userName = userName;
+    this.userValues = userValues;
+  }
+}
 
-// const app = express();
-
-
-// app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-// app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 본문을 파싱할 수 있도록 설정
-// // 증가률 구하기 위한 전날 날짜
-
-export default function myDrivingCarJoin(res: Response, req: Request) {
-
-  console.log('test',req.body);
-
-
+export default function myDrivingCarJoin(req: Request, res: Response) {
+  const myDrivingCarData = new myDrivingCar(Object.keys(req.body),Object.values(req.body));
+  // 유저가 요청한 DB요청 처리를 할 로직
+  dbConnect.query(`SELECT * from taxi WHERE state=1 and ${myDrivingCarData.userName}='${myDrivingCarData.userValues}';`
+  , (err, results) => {
+    if (err) {
+      console.log("데이터를 가져오는데 실패함 : ", err);
+    }
+    else {
+      res.json(results);
+    }
+  })
 }
