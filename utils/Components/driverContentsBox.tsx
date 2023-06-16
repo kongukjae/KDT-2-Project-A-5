@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DriverData } from "../../src/models/driver";
+import "../../src/views/css/driverArea.css";
 
 interface DriverContentsBoxProps {
   driverName: string;
@@ -21,15 +22,17 @@ const driverData = (): JSX.Element => {
       {driver.length > 0 ? (
         driver.map((element: DriverContentsBoxProps) => (
           <div className="driverContentsBox">
-            <div className="driverName">{element.driverName}</div>
-            <div className="driverOperationCount">
-              {element.driverOperationsCount}
+            <div className="driverInformation">
+              <div className="driverName">{element.driverName}</div>
+              <div className="driverOperationCount">
+                {element.driverOperationsCount}
+              </div>
+              <div className="driverNoAccidentCount">
+                {element.driverNoAccidentCount}
+              </div>
+              <div className="driverGoodTag">{element.driverGoodTag}</div>
+              <div className="driverBadTag">{element.driverBadTag}</div>
             </div>
-            <div className="driverNoAccidentCount">
-              {element.driverNoAccidentCount}
-            </div>
-            <div className="driverGoodTag">{element.driverGoodTag}</div>
-            <div className="driverBadTag">{element.driverBadTag}</div>
           </div>
         ))
       ) : (

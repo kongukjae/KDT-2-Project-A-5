@@ -1,3 +1,24 @@
 .driverArea {
   display: flex;
+  gap: 10px;
+  overflow: scroll;
+}
+
+.driverArea::-webkit-scrollbar {
+  display: none;
+}
+
+.driverInformation {
+  display: flex;
+  flex-direction: column;
+  width: 131px;
+  height: 131px;
+  border-radius: 7px;
+  box-shadow: 1px 2px 3px grey;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.driverContentsBox {
+  height: 140px;
 }
