@@ -138,6 +138,7 @@ justify-content: center;
   
 /* 입력창 스타일링 */
 .inputText{
+  box-sizing: border-box;
   width: 340px;
   height: 60px;
   border: 1px solid #000000;

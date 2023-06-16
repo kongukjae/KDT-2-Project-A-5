@@ -63,8 +63,9 @@ export default function Main() {
     <>
       <div className="main">
         <StockTogetherTitle />
-        <form onSubmit={handleSubmit}>
+        <form className="main" onSubmit={handleSubmit}>
           <input
+            className="inputText"
             name="userId"
             type="email"
             placeholder="이메일"
@@ -72,6 +73,7 @@ export default function Main() {
             onChange={handleChangeEmail}
           />
           <input
+            className="inputText"
             name="password"
             type="password"
             placeholder="비밀번호"
