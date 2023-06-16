@@ -14,12 +14,17 @@
   justify-content: center;
   width: 340px;
   height: 60px;
-  background-color: #9f9f9f;
+  background-color: #b1b1b1;
   font-size: 16px;
   border-radius: 5px;
   border: none;
   color: white;
   cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.googleLoginButton:hover {
+  background-color: #9f9f9f;
 }
 
 .signUpButton {
@@ -28,12 +33,17 @@
   justify-content: center;
   width: 340px;
   height: 60px;
-  background-color: #3b56d3;
+  background-color: #526ce2;
   font-size: 16px;
   border-radius: 5px;
   border: none;
   color: white;
   cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.signUpButton:hover {
+  background-color: #3b56d3;
 }
 
 .loginTypeBox {

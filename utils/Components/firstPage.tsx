@@ -24,14 +24,14 @@ export default function Login() {
             Google을 이용하여 시작하기
             {/* </button> */}
           </div>
-          <div className={loginStyle.signUpButton}>
-            <HiOutlinePencilAlt className={loginStyle.createAccountIcon} />
-            <NavLink to="/signup" className={loginStyle.link}>
+          <NavLink to="/signup" className={loginStyle.link}>
+            <div className={loginStyle.signUpButton}>
+              <HiOutlinePencilAlt className={loginStyle.createAccountIcon} />
               {/* <button type="submit" className={loginStyle.signUpButton}> */}
               회원가입
               {/* </button> */}
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
         </div>
         <NavLink to="/login">
           <div className={loginStyle.moveToLogin}>
