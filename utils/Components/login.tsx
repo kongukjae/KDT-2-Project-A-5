@@ -64,7 +64,7 @@ export default function Main() {
 
   return (
     <>
-      <div className={loginStyle.main}>
+      <div className={loginStyle.loginContainer}>
         <StockTogetherTitle />
 
         <form className="main" onSubmit={handleSubmit}>
