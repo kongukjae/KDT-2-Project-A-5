@@ -16,7 +16,7 @@ export default function Main() {
           <h3>내 운전면허증</h3>
           <DriverLicense />
         </div>
-        <div>
+        <div className="showTaxiContainerBox">
           <h3>운행중인 차량</h3>
           <DrivingCar />
         </div>
