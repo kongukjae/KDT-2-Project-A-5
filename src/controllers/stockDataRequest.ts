@@ -17,7 +17,7 @@ export async function stockDataRequest () {
   // api 키
   const apiKey = process.env.alphaApiKey;
     // 주식 데이터 요청
-    for(let i=0; i<symbolArray.length; i++) {
+    for(let i=0; i<4; i++) {
       try {
         const response = await axios.get(
           `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbolArray[i][0]}&interval=5min&apikey=${apiKey}`
