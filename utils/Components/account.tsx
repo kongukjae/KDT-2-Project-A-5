@@ -1,30 +1,56 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../../src/views/css/style";
 import BankAccount from "./bankAccount";
 import DrivingCar from "./drivingCar";
 import { useNavigate } from 'react-router-dom';
-import { getCookie , removeCookie} from './cookie';
+import { getCookie, removeCookie } from './cookie';
 import DriverLicense from "../../src/views/js/accountPage/driverLicense";
 
 export default function Main() {
   const navigate = useNavigate();
-  const cookieValue = getCookie('userName');
+  const cookieId = getCookie('userId');
   const backToTheLogin = () => {
     navigate('/login');
   }
 
   // 로그아웃 로직 수행
   const handleLogout = () => {
-    removeCookie('userName');
+    
+    const data = {
+      userId: decodeURIComponent(cookieId),
+    };
+    fetch("/logOut", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("POST 요청이 실패했습니다.");
+        }
+      })
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      removeCookie('userName');
+      removeCookie('userId');
+
     // 새로고침
     window.location.reload();
   };
 
-  if (cookieValue) {
+  if (cookieId) {
     return (
       <>
         <div className="main">
-            <button onClick={handleLogout}>LogOut</button>
+          <button onClick={handleLogout}>LogOut</button>
           <div>
             <h2>계좌</h2>
             <BankAccount />

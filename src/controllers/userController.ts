@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import moment from 'moment';
 import { Request, Response } from 'express';
 import dbConnect from "../../utils/DB/dbConfigure";
 
@@ -68,18 +69,49 @@ export function signIn(req: Request, res: Response ){
   let boxTest: boolean = true;
   const test = new Login(req.body.userId, req.body.password);
   // 로그인 키값 확인
-  dbConnect.query(`select ${Object.keys(test).join(', ')} ,userName from user_infor where ${Object.keys(test)[0]}= '${test.userId}' and ${Object.keys(test)[1]}= '${test.password}';`, (err, result) => {
+  dbConnect.query(`select ${Object.keys(test).join(', ')} ,userName ,lastAccess from user_infor where ${Object.keys(test)[0]}= '${test.userId}' and ${Object.keys(test)[1]}= '${test.password}';`, (err, result) => {
     if (err) {
       console.log('err', err)
     }
+    // 로그인 실패
     if (Object.values(result).length === 0) {
       boxTest = false;
       res.send(boxTest);
     }
-    // 로그인 실패
     else {
+      console.log({boolean : boxTest,result:result})
       res.send({boolean : boxTest,result:result});
     }
   })
 
+}
+
+// 로그아웃 요청 받아 최종 접속 값 추가 하기
+class logOut {
+  userId: string[]
+  userValues: string[]
+  constructor(userId: string[], userValues: string[]) {
+    this.userId = userId;
+    this.userValues = userValues;
+  }
+}
+
+export function logOutDate(req: Request, res: Response) {
+  // 현재 시간 체크
+  const currentDate =  new Date();
+  const formattedDateTime  =  moment(currentDate).format('YYYY-MM-DD HH:mm:ss');
+  const logOutDate = new logOut(Object.keys(req.body), Object.values(req.body));
+  // 유저가 요청한 DB요청 처리를 할 로직
+  dbConnect.query(
+    `UPDATE user_infor
+    SET lastAccess = '${formattedDateTime}'
+    WHERE ${logOutDate.userId.join('')} = '${logOutDate.userValues.join('')}'`,
+    (err, results) => {
+      if (err) {
+        console.log("데이터를 업데이트하는데 실패함: ", err);
+      } else {
+        console.log('로그아웃 성공', results);
+      }
+    }
+  );
 }
