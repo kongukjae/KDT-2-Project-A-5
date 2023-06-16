@@ -7,7 +7,6 @@ import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
 import showTaxiData from "./showTaxiData";
-import taxiCreate from './taxiCreate';
 import { signIn, userCreate } from './userController';
 import yesterDayStockData from './yesterDayStockData';
 import taxiCreate from './taxiController';
@@ -62,7 +61,7 @@ dbConnect.connect((err) => {
   }
   console.log("DB연결에 성공했습니다");
 });
-app.use("/news", newsApp);
+app.get("/news", newsApp);
 
 app.post('/drivingCar',drivingCar) // 내가 참여 하거나 운행중인 차량
 app.use(express.static(root)); //root 디렉토리
@@ -84,6 +83,10 @@ app.post('drivingCar',drivingCar) // 내가 참여 하거나 운행중인 차량
 
 
 
+<<<<<<< HEAD
+=======
+app.post('/taxi',taxiCreate) // 택시방 만들기 요청 하는 미들웨어
+>>>>>>> ec4bd2c3100c016c03f31c304ed5358a61829802
 
 app.use((req, res) => {
   res.status(404).send("not found");
