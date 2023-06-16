@@ -19,7 +19,7 @@ import MyTaxi from "../../../utils/Components/myTaxi";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie('userName')
-  console.log(userData);
+  // console.log(userData);
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];

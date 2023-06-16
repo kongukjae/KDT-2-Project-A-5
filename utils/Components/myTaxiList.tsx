@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../../src/views/css/myTaxiListCss.css";
+import { getCookie } from "./cookie";
 
 const MyTaxiList = (): JSX.Element => {
   const [myTaxiData, setMyTaxiData] = useState<any[]>([]);
   useEffect(() => {
-    fetch("/myTaxiData")
+    console.log(decodeURIComponent(getCookie("userName")))
+    fetch(`/myTaxiData?userName=${decodeURIComponent(getCookie("userName"))}`)
       .then((response) => response.json())
       .then((data) => {
         setMyTaxiData(data);
-        console.log(data);
       })
       .catch((error) => {
         // 오류 처리

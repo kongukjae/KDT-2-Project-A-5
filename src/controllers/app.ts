@@ -66,7 +66,13 @@ app.get("/news", newsApp);
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
 app.use('/showTaxiData', showTaxiData) // station 화면 랜더링 요청 처리 미들웨어
-app.use('/myTaxiData', myTaxiData) // /myTaxiData url 입력시 로그인 된 유저 이름의 택시 목록 검색
+app.get('/myTaxiData', (req:Request,res:Response)=>{
+  console.log(req.url)
+  const userName = req.url.split("?")[1]
+  const _userName = userName.split("=")[1]
+  console.log(_userName+"check")
+  myTaxiData(_userName,dbConnect,res)
+}) // /myTaxiData url 입력시 로그인 된 유저 이름의 택시 목록 검색
 app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(rootPublic, "index.html"));
 })
