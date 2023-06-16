@@ -11,6 +11,7 @@
 .driverInformation {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   width: 131px;
   height: 131px;
   border-radius: 7px;
@@ -21,4 +22,32 @@
 
 .driverContentsBox {
   height: 140px;
+}
+
+.driverName {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.driverNoAccidentCount {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.driverGoodTag {
+  font-size: 12px;
+  background-color: red;
+  color: white;
+  width: 75%;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.driverBadTag {
+  font-size: 12px;
+  background-color: blue;
+  color: white;
+  width: 75%;
+  border-radius: 5px;
+  margin-left: 10px;
 }

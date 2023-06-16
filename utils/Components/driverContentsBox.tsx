@@ -24,9 +24,9 @@ const driverData = (): JSX.Element => {
           <div className="driverContentsBox">
             <div className="driverInformation">
               <div className="driverName">{element.driverName}</div>
-              <div className="driverOperationCount">
+              {/* <div className="driverOperationCount">
                 {element.driverOperationsCount}
-              </div>
+              </div> */}
               <div className="driverNoAccidentCount">
                 {element.driverNoAccidentCount}
               </div>
