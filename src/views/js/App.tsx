@@ -41,7 +41,7 @@ export default function App() {
   useEffect(() => {
     switch (location.pathname) {
       case "/":
-        setPageTitle("함께 투자하는 즐거움 Stock Together");
+        setPageTitle("");
         break;
       case "/home":
         setPageTitle("홈");
