@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "@dotlottie/player-component";
+// import "../../src/views/css/loading";
+
 import axios from "axios";
 
 const newsAPI = (): JSX.Element => {
@@ -32,7 +35,14 @@ const newsAPI = (): JSX.Element => {
           );
         })
       ) : (
-        <div>데이터 준비중 'ㅡ' /</div>
+        <div>
+          <dotlottie-player
+            src="../../src/models/loading.lottie"
+            autoplay
+            loop
+            style={{ width: "50%", height: "10%" }}
+          />
+        </div>
       )}
     </>
   );
