@@ -9,11 +9,11 @@ export default function Main() {
       <div className="main">
         <div className="mainInBox">
           <ShowTaxi />
-          <Link to="/taxi">
-            <div className="createTaxiButton">
+          <div className="createTaxiButton">
+            <Link to="/taxi">
               <AiFillPlusCircle />
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
     </>
