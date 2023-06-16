@@ -30,16 +30,16 @@ export default (io: SocketIOServer) => {
     }
   }
 // 요청 횟수제한 함수
-  async function requestAndSleep() {
-    for (let i = 0; i < symbolArray.length; i++) {
-      if (symbolArray.length % 2 === 0) {
-        await stockDataRequest(symbolArray[i][0]);
-        console.log("requestAndSleep :", symbolArray[i][0])
-      }
-      // ! API : 2회 요청당 3초의 딜레이
-      await sleep(3000);
+async function requestAndSleep() {
+  for (let i = 0; i < symbolArray.length; i++) {
+    if (i % 2 === 0) {
+      const responseData = await stockDataRequest(symbolArray[i][0]);
+      console.log("requestAndSleep :", symbolArray[i][0]);
     }
+    // ! API : 2회 요청당 3초의 딜레이
+    await sleep(3000);
   }
+}
 
   requestAndSleep();
 // 주식 데이터 전송
