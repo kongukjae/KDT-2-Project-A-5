@@ -3,6 +3,7 @@ import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 import "../../src/views/css/stockChart";
 import stockContext from "../../src/views/js/stockContext";
 import DayRange from "./dayRange";
+import "../../src/views/css/stockArea.css";
 import styles from "../../src/views/css/loading.module.css";
 import "@dotlottie/player-component";
 
@@ -47,8 +48,10 @@ const StockData = (): JSX.Element => {
   return (
     <>
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
-      <SimpleLineChart />
-      <DayRange />
+      <div className="stockContentsBox">
+        <SimpleLineChart />
+        <DayRange />
+      </div>
     </>
   );
 };

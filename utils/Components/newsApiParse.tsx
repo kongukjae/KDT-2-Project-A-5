@@ -26,7 +26,7 @@ const newsAPI = (): JSX.Element => {
                   <img
                     className="newsImg"
                     src={element.thumbnail}
-                    alt="기사의 썸네일 사진입니다"
+                    alt="thumbnail"
                   />
                 </div>
                 <div className="newsTitle">{element.title}</div>
