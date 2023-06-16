@@ -8,6 +8,10 @@
   display: flex;
   gap: 10px;
   overflow: scroll;
+  height: 135px;
+}
+.newsArea::-webkit-scrollbar {
+  display: none;
 }
 .stockArea {
   display: flex;
