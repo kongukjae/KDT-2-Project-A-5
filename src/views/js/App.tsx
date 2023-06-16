@@ -15,7 +15,7 @@ import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
-import MyTaxiList from "../../../utils/Components/myTaxi";
+import MyTaxi from "../../../utils/Components/myTaxi";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie('userName')
@@ -88,7 +88,7 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
-            <Route path="/myTaxi" element={<MyTaxiList />} />
+            <Route path="/myTaxi" element={<MyTaxi />} />
           </Routes>
         </stockContext.Provider>
         {["/", "/first", "/signup", "/login"].includes(
