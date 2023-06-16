@@ -7,11 +7,13 @@ export default function FirstAnimation() {
   return (
     <div className={styles.main}>
       <h1>스톡 투게더는...</h1>
-      <dotlottie-player
-        src="../../src/models/firstAnimation.lottie"
-        autoplay
-        style={{ width: "347px", height: "99px" }}
-      />
+      <div className={styles.welcomeContentsBox}>
+        <dotlottie-player
+          src="../../src/models/firstAnimation.lottie"
+          autoplay
+          style={{ width: "347px", height: "99px" }}
+        />
+      </div>
       <p>주식을 다른 사람들과</p>
       <p>같이 구매할 수 있는 서비스에요.</p>
       <Link to="/welcome_2">

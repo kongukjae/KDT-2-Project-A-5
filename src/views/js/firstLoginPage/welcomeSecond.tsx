@@ -7,11 +7,13 @@ export default function SecondAnimation() {
   return (
     <div className={styles.main}>
       <h1>스톡 투게더는...</h1>
-      <dotlottie-player
-        src="../../src/models/secondAnimation.lottie"
-        autoplay
-        style={{ width: "347px", height: "99px" }}
-      />
+      <div className={styles.welcomeContentsBox}>
+        <dotlottie-player
+          src="../../src/models/secondAnimation.lottie"
+          autoplay
+          style={{ width: "347px", height: "99px" }}
+        />
+      </div>
       <p>마음에 드는 택시를 찾아 탑승하면</p>
       <p>희망 매수가에 도달했을 시 자동으로 매수합니다.</p>
       <Link to="/welcome_3">

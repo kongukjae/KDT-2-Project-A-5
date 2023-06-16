@@ -10,3 +10,10 @@
 .main::-webkit-scrollbar {
   display: none;
 }
+
+.welcomeContentsBox {
+  width: 347px;
+  height: 99px;
+  box-shadow: 1px 2px 3px rgb(199, 199, 199);
+  border-radius: 20px;
+}
