@@ -14,7 +14,6 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
-import StockSearch from "../../../utils/Components/stockSearch";
 import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
 import WelcomeFirst from "../../../src/views/js/firstLoginPage/welcomeFirst";
 import WelcomeSecond from "../../../src/views/js/firstLoginPage/welcomeSecond";
