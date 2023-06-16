@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "@dotlottie/player-component";
-// import "../../src/views/css/loading";
+import styles from "../../src/views/css/loading.module.css";
 
 import axios from "axios";
 
@@ -35,12 +35,12 @@ const newsAPI = (): JSX.Element => {
           );
         })
       ) : (
-        <div>
+        <div className={styles.loading}>
           <dotlottie-player
             src="../../src/models/loading.lottie"
             autoplay
             loop
-            style={{ width: "50%", height: "10%" }}
+            style={{ width: "50%", height: "100%" }}
           />
         </div>
       )}
