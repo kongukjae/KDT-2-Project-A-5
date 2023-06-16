@@ -1,9 +1,13 @@
 .driverArea {
   display: flex;
+  gap: 10px;
+  overflow: scroll;
 }
 
 .newsArea {
   display: flex;
+  gap: 10px;
+  overflow: scroll;
 }
 .stockArea {
   display: flex;

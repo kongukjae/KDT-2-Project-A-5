@@ -1,8 +1,3 @@
-.driverArea {
-  display: flex;
-  gap: 10px;
-  overflow: scroll;
-}
 
 .driverArea::-webkit-scrollbar {
   display: none;
