@@ -38,7 +38,7 @@ const DrivingCar: React.FC = () => {
     setDefaultContainer(true);
   };
   return (
-    <div id="showTaxiContainer" onClick={seeMore}>
+    <div className="showTaxiAccount" onClick={seeMore}>
       {taxiData ? (
         // 데이터가 존재하는 경우에만 접근
         taxiData.map((data: any, index: number) => (
