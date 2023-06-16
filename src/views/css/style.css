@@ -69,6 +69,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -80,14 +81,12 @@ body {
 .myAccount {
   border: 1px #c4c4c4 solid;
 }
-
-/* 입출금 창 버튼 스타일 */
+/* 입출금 창 버튼 스타일링 */
 .number-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .button {
   padding: 10px;
   width: 100px;

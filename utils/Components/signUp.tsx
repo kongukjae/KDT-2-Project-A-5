@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../src/views/css/style";
 
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  /*   const [passwordConfirm, setpasswordConfirm] = useState(""); */
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [allCheck, setAllCheck] = useState(false);
@@ -24,6 +26,12 @@ export default function Main() {
     setPassword(e.target.value);
   };
 
+  /*   const handleChangePasswordConfirm = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setPassword(e.target.value);
+  };
+ */
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -108,9 +116,10 @@ export default function Main() {
 
   return (
     <>
-      <div className="main">
-        <form onSubmit={handleSubmit}>
+      <div className="main ">
+        <form className="BackgroundColorGray" onSubmit={handleSubmit}>
           <input
+            className="inputText"
             name="userId"
             type="email"
             placeholder="이메일"
@@ -118,13 +127,25 @@ export default function Main() {
             onChange={handleChangeEmail}
           />
           <input
+            className="inputText"
             name="password"
             type="password"
             placeholder="비밀번호"
             value={password}
             onChange={handleChangePassword}
           />
+          {/* <input
+            className="inputText"
+            name="passwordConfirm"
+            type="password"
+            placeholder="비밀번호 확인"
+            value={passwordConfirm}
+            onChange={handleChangePasswordConfirm}
+          />      비밀번호 확인용  input 
+          차후 수정 예정- 
+          */}
           <input
+            className="inputText"
             name="userName"
             type="text"
             placeholder="이름"
@@ -132,73 +153,100 @@ export default function Main() {
             onChange={handleChangeName}
           />
           <input
+            className="inputText"
             name="phoneNum"
             type="number"
             placeholder="휴대전화번호"
             value={phoneNumber}
             onChange={handleChangePhoneNumber}
           />
-          <label htmlFor="allCheck">전체 동의하기</label>
-          <input
-            id="allCheck"
-            type="checkbox"
-            checked={allCheck}
-            onChange={handleAllCheckChange}
-          />
-          {/* <input id="allCheck" type="checkbox" /> */}
-          <label htmlFor="ageCheck">만 나이 14세</label>
-          <input
-            id="ageCheck"
-            name="ageCheck"
-            type="checkbox"
-            checked={ageCheck}
-            onChange={handleAgeCheck}
-          />
-          <label htmlFor="TermOfUseCheck">스톡투게더 이용약관 동의</label>
-          <input
-            id="TermOfUseCheck"
-            name="TermOfUseCheck"
-            type="checkbox"
-            checked={termOfUseCheck}
-            onChange={handleTermsOfUseCheck}
-          />
-          {/* EFT : Electronic Financial Transaction, 전자금융거래  */}
-          <label htmlFor="EFTUseCheck">전자금융거래 이용약관 동의</label>
-          <input
-            id="EFTUseCheck"
-            name="TermOfUseCheck"
-            type="checkbox"
-            checked={eftUseCheck}
-            onChange={handleEftUseCheck}
-          />
-          {/* Personal Information Agreement, 개인정보 제 3자 제공 동의) */}
-          <label htmlFor="PIAUseCheck">개인정보 제 3자 제공 동의</label>
-          <input
-            id="PIAUseCheck"
-            name="PIAUseCheck"
-            type="checkbox"
-            checked={piaUseCheck}
-            onChange={handlePiaUseCheck}
-          />
+          <div>
+            <div>
+              <input
+                id="allCheck"
+                type="checkbox"
+                checked={allCheck}
+                onChange={handleAllCheckChange}
+              />
+              <label htmlFor="allCheck">전체 동의하기</label>
+            </div>
+            {/* <input id="allCheck" type="checkbox" /> */}
 
-          <label htmlFor="marketingUseCheck">
-            마케팅 목적의 개인정보 수집 및 이용 동의
-          </label>
-          <input
-            id="marketingUseCheck"
-            name="marketingUseCheck"
-            type="checkbox"
-            checked={marketingUseCheck}
-            onChange={handleMarketingUseCheck}
-          />
-          <label htmlFor="advertisement">광고성 정보 수신 동의</label>
-          <input
-            id="advertisement"
-            name="advertisement"
-            type="checkbox"
-            checked={advertisementCheck}
-            onChange={handleAdvertisementCheck}
-          />
+            <div className="inputWhiteBox">
+              <div>
+                <input
+                  id="ageCheck"
+                  name="ageCheck"
+                  type="checkbox"
+                  checked={ageCheck}
+                  onChange={handleAgeCheck}
+                />
+                <label htmlFor="ageCheck">[필수] 만 나이 14세</label>
+              </div>
+              <div>
+                <input
+                  id="TermOfUseCheck"
+                  name="TermOfUseCheck"
+                  type="checkbox"
+                  checked={termOfUseCheck}
+                  onChange={handleTermsOfUseCheck}
+                />
+                <label htmlFor="TermOfUseCheck">
+                  [필수] 스톡투게더 이용약관 동의
+                </label>
+                {/* EFT : Electronic Financial Transaction, 전자금융거래  */}
+              </div>
+              <div>
+                <input
+                  id="EFTUseCheck"
+                  name="TermOfUseCheck"
+                  type="checkbox"
+                  checked={eftUseCheck}
+                  onChange={handleEftUseCheck}
+                />{" "}
+                <label htmlFor="EFTUseCheck">
+                  [필수] 전자금융거래 이용약관 동의
+                </label>
+              </div>
+              {/* Personal Information Agreement, 개인정보 제 3자 제공 동의) */}
+              <div>
+                <input
+                  id="PIAUseCheck"
+                  name="PIAUseCheck"
+                  type="checkbox"
+                  checked={piaUseCheck}
+                  onChange={handlePiaUseCheck}
+                />
+                <label htmlFor="PIAUseCheck">
+                  [필수] 개인정보 제 3자 제공 동의
+                </label>
+              </div>
+              <div>
+                <input
+                  id="marketingUseCheck"
+                  name="marketingUseCheck"
+                  type="checkbox"
+                  checked={marketingUseCheck}
+                  onChange={handleMarketingUseCheck}
+                />
+                <label htmlFor="marketingUseCheck">
+                  [선택] 마케팅 목적의 개인정보 수집 및 이용 동의
+                </label>
+              </div>
+              <div>
+                <input
+                  id="advertisement"
+                  name="advertisement"
+                  type="checkbox"
+                  checked={advertisementCheck}
+                  onChange={handleAdvertisementCheck}
+                />
+                <label htmlFor="advertisement">
+                  [선택] 광고성 정보 수신 동의
+                </label>
+              </div>
+            </div>
+          </div>
           <button type="submit">회원가입</button>
         </form>
       </div>

@@ -1,0 +1,15 @@
+#showTaxiContainer {
+  width: 347px;
+  height: 99px;
+  border-radius: 30px;
+  border: 1px gray solid;
+}
+#stocks {
+  font-size: 20px;
+}
+#purchasePrice {
+  font-size: 24px;
+}
+.commonFontSize {
+  font-size: 16px;
+}
