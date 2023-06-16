@@ -32,7 +32,7 @@ export async function stockDataRequest () {
     // console.log(stockData)
     return stockData;
   }
-  stockDataRequest()
+  // stockDataRequest()
 // 요청 횟수제한 함수
 // async function requestAndSleep() {
 //   for (let i = 0; i < symbolArray.length; i++) {
