@@ -42,7 +42,7 @@ const DrivingCar: React.FC = () => {
       {taxiData ? (
         // 데이터가 존재하는 경우에만 접근
         taxiData.map((data: any, index: number) => (
-          <div key={index}>
+          <div className="grayColorBox" key={index}>
             {/* 데이터 활용 */}
             <div id="stocks">{data["stocks"]}</div>
             {/* 택시 고유 번호 */}

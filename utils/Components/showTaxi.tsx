@@ -28,7 +28,7 @@ const ShowTaxi = (): JSX.Element => {
         taxiData.map((data: any, index: number) => (
           <div>
             <div>
-              <div className="" key={index}></div>
+              <div className="grayColorBox" key={index}></div>
               {/* 데이터 활용 */}
               <div className="commonFontSize">{data["stockAmount"]}</div>
               {/* 목표가 */}
