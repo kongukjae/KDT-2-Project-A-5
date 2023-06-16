@@ -15,7 +15,7 @@ import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
-import MyTaxiList from "../../../utils/Components/myTaxiList";
+import MyTaxiList from "../../../utils/Components/myTaxi";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie('userName')
