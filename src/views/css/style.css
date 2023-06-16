@@ -147,6 +147,9 @@ justify-content: center;
 
 /* 회원가입 내부 스타일링 */
 .inputWhiteBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   box-sizing: border-box;
   
     width: 340px;
