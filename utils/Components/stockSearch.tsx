@@ -35,31 +35,29 @@ export default function companySearch({ setStocks, closeModal }: any) {
   );
 
   return (
-    <div className="main">
-      <div className="mainInner">
-        <input
-          onChange={handleChange}
-          placeholder="종목명 혹은 종목번호를 입력해주세요."
-        />
-        {input && filteredCompanies.length > 0 && (
-          <div className="stockData">
-            {filteredCompanies.map((company) => (
-              <div
-                key={company[1]}
-                className="companyItem"
-                onMouseOver={handleMouseOver}
-                onMouseOut={handleMouseOut}
-                onClick={() => {
-                  handleSetStock(company[1]);
-                  closeModal();
-                }}
-              >
-                {company[0]} : {company[1]}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+    <div className="stockSearch">
+      <input
+        onChange={handleChange}
+        placeholder="종목명 혹은 종목번호를 입력해주세요."
+      />
+      {input && filteredCompanies.length > 0 && (
+        <div className="stockData">
+          {filteredCompanies.map((company) => (
+            <div
+              key={company[1]}
+              className="companyItem"
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+              onClick={() => {
+                handleSetStock(company[1]);
+                closeModal();
+              }}
+            >
+              {company[0]} : {company[1]}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

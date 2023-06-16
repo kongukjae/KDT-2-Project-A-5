@@ -42,4 +42,5 @@ module.exports = {
       template: "./src/views/html/index.html",
     }),
   ],
+  devtool: "source-map"
 };
