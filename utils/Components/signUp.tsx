@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 /* import "../../src/views/css/style"; */
 import "../../src/views/css/signUp";
+import styles from "../../src/views/css/welcome.module.css";
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -208,7 +209,7 @@ export default function Main() {
                   type="checkbox"
                   checked={eftUseCheck}
                   onChange={handleEftUseCheck}
-                />{" "}
+                />
                 <label htmlFor="EFTUseCheck">
                   [필수] 전자금융거래 이용약관 동의
                 </label>
@@ -252,7 +253,9 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <button type="submit">회원가입</button>
+          <button type="submit" className={styles.nextButton}>
+            회원가입
+          </button>
         </form>
       </div>
     </>
