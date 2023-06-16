@@ -6,9 +6,10 @@ import path from "path";
 import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
+import showTaxiData from "./showTaxiData";
+import taxiCreate from './taxiCreate';
 import { signIn, userCreate } from './userController';
 import yesterDayStockData from './yesterDayStockData';
-import taxiCreate from './taxiController';
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
@@ -63,15 +64,17 @@ app.use("/news", newsApp);
 
 app.use(express.static(root)); //root 디렉토리
 app.use(express.static(rootPublic)); //root의 하위 디렉토리는 첫번째만 접근 가능하기 때문에 별도로 지정.
+app.use('/showTaxiData', showTaxiData) // station 화면 랜더링 요청 처리 미들웨어
 app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(rootPublic, "index.html"));
 })
 app.use(express.json()); // JSON 형식의 본문을 파싱할 수 있도록 설정
-app.use(express.urlencoded({ extended: true })); // URL-encoded 
+app.use(express.urlencoded({ extended: true })); // URL-encoded
 app.post('/user', userCreate); // 회원가입 요청 미들워에
 app.use('/signIn', signIn); // 로그인 요청 미들웨어
 app.use('/yesterDayDataRequest',yesterDayStockData); //전날 데이터 요청 하는 미들웨어
-app.post('/taxi',taxiCreate) // 택시방 만들기 요청 하는 미들웨어
+
+app.use('/taxiCreate',taxiCreate) // 택시방 만들기 요청 하는 미들웨어
 
 app.use((req, res) => {
   res.status(404).send("not found");
