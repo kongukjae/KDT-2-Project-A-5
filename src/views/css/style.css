@@ -100,6 +100,20 @@ justify-content: center;
   padding: 10px;
   width: 100px;
 }
+
+/* 내정보 내 택시 상자 */
+
+.showTaxiContainerBox {
+  width: 360px;
+  height: 400px;
+}
+.showTaxiAccount::-webkit-scrollbar {
+  display: none;  
+  overflow-y: scroll;
+}
+
+/* 회원가입 페이지 스타일링 */
+
 /* 상자 스타일링 */
 
 .grayColorBox {

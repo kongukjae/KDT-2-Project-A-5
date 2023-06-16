@@ -39,10 +39,17 @@ export default function Main() {
       .then((data) => {
         if(data.boolean === true){
           console.log("테스트",data.result[0].userName)
-          let test = decodeURIComponent(data.result[0].userName)
-          setCookie('userName', test,)
-          navigate('/home');
-          // 로그인 성공했을 때 쿠키 생성
+          if(data.result[0].lastAccess === null){
+            setCookie('userId', data.result[0].userId)
+            setCookie('userName', data.result[0].userName)
+            navigate('/welcome_1');
+          }
+          else{
+            setCookie('userId', data.result[0].userId)
+            setCookie('userName', data.result[0].userName)
+            navigate('/home');
+            // 로그인 성공했을 때 쿠키 생성
+          }
         }
         else{
           alert('로그인 실패')
