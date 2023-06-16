@@ -1,6 +1,6 @@
 import React from "react";
 import ShowTaxi from "./showTaxi";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import { AiFillPlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export default function Main() {
@@ -11,7 +11,7 @@ export default function Main() {
           <ShowTaxi />
           <div className="createTaxiButton">
             <Link to="/taxi">
-              <AiOutlinePlusCircle size={40} color="#3B56D3" />
+              <AiFillPlusCircle size={40} color="#3B56D3" />
             </Link>
           </div>
         </div>
