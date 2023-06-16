@@ -107,7 +107,10 @@ justify-content: center;
   width: 360px;
   height: 400px;
 }
-
+.showTaxiAccount::-webkit-scrollbar {
+  display: none;  
+  overflow-y: scroll;
+}
 
 /* 회원가입 페이지 스타일링 */
 
