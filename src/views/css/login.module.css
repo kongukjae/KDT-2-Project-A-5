@@ -2,8 +2,46 @@
 
 /*  */
 .main {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleLoginButton {
+  width: 340px;
+  height: 60px;
+  background-color: #9f9f9f;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.signUpButton {
+  width: 340px;
+  height: 60px;
+  background-color: #3b56d3;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.loginTypeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.moveToLogin {
+  margin-top: 15px;
+}
+
+.titleImg {
+  padding: 40px;
 }

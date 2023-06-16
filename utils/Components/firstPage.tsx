@@ -9,17 +9,25 @@ export default function Login() {
       <div className={loginStyle.main}>
         <StockTogetherTitle />
         <img
-          className="title_img"
+          className={loginStyle.titleImg}
           src="img/stock_together_logo.png"
           width="80%"
           alt="이미지"
         />
-        <button type="submit">Google을 이용하여 시작하기 </button>
-        <Link to="/signup">
-          <button type="submit">회원가입</button>
-        </Link>
+        <div className={loginStyle.loginTypeBox}>
+          <button type="submit" className={loginStyle.googleLoginButton}>
+            Google을 이용하여 시작하기
+          </button>
+          <Link to="/signup">
+            <button type="submit" className={loginStyle.signUpButton}>
+              회원가입
+            </button>
+          </Link>
+        </div>
         <Link to="/login">
-          <p>계정이 이미 있으신가요?</p>
+          <div className={loginStyle.moveToLogin}>
+            <p>계정이 이미 있으신가요?</p>
+          </div>
         </Link>
       </div>
     </>
