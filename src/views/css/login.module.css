@@ -2,8 +2,113 @@
 
 /*  */
 .main {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* gap: 50px; */
+}
+
+.googleLoginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 60px;
+  background-color: #b1b1b1;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.googleLoginButton:hover {
+  background-color: #9f9f9f;
+}
+
+.signUpButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 60px;
+  background-color: #526ce2;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.signUpButton:hover {
+  background-color: #3b56d3;
+}
+
+.loginTypeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.moveToLogin {
+  margin-top: 15px;
+}
+
+.titleImg {
+  padding: 40px;
+}
+
+.link {
+  color: white !important;
+  text-decoration: none;
+}
+
+.googleLoginIcon {
+  font-size: 24px;
+  margin-right: 24px;
+}
+
+.createAccountIcon {
+  font-size: 24px;
+  margin-right: 24px;
+}
+
+.loginTitle {
+  font-size: 24px;
+  width: 340px;
+}
+
+.loginSubTitle {
+  font-size: 13px;
+  width: 340px;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

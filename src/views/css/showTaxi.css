@@ -1,12 +1,12 @@
 .showTaxiStation{
-width: 347px;
-  height: 709px;
+width: 360px;
+  height: 690px;
   border-radius: 10px;
   align-items: center;
   overflow-x: hidden;
 }
 .showTaxiAccount{
-width: 347px;
+width: 360px;
   height: 380px;
   border-radius: 10px;
   align-items: center;

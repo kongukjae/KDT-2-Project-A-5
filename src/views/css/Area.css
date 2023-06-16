@@ -1,18 +1,21 @@
 .driverArea {
   display: flex;
+  gap: 10px;
+  overflow: scroll;
 }
-.driverContentsBox{
-  width: 70%;
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 7px;
-}
+
 .newsArea {
   display: flex;
+  gap: 10px;
+  overflow: scroll;
+  height: 135px;
+}
+.newsArea::-webkit-scrollbar {
+  display: none;
 }
 .stockArea {
   display: flex;
 }
-
 .myStockArea {
   display: flex;
 }

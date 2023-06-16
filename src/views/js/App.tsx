@@ -38,28 +38,28 @@ export default function App() {
   useEffect(() => {
     switch (location.pathname) {
       case "/":
-        setPageTitle("함께 투자하는 즐거움 Stock Together");
+        setPageTitle("");
         break;
       case "/home":
         setPageTitle("홈");
         break;
       case "/account":
-        setPageTitle("내정보");
+        setPageTitle("내 정보");
         break;
       case "/station":
         setPageTitle("정류장");
         break;
       case "/first":
-        setPageTitle("함께 투자하는 즐거움 Stock Together");
+        setPageTitle("");
         break;
       case "/login":
-        setPageTitle("함께 투자하는 즐거움 Stock Together");
+        setPageTitle("");
         break;
       case "/signup":
         setPageTitle("회원가입");
         break;
       case "/taxi":
-        setPageTitle("조회");
+        setPageTitle("택시 생성");
         break;
       case "/stockSearch":
         setPageTitle("종목 검색");

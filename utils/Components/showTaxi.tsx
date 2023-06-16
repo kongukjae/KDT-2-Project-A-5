@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import stockContext from "../../src/views/js/stockContext";
-// const [priceState, setPriceState] = useState<any[]>([])
 import { AiFillRobot } from "react-icons/ai";
 import "../../src/views/css/showTaxi";
+import "@dotlottie/player-component";
+import styles from "../../src/views/css/loading.module.css";
+
 import StockContentsBox from "./stockContentsBox";
 const ShowTaxi = () : JSX.Element => {
 const [taxiData, setTaxiData] = useState<any[]>([]);
@@ -42,7 +43,7 @@ useEffect(()=> {
         taxiData.map((data: any, index: number) => (
           <div>
             <div>
-              <div className="" key={index}></div>
+              <div className="grayColorBox" key={index}></div>
               {/* 데이터 활용 */}
               <div className="commonFontSize">{data["stockAmount"]}</div>
               {/* 목표가 */}
@@ -82,7 +83,14 @@ useEffect(()=> {
         ))
       ) : (
         // 데이터가 없는 경우에 대한 처리
-        <p>Loading...</p>
+        <div className={styles.loading}>
+          <dotlottie-player
+            src="../../src/models/loading.lottie"
+            autoplay
+            loop
+            style={{ width: "50%", height: "100%" }}
+          />
+        </div>
       )}
           <div>
             <button onClick={refreshData}>새로고침</button>

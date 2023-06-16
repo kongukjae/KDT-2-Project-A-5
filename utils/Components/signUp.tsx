@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../src/views/css/style";
+import styles from "../../src/views/css/welcome.module.css";
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -121,7 +122,8 @@ export default function Main() {
 
   return (
     <>
-      <div className="main ">
+      <div className="main">
+        <div className="signUpText">회원 정보를 입력해주세요.</div>
         <form className="BackgroundColorGray" onSubmit={handleSubmit}>
           <input
             className="inputText"
@@ -165,7 +167,7 @@ export default function Main() {
             onChange={handleChangePhoneNumber}
           />
           <div>
-            <div>
+            <div className="allCheck">
               <input
                 id="allCheck"
                 type="checkbox"
@@ -207,7 +209,7 @@ export default function Main() {
                   type="checkbox"
                   checked={eftUseCheck}
                   onChange={handleEftUseCheck}
-                />{" "}
+                />
                 <label htmlFor="EFTUseCheck">
                   [필수] 전자금융거래 이용약관 동의
                 </label>
@@ -251,7 +253,9 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <button type="submit">회원가입</button>
+          <button type="submit" className={styles.nextButton}>
+            회원가입
+          </button>
         </form>
       </div>
     </>

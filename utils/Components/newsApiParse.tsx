@@ -20,17 +20,19 @@ const newsAPI = (): JSX.Element => {
       {news.length > 0 ? (
         news.map((element: { [key: string]: string }) => {
           return (
-            <div className="newsContentsBox" font-size="11px">
-              <a href={element.link} target="_blank">
-                <div className="newsThumbnail">
-                  <img
-                    className="newsImg"
-                    src={element.thumbnail}
-                    alt="thumbnail"
-                  />
-                </div>
-                <div className="newsTitle">{element.title}</div>
-              </a>
+            <div className="newsInformation">
+              <div className="newsContentsBox" font-size="11px">
+                <a href={element.link} target="_blank">
+                  <div className="newsThumbnail">
+                    <img
+                      className="newsImg"
+                      src={element.thumbnail}
+                      alt="thumbnail"
+                    />
+                  </div>
+                  <div className="newsTitle">{element.title}</div>
+                </a>
+              </div>
             </div>
           );
         })

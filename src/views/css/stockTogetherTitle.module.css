@@ -1,0 +1,14 @@
+.stockTogetherContentsBox {
+  width: 347px;
+}
+
+.stockTogetherSubTitle {
+  font-size: 18px;
+}
+
+.stockTogetherMainTitle {
+  font-family: "Barlow", sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 50px;
+}

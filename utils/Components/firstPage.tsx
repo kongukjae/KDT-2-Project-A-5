@@ -1,24 +1,43 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import loginStyle from "../../src/views/css/login.module.css";
-import stockContext from "../../src/views/js/stockContext";
+import StockTogetherTitle from "./stockTogetherTitle";
+import { AiFillGoogleCircle } from "react-icons/ai";
+import { HiOutlinePencilAlt } from "react-icons/Hi";
+import { log } from "console";
+
 export default function Login() {
   return (
     <>
       <div className={loginStyle.main}>
+        <StockTogetherTitle />
         <img
-          className="title_img"
+          className={loginStyle.titleImg}
           src="img/stock_together_logo.png"
           width="80%"
           alt="이미지"
         />
-        <button type="submit">Google을 이용하여 시작하기 </button>
-        <Link to="/signup">
-          <button type="submit">회원가입</button>
-        </Link>
-        <Link to="/login">
-          <p>계정이 이미 있으신가요?</p>
-        </Link>
+        <div className={loginStyle.loginTypeBox}>
+          <div className={loginStyle.googleLoginButton}>
+            <AiFillGoogleCircle className={loginStyle.googleLoginIcon} />
+            {/* <button type="submit" className={loginStyle.googleLoginButton}> */}
+            Google을 이용하여 시작하기
+            {/* </button> */}
+          </div>
+          <NavLink to="/signup" className={loginStyle.link}>
+            <div className={loginStyle.signUpButton}>
+              <HiOutlinePencilAlt className={loginStyle.createAccountIcon} />
+              {/* <button type="submit" className={loginStyle.signUpButton}> */}
+              회원가입
+              {/* </button> */}
+            </div>
+          </NavLink>
+        </div>
+        <NavLink to="/login">
+          <div className={loginStyle.moveToLogin}>
+            <p>계정이 이미 있으신가요?</p>
+          </div>
+        </NavLink>
       </div>
     </>
   );
