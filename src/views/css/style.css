@@ -79,7 +79,12 @@ body {
 }
 /* main 내부 박스 스타일링 */
 .mainInBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 360px;
+  height: 100%;
+  gap: 5px;
 }
 
 .main::-webkit-scrollbar {
