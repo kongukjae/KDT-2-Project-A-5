@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "../../src/views/css/style";
+import StockTogetherTitle from "./stockTogetherTitle";
 import { setCookie } from "./cookie";
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -37,26 +38,25 @@ export default function Main() {
         }
       })
       .then((data) => {
-        if(data.boolean === true){
-          console.log("테스트",data.result[0].userName)
-          let test = decodeURIComponent(data.result[0].userName)
-          setCookie('userName', test,)
-          navigate('/home');
+        if (data.boolean === true) {
+          console.log("테스트", data.result[0].userName);
+          let test = decodeURIComponent(data.result[0].userName);
+          setCookie("userName", test);
+          navigate("/home");
           // 로그인 성공했을 때 쿠키 생성
-        }
-        else{
-          alert('로그인 실패')
+        } else {
+          alert("로그인 실패");
         }
       })
       .catch((error) => {
         console.error(error);
       });
-
   };
 
   return (
     <>
       <div className="main">
+        <StockTogetherTitle />
         <form onSubmit={handleSubmit}>
           <input
             name="userId"
