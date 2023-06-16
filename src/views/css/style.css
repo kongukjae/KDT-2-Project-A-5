@@ -148,13 +148,12 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   box-sizing: border-box;
-
   width: 340px;
   height: 160px;
-
   background: #ffffff;
   border: 1px solid #000000;
   border-radius: 5px;
+  padding: 5px;
 }
 
 .signUpText {

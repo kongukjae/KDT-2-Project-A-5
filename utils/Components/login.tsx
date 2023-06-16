@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../src/views/css/style";
+import loginStyle from "../../src/views/css/login.module.css";
+import styles from "../../src/views/css/welcome.module.css";
+
 import StockTogetherTitle from "./stockTogetherTitle";
 import { setCookie } from "./cookie";
 export default function Main() {
@@ -61,26 +64,37 @@ export default function Main() {
 
   return (
     <>
-      <div className="main">
+      <div className={loginStyle.main}>
         <StockTogetherTitle />
+
         <form className="main" onSubmit={handleSubmit}>
-          <input
-            className="inputText"
-            name="userId"
-            type="email"
-            placeholder="이메일"
-            value={email}
-            onChange={handleChangeEmail}
-          />
-          <input
-            className="inputText"
-            name="password"
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={handleChangePassword}
-          />
-          <button type="submit">로그인</button>
+          <div className={loginStyle.loginBox}>
+            <div className={loginStyle.loginTitle}>로그인</div>
+            <div className={loginStyle.loginSubTitle}>
+              회원 정보를 입력해주세요.
+            </div>
+          </div>
+          <div className={loginStyle.loginForm}>
+            <input
+              className="inputText"
+              name="userId"
+              type="email"
+              placeholder="이메일"
+              value={email}
+              onChange={handleChangeEmail}
+            />
+            <input
+              className="inputText"
+              name="password"
+              type="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={handleChangePassword}
+            />
+            <button type="submit" className={styles.nextButton}>
+              로그인
+            </button>
+          </div>
         </form>
       </div>
     </>
