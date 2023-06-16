@@ -11,7 +11,7 @@ export default function Main() {
           <ShowTaxi />
           <div className="createTaxiButton">
             <Link to="/taxi">
-              <AiFillPlusCircle />
+              <AiFillPlusCircle color="#3b56d3" />
             </Link>
           </div>
         </div>
