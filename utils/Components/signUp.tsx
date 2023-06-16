@@ -124,6 +124,7 @@ export default function Main() {
   return (
     <>
       <div className="signPage">
+        <div className="signUpText">회원 정보를 입력해주세요.</div>
         <form className="BackgroundColorGray" onSubmit={handleSubmit}>
           <input
             className="inputText"
@@ -167,7 +168,7 @@ export default function Main() {
             onChange={handleChangePhoneNumber}
           />
           <div>
-            <div>
+            <div className="allCheck">
               <input
                 id="allCheck"
                 type="checkbox"

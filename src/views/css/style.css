@@ -143,4 +143,13 @@ body {
   background: #ffffff;
   border: 1px solid #000000;
   border-radius: 5px;
+  padding: 5px;
+}
+
+.signUpText {
+  width: 347px;
+}
+
+.allCheck {
+  margin-bottom: 5px;
 }
