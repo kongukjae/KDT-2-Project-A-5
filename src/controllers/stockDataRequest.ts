@@ -4,7 +4,10 @@ import path from "path";
 import fs from "fs";
 // json 데이터 불러오기
 const readSymbolData = fs.readFileSync(path.join(__dirname,'../models/stock.data.json'), 'utf-8')
-console.log("심볼리스트 :", readSymbolData)
+const symbolArray = JSON.parse(readSymbolData)
+// 회사 이름만 떼오기
+console.log(symbolArray[0][0])
+// console.log("심볼리스트 :", readSymbolData)
 //! 최초 주식 데이터 요청 함수
 let stockData: any
 const stockDataRequest = async()=> {
@@ -20,3 +23,4 @@ const stockDataRequest = async()=> {
   // 서버에서 3분에 한번씩 주식데이터 요청
   setInterval(stockDataRequest, 3 * 60 * 1000);
 }
+// stockDataRequest()
