@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import loginStyle from "../../src/views/css/login.module.css";
+import StockTogetherTitle from "./stockTogetherTitle";
 import stockContext from "../../src/views/js/stockContext";
 export default function Login() {
   return (
     <>
       <div className={loginStyle.main}>
+        <StockTogetherTitle />
         <img
           className="title_img"
           src="img/stock_together_logo.png"
