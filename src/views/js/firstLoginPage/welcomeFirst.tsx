@@ -18,7 +18,7 @@ export default function FirstAnimation() {
       </div>
       <div className={styles.welcomeExplainText}>{explain}</div>
       <Link to="/welcome_2">
-        <button>다음</button>
+        <button className={styles.nextButton}>다음</button>
       </Link>
     </div>
   );

@@ -20,7 +20,7 @@ export default function SecondAnimation() {
       </div>
       <div className={styles.welcomeExplainText}>{explain}</div>
       <Link to="/welcome_3">
-        <button>다음</button>
+        <button className={styles.nextButton}>다음</button>
       </Link>
     </div>
   );

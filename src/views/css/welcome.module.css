@@ -27,3 +27,14 @@
   width: 347px;
   white-space: pre-wrap;
 }
+
+.nextButton {
+  width: 347px;
+  height: 60px;
+  background-color: #3b56d3;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 18px;
+}

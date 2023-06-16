@@ -18,7 +18,7 @@ export default function ThirdAnimation() {
       </div>
       <div className={styles.welcomeExplainText}>{explain}</div>
       <Link to="/home">
-        <button>확인했어요</button>
+        <button className={styles.nextButton}>확인했어요</button>
       </Link>
     </div>
   );
