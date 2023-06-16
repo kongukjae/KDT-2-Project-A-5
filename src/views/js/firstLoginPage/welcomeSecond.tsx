@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import exp from "constants";
 
 const explain =
-  "마음에 드는 택시를 찾아 탑승하면 \n희망 매수가에 도달했을 시 자동으로 매수합니다.";
+  "마음에 드는 택시를 찾아 탑승하면 \n희망 매수가에 자동으로 매수합니다.";
 
 export default function SecondAnimation() {
   return (

@@ -21,20 +21,27 @@
 
 .welcomeTitle {
   width: 347px;
+  font-size: 32px;
 }
 
 .welcomeExplainText {
   width: 347px;
   white-space: pre-wrap;
+  font-size: 22px;
 }
 
 .nextButton {
   width: 347px;
   height: 60px;
-  background-color: #3b56d3;
+  background-color: #526ce2;
   cursor: pointer;
   color: white;
   border-radius: 5px;
   border: 0px;
   font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.nextButton:hover {
+  background-color: #3b56d3;
 }
