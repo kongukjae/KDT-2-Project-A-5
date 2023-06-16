@@ -9,7 +9,6 @@ export default function (req: express.Request, res: express.Response) {
     }
     else {
       res.json(results);
-      console.log(results)
     }
   })
 }

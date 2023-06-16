@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import { getCookie } from "../../../utils/Components/cookie";
-import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+import StockSearch from "../../../utils/Components/stockSearch";
 import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -14,7 +14,6 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
-import StockSearch from "../../../utils/Components/stockSearch";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie('userName')
@@ -28,6 +27,7 @@ export default function App() {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
+        console.log(parsedData)
         setStockContextData(parsedData);
       } catch (error) {
         console.error("주식 데이터 쿨타임");

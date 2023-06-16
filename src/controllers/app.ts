@@ -6,8 +6,7 @@ import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
 import showTaxiData from "./showTaxiData";
-import { stockDataRequest } from "./stockDataRequest";
-import { stockDataSend } from "./stockDataSend";
+import { stockController } from "./stockController";
 import taxiCreate from './taxiController';
 import { signIn, userCreate } from './userController';
 import yesterDayStockData from './yesterDayStockData';
@@ -16,16 +15,9 @@ const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
 const app = express();
 const socketServer = http.createServer(app);
-const io = new Server(socketServer);
+export const io = new Server(socketServer);
 // ! 주식 데이터 전송 모듈
-stockDataRequest()
-.then((data : any)=> {
-  ( async ()=> {
-  let _data = await data;
-  stockDataSend(_data,io);
-  })
-  ()
-})
+stockController(io)
 
 // DB 연결
 dbConnect.connect((err) => {
