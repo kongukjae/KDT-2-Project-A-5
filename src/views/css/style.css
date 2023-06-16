@@ -1,5 +1,11 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.7/dist/web/static/pretendard.css");
+
 * {
   margin: 0px;
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 body {
@@ -94,35 +100,25 @@ justify-content: center;
   padding: 10px;
   width: 100px;
 }
-
-/* 내정보 내 택시 상자 */
-
-.showTaxiContainerBox {
-  width: 360px;
-  height: 400px;
-}
-
-
-/* 회원가입 페이지 스타일링 */
-
 /* 상자 스타일링 */
+
 .grayColorBox {
   border: 1px #C4C4C4 solid;
   box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
-
-/* 회원가입 페이지 크기 조정 */
+/* 회원가입 페이지 스타일링 */
 .BackgroundColorGray{ 
   display: flex;
   flex-direction: column;
   align-items: center;
-   Width: 360px;
+  background: #D9D9D9;
+  Width: 360px;
   height: 649px;
   justify-content: space-around;
   }
   
-/* 회원가입 입력창 스타일링 */
+/* 입력창 스타일링 */
 .inputText{
   width: 340px;
   height: 60px;
@@ -130,7 +126,7 @@ justify-content: center;
   border-radius: 5px;
   }
 
-/* 회원가입 체크박스 스타일링 */
+/* 회원가입 내부 스타일링 */
 .inputWhiteBox{
   box-sizing: border-box;
   
@@ -141,4 +137,3 @@ justify-content: center;
     border: 1px solid #000000;
     border-radius: 5px;
   }
-

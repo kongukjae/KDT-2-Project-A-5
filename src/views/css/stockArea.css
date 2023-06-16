@@ -1,3 +1,25 @@
 .stockArea {
   display: flex;
 }
+
+.stockContentsBox {
+  display: flex;
+  width: 131px;
+  height: 131px;
+  border-radius: 7px;
+  box-shadow: 1px 2px 3px grey;
+  overflow: hidden;
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.stockInfo {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.stockSymbol {
+  font-weight: bold;
+}

@@ -15,6 +15,10 @@ import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
 import StockSearch from "../../../utils/Components/stockSearch";
+import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
+import WelcomeFirst from "../../../src/views/js/firstLoginPage/welcomeFirst";
+import WelcomeSecond from "../../../src/views/js/firstLoginPage/welcomeSecond";
+import WelcomeThird from "../../../src/views/js/firstLoginPage/welcomeThird";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie("userName");
@@ -63,6 +67,15 @@ export default function App() {
       case "/stockSearch":
         setPageTitle("종목 검색");
         break;
+      case "/welcome_1":
+        setPageTitle("");
+        break;
+      case "/welcome_2":
+        setPageTitle("");
+        break;
+      case "/welcome_3":
+        setPageTitle("");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -84,11 +97,20 @@ export default function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/taxi" element={<TaxiScreen />} />
             <Route path="/stockSearch" element={<StockSearch />} />
+            <Route path="/welcome_1" element={<FirstLoginPage />} />
+            <Route path="/welcome_2" element={<WelcomeSecond />} />
+            <Route path="/welcome_3" element={<WelcomeThird />} />
           </Routes>
         </stockContext.Provider>
-        {["/", "/first", "/signup", "/login"].includes(
-          location.pathname
-        ) ? null : (
+        {[
+          "/",
+          "/first",
+          "/signup",
+          "/login",
+          "/welcome_1",
+          "/welcome_2",
+          "/welcome_3",
+        ].includes(location.pathname) ? null : (
           <Nav />
         )}
       </div>

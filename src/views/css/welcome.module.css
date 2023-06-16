@@ -1,0 +1,47 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  gap: 15px;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.welcomeContentsBox {
+  width: 347px;
+  height: 99px;
+  box-shadow: 0px 1px 3px rgb(199, 199, 199);
+  border-radius: 20px;
+}
+
+.welcomeTitle {
+  width: 347px;
+  font-size: 32px;
+}
+
+.welcomeExplainText {
+  width: 347px;
+  white-space: pre-wrap;
+  font-size: 22px;
+}
+
+.nextButton {
+  width: 347px;
+  height: 60px;
+  background-color: #526ce2;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.nextButton:hover {
+  background-color: #3b56d3;
+}
