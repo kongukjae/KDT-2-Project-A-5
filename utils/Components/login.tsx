@@ -41,10 +41,12 @@ export default function Main() {
           console.log("테스트",data.result[0].userName)
           if(data.result[0].lastAccess === null){
             setCookie('userId', data.result[0].userId)
+            setCookie('userNum', data.result[0].userNum)
             setCookie('userName', data.result[0].userName)
             navigate('/welcome_1');
           }
           else{
+            setCookie('userNum', data.result[0].userNum)
             setCookie('userId', data.result[0].userId)
             setCookie('userName', data.result[0].userName)
             navigate('/home');

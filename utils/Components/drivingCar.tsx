@@ -7,10 +7,10 @@ import "../../src/views/css/showTaxi";
 const DrivingCar: React.FC = () => {
   const [taxiData, setTaxiData] = useState<any>();
   const [defaultContainer, setDefaultContainer] = useState(false);
-  const cookieValue = getCookie("userName");
+  const cookieValue = getCookie("userNum");
 
   const data = {
-    userName: decodeURIComponent(cookieValue),
+    userNum : decodeURIComponent(cookieValue),
   };
   fetch("/drivingCar", {
     method: "POST",

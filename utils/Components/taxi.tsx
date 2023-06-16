@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import StockSearch from "./stockSearch";
 import Modal from "react-modal";
 import { getCookie } from "./cookie";
+import { useNavigate } from 'react-router-dom';
 
 const customStyles = {
   content: {
@@ -26,7 +27,7 @@ const corpAutoComp = () => {
   const [maxPerson, setMaxPerson] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const inputStock = useRef<any>("");
-
+  const navigate = useNavigate();
   // 모달을 열기 위한 함수.
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -78,8 +79,7 @@ const corpAutoComp = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("제출 확인");
+    const userNum = getCookie("userNum");
     const data = {
       userName: userName,
       stocks: stocks,
@@ -90,6 +90,7 @@ const corpAutoComp = () => {
       targetPrice: targetPrice,
       stopLossPrice: stopLossPrice,
       maxPerson: maxPerson,
+      userNum: userNum,
     };
 
     fetch("/taxi", {
@@ -107,7 +108,11 @@ const corpAutoComp = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        console.log('data',data);
+        if(data.boolean === true){
+          console.log("제출 확인",data);
+          navigate('/home');
+        }
       })
       .catch((error) => {
         console.error(error);

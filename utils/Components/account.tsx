@@ -41,7 +41,7 @@ export default function Main() {
       });
       removeCookie('userName');
       removeCookie('userId');
-
+      removeCookie('userNum');
     // 새로고침
     window.location.reload();
   };
