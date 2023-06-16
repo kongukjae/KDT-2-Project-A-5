@@ -5,7 +5,7 @@ import "../../src/views/css/style";
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  /*   const [passwordConfirm, setpasswordConfirm] = useState(""); */
+  const [passwordConfirm, setpasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [allCheck, setAllCheck] = useState(false);
@@ -26,12 +26,17 @@ export default function Main() {
     setPassword(e.target.value);
   };
 
-  /*   const handleChangePasswordConfirm = (
+  const handleChangePasswordConfirm = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setPassword(e.target.value);
+    setpasswordConfirm(e.target.value);
   };
- */
+
+  const passwordMatchMessage =
+    passwordConfirm !== "" && password === passwordConfirm ? (
+      <div className="password-match">비밀번호가 일치합니다</div>
+    ) : null;
+
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -80,7 +85,7 @@ export default function Main() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("제출 확인");
+    alert("회원가입이 완료되었습니다");
 
     const data = {
       email: email,
@@ -134,16 +139,15 @@ export default function Main() {
             value={password}
             onChange={handleChangePassword}
           />
-          {/* <input
+          <input
             className="inputText"
             name="passwordConfirm"
             type="password"
             placeholder="비밀번호 확인"
             value={passwordConfirm}
             onChange={handleChangePasswordConfirm}
-          />      비밀번호 확인용  input 
-          차후 수정 예정- 
-          */}
+          />
+          {passwordMatchMessage}
           <input
             className="inputText"
             name="userName"
@@ -168,7 +172,7 @@ export default function Main() {
                 checked={allCheck}
                 onChange={handleAllCheckChange}
               />
-              <label htmlFor="allCheck">전체 동의하기</label>
+              <label htmlFor="allCheck">모두 확인하였으며, 동의합니다.</label>
             </div>
             {/* <input id="allCheck" type="checkbox" /> */}
 

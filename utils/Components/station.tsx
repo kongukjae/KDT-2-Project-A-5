@@ -4,8 +4,8 @@ export default function Main() {
   return (
     <>
       <div className="main">
-        <div>
-    <ShowTaxi />
+        <div className="mainInBox">
+          <ShowTaxi />
         </div>
       </div>
     </>

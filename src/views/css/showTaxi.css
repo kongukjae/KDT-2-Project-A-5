@@ -1,8 +1,16 @@
-#showTaxiContainer {
-  width: 347px;
-  height: 99px;
-  border-radius: 30px;
-  border: 1px gray solid;
+.showTaxiStation{
+width: 347px;
+  height: 709px;
+  border-radius: 10px;
+  align-items: center;
+  overflow-x: hidden;
+}
+.showTaxiAccount{
+width: 347px;
+  height: 380px;
+  border-radius: 10px;
+  align-items: center;
+  overflow-x: hidden;
 }
 #stocks {
   font-size: 20px;
