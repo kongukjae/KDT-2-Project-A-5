@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import StockTogetherTitle from "./stockTogetherTitle";
+
 import loginStyle from "../../src/views/css/login.module.css";
 // import StockTogetherLogo from '../src/views/img/stock_together_logo';
 
@@ -18,6 +20,7 @@ function introPage(props: LoadingProps) {
   return (
     <>
       <div className={loginStyle.main}>
+        <StockTogetherTitle />
         <img src={"img/stock_together_logo.png"} width="80%" alt="이미지" />
       </div>
     </>
