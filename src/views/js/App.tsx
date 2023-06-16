@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import { getCookie } from "../../../utils/Components/cookie";
-import CorpAutoComp from "../../../utils/Components/corpAutoComplete";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
+import StockSearch from "../../../utils/Components/stockSearch";
 import AccountScreen from "./accountPage/accountScreen";
 import FirstPage from "./firstPage/firstPageScreen";
 import IntroPage from "./IntroPage/IntroPageScreen";
@@ -32,6 +32,7 @@ export default function App() {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
+        console.log(parsedData)
         setStockContextData(parsedData);
       } catch (error) {
         console.error("주식 데이터 쿨타임");

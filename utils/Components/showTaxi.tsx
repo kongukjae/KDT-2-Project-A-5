@@ -3,24 +3,39 @@ import React, { useEffect, useState } from "react";
 // const [priceState, setPriceState] = useState<any[]>([])
 import { AiFillRobot } from "react-icons/ai";
 import "../../src/views/css/showTaxi";
-const ShowTaxi = (): JSX.Element => {
-  const [taxiData, setTaxiData] = useState<any>();
-  const [defaultContainer, setDefaultContainer] = useState(false);
-  useEffect(() => {
-    fetch("/showTaxiData")
-      .then((response) => response.json())
-      .then((data) => {
-        setTaxiData(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        // 오류 처리
-        console.error("정류장 데이터를 가져오는데 실패 :", error);
-      });
-  }, []);
-  const seeMore = () => {
-    setDefaultContainer(true);
-  };
+import StockContentsBox from "./stockContentsBox";
+const ShowTaxi = () : JSX.Element => {
+const [taxiData, setTaxiData] = useState<any[]>([]);
+// const [defaultContainer, setDefaultContainer] = useState(false)
+const [showChart, setShowChart]= useState(Array(taxiData.length).fill(false))
+useEffect(()=> {
+  fetch('/showTaxiData')
+  .then(response => response.json())
+  .then(data => {
+    setTaxiData(data)
+    console.log(data)
+  })
+  .catch(error => {
+    // 오류 처리
+    console.error('정류장 데이터를 가져오는데 실패 :', error);
+  });
+  
+},[])
+  const seeMore = (index : any)=> {
+    setShowChart((prevState)=> {
+      const updateState = [...prevState];
+      updateState[index] = !updateState[index];
+      return updateState;
+    })
+  }
+  const refreshData = ()=> {
+    fetch('/showTaxiData')
+    .then(response => response.json())
+    .then((data)=> {
+      setTaxiData(data)
+      console.log(data);
+    })
+  }
   return (
     <div className="showTaxiStation" onClick={seeMore}>
       {taxiData ? (
@@ -37,7 +52,13 @@ const ShowTaxi = (): JSX.Element => {
             {/* 택시 고유 번호 */}
             <div>{data["taxiId"]}</div>
             {/* 출발 희망가 */}
-            <div id="purchasePrice">{data["purchasePrice"]}</div>
+            <div id="purchasePrice">{data['purchasePrice']}</div>
+            {/* 클릭 했을 때만 차트 랜더링 */}
+            {showChart[index] && (
+            <div>
+              <StockContentsBox />
+            </div>
+            )}
             {/* 구매량 */}
 
             <div className="commonFontSize" style={{ color: "#008000" }}>
@@ -64,6 +85,9 @@ const ShowTaxi = (): JSX.Element => {
         // 데이터가 없는 경우에 대한 처리
         <p>Loading...</p>
       )}
+          <div>
+            <button onClick={refreshData}>새로고침</button>
+          </div>
     </div>
   );
 };

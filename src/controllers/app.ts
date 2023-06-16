@@ -1,4 +1,3 @@
-import axios from "axios";
 import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import http from "http";
@@ -7,6 +6,7 @@ import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
 import showTaxiData from "./showTaxiData";
+import { stockController } from "./stockController";
 import taxiCreate from './taxiController';
 import { signIn, userCreate ,logOutDate} from './userController';
 import yesterDayStockData from './yesterDayStockData';
@@ -17,42 +17,9 @@ const root = path.join(__dirname, "..", ".."); //C:\Users\over9\KDT-2_FullStack\
 const rootPublic = path.join(root, "public"); //C:\Users\over9\KDT-2_FullStack\KDT-2-Project-A-5\public
 const app = express();
 const socketServer = http.createServer(app);
-const io = new Server(socketServer);
-//! 최초 주식 데이터 요청 함수
-// let jsonData : any;
-let stockData: any
-async function stockDataRequest() {
-  try {
-    const symbol = "IBM";
-    const apiKey = process.env.alphaApiKey;
-    const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`)
-    stockData = response.data;
-    //api로 받아온 데이터 json으로 전송
-
-  } catch (error) {
-    console.error('주식 데이터를 받아오는데 실패했습니다', error);
-  }
-  // 서버에서 3분에 한번씩 주식데이터 요청
-  setInterval(stockDataRequest, 3 * 60 * 1000);
-}
-stockDataRequest();
-// 3분에 한번 데이터 쏴주기
-let increaseNum = 0;
-const stockDataLivetransmission = setInterval(() => {
-  try {
-    let symbol = stockData["Meta Data"]["2. Symbol"];
-    let stockObjectData: any = Object.entries(stockData['Time Series (5min)'])
-    let jsonData = JSON.stringify([symbol, stockObjectData[increaseNum]]);
-    // console.log(jsonData);
-    io.emit("stockDataUpdate", jsonData);
-    increaseNum++
-    if (increaseNum >= stockObjectData.length) {
-      clearInterval(stockDataLivetransmission);
-    }
-  } catch (error) {
-    console.error('stockDataLivetransmission 에러', error);
-  }
-}, 1 * 2000);
+export const io = new Server(socketServer);
+// ! 주식 데이터 전송 모듈
+stockController(io)
 
 // DB 연결
 dbConnect.connect((err) => {
