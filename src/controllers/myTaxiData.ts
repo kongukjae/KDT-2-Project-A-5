@@ -4,8 +4,8 @@ import dbConnect from "../../utils/DB/dbConfigure";
 export default function (req: express.Request, res: express.Response) {
   // 유저가 요청한 DB요청 처리를 할 로직
   dbConnect.query(
-    // `SELECT * from taxi WHERE userName="박달재";
-    `SELECT * from taxi WHERE state=1;`,//원본
+    // `SELECT * from taxi WHERE state=1;`,//원본
+    `SELECT * from taxi WHERE userName="${"권예준"}"`,
     (err, results) => {
       if (err) {
         console.log("데이터를 가져오는데 실패함 : ", err);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../../src/views/css/myTaxiListCss.css"
 
 const MyTaxiList = (): JSX.Element => {
   const [taxiData, setTaxiData] = useState<any[]>([]);
@@ -29,7 +30,7 @@ const MyTaxiList = (): JSX.Element => {
       {taxiData ? (
         // 데이터가 존재하는 경우에만 접근
         taxiData.map((data: any, index: number) => (
-          <div key={index}>
+          <div key={index} className="myTaxiListCss">
             {/* 데이터 활용 */}
             <div id="stocks">{data["stocks"]}</div>
             {/* 택시 고유 번호 */}
