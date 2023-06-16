@@ -9,6 +9,9 @@
 }
 
 .googleLoginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 340px;
   height: 60px;
   background-color: #9f9f9f;
@@ -20,6 +23,9 @@
 }
 
 .signUpButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 340px;
   height: 60px;
   background-color: #3b56d3;
@@ -44,4 +50,19 @@
 
 .titleImg {
   padding: 40px;
+}
+
+.link {
+  color: white !important;
+  text-decoration: none;
+}
+
+.googleLoginIcon {
+  font-size: 24px;
+  margin-right: 24px;
+}
+
+.createAccountIcon {
+  font-size: 24px;
+  margin-right: 24px;
 }
