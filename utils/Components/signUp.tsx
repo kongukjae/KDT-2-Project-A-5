@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../src/views/css/style";
+/* import "../../src/views/css/style"; */
+import "../../src/views/css/signUp";
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -121,7 +122,7 @@ export default function Main() {
 
   return (
     <>
-      <div className="main ">
+      <div className="signPage">
         <form className="BackgroundColorGray" onSubmit={handleSubmit}>
           <input
             className="inputText"

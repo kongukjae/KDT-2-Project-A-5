@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import dbConnect from "../../utils/DB/dbConfigure";
 import newsApp from "./newsController";
 import showTaxiData from "./showTaxiData";
+import taxiCreate from './taxiController';
 import { signIn, userCreate } from './userController';
 import yesterDayStockData from './yesterDayStockData';
 import myDrivingCar from './myDrivingCar';
@@ -79,7 +80,6 @@ app.post('/drivingCar',myDrivingCar) // 내가 참여 하거나 운행중인 차
 
 
 
-app.post('/taxi',taxiCreate) // 택시방 만들기 요청 하는 미들웨어
 
 app.use((req, res) => {
   res.status(404).send("not found");
