@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
+import WelcomeSecond from "../../../src/views/js/firstLoginPage/welcomeSecond";
+import WelcomeThird from "../../../src/views/js/firstLoginPage/welcomeThird";
 import { getCookie } from "../../../utils/Components/cookie";
 import Header from "../../../utils/Components/header";
 import Nav from "../../../utils/Components/nav";
@@ -14,14 +17,9 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
-import FirstLoginPage from "../../../src/views/js/firstLoginPage/firstLoginScreen";
-import WelcomeFirst from "../../../src/views/js/firstLoginPage/welcomeFirst";
-import WelcomeSecond from "../../../src/views/js/firstLoginPage/welcomeSecond";
-import WelcomeThird from "../../../src/views/js/firstLoginPage/welcomeThird";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie("userName");
-  console.log(userData);
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];
@@ -31,7 +29,6 @@ export default function App() {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
         const parsedData = JSON.parse(updatedData);
-        console.log(parsedData)
         setStockContextData(parsedData);
       } catch (error) {
         console.error("주식 데이터 쿨타임");

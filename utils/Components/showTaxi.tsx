@@ -13,7 +13,6 @@ useEffect(()=> {
   .then(response => response.json())
   .then(data => {
     setTaxiData(data)
-    console.log(data)
   })
   .catch(error => {
     // 오류 처리

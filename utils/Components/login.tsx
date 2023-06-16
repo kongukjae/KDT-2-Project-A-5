@@ -38,7 +38,6 @@ export default function Main() {
       })
       .then((data) => {
         if(data.boolean === true){
-          console.log("테스트",data.result[0].userName)
           if(data.result[0].lastAccess === null){
             setCookie('userId', data.result[0].userId)
             setCookie('userNum', data.result[0].userNum)
