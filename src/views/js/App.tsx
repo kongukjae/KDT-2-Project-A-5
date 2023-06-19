@@ -17,9 +17,10 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
+import MyTaxi from "../../../utils/Components/myTaxi";
 const socket = io("localhost:8080");
 export default function App() {
-  const userData = getCookie("userName");
+  const userData = getCookie('userName')
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   // let socketStockData : any = [];
@@ -73,6 +74,9 @@ export default function App() {
       case "/welcome_3":
         setPageTitle("");
         break;
+      case "/myTaxi":
+        setPageTitle("내 택시");
+        break;
       default:
         setPageTitle("홈");
         break;
@@ -97,6 +101,7 @@ export default function App() {
             <Route path="/welcome_1" element={<FirstLoginPage />} />
             <Route path="/welcome_2" element={<WelcomeSecond />} />
             <Route path="/welcome_3" element={<WelcomeThird />} />
+            <Route path="/myTaxi" element={<MyTaxi />} />
           </Routes>
         </stockContext.Provider>
         {[
