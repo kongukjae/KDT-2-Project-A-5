@@ -8,9 +8,9 @@ import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
 let priceArray : any[] = [];
 let priceArray2 : any[] = [];
 let priceArray3 : any[] = [];
-// const allPrcieArray = [
-//   priceArray, priceArray2, priceArray3
-// ];
+const allPrcieArray = [
+  priceArray, priceArray2, priceArray3
+];
 // console.log("allPrcieArray", allPrcieArray)
 const StockData = (): JSX.Element => {
   const socketStockData = useContext<any>(stockContext);
@@ -83,9 +83,12 @@ const StockData = (): JSX.Element => {
     <>
     {/* {test} */}
       {/* 배열에 데이터가 추가될 때만 차트가 렌더링 */}
-
-      <SimpleLineChart _data={priceArray}/>
-      {console.log(priceArray, "element")}
+      {allPrcieArray.map((element : any, index : number)=> {
+        // console.log(element, "이거다이거다")
+        return <SimpleLineChart key={index} _data={element}/>
+      })}
+      {/* <SimpleLineChart _data={priceArray}/> */}
+      {/* {console.log(priceArray, "element")} */}
       {/* {console.log("하이")} */}
       {/* <SimpleLineChart2 /> */}
       {/* <DayRange /> */}
