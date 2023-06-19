@@ -3,17 +3,19 @@ export function stockDataSend(stockData : any, io : SocketIOServer) {
   // 주식 데이터 전송
 let increaseNum = 0;
 const stockDataLivetransmission = setInterval(async () => {
-  stockData.map((element: object | any)   => {
+  stockData.map((element: object | any, index : number)   => {
     try {
       // 데이터가 없다면 취소
       if (!element) return;
       const symbol = element["Meta Data"]["2. Symbol"];
       const stockObjectData = Object.entries(element["Time Series (5min)"]);
-      const jsonData = JSON.stringify([
-        symbol,
-        stockObjectData[increaseNum],
-      ]);
-      io.emit("stockDataUpdate", jsonData);
+      const allData = [symbol, stockObjectData[increaseNum]];
+      // const jsonData = JSON.stringify([
+      //   symbol,
+      //   stockObjectData[increaseNum],
+      // ]);
+      console.log(allData)
+      io.emit("stockDataUpdate", allData);
       increaseNum++;
       if (increaseNum >= stockObjectData.length) {
         clearInterval(stockDataLivetransmission);
