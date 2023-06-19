@@ -26,6 +26,7 @@ const stockDataLivetransmission = setInterval(async () => {
     console.log("하이")
     io.emit("stockDataUpdate", dataFormatt);
   };
+  // 가지고 있는 배열 길이 만큼만 전송
   if(increaseNum >= Object.values(stockData[0]['Time Series (5min)']).length) {
     clearInterval(stockDataLivetransmission);
     increaseNum = 0;
