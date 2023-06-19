@@ -30,7 +30,7 @@ export default function Main() {
           </div>
           <h3>내가 자주 본 종목</h3>
           <div className="myStockArea">
-            <StockContentsBox />
+            {/* <StockContentsBox /> */}
           </div>
           <h3>모범 운전수</h3>
           <div className="driverArea">
