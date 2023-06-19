@@ -15,7 +15,7 @@ const stockDataLivetransmission = setInterval(async () => {
       price : stockObjectData[increaseNum]
       }
       testArray.push(allData)
-      console.log(testArray)
+      // console.log(testArray)
     } catch (error) {
       console.error("stockDataLivetransmission 에러", error);
     }
@@ -23,9 +23,17 @@ const stockDataLivetransmission = setInterval(async () => {
   });
   // 가공 된 데이터 전송
   const dataSend = ()=> {
-    // console.log(dataFormatt)
+    console.log("하이")
     io.emit("stockDataUpdate", dataFormatt);
   };
-  increaseNum++
-}, 10 * 1000);
+  if(increaseNum >= Object.values(stockData[0]['Time Series (5min)']).length) {
+    clearInterval(stockDataLivetransmission);
+    increaseNum = 0;
+  }
+  else {
+    console.log()
+    dataSend()
+    increaseNum++
+  }
+}, 5 * 1000);
 }
