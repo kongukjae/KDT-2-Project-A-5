@@ -6,6 +6,7 @@ import path from "path";
 dotenv.config({ path: "../../.env" }); // env 경로 설정
 // 주식 데이터 요청 모듈
 export async function stockDataRequest () {
+  console.log("하이")
   let stockSymoblData: any[] = [];
   // 해외 주식(회사) 데이터 불러오기
   const readSymbolData = fs.readFileSync(
