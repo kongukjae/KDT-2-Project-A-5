@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts';
 import '../../src/views/css/stockChart';
 import stockContext from "../../src/views/js/stockContext";
-// import DayRange from "./dayRange";
+import DayRange from "./dayRange";
 
 let priceArray : any[] = [];
 let priceArray2 : any[] = [];
@@ -57,7 +57,7 @@ const StockData = (): JSX.Element => {
       {allPrcieArray.map((element : any, index : number)=> {
         return <SimpleLineChart key={index} _data={element}/>
       })}
-      {/* <DayRange/> */}
+      <DayRange/>
     </>
   );
 };
