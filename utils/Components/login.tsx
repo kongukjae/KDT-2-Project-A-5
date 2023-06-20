@@ -41,18 +41,17 @@ export default function Main() {
         }
       })
       .then((data) => {
-        if(data.boolean === true){
-          if(data.result[0].lastAccess === null){
-            setCookie('userId', data.result[0].userId)
-            setCookie('userNum', data.result[0].userNum)
-            setCookie('userName', data.result[0].userName)
-            navigate('/welcome_1');
-          }
-          else{
-            setCookie('userNum', data.result[0].userNum)
-            setCookie('userId', data.result[0].userId)
-            setCookie('userName', data.result[0].userName)
-            navigate('/home');
+        if (data.boolean === true) {
+          if (data.result[0].lastAccess === null) {
+            setCookie("userId", data.result[0].userId);
+            setCookie("userNum", data.result[0].userNum);
+            setCookie("userName", data.result[0].userName);
+            navigate("/welcome_1");
+          } else {
+            setCookie("userNum", data.result[0].userNum);
+            setCookie("userId", data.result[0].userId);
+            setCookie("userName", data.result[0].userName);
+            navigate("/home");
             // 로그인 성공했을 때 쿠키 생성
           }
         } else {
@@ -84,6 +83,7 @@ export default function Main() {
               placeholder="이메일"
               value={email}
               onChange={handleChangeEmail}
+              required
             />
             <input
               className="inputText"
@@ -92,6 +92,7 @@ export default function Main() {
               placeholder="비밀번호"
               value={password}
               onChange={handleChangePassword}
+              required
             />
             <button type="submit" className={styles.nextButton}>
               로그인
