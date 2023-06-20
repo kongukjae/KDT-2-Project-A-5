@@ -69,8 +69,9 @@ const StockData = (): JSX.Element => {
       {allPrcieArray.map((element : any, index : number)=> {
         return   <div className="stockContentsBox">
         <SimpleLineChart key={index} _data={element}/>
-        <DayRange/></div>
+        </div>
       })}
+      <DayRange/>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../src/views/css/newsData";
 import "../../src/views/css/style";
 import { getCookie } from "./cookie";
+// import DayRange from "./dayRange";
 import DriverContentBox from "./driverContentsBox";
 import StockContentsBox from "./stockContentsBox";
 
@@ -20,7 +21,7 @@ export default function Main() {
   const backToTheLogin = () => {
     navigate("/login");
   };
-  // ? StockContentsBox 컴포넌트가 두번 호출되어 주식 데이터가 두번씩 전송되는 오류가 있습니다. 
+  // ? StockContentsBox 컴포넌트가 두번 호출되어 주식 데이터가 두번씩 전송되는 오류가 있습니다.
   if (cookieValue) {
     return (
       <div className="main">
@@ -28,6 +29,7 @@ export default function Main() {
           <h3>국내 증시</h3>
           <div className="stockArea">
             <StockContentsBox />
+            {/* <DayRange /> */}
           </div>
           <h3>내가 자주 본 종목</h3>
           <div className="myStockArea">
