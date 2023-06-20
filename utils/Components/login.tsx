@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "../../src/views/css/style";
 import loginStyle from "../../src/views/css/login.module.css";
 import styles from "../../src/views/css/welcome.module.css";
-
+import { IoMdArrowBack } from "react-icons/io";
 import StockTogetherTitle from "./stockTogetherTitle";
 import { setCookie } from "./cookie";
+import { Link } from "react-router-dom";
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -97,6 +98,12 @@ export default function Main() {
             <button type="submit" className={styles.nextButton}>
               로그인
             </button>
+            <Link to={"/first"}>
+              <div className={styles.backButton}>
+                <p>돌아가기</p>
+                <IoMdArrowBack />
+              </div>
+            </Link>
           </div>
         </form>
       </div>
