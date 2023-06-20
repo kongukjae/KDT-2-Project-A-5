@@ -7,7 +7,7 @@ import "../../src/views/css/stockArea.css";
 import "../../src/views/css/stockChart";
 import stockContext from "../../src/views/js/stockContext";
 import DayRange from "./dayRange";
-import TestData from "./testData";
+import TestData from "./rateData";
 
 
 let priceArray: any[] = [];
