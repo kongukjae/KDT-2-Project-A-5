@@ -11,20 +11,12 @@ const DayRange = (): JSX.Element => {
   useMemo(()=> {
     //! 전날 데이터 요청에 사용하기 위해 데이터 가공
   const groupedData : any = _.groupBy(dayRangeContext, 'symbol')
-  console.log(groupedData)
-  // 각 회사 별 데이터
-  // let aaplData : any = groupedData['AAPL'];
-  // let tslaData : any = groupedData['TSLA'];
-  // let amznData : any = groupedData['AMZN'];
   // 가격
   Object.values(groupedData).map((data : any)=> {
     const dataIng = data[0].price[1]['1. open'];
-    console.log(dataIng);
-
   // 초기 값
   // parseInt() 함수를 사용하여 문자열을 정수로 변환
   const initialValue: any = lastdata;
-  
   // 최종 값
   // parseFloat() 함수를 사용하여 문자열을 부동 소수점 숫자로 변환
   const finalValue = parseFloat(dataIng);
@@ -42,7 +34,6 @@ const DayRange = (): JSX.Element => {
       "Content-Type": "application/json",
     },
     // fetch 요청에 23230612과 같은식으로 보내야 함
-    // split('-')
     body: JSON.stringify({ stockName: data[0].symbol, day: formattedDate }),
   })
     .then((response) => {
@@ -59,7 +50,7 @@ const DayRange = (): JSX.Element => {
       console.error(error);
     });
   });
-  }, [dayRangeContext])
+  }, [dayRangeContext]);
   return (
     <div className="stockInfo">
       {/* <div className="stockSymbol">{aaplData[0].symbol}</div> */}
