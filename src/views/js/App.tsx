@@ -6,6 +6,7 @@ import WelcomeSecond from "../../../src/views/js/firstLoginPage/welcomeSecond";
 import WelcomeThird from "../../../src/views/js/firstLoginPage/welcomeThird";
 import { getCookie } from "../../../utils/Components/cookie";
 import Header from "../../../utils/Components/header";
+import MyTaxi from "../../../utils/Components/myTaxi";
 import Nav from "../../../utils/Components/nav";
 import StockSearch from "../../../utils/Components/stockSearch";
 import AccountScreen from "./accountPage/accountScreen";
@@ -17,7 +18,6 @@ import SignUpScreen from "./signUp/signUpScreen";
 import StationScreen from "./station/stationScreen";
 import stockContext from "./stockContext";
 import TaxiScreen from "./taxiPage/taxiScreen";
-import MyTaxi from "../../../utils/Components/myTaxi";
 const socket = io("localhost:8080");
 export default function App() {
   const userData = getCookie('userName')
@@ -29,8 +29,8 @@ export default function App() {
   useEffect(() => {
     socket.on("stockDataUpdate", (updatedData) => {
       try {
-        const parsedData = JSON.parse(updatedData);
-        setStockContextData(parsedData);
+        // const parsedData = JSON.parse(updatedData);
+        setStockContextData(updatedData);
       } catch (error) {
         console.error("주식 데이터 쿨타임");
       }

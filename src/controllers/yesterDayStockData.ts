@@ -2,10 +2,10 @@ import express from "express";
 import dbConnect from "../../utils/DB/dbConfigure";
 
 class yesterStockData {
-  stockNaem: string;
+  stockName: string;
   day: string;
-  constructor(stockNaem: string, day: string) {
-    this.stockNaem = stockNaem;
+  constructor(stockName: string, day: string) {
+    this.stockName = stockName;
     this.day = day;
   }
 }
@@ -14,7 +14,7 @@ class yesterStockData {
 export default function (req: express.Request, res: express.Response) {
   const data = new yesterStockData(req.body.stockName, req.body.day);
   // console.log('이것은 data', data.stockNaem);
-  dbConnect.query(`select open from ${data.stockNaem}_${data.day}`, (err, result) => {
+  dbConnect.query(`select open from ${data.stockName}_${data.day}`, (err, result) => {
     if (err) {
       console.log(err);
     }
