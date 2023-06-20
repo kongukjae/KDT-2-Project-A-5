@@ -52,6 +52,7 @@
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "@types/react-modal": "^3.16.0",
+    "arkit": "^1.6.4",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
