@@ -25,10 +25,12 @@ export async function stockDataRequest () {
         );
         stockSymoblData.push(response.data)
       } catch (error) {
+        // ? 주식 데이터를 받아오지 못했을 때 어떻게 처리할지?
         console.error("주식 데이터를 받아오는데 실패했습니다", error);
         return ;
       }
     }
         // 회사별 데이터(배열) 리턴
+        // ? 어느 시점에 요청을 보내고, 언제 갱신을 할 것인지
     return stockSymoblData;
   }

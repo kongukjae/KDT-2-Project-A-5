@@ -20,6 +20,7 @@ export default function Main() {
   const backToTheLogin = () => {
     navigate("/login");
   };
+  // ? StockContentsBox 컴포넌트가 두번 호출되어 주식 데이터가 두번씩 전송되는 오류가 있습니다. 
   if (cookieValue) {
     return (
       <div className="main">
