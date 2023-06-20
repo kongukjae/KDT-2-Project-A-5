@@ -9,9 +9,9 @@ import DriverLicense from "../../src/views/js/accountPage/driverLicense";
 export default function Main() {
   const navigate = useNavigate();
   const cookieId = getCookie('userId');
-  const backToTheLogin = () => {
-    navigate('/login');
-  }
+  // const backToTheLogin = () => {
+  //   navigate('/first');
+  // }
 
   // 로그아웃 로직 수행
   const handleLogout = () => {
@@ -35,6 +35,7 @@ export default function Main() {
       })
       .then((data) => {
         console.log(data)
+       
       })
       .catch((error) => {
         console.error(error);
@@ -43,7 +44,7 @@ export default function Main() {
       removeCookie('userId');
       removeCookie('userNum');
     // 새로고침
-    window.location.reload();
+    navigate('/first');
   };
 
   if (cookieId) {
@@ -71,10 +72,7 @@ export default function Main() {
     // 쿠키가 없을 경우
     return (
       <>
-        <div className="main">
-          <h3>권한이 없습니다. 로그인이 필요합니다.</h3>
-          <button onClick={backToTheLogin}>로그인 하러 가기</button>
-        </div>
+    
       </>
     );
   }
