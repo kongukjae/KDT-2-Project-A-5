@@ -36,7 +36,7 @@ const DrivingCar: React.FC = () => {
 
   const seeMore = () => {
     setDefaultContainer(true);
-  };
+  }; 
   return (
     <div className="showTaxiAccount" onClick={seeMore}>
       {taxiData ? (
@@ -44,26 +44,26 @@ const DrivingCar: React.FC = () => {
         taxiData.map((data: any, index: number) => (
           <div className="grayColorBox" key={index}>
             {/* 데이터 활용 */}
-            <div id="stocks">{data["stocks"]}</div>
+            <div id="stocks">종목명 : {data["stocks"]}</div>
             {/* 택시 고유 번호 */}
-            <div>{data["taxiId"]}</div>
+            <div>택시 번호 : {data["taxiId"]}</div>
             {/* 출발 희망가 */}
-            <div id="purchasePrice">{data["purchasePrice"]}</div>
+            <div id="purchasePrice">구매희망가 : {data["purchasePrice"]}</div>
             {/* 구매량 */}
-            <div className="commonFontSize">{data["stockAmount"]}</div>
+            <div className="commonFontSize">구매량 : {data["stockAmount"]}</div>
             {/* 목표가 */}
             <div className="commonFontSize" style={{ color: "#008000" }}>
-              {data["targetPrice"]}
+              목표가 : {data["targetPrice"]}
             </div>
             {/* 폭파 희망가 */}
             <div className="commonFontSize" style={{ color: "#C1121F" }}>
-              {data["stopLossPrice"]}
+              손절가 : {data["stopLossPrice"]}
             </div>
             {/* 동승자 모집 기간 */}
-            <div className="commonFontSize">{data["recruitmentPeriod"]}</div>
+            <div className="commonFontSize">모집 기간 : {data["recruitmentPeriod"]}</div>
             {/* 최대 인원 */}
             <div>
-              {data["maxPerson"]}
+              최대 인원 : {data["maxPerson"]}<br/>
               <AiFillRobot size={24} color="gray" />
               <AiFillRobot size={24} color="gray" />
               <AiFillRobot size={24} color="gray" />

@@ -45,14 +45,14 @@ useEffect(()=> {
             <div>
               <div className="grayColorBox" key={index}></div>
               {/* 데이터 활용 */}
-              <div className="commonFontSize">{data["stockAmount"]}</div>
+              <div className="commonFontSize">구매 수량 : {data["stockAmount"]}</div>
               {/* 목표가 */}
             </div>
-            <div id="stocks">{data["stocks"]}</div>
+            <div id="stocks">종목명 : {data["stocks"]}</div>
             {/* 택시 고유 번호 */}
-            <div>{data["taxiId"]}</div>
+            <div>택시 번호 : {data["taxiId"]}</div>
             {/* 출발 희망가 */}
-            <div id="purchasePrice">{data['purchasePrice']}</div>
+            <div id="purchasePrice">구매희망가 : {data['purchasePrice']}</div>
             {/* 클릭 했을 때만 차트 랜더링 */}
             {showChart[index] && (
             <div>
@@ -62,17 +62,17 @@ useEffect(()=> {
             {/* 구매량 */}
 
             <div className="commonFontSize" style={{ color: "#008000" }}>
-              {data["targetPrice"]}
+              목표가 : {data["targetPrice"]}
             </div>
             {/* 폭파 희망가 */}
             <div className="commonFontSize" style={{ color: "#C1f1F" }}>
-              {data["stopLossPrice"]}
+              손절가 : {data["stopLossPrice"]}
             </div>
             {/* 동승자 모집 기간 */}
-            <div className="commonFontSize">{data["recruitmentPeriod"]}</div>
+            <div className="commonFontSize">모집 기간 : {data["recruitmentPeriod"]}</div>
             {/* 최대 인원 */}
             <div>
-              {data["maxPerson"]}
+              최대 인원 : {data["maxPerson"]}<br/>
               <AiFillRobot size={24} color="gray" />
               <AiFillRobot size={24} color="gray" />
               <AiFillRobot size={24} color="gray" />

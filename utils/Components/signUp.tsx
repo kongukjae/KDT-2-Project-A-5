@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../src/views/css/style";
 import styles from "../../src/views/css/welcome.module.css";
+import { Link } from "react-router-dom";
+
+import { IoMdArrowBack } from "react-icons/io";
 
 export default function Main() {
   const [email, setEmail] = useState("");
@@ -123,6 +126,12 @@ export default function Main() {
   return (
     <>
       <div className="main">
+        <Link to={"/first"}>
+          <div className={styles.backButton}>
+            <p>돌아가기</p>
+            <IoMdArrowBack />
+          </div>
+        </Link>
         <div className="signUpText">회원 정보를 입력해주세요.</div>
         <form className="BackgroundColorGray" onSubmit={handleSubmit}>
           <input

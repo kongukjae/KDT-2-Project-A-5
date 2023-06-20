@@ -1,9 +1,10 @@
 import dbConnect from "../../utils/DB/dbConfigure";
+import fs from "fs"
 const apiKey = process.env.alphaApiKey;
 
 // 데이터 받아 오기
-export default function reLodingData(){
-  fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=${apiKey}`, {
+export default function reLodingData(symbol: any){
+  fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`, {
   method: 'GET',
 
 })
@@ -27,7 +28,7 @@ export default function reLodingData(){
     console.log('dayList', day.split('-').join(''));
     console.log('dadat', Object.values(testdata['Time Series (5min)'][dayList[dayTime]]));
 
-    dbConnect.query(`create table IBM_${day.split('-').join('')}(
+    dbConnect.query(`create table ${symbol}_${day.split('-').join('')}(
       open DOUBLE,
       high DOUBLE,
       low DOUBLE,
@@ -39,7 +40,7 @@ export default function reLodingData(){
         console.log(err)
       }
       else {
-        dbConnect.query(`insert  INTO IBM_${day.split('-').join('')}( open, high, low,close, volume) VALUES(?);`,[Object.values(testdata['Time Series (5min)'][dayList[dayTime]])] ,(err, result) => {
+        dbConnect.query(`insert  INTO ${symbol}_${day.split('-').join('')}( open, high, low,close, volume) VALUES(?);`,[Object.values(testdata['Time Series (5min)'][dayList[dayTime]])] ,(err, result) => {
           if (err) {
             console.log(err)
           }
@@ -54,3 +55,8 @@ export default function reLodingData(){
     console.error(error);
   })
 }
+
+const A = JSON.parse(fs.readFileSync('../models/stock.data.json', 'utf-8'));
+A.forEach((element:any) => {
+  reLodingData(element[0]);
+})

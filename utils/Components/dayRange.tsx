@@ -1,79 +1,21 @@
-import _ from "lodash";
-import React, { useContext, useMemo, useState } from "react";
-import stockContext from "../../src/views/js/stockContext";
+import React from "react";
+interface DayRangeProps {
+  stockSymbol: string;
+  // data: number | any;
+}
 
-const DayRange = (): JSX.Element => {
-  const [lastdata, setLastdata] = useState("");
-  const dayRangeContext = useContext<any>(stockContext);
-  if (dayRangeContext === null) {
-    return <div>Loading...</div>; // 데이터가 null인 동안 로딩 상태를 표시
-  }
-  const groupedData : any = _.groupBy(dayRangeContext, 'symbol')
-  useMemo(()=> {
-    //! 전날 데이터 요청에 사용하기 위해 데이터 가공
+const DayRange = ({ stockSymbol }: DayRangeProps): JSX.Element | null => {
 
-  console.log(groupedData)
-  // 각 회사 별 데이터
-  // let aaplData : any = groupedData['AAPL'];
-  // let tslaData : any = groupedData['TSLA'];
-  // let amznData : any = groupedData['AMZN'];
-  // 가격
-  Object.values(groupedData).map((data : any)=> {
-    const dataIng = data[0].price[1]['1. open'];
-    console.log(dataIng);
+  return <div className="stockInfo">
+    <div className="stockSymbol">{stockSymbol}</div>
+    <div className="stockChangeRate">
 
-  // 초기 값
-  // parseInt() 함수를 사용하여 문자열을 정수로 변환
-  const initialValue: any = lastdata;
-  
-  // 최종 값
-  // parseFloat() 함수를 사용하여 문자열을 부동 소수점 숫자로 변환
-  const finalValue = parseFloat(dataIng);
-  // 증가율 계산
-  const increasePercent = ((finalValue - initialValue) / initialValue) * 100;
-  // 소수 둘째 자리까지 반올림
-  const roundedIncreasePercent = Math.round(increasePercent * 100) / 100;
-  let today = data[0].price[0];
-  let dateOnly = today.split(" ")[0];
-  let noHyphen = dateOnly.split("-");
-  let formattedDate = noHyphen.join("");
-  fetch(`/yesterDayDataRequest`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // fetch 요청에 23230612과 같은식으로 보내야 함
-    // split('-')
-    body: JSON.stringify({ stockName: data[0].symbol, day: formattedDate }),
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("POST 요청이 실패했습니다.");
-      }
-    })
-    .then((data) => {
-      setLastdata(data[0]["open"]);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  });
-  }, [dayRangeContext])
-  return (
-    <div>
-      {dayRangeContext?(<div>대머리
-        <div className="stockInfo">
-      <div className="stockSymbol">{lastdata}</div>
-      <div className="stockChangeRate">
-        {/* {roundedIncreasePercent.toFixed(2)} % */}
-      </div>
+      {/* {data.toFixed(2)} % */}
     </div>
+  </div>
 
-      </div>): (<div>대머리</div>)}
-    </div>
-  );
+
+
 };
 
 export default DayRange;

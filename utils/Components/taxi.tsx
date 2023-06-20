@@ -79,6 +79,7 @@ const corpAutoComp = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const userNum = getCookie("userNum");
     const data = {
       userName: userName,
@@ -111,7 +112,7 @@ const corpAutoComp = () => {
         console.log('data',data);
         if(data.boolean === true){
           console.log("제출 확인",data);
-          navigate('/home');
+          navigate('/station');
         }
       })
       .catch((error) => {

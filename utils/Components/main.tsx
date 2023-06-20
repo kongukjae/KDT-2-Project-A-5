@@ -26,12 +26,12 @@ export default function Main() {
     return (
       <div className="main">
         <div className="mainInBox">
-          <h3>국내 증시</h3>
+          <h3>해외 증시</h3>
           <div className="stockArea">
             <StockContentsBox />
             {/* <DayRange /> */}
           </div>
-          <h3>내가 자주 본 종목</h3>
+          <h3>최근 본 종목</h3>
           <div className="myStockArea">
             {/* <StockContentsBox /> */}
           </div>

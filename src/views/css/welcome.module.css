@@ -45,3 +45,12 @@
 .nextButton:hover {
   background-color: #3b56d3;
 }
+
+.backButton {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 20px;
+  align-items: center;
+  margin-right: 260px;
+  margin-bottom: 20px;
+}
