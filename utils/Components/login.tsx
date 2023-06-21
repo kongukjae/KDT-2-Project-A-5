@@ -47,11 +47,13 @@ export default function Main() {
             setCookie("userId", data.result[0].userId);
             setCookie("userNum", data.result[0].userNum);
             setCookie("userName", data.result[0].userName);
+            setCookie("recentTaxi",["a","b","c"])
             navigate("/welcome_1");
           } else {
             setCookie("userNum", data.result[0].userNum);
             setCookie("userId", data.result[0].userId);
             setCookie("userName", data.result[0].userName);
+            setCookie("recentTaxi",["a","b","c"])
             navigate("/home");
             // 로그인 성공했을 때 쿠키 생성
           }
