@@ -254,14 +254,16 @@ const corpAutoComp = () => {
             ></input>
           </div>
         </div>
-        <div className="flexBetween ">
+        <div className="flexBetween">
           <Link to={"/station"}>
             <div className={styles.backButton}>
               <p>돌아가기</p>
               <IoMdArrowBack />
             </div>
           </Link>
-          <button type="submit">택시 생성</button>
+          <button type="submit" className={styles.taxiNextButton}>
+            택시 생성
+          </button>
         </div>
       </form>
     </div>

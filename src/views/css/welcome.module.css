@@ -54,3 +54,33 @@
   margin-right: 260px;
   margin-bottom: 20px;
 }
+
+.taxiNextButton {
+  background-color: #526ce2;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.taxiNextButton:hover {
+  background-color: #3b56d3;
+}
+
+.taxiBackButton {
+  background-color: white;
+  display:flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+  color: #526ce2;
+  border-radius: 5px;
+  border: 0.1px solid black;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.taxiBackButton:hover {
+  background-color: #cdd6fc;
+}
