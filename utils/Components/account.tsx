@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import "../../src/views/css/style";
 import BankAccount from "./bankAccount";
 import DrivingCar from "./drivingCar";
-import { useNavigate } from 'react-router-dom';
-import { getCookie, removeCookie } from './cookie';
+import { useNavigate } from "react-router-dom";
+import { getCookie, removeCookie } from "./cookie";
 import DriverLicense from "../../src/views/js/accountPage/driverLicense";
 
 export default function Main() {
   const navigate = useNavigate();
-  const cookieId = getCookie('userId');
+  const cookieId = getCookie("userId");
   // const backToTheLogin = () => {
   //   navigate('/first');
   // }
 
   // 로그아웃 로직 수행
   const handleLogout = () => {
-    
     const data = {
       userId: decodeURIComponent(cookieId),
     };
@@ -34,25 +33,23 @@ export default function Main() {
         }
       })
       .then((data) => {
-        console.log(data)
-       
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);
       });
-      removeCookie('userName');
-      removeCookie('userId');
-      removeCookie('userNum');
+    removeCookie("userName");
+    removeCookie("userId");
+    removeCookie("userNum");
     // 새로고침
-    navigate('/first');
+    navigate("/first");
   };
 
   if (cookieId) {
     return (
-        <div className="main">
+      <div className="main">
         <div className="mainInBox">
-          <button onClick={handleLogout}>LogOut</button>
-          <div>
+          <div className="accountBox">
             <h2>계좌</h2>
             <BankAccount />
           </div>
@@ -64,16 +61,12 @@ export default function Main() {
             <h3>운행중인 차량</h3>
             <DrivingCar />
           </div>
+          <button onClick={handleLogout}>LogOut</button>
         </div>
-        </div>
+      </div>
     );
-  }
-  else {
+  } else {
     // 쿠키가 없을 경우
-    return (
-      <>
-    
-      </>
-    );
+    return <></>;
   }
 }

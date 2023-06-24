@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../../src/views/css/style";
+// import "../../src/views/css/style";
 import Modal from "react-modal";
+import "../../src/views/css/myAccount.css";
 
 const modalStyles = {
   content: {
@@ -53,11 +54,22 @@ export default function Account() {
   };
 
   return (
-    <div>
-      <p className="myAccount grayColorBox">
-        계좌 잔액: {balance.toLocaleString()}
-      </p>
-      <input type="button" value="입출금" onClick={handleModalOpen} />
+    <div className="myAccountBox">
+      <div className="myAccount">{balance.toLocaleString()} 원</div>
+      <div className="depositAndWithdrawalBox">
+        <input
+          type="button"
+          value="충전"
+          onClick={handleModalOpen}
+          className="deposit"
+        />
+        <input
+          type="button"
+          value="출금"
+          onClick={handleModalOpen}
+          className="withdrawal"
+        />
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}
