@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import StockSearch from "./stockSearch";
 import Modal from "react-modal";
 import { getCookie } from "./cookie";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
+
+import { IoMdArrowBack } from "react-icons/io";
+import styles from "../../src/views/css/welcome.module.css";
 
 const customStyles = {
   content: {
@@ -109,10 +112,10 @@ const corpAutoComp = () => {
         }
       })
       .then((data) => {
-        console.log('data',data);
-        if(data.boolean === true){
-          console.log("제출 확인",data);
-          navigate('/station');
+        console.log("data", data);
+        if (data.boolean === true) {
+          console.log("제출 확인", data);
+          navigate("/station");
         }
       })
       .catch((error) => {
@@ -247,7 +250,16 @@ const corpAutoComp = () => {
             required
           ></input>
         </div>
-        <button type="submit">택시 생성</button>
+
+        <div className="flexBetween">
+          <Link to={"/station"}>
+            <div className={styles.backButton}>
+              <p>돌아가기</p>
+              <IoMdArrowBack />
+            </div>
+          </Link>
+          <button type="submit">택시 생성</button>
+        </div>
       </form>
     </div>
   );
