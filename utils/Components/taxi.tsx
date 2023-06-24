@@ -126,7 +126,7 @@ const corpAutoComp = () => {
 
   return (
     <div className="main">
-      <form action="" method="" onSubmit={handleSubmit}>
+      <form action="" method="" onSubmit={handleSubmit} style={display: contents}>
         <div className="grayColorBox">
           <div className="flexBetween">
             <input
@@ -256,7 +256,7 @@ const corpAutoComp = () => {
         </div>
         <div className="flexBetween">
           <Link to={"/station"}>
-            <div className={styles.backButton}>
+            <div className={styles.taxiBackButton}>
               <p>돌아가기</p>
               <IoMdArrowBack />
             </div>
