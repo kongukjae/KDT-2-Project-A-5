@@ -5,9 +5,14 @@ import "../../src/views/css/myAccount.css";
 
 const modalStyles = {
   content: {
-    width: "340px",
-    height: "340px",
-    margin: "0 auto",
+    width: "360px",
+    height: "360px",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
   },
 };
 
@@ -49,8 +54,12 @@ export default function Account() {
     setAmount(0); // 입력 필드 초기화
   };
 
-  const handleNumberButtonClick = (num: number) => {
-    setAmount((prevAmount) => prevAmount * 10 + num);
+  const handleNumberButtonClick = (num: string | number) => {
+    if (num === "00") {
+      setAmount((prevAmount) => prevAmount * 100);
+    } else {
+      setAmount((prevAmount) => prevAmount * 10 + Number(num));
+    }
   };
 
   return (
@@ -73,38 +82,45 @@ export default function Account() {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}
-        contentLabel="Example Modal"
+        contentLabel="Withdrawal Modal"
         style={modalStyles}
       >
         <div>
           <button onClick={handleModalClose}>X</button>
-          <div>입출금창</div>
+          <div>충전할 금액을 입력해주세요.</div>
         </div>
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(Number(e.target.value))}
-        />
-        <div className="number-buttons">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
-            <button
-              className="button"
-              key={num}
-              onClick={() => handleNumberButtonClick(num)}
-            >
-              {num}
+        <div className="inputMoney">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
+            className="currentMoney"
+          />
+        </div>
+        <div className="numpadArea">
+          <div className="number-buttons">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, "00", 0].map((num) => (
+              <button
+                className="button"
+                key={num}
+                onClick={() => handleNumberButtonClick(num)}
+              >
+                {num}
+              </button>
+            ))}
+            <button key="del" className="button" onClick={handleDelete}>
+              backspace
             </button>
-          ))}
-          <button key="del" onClick={handleDelete}>
-            backspace
-          </button>
+          </div>
+          <div className="depositAndWithdrawalButtons">
+            <button className="button" onClick={handleDeposit}>
+              입금
+            </button>
+            <button className="button" onClick={handleWithdraw}>
+              출금
+            </button>
+          </div>
         </div>
-        <button className="button" onClick={handleDeposit}>
-          입금
-        </button>
-        <button className="button" onClick={handleWithdraw}>
-          출금
-        </button>
       </Modal>
     </div>
   );

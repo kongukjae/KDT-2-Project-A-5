@@ -59,3 +59,18 @@
   color: #ffffff;
   background-color: #3b56d3;
 }
+
+.depositAndWithdrawalButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.currentMoney {
+  width: 98%;
+  height: 15%;
+  font-size: 24px;
+}
+
+.numpadArea {
+  margin-top: 40px;
+}
