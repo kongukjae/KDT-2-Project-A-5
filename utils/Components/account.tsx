@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../../src/views/css/style";
+// import "../../src/views/css/style";
+import "../../src/views/css/myDriverLicense.css"
 import BankAccount from "./bankAccount";
 import DrivingCar from "./drivingCar";
 import { useNavigate } from "react-router-dom";
@@ -53,15 +54,15 @@ export default function Main() {
             <h2>계좌</h2>
             <BankAccount />
           </div>
-          <div>
-            <h3>내 운전면허증</h3>
+          <div className="driverLicenseBox">
+            <h2>내 운전면허증</h2>
             <DriverLicense />
           </div>
           <div className="showTaxiContainerBox">
-            <h3>운행중인 차량</h3>
+            <h2>운행중인 차량</h2>
             <DrivingCar />
           </div>
-          <button onClick={handleLogout}>LogOut</button>
+          <button onClick={handleLogout} className="logoutButton">로그아웃</button>
         </div>
       </div>
     );

@@ -7,8 +7,8 @@ export default function License() {
   const [returnRate, setReturnRate] = useState(0);
 
   return (
-    <div className="licenseContentsBox grayColorBox">
-      <h3 className="username">{username}</h3>
+    <div className="myDriverLicenseBox">
+      <h3 className="username">{username}홍길동</h3>
       <h4 className="driverCount">{driverCount}</h4>
       <h4 className="noAccidentCount">{noAccidentCount}</h4>
       <h4 className="returnRate">{returnRate}</h4>
