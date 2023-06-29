@@ -1,6 +1,6 @@
 import React from "react";
-import { BsHouse } from "react-icons/Bs";
 import { BiCar } from "react-icons/Bi";
+import { BsHouse } from "react-icons/Bs";
 import { SlWallet } from "react-icons/Sl/";
 import { Link } from "react-router-dom";
 
